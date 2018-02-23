@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp">
+
+        <TextView
+            style="@style/text_title"
+            android:text="@string/login_title" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="18dp"
+            android:src="@mipmap/login_ic_close" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:gravity="center"
+        android:text="@string/login_content"
+        android:textColor="@color/black_454555"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        android:paddingLeft="23dp"
+        android:paddingRight="23dp">
+
+        <RelativeLayout style="@style/rl_edit_bg">
+
+            <ImageView
+                android:id="@+id/login_iv_user_clear"
+                style="@style/iv_clear"
+                android:layout_marginRight="11dp"
+                android:visibility="gone" />
+
+            <EditText
+                style="@style/edit_text"
+                android:layout_toLeftOf="@id/login_iv_user_clear"
+                android:hint="@string/username"
+                android:paddingLeft="12dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/rl_edit_bg"
+            android:layout_marginTop="23dp">
+
+            <ImageView
+                android:id="@+id/login_iv_password_clear"
+                style="@style/iv_clear"
+                android:layout_marginRight="11dp"
+                android:visibility="gone" />
+
+            <EditText
+                style="@style/edit_text"
+                android:layout_toLeftOf="@id/login_iv_password_clear"
+                android:hint="@string/password"
+                android:paddingLeft="12dp" />
+
+        </RelativeLayout>
+        
+        <TextView
+            style="@style/tv_submit_btn"
+            android:layout_marginTop="23dp"
+            android:text="@string/login_title"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/black_333333"
+                android:text="@string/forget_password"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/black_333333"
+                android:text="@string/register_merchant"
+                android:layout_gravity="right"
+                android:textStyle="bold"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
