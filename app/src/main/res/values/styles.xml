@@ -8,7 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar"></style>
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
 
     <style name="text_title">
         <item name="android:layout_width">wrap_content</item>
@@ -49,6 +52,39 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="divider_vertical">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">36dp</item>
+    </style>
+
+    <style name="home_today_data_number">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black_444444</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="home_today_data_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/gray_999999</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_gravity">bottom</item>
+    </style>
+
+    <style name="home_btn_tv">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingTop">13dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black_454555</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

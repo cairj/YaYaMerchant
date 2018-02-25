@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="243dp"
+        android:background="@mipmap/top_bg">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp">
+
+            <TextView
+                android:id="@+id/home_tv_title"
+                style="@style/text_title"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/home_title"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="8dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@mipmap/home_ic_news" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:background="@drawable/bg_red_circle"
+                    android:paddingBottom="1dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="1dp"
+                    android:text="2"
+                    android:textColor="@color/white_fefefe"
+                    android:textSize="9sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/home_tv_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="43sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/home_tv_amount"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="@string/today_amount"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:layout_marginTop="-45dp"
+        android:background="@drawable/ic_shadow"
+        android:paddingBottom="32dp"
+        android:paddingTop="32dp">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/home_today_data_number"
+                android:text="100" />
+
+            <TextView
+                style="@style/home_today_data_title"
+                android:text="@string/today_transaction_number" />
+
+        </FrameLayout>
+
+        <View
+            style="@style/divider_vertical"
+            android:layout_marginTop="4dp"
+            android:background="@color/pink_FFD6E0" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/home_today_data_number"
+                android:text="100" />
+
+            <TextView
+                style="@style/home_today_data_title"
+                android:text="@string/today_visitor_number" />
+
+        </FrameLayout>
+
+        <View
+            style="@style/divider_vertical"
+            android:layout_marginTop="4dp"
+            android:background="@color/pink_FFD6E0" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                style="@style/home_today_data_number"
+                android:text="100" />
+
+            <TextView
+                style="@style/home_today_data_title"
+                android:text="@string/today_new_member_number" />
+
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="124dp"
+        android:layout_marginTop="-10dp"
+        android:background="@drawable/ic_shadow"
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp">
+
+        <TextView
+            style="@style/home_btn_tv"
+            android:drawableTop="@mipmap/home_ic_receivables"
+            android:text="@string/receivables" />
+
+        <TextView
+            style="@style/home_btn_tv"
+            android:drawableTop="@mipmap/home_ic_cash"
+            android:text="@string/cash" />
+
+        <TextView
+            style="@style/home_btn_tv"
+            android:drawableTop="@mipmap/home_ic_money"
+            android:text="@string/balance_account" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="138dp"
+        android:layout_marginTop="-10dp"
+        android:background="@drawable/ic_shadow"
+        android:orientation="vertical"
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/black_454555"
+            android:textSize="13sp"
+            android:text="@string/member_data"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="18dp">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingBottom="14dp">
+
+                <TextView
+                    style="@style/home_today_data_number"
+                    android:text="100" />
+
+                <TextView
+                    style="@style/home_today_data_title"
+                    android:text="@string/today_transaction_number" />
+
+            </FrameLayout>
+
+            <View
+                style="@style/divider_vertical"
+                android:layout_marginTop="4dp"
+                android:background="@color/pink_FFD6E0" />
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingBottom="14dp">
+
+                <TextView
+                    style="@style/home_today_data_number"
+                    android:text="100" />
+
+                <TextView
+                    style="@style/home_today_data_title"
+                    android:text="@string/today_visitor_number" />
+
+            </FrameLayout>
+
+            <View
+                style="@style/divider_vertical"
+                android:layout_marginTop="4dp"
+                android:background="@color/pink_FFD6E0" />
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingBottom="14dp">
+
+                <TextView
+                    style="@style/home_today_data_number"
+                    android:text="100" />
+
+                <TextView
+                    style="@style/home_today_data_title"
+                    android:text="@string/today_new_member_number" />
+
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/main_ll_bottom_tab"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_tab_home"
+            android:gravity="center"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
+            android:text="@string/home"
+            android:textColor="@color/main_bottom_tab_text"
+            android:textSize="11sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_tab_activity"
+            android:gravity="center"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
+            android:text="@string/activity"
+            android:textColor="@color/main_bottom_tab_text"
+            android:textSize="11sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_tab_user"
+            android:gravity="center"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
+            android:text="@string/user"
+            android:textColor="@color/main_bottom_tab_text"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/main_ll_bottom_tab">
+
+    </FrameLayout>
+
+</RelativeLayout>
