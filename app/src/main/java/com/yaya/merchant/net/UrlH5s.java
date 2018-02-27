@@ -1,13 +1,9 @@
 package com.yaya.merchant.net;
 
-import com.qiguanbang.qingkemanager.util.Strings;
+import com.yaya.merchant.util.StringsUtil;
 
 import java.util.HashMap;
 import java.util.Map;
-
-/**
- * Created by 蔡蓉婕 on 2018/1/3.
- */
 
 public class UrlH5s {
 
@@ -23,7 +19,7 @@ public class UrlH5s {
     public static final String buildQueryString(String baseUrl, Map<String, String> params) {
         String url = "";
         try {
-            url = Strings.buildQueryString(baseUrl, params, false);
+            url = StringsUtil.buildQueryString(baseUrl, params, false);
         } catch (Exception e) {
             e.printStackTrace();
         }

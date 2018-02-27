@@ -204,7 +204,7 @@
             <View
                 style="@style/divider_vertical"
                 android:layout_marginTop="4dp"
-                android:background="@color/pink_FFD6E0" />
+                android:background="@color/gray_DADDE6" />
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -225,7 +225,7 @@
             <View
                 style="@style/divider_vertical"
                 android:layout_marginTop="4dp"
-                android:background="@color/pink_FFD6E0" />
+                android:background="@color/gray_DADDE6" />
 
             <FrameLayout
                 android:layout_width="0dp"

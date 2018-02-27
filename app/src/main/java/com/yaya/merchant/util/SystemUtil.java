@@ -4,10 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- * Created by 蔡蓉婕 on 2018/2/24.
- */
-
 public class SystemUtil {
 
     /**

@@ -9,9 +9,6 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 
-/**
- * Created by 魏新智 on 2016/8/31.
- */
 public abstract class GsonCallback<K extends Serializable> extends BaseCallback<K>{
 
     private Class<K> clazz;

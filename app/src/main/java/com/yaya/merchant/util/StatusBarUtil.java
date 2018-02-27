@@ -21,9 +21,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Properties;
 
-/**
- * Created by 魏新智 on 2017/8/7.
- */
 public final class StatusBarUtil {
 
     public static void setWindowStatusBarColor(Activity activity, int colorResId) {

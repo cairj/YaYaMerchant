@@ -11,9 +11,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by 魏新智 on 2017/4/21.
- */
 public abstract class StringCallback extends BaseCallback<String>{
 
     public StringCallback(){

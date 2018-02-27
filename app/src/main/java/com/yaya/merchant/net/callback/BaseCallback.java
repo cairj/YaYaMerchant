@@ -25,9 +25,6 @@ import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * Created by 魏新智 on 2016/8/30.
- */
 public abstract class BaseCallback<K extends Serializable> extends Callback<JsonResponse<K>> {
 
     private String JSON_KEY_CODE = "status";//状态码

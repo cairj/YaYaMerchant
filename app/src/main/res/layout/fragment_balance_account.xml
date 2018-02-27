@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:text="@string/all_status"
+            android:textSize="13sp"
+            android:textColor="@color/black_666666"
+            android:drawableRight="@mipmap/ic_down"/>
+
+        <TextView
+            android:id="@+id/balance_account_tv_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:text="@string/screen"
+            android:textSize="13sp"
+            android:textColor="@color/black_666666"
+            android:drawableRight="@mipmap/ic_screen"/>
+
+        <View
+            style="@style/divider_vertical"
+            android:layout_height="12dp"
+            android:background="@color/gray_f1f2f4"
+            android:layout_toLeftOf="@id/balance_account_tv_screen"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"/>
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_F6F7F9"/>
+
+</LinearLayout>

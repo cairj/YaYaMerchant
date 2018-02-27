@@ -1,9 +1,5 @@
 package com.yaya.merchant.net;
 
-/**
- * Created by 蔡蓉婕 on 2018/1/4.
- */
-
 public class Urls {
 
     private static final String HOST="https://api.qingkr.cn/";
