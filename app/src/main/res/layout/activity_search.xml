@@ -47,17 +47,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:divider="@color/gray_E1E9FA">
+        android:divider="@drawable/bg_divider_graye1e9fa"
+        android:showDividers="middle"
+        android:orientation="vertical">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp">
+            android:layout_height="48dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="12dp">
 
             <TextView
-                style="@style/search_tv_class" />
+                style="@style/search_tv_class"
+                android:text="@string/all_merchant"/>
 
+            <android.support.design.widget.CheckableImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:src="@drawable/ic_selector_switch"
+                android:background="@color/transparent"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="12dp">
+
+            <TextView
+                style="@style/search_tv_class"
+                android:text="@string/all_employee"/>
+
+            <android.support.design.widget.CheckableImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:src="@drawable/ic_selector_switch"
+                android:background="@color/transparent"/>
         </FrameLayout>
 
     </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"/>
 
 </LinearLayout>
