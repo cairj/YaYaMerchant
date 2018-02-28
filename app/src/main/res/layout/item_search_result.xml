@@ -3,12 +3,14 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.design.widget.CheckableImageButton
+
+    <ToggleButton
         android:id="@+id/item_search_cib_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_selector_check"
-        android:background="@color/transparent"
+        android:layout_width="20dp"
+        android:layout_height="20sp"
+        style="@style/base_toggle_button"
+        android:layout_gravity="right|center_vertical"
+        android:background="@drawable/ic_selector_check"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="21dp"

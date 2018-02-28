@@ -99,5 +99,12 @@
         <item name="android:textColor">@color/black_333333</item>
         <item name="android:layout_gravity">center_vertical</item>
     </style>
-    
+
+    <style name="base_toggle_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textOn"> </item>
+        <item name="android:textOff"> </item>
+    </style>
+
 </resources>

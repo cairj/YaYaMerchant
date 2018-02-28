@@ -61,12 +61,12 @@
                 style="@style/search_tv_class"
                 android:text="@string/all_merchant"/>
 
-            <android.support.design.widget.CheckableImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ToggleButton
+                android:layout_width="40dp"
+                android:layout_height="28sp"
+                style="@style/base_toggle_button"
                 android:layout_gravity="right|center_vertical"
-                android:src="@drawable/ic_selector_switch"
-                android:background="@color/transparent"/>
+                android:background="@drawable/ic_selector_switch" />
         </FrameLayout>
 
         <FrameLayout
@@ -79,12 +79,12 @@
                 style="@style/search_tv_class"
                 android:text="@string/all_employee"/>
 
-            <android.support.design.widget.CheckableImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ToggleButton
+                style="@style/base_toggle_button"
+                android:layout_width="40dp"
+                android:layout_height="28sp"
                 android:layout_gravity="right|center_vertical"
-                android:src="@drawable/ic_selector_switch"
-                android:background="@color/transparent"/>
+                android:background="@drawable/ic_selector_switch"/>
         </FrameLayout>
 
     </LinearLayout>
