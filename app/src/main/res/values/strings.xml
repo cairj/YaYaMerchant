@@ -36,4 +36,6 @@
     <string name="cancel">取消</string>
     <string name="all_merchant">全部门店</string>
     <string name="all_employee">全部员工</string>
+    <string name="member_status">会员状态</string>
+    <string name="search">搜索</string>
 </resources>
