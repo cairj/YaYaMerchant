@@ -107,4 +107,22 @@
         <item name="android:textOff"> </item>
     </style>
 
+    <style name="screen_choose_time_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">9dp</item>
+        <item name="android:textColor">@color/gray_999999</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="screen_choose_time_content">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/black_333333</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    
 </resources>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical"
+        android:paddingLeft="14dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="付款方式"
+            android:textColor="@color/black_454555"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="选择时间"
+            android:textColor="@color/black_454555"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                style="@style/screen_choose_time_title"
+                android:text="@string/start_time" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginLeft="19dp"
+                android:background="@color/gray_F5F6F7"
+                android:gravity="center"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/screen_choose_time_content"
+                    android:text="XXX" />
+
+                <TextView
+                    style="@style/screen_choose_time_content"
+                    android:layout_marginLeft="7dp"
+                    android:text="XXX" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                style="@style/screen_choose_time_title"
+                android:text="@string/end_time" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginLeft="19dp"
+                android:background="@color/gray_F5F6F7"
+                android:gravity="center"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/screen_choose_time_content"
+                    android:text="XXX" />
+
+                <TextView
+                    style="@style/screen_choose_time_content"
+                    android:layout_marginLeft="7dp"
+                    android:text="XXX" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/member_phone"
+                android:textColor="@color/black_454555"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginLeft="19dp"
+                android:background="@color/gray_F5F6F7"
+                android:gravity="center"
+                android:padding="5dp">
+
+                <TextView
+                    style="@style/screen_choose_time_content"
+                    android:text="XXX" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/screen_hint"
+            android:textColor="@color/gray_999999"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/pink_feeeed"
+            android:gravity="center"
+            android:text="@string/reset"
+            android:textColor="@color/pink_f25b4e"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/pink_f25b4e"
+            android:gravity="center"
+            android:text="@string/sure"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>
