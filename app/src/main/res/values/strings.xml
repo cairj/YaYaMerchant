@@ -38,4 +38,6 @@
     <string name="all_employee">全部员工</string>
     <string name="member_status">会员状态</string>
     <string name="search">搜索</string>
+    <string name="balance">余额</string>
+    <string name="name_phone">手机号/姓名</string>
 </resources>
