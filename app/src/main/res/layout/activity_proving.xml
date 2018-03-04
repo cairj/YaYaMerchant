@@ -14,6 +14,7 @@
             android:text="@string/phone_proving" />
 
         <ImageView
+            android:id="@+id/tv_action_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|left"
@@ -22,13 +23,15 @@
     </FrameLayout>
 
     <TextView
+        android:id="@+id/proving_tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:gravity="center"
         android:text="@string/phone_proving_content"
         android:textColor="@color/black_454555"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:visibility="invisible"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,25 +44,31 @@
         <RelativeLayout style="@style/rl_edit_bg">
 
             <TextView
-                android:id="@+id/tv_post_proving"
+                android:id="@+id/proving_tv_post"
                 android:layout_width="88dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/bg_gray_bfbfbf_half_rounded"
+                android:background="@drawable/bg_selector_half_red_gray"
                 android:textSize="12sp"
                 android:text="发送"
                 android:textColor="@color/white"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:enabled="false"/>
 
             <EditText
+                android:id="@+id/proving_edit_code"
                 style="@style/edit_text"
-                android:layout_toLeftOf="@id/login_iv_user_clear"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:hint="@string/phone_proving_hint"
-                android:paddingLeft="17dp" />
+                android:paddingLeft="17dp"
+                android:layout_toLeftOf="@id/proving_tv_post"/>
 
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/proving_tv_next"
             style="@style/tv_submit_btn"
             android:layout_marginTop="23dp"
             android:text="@string/next"/>

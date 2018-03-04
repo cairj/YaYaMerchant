@@ -7,6 +7,7 @@ import android.view.View;
 import com.google.gson.Gson;
 import com.toroke.okhttp.JsonResponse;
 import com.toroke.okhttp.PageInfo;
+import com.yaya.merchant.data.BaseData;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
@@ -65,11 +66,11 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
 
             parse(jsonResponse, json);
 
-            switch (jsonResponse.getCode()) {
+            /*switch (jsonResponse.getre) {
                 case 0:
-                    /*code = 0 代表成功，默认实现了Gson解析成相应的实体Bean返回，可以自己替换成fastjson等
+                    *//*code = 0 代表成功，默认实现了Gson解析成相应的实体Bean返回，可以自己替换成fastjson等
                         * 对于返回参数，先支持 String，然后优先支持class类型的字节码，最后支持type类型的参数
-                        */
+                        *//*
                     break;
                 case 104:
                     //比如：用户授权信息无效，在此实现相应的逻辑，弹出对话或者跳转到其他页面等
@@ -83,7 +84,7 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
                 case 300:
                     //比如：其他乱七八糟的等，在此实现相应的逻辑，弹出对话或者跳转到其他页面等
                     break;
-            }
+            }*/
             //如果要更新UI，需要使用handler，可以如下方式实现，也可以自己写handler
             OkHttpUtils.getInstance().getDelivery().execute(new Runnable() {
                 @Override
@@ -91,7 +92,6 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
 //                    ToastHelper.show("错误代码：" + jsonResponse.getCode() + "，错误信息：" + jsonResponse.getMsg());
                 }
             });
-            Log.e("OkHttpUtils", "错误代码：" + jsonResponse.getCode() + "，错误信息：" + jsonResponse.getMsg());
         } catch (IOException e) {
             e.printStackTrace();
             Log.e("OkHttpUtils", "网络IO流读取错误");
@@ -114,28 +114,33 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
 
     @Override
     public void onResponse(JsonResponse<K> kJsonResponse, int i){
-        switch (kJsonResponse.getCode()){
+        if (((BaseData)kJsonResponse.getData()).isStatus()){
+            onSucceed(kJsonResponse);
+        }else {
+            onFailed(kJsonResponse);
+        }
+       /* switch (){
             case 200:
                 onSucceed(kJsonResponse);
                 break;
-            /*case ApiCode.TOKEN_INVALID://token无效或者过期时，打开登录界面重新登录
+            *//*case ApiCode.TOKEN_INVALID://token无效或者过期时，打开登录界面重新登录
                 onTokenInvalid(kJsonResponse);
-                break;*/
+                break;*//*
             default:
                 onFailed(kJsonResponse);
-        }
+        }*/
     };
 
     public void parse(JsonResponse jsonResponse, String json) throws JSONException {
         JSONObject jsonObject = new JSONObject(json);
-        jsonResponse.setMsg(jsonObject.optString(JSON_KEY_MSG, "")); ;
+        /*jsonResponse.setMsg(jsonObject.optString(JSON_KEY_MSG, "")); ;
         jsonResponse.setTip(jsonObject.optString(JSON_KEY_TIP, "")); ;
         jsonResponse.setCode(jsonObject.optInt(JSON_KEY_CODE, 0));
         jsonResponse.setRowNum(jsonObject.optInt(JSON_KEY_ROW_NUM, 0));
         jsonResponse.setCount(jsonObject.optInt(JSON_KEY_COUNT, 0));
         if (jsonObject.has(JSON_KEY_PAGEINFO)){
             jsonResponse.setPageInfo(new Gson().fromJson(jsonObject.getJSONObject(JSON_KEY_PAGEINFO).toString(), PageInfo.class));
-        }
+        }*/
 
         parseResult(jsonObject);
         parseResults(jsonObject);

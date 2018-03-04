@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="208dp"
+    android:background="@color/gray_8D8E8D"
+    app:orientation="horizontal"
+    app:rowCount="4"
+    app:columnCount="4">
+
+    <TextView
+        style="@style/keyboard_item"
+        app:layout_rowWeight="1"
+        app:layout_columnWeight="1"
+        android:text="1"
+        android:layout_marginLeft="0dp"/>
+
+    <TextView
+        style="@style/keyboard_item"
+        app:layout_rowWeight="1"
+        app:layout_columnWeight="1"
+        android:text="2"/>
+
+    <TextView
+        android:text="3"
+        style="@style/keyboard_item"
+        app:layout_rowWeight="1"
+        app:layout_columnWeight="1" />
+
+    <ImageView
+        style="@style/keyboard_item"
+        app:layout_rowWeight="1"
+        app:layout_columnWeight="0.5"
+        android:src="@mipmap/ic_keyboard_delete"
+        android:scaleType="centerInside"/>
+
+    <TextView
+        android:text="4"
+        style="@style/keyboard_item"
+        app:layout_rowWeight="1"
+        app:layout_columnWeight="1"
+        android:layout_marginLeft="0dp"/>
+
+    <TextView
+        android:text="5"
+        style="@style/keyboard_item"
+        app:layout_rowWeight="1"
+        app:layout_columnWeight="1"/>
+
+    <TextView
+        android:text="6"
+        style="@style/keyboard_item"
+        app:layout_rowWeight="1"
+        app:layout_columnWeight="1"/>
+
+    <TextView
+        android:text="会员"
+        style="@style/keyboard_item"
+        app:layout_rowWeight="1"
+        app:layout_columnWeight="0.5"
+        android:textColor="@color/pink_f25b4e"/>
+
+    <TextView
+        android:text="7"
+        style="@style/keyboard_item"
+        app:layout_rowWeight="1"
+        app:layout_columnWeight="1"
+        android:layout_marginLeft="0dp"/>
+
+    <TextView
+        android:text="8"
+        style="@style/keyboard_item"
+        app:layout_rowWeight="1"
+        app:layout_columnWeight="1"/>
+
+    <TextView
+        android:text="9"
+        style="@style/keyboard_item"
+        app:layout_rowWeight="1"
+        app:layout_columnWeight="1"/>
+
+    <TextView
+        android:text="去扫码"
+        style="@style/keyboard_item"
+        app:layout_rowWeight="1"
+        app:layout_columnWeight="0.66"
+        app:layout_rowSpan="2"
+        android:drawableTop="@mipmap/ic_scan"
+        android:background="@color/pink_f25b4e"
+        android:textColor="@color/white"
+        android:paddingTop="20dp"/>
+
+    <TextView
+        android:text="."
+        style="@style/keyboard_item"
+        app:layout_rowWeight="1"
+        app:layout_columnWeight="1"
+        android:layout_marginLeft="0dp"/>
+
+    <TextView
+        android:text="0"
+        style="@style/keyboard_item"
+        app:layout_rowWeight="1"
+        app:layout_columnWeight="1"/>
+
+    <TextView
+        android:text="+"
+        style="@style/keyboard_item"
+        app:layout_rowWeight="1"
+        app:layout_columnWeight="1"/>
+
+</android.support.v7.widget.GridLayout>

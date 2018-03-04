@@ -1,5 +1,7 @@
 package com.yaya.merchant.net;
 
+import com.yaya.merchant.util.sp.SPUtil;
+import com.yaya.merchant.util.sp.SpKeys;
 
 import java.io.IOException;
 
@@ -38,10 +40,10 @@ public class HeaderInterceptor implements Interceptor {
                 .addHeader("app-debug", DeviceParamsHelper.getAppDebug())
                 .addHeader("channel", DeviceParamsHelper.getChannel())
                 .addHeader(Constants.HTTP_REQUEST_HEADER_PUSH_TOKEN, PushAgent.getInstance(ServiceFactory.getContext()).getRegistrationId());
-
-        if (SPUtil.getBoolean(SPKeys.IS_LOGIN)){
-            builder.addHeader("qtoken", SPUtil.getString(SPKeys.TOKEN));
-        }*/
+        */
+        if (SPUtil.getBoolean(SpKeys.IS_LOGIN)){
+            builder.addHeader("qtoken", SPUtil.getString(SpKeys.TOKEN));
+        }
         Request newRequest = builder.build();
         return chain.proceed(newRequest);
     }

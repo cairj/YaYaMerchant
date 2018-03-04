@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_F5F6F7"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_light_action_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="141dp"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_white_rounded_2dp"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total_money"
+            android:textColor="@color/black_333333"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥"
+                android:textColor="@color/black_565656"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="45sp"
+                android:textStyle="bold"
+                android:paddingTop="0dp"/>
+        </LinearLayout>
+
+        <View
+            style="@style/divider_horizontal"
+            android:background="@color/gray_e6e6e6" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/received_money"
+                android:textColor="@color/black_333333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="@string/received_money"
+                android:textColor="@color/black_333333"
+                android:textSize="14sp" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginTop="14dp"
+        android:background="@color/white"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_discount_money"
+            android:textColor="@color/black_333333"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/no_discount_money"
+            android:textColor="@color/black_333333"
+            android:textSize="14sp" />
+    </FrameLayout>
+
+    <TextView
+        style="@style/tv_submit_btn"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:text="@string/confirm_remind"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/view_number_keyboard"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="208dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

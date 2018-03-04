@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="19dp"
+    android:paddingBottom="19dp"
+    android:paddingLeft="14dp"
+    android:paddingRight="14dp"
+    android:background="@drawable/bg_white_rounded">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="@color/pink_f25b4e"
+        android:text="提现中"
+        android:drawableRight="@mipmap/ic_help"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="普通提现"
+            android:textSize="13sp"
+            android:textColor="@color/black_454555"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="普通提现"
+            android:textSize="20sp"
+            android:textColor="@color/black_454555"
+            android:textStyle="bold"
+            android:layout_gravity="right"/>
+
+    </FrameLayout>
+
+    <View style="@style/divider_horizontal"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/dotted_line"
+        android:layout_height="2dp"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/poundage"
+            android:textSize="13sp"
+            android:textColor="@color/black_454555"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/poundage"
+            android:textSize="13sp"
+            android:textColor="@color/black_454555"
+            android:layout_gravity="right"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/withdraw_time"
+            android:textSize="13sp"
+            android:textColor="@color/black_454555"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/withdraw_time"
+            android:textSize="13sp"
+            android:textColor="@color/black_454555"
+            android:layout_gravity="right"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/withdraw_bank_card"
+            android:textSize="13sp"
+            android:textColor="@color/black_454555"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/withdraw_bank_card"
+            android:textSize="13sp"
+            android:textColor="@color/black_454555"
+            android:layout_gravity="right"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/serial_number"
+            android:textSize="13sp"
+            android:textColor="@color/black_454555"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/serial_number"
+            android:textSize="13sp"
+            android:textColor="@color/black_454555"
+            android:layout_gravity="right"/>
+
+    </FrameLayout>
+
+</LinearLayout>

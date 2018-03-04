@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -123,6 +123,13 @@
         <item name="android:textColor">@color/black_333333</item>
         <item name="android:textSize">14sp</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="keyboard_item">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_marginLeft">1dp</item>
+        <item name="android:layout_marginTop">1dp</item>
     </style>
     
 </resources>

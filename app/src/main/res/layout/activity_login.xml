@@ -47,6 +47,7 @@
                 android:visibility="gone" />
 
             <EditText
+                android:id="@+id/login_ed_user"
                 style="@style/edit_text"
                 android:layout_toLeftOf="@id/login_iv_user_clear"
                 android:hint="@string/username"
@@ -65,6 +66,7 @@
                 android:visibility="gone" />
 
             <EditText
+                android:id="@+id/login_ed_password"
                 style="@style/edit_text"
                 android:layout_toLeftOf="@id/login_iv_password_clear"
                 android:hint="@string/password"
@@ -73,6 +75,7 @@
         </RelativeLayout>
         
         <TextView
+            android:id="@+id/login_tv_submit"
             style="@style/tv_submit_btn"
             android:layout_marginTop="23dp"
             android:text="@string/login_title"/>
@@ -83,6 +86,7 @@
             android:layout_marginTop="21dp">
 
             <TextView
+                android:id="@+id/login_tv_forget_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
@@ -90,6 +94,7 @@
                 android:text="@string/forget_password"/>
 
             <TextView
+                android:id="@+id/login_tv_register_merchant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
