@@ -87,7 +87,7 @@ public class ProvingActivity extends BaseActivity {
     }
 
     @OnClick({R.id.proving_tv_post, R.id.proving_tv_next,R.id.tv_action_back})
-    private void onClick(View view) {
+    protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.proving_tv_post:
                 String inputCode = codeEdit.getText().toString().trim();
