@@ -12,6 +12,7 @@
         android:background="@color/white">
 
         <TextView
+            android:id="@+id/main_tv_tab_home"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -24,6 +25,7 @@
             android:textSize="11sp" />
 
         <TextView
+            android:id="@+id/main_tv_tab_activity"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -36,6 +38,7 @@
             android:textSize="11sp" />
 
         <TextView
+            android:id="@+id/main_tv_tab_user"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -50,6 +53,7 @@
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/main_ll_bottom_tab">
