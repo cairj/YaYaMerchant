@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Merchant.iml" filepath="$PROJECT_DIR$/Merchant.iml" />
       <module fileurl="file://E:\workspace\Studio\project\YaYaMerchant\Merchant.iml" filepath="E:\workspace\Studio\project\YaYaMerchant\Merchant.iml" />
+      <module fileurl="file://$PROJECT_DIR$/YaYaMerchant.iml" filepath="$PROJECT_DIR$/YaYaMerchant.iml" />
       <module fileurl="file://D:\cai\Merchant\.idea\YaYaMerchant.iml" filepath="D:\cai\Merchant\.idea\YaYaMerchant.iml" />
       <module fileurl="file://D:\cai\Merchant\YaYaMerchant.iml" filepath="D:\cai\Merchant\YaYaMerchant.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
