@@ -3,34 +3,33 @@ package com.yaya.merchant.net.callback;
 import android.view.View;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.toroke.okhttp.JsonResponse;
 import com.toroke.okhttp.BaseData;
 
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.lang.reflect.Type;
 
 public abstract class GsonCallback<K extends Serializable> extends BaseCallback<K>{
 
-    private Class<K> clazz;
-//    private Type type;
     private Gson gson;
+    private Class<K> clazz;
 
     public GsonCallback(Class<K> clazz){
-        this.clazz = clazz;
-//        type = new TypeToken<K>(){}.getType();
         gson = new Gson();
+        this.clazz = clazz;
     }
 
     public GsonCallback(Class<K> clazz, View view){
         super(view);
-        this.clazz = clazz;
         gson = new Gson();
+        this.clazz = clazz;
     }
     @Override
-    public BaseData<K> parseItem(JSONObject jsonObject) {
-        String json = jsonObject.toString();
-        return gson.fromJson(jsonObject.toString(), BaseData.class);
+    public K parseItem(JSONObject jsonObject) {
+        return gson.fromJson(jsonObject.toString(), clazz);
     }
 
     @Override

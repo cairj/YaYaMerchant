@@ -26,14 +26,11 @@ import okhttp3.Response;
 
 public abstract class BaseCallback<K extends Serializable> extends Callback<JsonResponse<K>> {
 
-    private String JSON_KEY_CODE = "status";//状态码
-    private String JSON_KEY_MSG = "message";//信息
-    private String JSON_KEY_TIP = "tip";//信息
-    protected String JSON_KEY_DATA = "result";//单个结果
+    protected String JSON_KEY_RESULT = "result";//单个结果
+    protected String JSON_KEY_RESULT_DATA = "data";//单个结果
+    protected String JSON_KEY_RESULT_STATUS = "status";//单个结果
+    protected String JSON_KEY_RESULT_USERID = "userId";//单个结果
     protected String JSON_KEY_DATA_LIST = "results";//结果集
-    private String JSON_KEY_ROW_NUM = "rowNum";//行号
-    private String JSON_KEY_COUNT = "count";//数量
-    private String JSON_KEY_PAGEINFO = "pageInfo";
 
     protected JsonResponse<K> jsonResponse;
 
@@ -47,13 +44,6 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
     }
 
     public BaseCallback(List<View> viewList){mViewList = viewList;}
-
-    public BaseCallback(String jsonKeyCode, String jsonKeyMsg, String JSON_KEY_DATA, String JSON_KEY_DATA_LIST){
-        this.JSON_KEY_CODE = jsonKeyCode;
-        this.JSON_KEY_MSG = jsonKeyMsg;
-        this.JSON_KEY_DATA = JSON_KEY_DATA;
-        this.JSON_KEY_DATA_LIST = JSON_KEY_DATA_LIST;
-    }
 
     @Override
     public JsonResponse<K> parseNetworkResponse(Response response, int i) throws Exception {
@@ -157,22 +147,40 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
         ArrayList<BaseData<K>> mList = new ArrayList<BaseData<K>>();
         for (int i=0; i<jsonArray.length(); i++){
             JSONObject object = jsonArray.getJSONObject(i);
-            mList.add(parseItem(object));
+            //mList.add(parseItem(object));
         }
         return mList;
     }
 
     protected void parseResult(JSONObject jsonObject) throws JSONException {
-        if (jsonObject.has(JSON_KEY_DATA)){
-            JSONObject resultObject = jsonObject.getJSONObject(JSON_KEY_DATA);
+        if (jsonObject.has(JSON_KEY_RESULT)){
+            JSONObject resultObject = jsonObject.getJSONObject(JSON_KEY_RESULT);
             if (resultObject != null){
-                jsonResponse.setData(parseItem(resultObject));
+                BaseData<K> baseData = new BaseData<K>();
+                if(resultObject.has(JSON_KEY_RESULT_DATA)) {
+                    if (resultObject.get(JSON_KEY_RESULT_DATA) instanceof String){
+                        String data = resultObject.getString(JSON_KEY_RESULT_DATA);
+                        baseData.setData((K) data);
+                    }else {
+                        JSONObject dataObject = resultObject.getJSONObject(JSON_KEY_RESULT_DATA);
+                        if (dataObject != null) {
+                            baseData.setData(parseItem(dataObject));
+                        }
+                    }
+                }
+                if(resultObject.has(JSON_KEY_RESULT_STATUS)){
+                    baseData.setStatus(resultObject.getBoolean(JSON_KEY_RESULT_STATUS));
+                }
+                if(resultObject.has(JSON_KEY_RESULT_USERID)){
+                    baseData.setUserId(resultObject.getString(JSON_KEY_RESULT_USERID));
+                }
+                jsonResponse.setData(baseData);
             }
         }
     }
 
     /** 将jsonObject解析成单个对象 */
-    public abstract BaseData<K> parseItem(JSONObject jsonObject) throws JSONException;
+    public abstract K parseItem(JSONObject jsonObject) throws JSONException;
 
     /** 返回状态成功的回调 */
     public abstract void onSucceed(JsonResponse<K> response);

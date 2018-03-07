@@ -23,4 +23,16 @@ public class BaseData<T extends Serializable> implements Serializable {
     public String getUserId() {
         return userId;
     }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }

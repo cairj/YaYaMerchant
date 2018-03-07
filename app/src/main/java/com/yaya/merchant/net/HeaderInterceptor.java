@@ -42,7 +42,7 @@ public class HeaderInterceptor implements Interceptor {
                 .addHeader(Constants.HTTP_REQUEST_HEADER_PUSH_TOKEN, PushAgent.getInstance(ServiceFactory.getContext()).getRegistrationId());
         */
         if (SPUtil.getBoolean(SpKeys.IS_LOGIN)){
-            builder.addHeader("qtoken", SPUtil.getString(SpKeys.TOKEN));
+            builder.addHeader("Authorization", "Bearer "+SPUtil.getString(SpKeys.TOKEN));
         }
         Request newRequest = builder.build();
         return chain.proceed(newRequest);

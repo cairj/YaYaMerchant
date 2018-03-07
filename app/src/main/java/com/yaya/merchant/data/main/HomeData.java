@@ -2,11 +2,13 @@ package com.yaya.merchant.data.main;
 
 import com.toroke.okhttp.BaseData;
 
+import java.io.Serializable;
+
 /**
  * Created by 蔡蓉婕 on 2018/3/7.
  */
 
-public class HomeData extends BaseData {
+public class HomeData implements Serializable{
 
     private String collectionAmount;//今日实收金额
     private String orderNumber;//今日交易笔数
