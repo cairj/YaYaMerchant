@@ -1,6 +1,6 @@
 package com.yaya.merchant.data.login;
 
-import com.yaya.merchant.data.BaseData;
+import com.toroke.okhttp.BaseData;
 
 /**
  * Created by admin on 2018/3/5.

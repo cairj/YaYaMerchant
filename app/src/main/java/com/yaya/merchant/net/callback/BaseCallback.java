@@ -4,10 +4,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
-import com.google.gson.Gson;
 import com.toroke.okhttp.JsonResponse;
-import com.toroke.okhttp.PageInfo;
-import com.yaya.merchant.data.BaseData;
+import com.toroke.okhttp.BaseData;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
@@ -59,7 +57,7 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
 
     @Override
     public JsonResponse<K> parseNetworkResponse(Response response, int i) throws Exception {
-        jsonResponse = new JsonResponse<>();
+        jsonResponse = new JsonResponse<K>();
         try {
             String json = response.body().string();
             if (TextUtils.isEmpty(json)) return null;
@@ -114,7 +112,7 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
 
     @Override
     public void onResponse(JsonResponse<K> kJsonResponse, int i){
-        if (((BaseData)kJsonResponse.getData()).isStatus()){
+        if ((kJsonResponse.getData()).isStatus()){
             onSucceed(kJsonResponse);
         }else {
             onFailed(kJsonResponse);
@@ -131,7 +129,7 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
         }*/
     };
 
-    public void parse(JsonResponse jsonResponse, String json) throws JSONException {
+    public void parse(JsonResponse<K> jsonResponse, String json) throws JSONException {
         JSONObject jsonObject = new JSONObject(json);
         /*jsonResponse.setMsg(jsonObject.optString(JSON_KEY_MSG, "")); ;
         jsonResponse.setTip(jsonObject.optString(JSON_KEY_TIP, "")); ;
@@ -150,13 +148,13 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
         if (jsonObject.has(JSON_KEY_DATA_LIST)){
             JSONArray resultsArray = jsonObject.getJSONArray(JSON_KEY_DATA_LIST);
             if (resultsArray != null){
-                jsonResponse.setDataList(parseItems(resultsArray));
+                //jsonResponse.setDataList(parseItems(resultsArray));
             }
         }
     }
 
-    public ArrayList<K> parseItems(JSONArray jsonArray) throws JSONException {
-        ArrayList<K> mList = new ArrayList<K>();
+    public ArrayList<BaseData<K>> parseItems(JSONArray jsonArray) throws JSONException {
+        ArrayList<BaseData<K>> mList = new ArrayList<BaseData<K>>();
         for (int i=0; i<jsonArray.length(); i++){
             JSONObject object = jsonArray.getJSONObject(i);
             mList.add(parseItem(object));
@@ -174,7 +172,7 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
     }
 
     /** 将jsonObject解析成单个对象 */
-    public abstract K parseItem(JSONObject jsonObject) throws JSONException;
+    public abstract BaseData<K> parseItem(JSONObject jsonObject) throws JSONException;
 
     /** 返回状态成功的回调 */
     public abstract void onSucceed(JsonResponse<K> response);

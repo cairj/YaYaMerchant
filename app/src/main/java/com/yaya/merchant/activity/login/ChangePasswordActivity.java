@@ -10,7 +10,6 @@ import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.LoginAction;
 import com.yaya.merchant.base.BaseActivity;
-import com.yaya.merchant.data.login.GetPhoneData;
 import com.yaya.merchant.interfaces.OnEditTextChangeListener;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.StatusBarUtil;
@@ -82,9 +81,9 @@ public class ChangePasswordActivity extends BaseActivity {
             case R.id.input_tv_next:
                 LoginAction.changePassword(newPasswordEdit.getText().toString().trim(),
                         confirmPasswordEdit.getText().toString().trim(), userId,
-                        new GsonCallback<GetPhoneData>(GetPhoneData.class) {
+                        new GsonCallback<String>(String.class) {
                             @Override
-                            public void onSucceed(JsonResponse<GetPhoneData> response) {
+                            public void onSucceed(JsonResponse<String> response) {
 
                             }
                         });

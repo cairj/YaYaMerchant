@@ -26,6 +26,9 @@
     <string name="today_transaction_number">今日交易笔数</string>
     <string name="today_visitor_number">今日访客数量</string>
     <string name="today_new_member_number">今日新增会员</string>
+    <string name="total_member_number">会员总数</string>
+    <string name="total_transaction_number">交易金总额</string>
+    <string name="total_order_number">总订单数量</string>
     <string name="receivables">收款</string>
     <string name="cash">提现</string>
     <string name="balance_account">对账</string>

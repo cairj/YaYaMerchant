@@ -14,26 +14,14 @@ public class JsonResponse<T extends Serializable> implements Serializable{
 
     /** 单个对象 */
     @SerializedName("result")
-    private T data;
+    private BaseData<T> data;
 
-    /** list对象 */
-    @SerializedName("results")
-    private List<T> dataList = new ArrayList<>();
-
-
-    public T getData() {
+    public BaseData<T> getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public void setData(BaseData<T> data) {
         this.data = data;
     }
 
-    public List<T> getDataList() {
-        return dataList;
-    }
-
-    public void setDataList(List<T> dataList) {
-        this.dataList = dataList;
-    }
 }

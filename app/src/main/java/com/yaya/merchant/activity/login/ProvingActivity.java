@@ -67,8 +67,8 @@ public class ProvingActivity extends BaseActivity {
             LoginAction.sendMessage(phone, new GsonCallback<SendMessageData>(SendMessageData.class) {
                 @Override
                 public void onSucceed(JsonResponse<SendMessageData> response) {
-                    ToastUtil.toast(response.getData().getMsg());
-                    code = response.getData().getCode();
+                    ToastUtil.toast(response.getData().getData().getMsg());
+                    code = response.getData().getData().getCode();
                     contentTv.setText(String.format("验证码已发送至%s", phone));
                     contentTv.setVisibility(View.VISIBLE);
                 }

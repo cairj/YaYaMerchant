@@ -9,7 +9,6 @@ import com.yaya.merchant.R;
 import com.yaya.merchant.action.LoginAction;
 import com.yaya.merchant.activity.MainActivity;
 import com.yaya.merchant.base.BaseActivity;
-import com.yaya.merchant.data.login.LoginData;
 import com.yaya.merchant.interfaces.OnEditTextChangeListener;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.StatusBarUtil;
@@ -81,9 +80,9 @@ public class LoginActivity extends BaseActivity {
                 break;
             case R.id.login_tv_submit:
                 LoginAction.login(userEditView.getText().toString().trim(),
-                        passwordEditView.getText().toString().trim(), new GsonCallback<LoginData>(LoginData.class) {
+                        passwordEditView.getText().toString().trim(), new GsonCallback<String>(String.class) {
                             @Override
-                            public void onSucceed(JsonResponse<LoginData> response) {
+                            public void onSucceed(JsonResponse<String> response) {
                                 SPUtil.putBoolean(SpKeys.IS_LOGIN, true);
                                 SPUtil.putString(SpKeys.TOKEN, response.getData().getData());
                                 openActivity(MainActivity.class, true);

@@ -4,13 +4,13 @@ import android.view.View;
 
 import com.google.gson.Gson;
 import com.toroke.okhttp.JsonResponse;
-import com.yaya.merchant.data.BaseData;
+import com.toroke.okhttp.BaseData;
 
 import org.json.JSONObject;
 
 import java.io.Serializable;
 
-public abstract class GsonCallback<K extends BaseData> extends BaseCallback<K>{
+public abstract class GsonCallback<K extends Serializable> extends BaseCallback<K>{
 
     private Class<K> clazz;
 //    private Type type;
@@ -28,9 +28,9 @@ public abstract class GsonCallback<K extends BaseData> extends BaseCallback<K>{
         gson = new Gson();
     }
     @Override
-    public K parseItem(JSONObject jsonObject) {
+    public BaseData<K> parseItem(JSONObject jsonObject) {
         String json = jsonObject.toString();
-        return gson.fromJson(jsonObject.toString(), clazz);
+        return gson.fromJson(jsonObject.toString(), BaseData.class);
     }
 
     @Override

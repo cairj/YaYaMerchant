@@ -87,6 +87,7 @@
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/tv_today_transaction_number"
                 style="@style/home_today_data_number"
                 android:text="100" />
 
@@ -107,6 +108,7 @@
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/tv_today_visitor_number"
                 style="@style/home_today_data_number"
                 android:text="100" />
 
@@ -127,6 +129,7 @@
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/tv_today_new_member_number"
                 style="@style/home_today_data_number"
                 android:text="100" />
 
@@ -146,16 +149,19 @@
         android:paddingTop="14dp">
 
         <TextView
+            android:id="@+id/tv_receivables"
             style="@style/home_btn_tv"
             android:drawableTop="@mipmap/home_ic_receivables"
             android:text="@string/receivables" />
 
         <TextView
+            android:id="@+id/tv_cash"
             style="@style/home_btn_tv"
             android:drawableTop="@mipmap/home_ic_cash"
             android:text="@string/cash" />
 
         <TextView
+            android:id="@+id/tv_balance_account"
             style="@style/home_btn_tv"
             android:drawableTop="@mipmap/home_ic_money"
             android:text="@string/balance_account" />
@@ -192,12 +198,13 @@
                 android:paddingBottom="14dp">
 
                 <TextView
+                    android:id="@+id/tv_total_member_number"
                     style="@style/home_today_data_number"
                     android:text="100" />
 
                 <TextView
                     style="@style/home_today_data_title"
-                    android:text="@string/today_transaction_number" />
+                    android:text="@string/total_member_number" />
 
             </FrameLayout>
 
@@ -213,12 +220,13 @@
                 android:paddingBottom="14dp">
 
                 <TextView
+                    android:id="@+id/tv_total_transaction_number"
                     style="@style/home_today_data_number"
                     android:text="100" />
 
                 <TextView
                     style="@style/home_today_data_title"
-                    android:text="@string/today_visitor_number" />
+                    android:text="@string/total_transaction_number" />
 
             </FrameLayout>
 
@@ -234,12 +242,13 @@
                 android:paddingBottom="14dp">
 
                 <TextView
+                    android:id="@+id/tv_total_order_number"
                     style="@style/home_today_data_number"
                     android:text="100" />
 
                 <TextView
                     style="@style/home_today_data_title"
-                    android:text="@string/today_new_member_number" />
+                    android:text="@string/total_order_number" />
 
             </FrameLayout>
         </LinearLayout>
