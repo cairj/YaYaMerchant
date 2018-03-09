@@ -1,4 +1,4 @@
-package com.yaya.merchant.base;
+package com.yaya.merchant.base.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

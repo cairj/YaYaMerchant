@@ -137,5 +137,25 @@
         <item name="android:layout_marginLeft">1dp</item>
         <item name="android:layout_marginTop">1dp</item>
     </style>
-    
+
+    <!--下拉刷新根布局-->
+    <style name="BasePtrFrameLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">#f1f1f1</item>
+        <item name="ptr_resistance">1.7</item>
+        <item name="ptr_ratio_of_header_height_to_refresh">1.2</item>
+        <item name="ptr_duration_to_close">300</item>
+        <item name="ptr_duration_to_close_header">200</item>
+        <item name="ptr_keep_header_when_refresh">true</item>
+        <item name="ptr_pull_to_fresh">false</item>
+    </style>
+
+    <!-- 加载滚动条样式 -->
+    <style name="Spinner">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateDuration">2000</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
 </resources>

@@ -5,7 +5,7 @@ import android.widget.TextView;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainAction;
-import com.yaya.merchant.base.BaseFragment;
+import com.yaya.merchant.base.fragment.BaseFragment;
 import com.yaya.merchant.data.main.HomeData;
 import com.yaya.merchant.net.callback.GsonCallback;
 

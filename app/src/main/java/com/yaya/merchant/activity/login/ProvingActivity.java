@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.LoginAction;
-import com.yaya.merchant.base.BaseActivity;
+import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.data.login.SendMessageData;
 import com.yaya.merchant.interfaces.OnEditTextChangeListener;
 import com.yaya.merchant.net.callback.GsonCallback;

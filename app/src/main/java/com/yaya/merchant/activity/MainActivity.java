@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yaya.merchant.R;
-import com.yaya.merchant.base.BaseActivity;
+import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.fragment.main.ActivityFragment;
 import com.yaya.merchant.fragment.main.HomeFragment;
 import com.yaya.merchant.fragment.main.UserFragment;

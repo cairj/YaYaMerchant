@@ -36,4 +36,10 @@ dependencies {
     compile 'com.android.support:design:26.1.0'
     //gridlayout
     compile 'com.android.support:gridlayout-v7:26.1.0'
+    //prtFrameLayout下拉刷新上拉加载
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
+    //recyclerView分割线
+    compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
+    //recycleView adapter扩展类
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.1.3'
 }

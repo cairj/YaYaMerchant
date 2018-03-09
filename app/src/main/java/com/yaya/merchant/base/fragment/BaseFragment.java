@@ -1,4 +1,4 @@
-package com.yaya.merchant.base;
+package com.yaya.merchant.base.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,5 +34,9 @@ public class BaseFragment extends Fragment {
     }
 
     protected void initData() {
+    }
+
+    public String getTitle(){
+        return "";
     }
 }
