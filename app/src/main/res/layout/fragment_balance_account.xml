@@ -9,6 +9,7 @@
         android:layout_height="40dp">
 
         <TextView
+            android:id="@+id/balance_account_tv_change_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -40,9 +41,6 @@
 
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/gray_F6F7F9"/>
+    <include layout="@layout/layout_base_ptr_recycle"/>
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.yaya.merchant.base.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -38,5 +39,10 @@ public class BaseFragment extends Fragment {
 
     public String getTitle(){
         return "";
+    }
+
+    protected void openActivity(Class classes) {
+        Intent intent = new Intent(getActivity(), classes);
+        startActivity(intent);
     }
 }

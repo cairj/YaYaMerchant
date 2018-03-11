@@ -13,10 +13,6 @@ public class BaseData<T extends Serializable> implements Serializable {
     private boolean status;
     private String userId;
 
-    private List<T> rows;
-    private int total;
-    private int pageSize;
-
     public boolean isStatus() {
         return status;
     }
@@ -41,18 +37,5 @@ public class BaseData<T extends Serializable> implements Serializable {
         this.userId = userId;
     }
 
-    public List<T> getRows() {
-        return rows;
-    }
 
-    public int getTotal() {
-        return total;
-    }
-
-    public int getPageSize() {
-        if (rows !=null){
-            return total/rows.size();
-        }
-        return 0;
-    }
 }

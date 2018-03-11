@@ -2,4 +2,5 @@
 <resources>
     <dimen name="margin_edge">15dp</dimen>
     <dimen name="divider_height">0.5dp</dimen>
+    <dimen name="divider_height_1dp">1dp</dimen>
 </resources>

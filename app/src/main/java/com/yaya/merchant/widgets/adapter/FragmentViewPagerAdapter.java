@@ -1,4 +1,4 @@
-package com.yaya.merchant.adapter;
+package com.yaya.merchant.widgets.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -40,7 +40,7 @@ public class FragmentViewPagerAdapter  extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        if (titleList != null) {
+        if (titleList != null && !titleList.isEmpty()) {
             return titleList.get(position);
         }
         Fragment fragment = fragmentList.get(position);

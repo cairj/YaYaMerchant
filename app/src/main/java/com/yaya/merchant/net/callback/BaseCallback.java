@@ -30,7 +30,6 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
     protected String JSON_KEY_RESULT_DATA = "data";//单个结果
     protected String JSON_KEY_RESULT_STATUS = "status";//单个结果
     protected String JSON_KEY_RESULT_USERID = "userId";//单个结果
-    protected String JSON_KEY_DATA_LIST = "results";//结果集
 
     protected JsonResponse<K> jsonResponse;
 
@@ -135,19 +134,19 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
     }
 
     protected void parseResults(JSONObject jsonObject) throws JSONException {
-        if (jsonObject.has(JSON_KEY_DATA_LIST)){
+        /*if (jsonObject.has(JSON_KEY_DATA_LIST)) {
             JSONArray resultsArray = jsonObject.getJSONArray(JSON_KEY_DATA_LIST);
-            if (resultsArray != null){
-                //jsonResponse.setDataList(parseItems(resultsArray));
+            if (resultsArray != null) {
+                jsonResponse.setDataList(parseItems(resultsArray));
             }
-        }
+        }*/
     }
 
-    public ArrayList<BaseData<K>> parseItems(JSONArray jsonArray) throws JSONException {
-        ArrayList<BaseData<K>> mList = new ArrayList<BaseData<K>>();
+    public ArrayList<K> parseItems(JSONArray jsonArray) throws JSONException {
+        ArrayList<K> mList = new ArrayList<>();
         for (int i=0; i<jsonArray.length(); i++){
             JSONObject object = jsonArray.getJSONObject(i);
-            //mList.add(parseItem(object));
+            mList.add(parseItem(object));
         }
         return mList;
     }

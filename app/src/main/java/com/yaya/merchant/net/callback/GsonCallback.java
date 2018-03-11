@@ -12,24 +12,35 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.lang.reflect.Type;
 
-public abstract class GsonCallback<K extends Serializable> extends BaseCallback<K>{
+public abstract class GsonCallback<K extends Serializable> extends BaseCallback<K> {
 
     private Gson gson;
     private Class<K> clazz;
+    private Type type;
 
-    public GsonCallback(Class<K> clazz){
+    public GsonCallback(Class<K> clazz) {
         gson = new Gson();
         this.clazz = clazz;
     }
 
-    public GsonCallback(Class<K> clazz, View view){
+    public GsonCallback(Type type) {
+        gson = new Gson();
+        this.type = type;
+    }
+
+    public GsonCallback(Class<K> clazz, View view) {
         super(view);
         gson = new Gson();
         this.clazz = clazz;
     }
+
     @Override
     public K parseItem(JSONObject jsonObject) {
-        return gson.fromJson(jsonObject.toString(), clazz);
+        if (clazz != null) {
+            return gson.fromJson(jsonObject.toString(), clazz);
+        } else {
+            return gson.fromJson(jsonObject.toString(), type);
+        }
     }
 
     @Override

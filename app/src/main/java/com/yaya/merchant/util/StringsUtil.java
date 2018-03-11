@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -198,5 +199,19 @@ public class StringsUtil {
             }
         }
         return buffer.toString();
+    }
+
+    /**
+     * 保留两位小数
+     */
+    public static String formatDecimals(float decimal){
+        return formatDecimals(decimal,"#0.00");
+    }
+    /**
+     * 保留n位小数（pattern用于确定保留的小数位数）
+     */
+    public static String formatDecimals(float decimal,String pattern){
+        DecimalFormat df = new DecimalFormat(pattern);
+        return df.format(decimal);
     }
 }

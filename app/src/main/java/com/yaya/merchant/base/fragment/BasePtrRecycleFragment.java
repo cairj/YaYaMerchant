@@ -12,8 +12,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
+import com.yaya.merchant.util.Constants;
 import com.yaya.merchant.widgets.GifPtrHeader;
 import com.yaya.merchant.widgets.TipInfoLayout;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
@@ -32,7 +34,6 @@ import in.srain.cube.views.ptr.PtrHandler;
 
 public abstract class BasePtrRecycleFragment<T extends Serializable> extends BaseFragment {
 
-
     //    @Bind(R.id.ptr_frame)
     protected PtrFrameLayout ptrFrame;
     //    @Bind(R.id.recycler_view)
@@ -44,8 +45,9 @@ public abstract class BasePtrRecycleFragment<T extends Serializable> extends Bas
     protected BaseQuickAdapter adapter;
     protected LinearLayoutManager mLayoutManager;
 
-    protected long mCurrentPos = 0;
-    protected JsonResponse<T> mJsonResponse;
+    protected long mCurrentPos = 1;
+    protected int pageSize = 20;
+    protected JsonResponse<BaseRowData<T>> mJsonResponse;
 
     private boolean isLoading = false;
     private boolean isFull = false;
@@ -106,11 +108,11 @@ public abstract class BasePtrRecycleFragment<T extends Serializable> extends Bas
         return R.layout.layout_base_ptr_recycle;
     }
     protected abstract BaseQuickAdapter getAdapter();
-    protected abstract JsonResponse<T> getData() throws Exception;
+    protected abstract JsonResponse<BaseRowData<T>> getData() throws Exception;
 
     protected void addItemDecoration(){
         RecyclerView.ItemDecoration decoration = new HorizontalDividerItemDecoration.Builder(getActivity())
-                .color(ContextCompat.getColor(getActivity(), R.color.gray_8D8E8D))
+                .color(ContextCompat.getColor(getActivity(), R.color.gray_F6F7F9))
                 .sizeResId(R.dimen.divider_height)
                 .marginResId(R.dimen.margin_edge)
                 .build();
@@ -157,7 +159,7 @@ public abstract class BasePtrRecycleFragment<T extends Serializable> extends Bas
         if (isLoading || isFull){
             return;
         }
-        new AsyncTask<Void, Void, JsonResponse<T>>(){
+        new AsyncTask<Void, Void, JsonResponse<BaseRowData<T>>>(){
 
             @Override
             protected void onPreExecute() {
@@ -167,7 +169,7 @@ public abstract class BasePtrRecycleFragment<T extends Serializable> extends Bas
             }
 
             @Override
-            protected JsonResponse<T> doInBackground(Void... params) {
+            protected JsonResponse<BaseRowData<T>> doInBackground(Void... params) {
                 try {
                     return getData();
                 } catch (Exception e) {
@@ -177,7 +179,7 @@ public abstract class BasePtrRecycleFragment<T extends Serializable> extends Bas
             }
 
             @Override
-            protected void onPostExecute(JsonResponse<T> ts) {
+            protected void onPostExecute(JsonResponse<BaseRowData<T>> ts) {
                 super.onPostExecute(ts);
                 if (ptrFrame != null){
                     ptrFrame.post(new Runnable() {
@@ -187,8 +189,9 @@ public abstract class BasePtrRecycleFragment<T extends Serializable> extends Bas
                         }
                     });
                 }
-                if (ts == null || ts.getCode() != JsonResponse.STATUS_SUCCEED){
+                if (ts == null || !ts.getData().isStatus()){
                     isLoading = false;
+                    onLoadFailed();
                 }else {
                     mJsonResponse = ts;
                     onLoadJsonResponse(ts);
@@ -197,8 +200,12 @@ public abstract class BasePtrRecycleFragment<T extends Serializable> extends Bas
         }.execute();
     }
 
-    protected void onLoadJsonResponse(JsonResponse<T> ts){
-        onLoadSucceed(ts.getDataList());
+    protected void onLoadJsonResponse(JsonResponse<BaseRowData<T>> ts){
+        onLoadSucceed(ts.getData().getData().getRows());
+    }
+
+    protected void onLoadFailed(){
+        tipInfo.showNetErrorContainer();
     }
 
     protected void onLoadSucceed(List<T> data){
@@ -209,23 +216,21 @@ public abstract class BasePtrRecycleFragment<T extends Serializable> extends Bas
         }
 
         //如果是刷新，则清空列表
-        if (mCurrentPos == 0){
+        if (mCurrentPos == Constants.DEFAULT_FIRST_PAGE_COUNT){
             this.mDataList.clear();
         }
 
-        mCurrentPos = mJsonResponse.getPageInfo().getCurPos();
+        mCurrentPos++;
 
-        this.mDataList.addAll(data);
-        adapter.notifyDataSetChanged();
+        setData(data);
         isLoading = false;
-
         judgeIsEmpty();
 
-        if (mJsonResponse.getPageInfo().isLast()){
+        if (mJsonResponse.getData().getData().getPageSize() < mCurrentPos) {
             isFull = true;
             isLoading = false;
             setFootFull();
-        }else {
+        } else {
             isFull = false;
         }
     }
@@ -247,7 +252,27 @@ public abstract class BasePtrRecycleFragment<T extends Serializable> extends Bas
         tipInfo.showEmptyViewContainer();
     }
 
+    protected void setData(List<T> data){
+        this.mDataList.addAll(data);
+        adapter.notifyDataSetChanged();
+    }
+
     protected void initTipInfoEmptyView() {
+        /*View view = layoutInflater.inflate(R.layout.layout_member_feed_empty, null);
+        ImageView emptyImg = (ImageView) view.findViewById(R.id.empty_img);
+        TextView emptyHintTv = (TextView)view.findViewById(R.id.hint_tv);
+        emptyImg.setImageResource(getEmptyViewImgId());
+        emptyHintTv.setText(getEmptyViewHint());
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refresh();
+            }
+        });
+        tipInfo.setEmptyViewContainer(view);*/
+    }
+
+    protected void initTipInfoErrorView() {
         /*View view = layoutInflater.inflate(R.layout.layout_member_feed_empty, null);
         ImageView emptyImg = (ImageView) view.findViewById(R.id.empty_img);
         TextView emptyHintTv = (TextView)view.findViewById(R.id.hint_tv);

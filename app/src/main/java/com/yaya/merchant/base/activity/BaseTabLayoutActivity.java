@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import com.yaya.merchant.R;
-import com.yaya.merchant.adapter.FragmentViewPagerAdapter;
+import com.yaya.merchant.widgets.adapter.FragmentViewPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

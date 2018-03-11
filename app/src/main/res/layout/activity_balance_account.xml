@@ -12,6 +12,7 @@
         <include layout="@layout/layout_tab_dark_action_bar"/>
 
         <TextView
+            android:id="@+id/tv_search"
             android:layout_width="match_parent"
             android:layout_height="29dp"
             android:layout_marginLeft="14dp"

@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.yaya.merchant.R;
+import com.yaya.merchant.util.AppManager;
 
 import butterknife.ButterKnife;
 
@@ -21,12 +22,19 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppManager.getAppManager().addActivity(this);
         beforeSetContent();
         setContentView(getContentViewId());
         ButterKnife.bind(this);
         fragmentManager = getSupportFragmentManager();
         initView();
         initData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppManager.getAppManager().removeActivity(this);
     }
 
     protected int getContentViewId() {

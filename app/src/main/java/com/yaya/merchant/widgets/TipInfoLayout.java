@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.yaya.merchant.R;
 import com.yaya.merchant.util.GitViewUtils;
 
 
@@ -88,7 +89,7 @@ public class TipInfoLayout extends FrameLayout {
             tip = errorTip;
         this.mPbProgressBar.setVisibility(View.GONE);
         this.mTipContainer.setVisibility(View.VISIBLE);
-        this.mTvTipState.setText(R.string.fa_wifi);
+        //this.mTvTipState.setText(R.string.fa_wifi);
         this.mTvTipMsg.setText(tip);
     }
 
@@ -99,7 +100,7 @@ public class TipInfoLayout extends FrameLayout {
             tip = emptyTip;
         this.mPbProgressBar.setVisibility(View.GONE);
         this.mTipContainer.setVisibility(View.VISIBLE);
-        this.mTvTipState.setText(R.string.fa_refresh);
+        this.mTvTipState.setText(R.string.refresh);
         this.mTvTipMsg.setText(tip);
     }
 
