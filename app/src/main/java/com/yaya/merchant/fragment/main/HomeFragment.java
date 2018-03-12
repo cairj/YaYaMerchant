@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainAction;
-import com.yaya.merchant.activity.balance.BalanceAccountActivity;
+import com.yaya.merchant.activity.account.EnterBillActivity;
 import com.yaya.merchant.base.fragment.BaseFragment;
 import com.yaya.merchant.data.main.HomeData;
 import com.yaya.merchant.net.callback.GsonCallback;
@@ -60,7 +60,7 @@ public class HomeFragment extends BaseFragment {
     protected void onClick(View view){
         switch (view.getId()){
             case R.id.tv_balance_account:
-                openActivity(BalanceAccountActivity.class);
+                openActivity(EnterBillActivity.class);
                 break;
         }
     }

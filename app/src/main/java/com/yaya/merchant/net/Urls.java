@@ -10,5 +10,6 @@ public class Urls {
     public static final String HOME_DATA=HOST+"api/Homeindex/Index";
     public static final String BILL_HOUSTON=HOST+"/api/bill/Houston";
     public static final String BILL_GET_ALL_STORE=HOST+"/api/bill/GetAllStore";
+    public static final String BILL_GET_MEMBER_BILL=HOST+"/api/bill/BillMember";
 
 }

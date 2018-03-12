@@ -1,4 +1,4 @@
-package com.yaya.merchant.activity.balance;
+package com.yaya.merchant.activity.account;
 
 import android.content.Context;
 import android.content.Intent;

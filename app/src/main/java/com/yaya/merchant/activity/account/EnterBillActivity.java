@@ -1,22 +1,24 @@
-package com.yaya.merchant.activity.balance;
+package com.yaya.merchant.activity.account;
 
 import android.content.Intent;
 
 import com.yaya.merchant.R;
 import com.yaya.merchant.base.activity.BaseTabLayoutActivity;
-import com.yaya.merchant.fragment.balance.BalanceAccountFragment;
+import com.yaya.merchant.fragment.account.MemberBillFragment;
+import com.yaya.merchant.fragment.account.MerchantBillFragment;
 
 import butterknife.OnClick;
 
 /**
- * Created by 蔡蓉婕 on 2018/3/9.
+ * 入账列表
  */
 
-public class BalanceAccountActivity extends BaseTabLayoutActivity {
+public class EnterBillActivity extends BaseTabLayoutActivity {
 
     public static int TO_MERCHANT_REQUEST_CODE = 10000;
 
-    private BalanceAccountFragment balanceAccountFragment;
+    private MerchantBillFragment merchantBillFragment;
+    private MemberBillFragment memberBillFragment;
 
     @Override
     protected int getContentViewId() {
@@ -25,8 +27,11 @@ public class BalanceAccountActivity extends BaseTabLayoutActivity {
 
     @Override
     protected void initData() {
-        balanceAccountFragment = new BalanceAccountFragment();
-        fragmentList.add(balanceAccountFragment);
+        merchantBillFragment = new MerchantBillFragment();
+        fragmentList.add(merchantBillFragment);
+
+        memberBillFragment = new MemberBillFragment();
+        fragmentList.add(memberBillFragment);
 
         adapter.notifyDataSetChanged();
     }
@@ -39,7 +44,7 @@ public class BalanceAccountActivity extends BaseTabLayoutActivity {
         }
         if (requestCode == TO_MERCHANT_REQUEST_CODE) {
             String selectMerchantId = data.getStringExtra(SearchMerchantActivity.RETURN_SELECT_MERCHANT_ID);
-            balanceAccountFragment.setSelectedMerchantId(selectMerchantId);
+            merchantBillFragment.setSelectedMerchantId(selectMerchantId);
         }
     }
 
@@ -47,9 +52,16 @@ public class BalanceAccountActivity extends BaseTabLayoutActivity {
     protected void toSearch() {
         if (viewPager.getCurrentItem() == 0) {
             startActivityForResult(SearchMerchantActivity
-                            .openSearchIntent(this, balanceAccountFragment.getSelectedMerchantId()),
+                            .openSearchIntent(this, merchantBillFragment.getSelectedMerchantId()),
                     TO_MERCHANT_REQUEST_CODE);
         }
+
+        if (viewPager.getCurrentItem() == 1) {
+            startActivityForResult(SearchMerchantActivity
+                            .openSearchIntent(this, memberBillFragment.getSelectedMerchantId()),
+                    TO_MERCHANT_REQUEST_CODE);
+        }
+
     }
 
 }

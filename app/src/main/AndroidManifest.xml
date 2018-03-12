@@ -29,8 +29,8 @@
             android:theme="@style/GrayActionBar"/>
         <activity android:name=".activity.MainActivity"
             android:theme="@style/ImageTranslucentTheme"/>
-        <activity android:name=".activity.balance.BalanceAccountActivity"/>
-        <activity android:name=".activity.balance.SearchMerchantActivity"
+        <activity android:name=".activity.account.EnterBillActivity"/>
+        <activity android:name=".activity.account.SearchMerchantActivity"
             android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|keyboardHidden"/>
 

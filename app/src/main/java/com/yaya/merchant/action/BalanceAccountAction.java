@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
-import com.yaya.merchant.data.account.BalanceAccount;
+import com.yaya.merchant.data.account.BillData;
 import com.yaya.merchant.net.Urls;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.GetBuilder;
@@ -24,9 +24,9 @@ import okhttp3.Response;
 public class BalanceAccountAction {
 
     //获取入账信息
-    public static JsonResponse<BaseRowData<BalanceAccount>> getAccountList(String storeId, String payState, String payType,
-                                                                           String startTime, String endTime, String page,
-                                                                           String pageSize) throws IOException {
+    public static JsonResponse<BaseRowData<BillData>> getAccountList(String storeId, String payState, String payType,
+                                                                     String startTime, String endTime, String page,
+                                                                     String pageSize) throws IOException {
         if (TextUtils.isEmpty(storeId) || TextUtils.isEmpty(page) || TextUtils.isEmpty(pageSize)) {
             return null;
         }
@@ -48,7 +48,7 @@ public class BalanceAccountAction {
         }
         Response response = builder.build().execute();
         Gson gson = new Gson();
-        Type type = new TypeToken<JsonResponse<BaseRowData<BalanceAccount>>>() {
+        Type type = new TypeToken<JsonResponse<BaseRowData<BillData>>>() {
         }.getType();
         return gson.fromJson(response.body().string(), type);
     }
@@ -59,6 +59,34 @@ public class BalanceAccountAction {
             builder.addParams("Search", search);
         }
         builder.build().execute(callback);
+    }
+
+
+    //获取入账信息
+    public static JsonResponse<BaseRowData<BillData>> getMemberBillList(String storeId, String orderType,
+                                                                        String startTime, String endTime, String page,
+                                                                        String pageSize) throws IOException {
+        if (TextUtils.isEmpty(storeId) || TextUtils.isEmpty(page) || TextUtils.isEmpty(pageSize)) {
+            return null;
+        }
+        GetBuilder builder = OkHttpUtils.get().url(Urls.BILL_GET_MEMBER_BILL)
+                .addParams("storeId", storeId)
+                .addParams("page", page)
+                .addParams("pageSize", pageSize);
+        if (!TextUtils.isEmpty(orderType)) {
+            builder.addParams("payState", orderType);
+        }
+        if (!TextUtils.isEmpty(startTime)) {
+            builder.addParams("startTime", startTime);
+        }
+        if (!TextUtils.isEmpty(endTime)) {
+            builder.addParams("endTime", endTime);
+        }
+        Response response = builder.build().execute();
+        Gson gson = new Gson();
+        Type type = new TypeToken<JsonResponse<BaseRowData<BillData>>>() {
+        }.getType();
+        return gson.fromJson(response.body().string(), type);
     }
 
 }
