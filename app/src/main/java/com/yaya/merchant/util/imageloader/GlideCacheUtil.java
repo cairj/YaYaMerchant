@@ -3,7 +3,7 @@ package com.yaya.merchant.util.imageloader;
 import android.os.Looper;
 
 import com.bumptech.glide.Glide;
-import com.toroke.qiguanbang.service.ServiceFactory;
+import com.yaya.merchant.util.AppManager;
 
 /**
  * Created by 魏新智 on 2017/11/2.
@@ -22,11 +22,11 @@ public class GlideCacheUtil {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        Glide.get(ServiceFactory.getContext()).clearDiskCache();
+                        Glide.get(AppManager.getAppManager().getCurrentActivity()).clearDiskCache();
                     }
                 }).start();
             } else {
-                Glide.get(ServiceFactory.getContext()).clearDiskCache();
+                Glide.get(AppManager.getAppManager().getCurrentActivity()).clearDiskCache();
             }
             return true;
         } catch (Exception e) {
@@ -39,7 +39,7 @@ public class GlideCacheUtil {
     public static boolean clearCacheMemory() {
         try {
             if (Looper.myLooper() == Looper.getMainLooper()) { //只能在主线程执行
-                Glide.get(ServiceFactory.getContext()).clearMemory();
+                Glide.get(AppManager.getAppManager().getCurrentActivity()).clearMemory();
                 return true;
             }
         } catch (Exception e) {

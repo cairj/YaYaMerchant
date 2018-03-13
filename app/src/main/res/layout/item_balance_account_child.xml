@@ -10,6 +10,7 @@
     android:paddingTop="11dp">
 
     <ImageView
+        android:id="@+id/item_iv_head"
         android:layout_width="35dp"
         android:layout_height="35dp" />
 

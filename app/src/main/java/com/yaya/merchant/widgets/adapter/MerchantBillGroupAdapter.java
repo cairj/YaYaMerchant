@@ -13,6 +13,7 @@ import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by admin on 2018/3/11.
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class MerchantBillGroupAdapter extends BaseQuickAdapter<String> {
 
-    private HashMap<String, List<BillData>> balanceHashMap;//每个日期下对应的账单
+    private Map<String, List<BillData>> balanceHashMap;//每个日期下对应的账单
     private RecyclerView.ItemDecoration decoration;
 
     public MerchantBillGroupAdapter(List<String> data) {
@@ -44,7 +45,7 @@ public class MerchantBillGroupAdapter extends BaseQuickAdapter<String> {
         recyclerView.setLayoutParams(lp);*/
     }
 
-    public void setBalanceHashMap(HashMap<String, List<BillData>> balanceHashMap) {
+    public void setBalanceHashMap(Map<String, List<BillData>> balanceHashMap) {
         this.balanceHashMap = balanceHashMap;
     }
 

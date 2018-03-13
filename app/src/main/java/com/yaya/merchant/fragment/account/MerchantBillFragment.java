@@ -39,6 +39,12 @@ public class MerchantBillFragment extends BaseBillFragment {
     }
 
     @Override
+    protected void initSingleChoiceWindow() {
+        super.initSingleChoiceWindow();
+
+    }
+
+    @Override
     public String getTitle() {
         return "入账";
     }

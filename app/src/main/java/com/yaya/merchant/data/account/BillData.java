@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class BillData implements Serializable {
 
     /*payState付款状态对应值*/
-    public static final String[] PAY_STATE = {"全部", "已支付", "待付款", "全额退款", "部分退款", "已关闭", "已撤销"};
+    public static final String[] PAY_STATE = {"全部状态", "已付款", "待付款", "全额退款", "部分退款", "已关闭", "已撤销"};
     public static final String PAY_STATE_ALL = "";//全部
     public static final String PAY_STATE_PAID = "1";//已支付
     public static final String PAY_PENDING_PAID = "2";//待付款

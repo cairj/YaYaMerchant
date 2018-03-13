@@ -1,6 +1,7 @@
 package com.yaya.merchant.fragment.account;
 
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -14,14 +15,18 @@ import com.yaya.merchant.data.account.BillData;
 import com.yaya.merchant.data.account.Merchant;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.widgets.adapter.MerchantBillGroupAdapter;
+import com.yaya.merchant.widgets.adapter.SingleChoiceTextAdapter;
+import com.yaya.merchant.widgets.popupwindow.SingleChoiceWindow;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.TreeMap;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 入账
@@ -34,16 +39,33 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
     protected String endTime = "";
 
     protected List<String> groupList = new ArrayList<>();
-    protected HashMap<String, List<BillData>> map = new HashMap<>();
+    protected TreeMap<String, List<BillData>> map = new TreeMap<>();
 
     @BindView(R.id.balance_account_tv_change_status)
     protected TextView changeStatusTv;
     @BindView(R.id.balance_account_tv_screen)
     protected TextView screenTv;
 
+    protected SingleChoiceWindow singleChoiceWindow;
+    protected SingleChoiceTextAdapter singleChoiceAdapter;
+    protected ArrayList<String> singleChoiceItemList = new ArrayList<>();
+
     @Override
     protected int getContentViewId() {
         return R.layout.fragment_balance_account;
+    }
+
+    @Override
+    protected void initView() {
+        super.initView();
+        initSingleChoiceWindow();
+        changeStatusTv.setText("全部状态");
+    }
+
+    protected void initSingleChoiceWindow(){
+        singleChoiceWindow=new SingleChoiceWindow();
+        singleChoiceAdapter = new SingleChoiceTextAdapter(singleChoiceItemList);
+        singleChoiceWindow.setAdapter(singleChoiceAdapter);
     }
 
     @Override
@@ -56,12 +78,6 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
     protected BaseQuickAdapter getAdapter() {
         return new MerchantBillGroupAdapter(groupList);
     }
-
-    /*@Override
-    protected JsonResponse<BaseRowData<BillData>> getData() throws Exception {
-        return BalanceAccountAction.getAccountList(storeId, payState, payType, startTime, endTime,
-                String.valueOf(mCurrentPos), String.valueOf(pageSize));
-    }*/
 
     private void getAllMerchant(){
         Type type=new TypeToken<BaseRowData<Merchant>>(){}.getType();
@@ -105,6 +121,15 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
     public void setSelectedMerchantId(String storeId) {
         this.storeId = storeId;
         refresh();
+    }
+
+    @OnClick(R.id.balance_account_tv_change_status)
+    protected void onClick(View view){
+        switch (view.getId()){
+            case R.id.balance_account_tv_change_status:
+                singleChoiceWindow.show(changeStatusTv);
+                break;
+        }
     }
 
 }
