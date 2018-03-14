@@ -1,10 +1,8 @@
 package com.yaya.merchant.fragment.account;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
-import com.yaya.merchant.action.BalanceAccountAction;
-import com.yaya.merchant.base.fragment.BasePtrRecycleFragment;
+import com.yaya.merchant.action.MainDataAction;
 import com.yaya.merchant.data.account.BillData;
 
 /**
@@ -17,7 +15,7 @@ public class MemberBillFragment extends BaseBillFragment {
 
     @Override
     protected JsonResponse<BaseRowData<BillData>> getData() throws Exception {
-        return BalanceAccountAction.getMemberBillList(storeId, orderType, startTime, endTime,
+        return MainDataAction.getMemberBillList(storeId, orderType, startTime, endTime,
                 String.valueOf(mCurrentPos), String.valueOf(pageSize));
     }
 

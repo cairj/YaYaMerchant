@@ -36,6 +36,7 @@
                 android:background="@mipmap/me_ic_next_black" />
 
             <TextView
+                android:id="@+id/tv_bank_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="27dp"
@@ -73,15 +74,17 @@
                     android:textColor="@color/black_565656"
                     android:textSize="13sp" />
 
-                <TextView
+                <EditText
+                    android:id="@+id/ed_money_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="13dp"
                     android:paddingTop="0dp"
-                    android:text="0"
+                    android:hint="提现金额"
                     android:textColor="@color/black"
                     android:textSize="45sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:background="@color/transparent" />
             </LinearLayout>
 
             <View
@@ -94,6 +97,7 @@
                 android:layout_marginTop="14dp">
 
                 <TextView
+                    android:id="@+id/tv_total_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/withdraw_money_count"
@@ -101,6 +105,7 @@
                     android:textSize="13sp" />
 
                 <TextView
+                    android:id="@+id/tv_withdraw_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/withdraw_all"
@@ -130,6 +135,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/tv_member_balance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -148,6 +154,7 @@
         android:text="@string/withdraw_money_rule"/>
 
     <TextView
+        android:id="@+id/tv_submit_withdraw"
         style="@style/tv_submit_btn"
         android:layout_marginLeft="14dp"
         android:layout_marginRight="14dp"

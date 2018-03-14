@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.data.account.BillData;
+import com.yaya.merchant.data.account.Member;
 import com.yaya.merchant.net.Urls;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.GetBuilder;
@@ -21,7 +22,7 @@ import okhttp3.Response;
  * Created by admin on 2018/3/11.
  */
 
-public class BalanceAccountAction {
+public class MainDataAction {
 
     //获取入账信息
     public static JsonResponse<BaseRowData<BillData>> getAccountList(String storeId, String payState, String payType,
@@ -85,6 +86,28 @@ public class BalanceAccountAction {
         Response response = builder.build().execute();
         Gson gson = new Gson();
         Type type = new TypeToken<JsonResponse<BaseRowData<BillData>>>() {
+        }.getType();
+        return gson.fromJson(response.body().string(), type);
+    }
+
+    //获取会员列表
+    public static JsonResponse<BaseRowData<Member>> getMemberList(String search, String memberstate,
+                                                                  String page, String pageSize) throws IOException {
+        if (TextUtils.isEmpty(page) || TextUtils.isEmpty(pageSize)) {
+            return null;
+        }
+        GetBuilder builder = OkHttpUtils.get().url(Urls.GET_MEMBER_MANAGER_LIST)
+                .addParams("page", page)
+                .addParams("pageSize", pageSize);
+        if (!TextUtils.isEmpty(search)) {
+            builder.addParams("search", search);
+        }
+        if (!TextUtils.isEmpty(memberstate)) {
+            builder.addParams("memberstate", memberstate);
+        }
+        Response response = builder.build().execute();
+        Gson gson = new Gson();
+        Type type = new TypeToken<JsonResponse<BaseRowData<Member>>>() {
         }.getType();
         return gson.fromJson(response.body().string(), type);
     }

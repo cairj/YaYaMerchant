@@ -33,6 +33,7 @@
         <activity android:name=".activity.account.SearchMerchantActivity"
             android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|keyboardHidden"/>
+        <activity android:name=".activity.account.MemberManagerActivity"/>
 
     </application>
 </manifest>

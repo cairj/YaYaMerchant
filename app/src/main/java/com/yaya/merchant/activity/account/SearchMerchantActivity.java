@@ -15,7 +15,7 @@ import com.google.gson.reflect.TypeToken;
 import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
-import com.yaya.merchant.action.BalanceAccountAction;
+import com.yaya.merchant.action.MainDataAction;
 import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.data.account.Merchant;
 import com.yaya.merchant.interfaces.OnEditTextChangeListener;
@@ -112,7 +112,7 @@ public class SearchMerchantActivity extends BaseActivity {
     protected void initData() {
         Type type = new TypeToken<BaseRowData<Merchant>>() {
         }.getType();
-        BalanceAccountAction.searchMerchant(searchKey, new GsonCallback<BaseRowData<Merchant>>(type) {
+        MainDataAction.searchMerchant(searchKey, new GsonCallback<BaseRowData<Merchant>>(type) {
             @Override
             public void onSucceed(JsonResponse<BaseRowData<Merchant>> response) {
                 mData.clear();

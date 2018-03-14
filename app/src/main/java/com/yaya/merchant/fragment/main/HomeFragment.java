@@ -7,6 +7,7 @@ import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainAction;
 import com.yaya.merchant.activity.account.EnterBillActivity;
+import com.yaya.merchant.activity.account.MemberManagerActivity;
 import com.yaya.merchant.base.fragment.BaseFragment;
 import com.yaya.merchant.data.main.HomeData;
 import com.yaya.merchant.net.callback.GsonCallback;
@@ -56,11 +57,14 @@ public class HomeFragment extends BaseFragment {
         });
     }
 
-    @OnClick({R.id.tv_balance_account})
+    @OnClick({R.id.home_tv_amount,R.id.fl_total_member})
     protected void onClick(View view){
         switch (view.getId()){
-            case R.id.tv_balance_account:
+            case R.id.home_tv_amount:
                 openActivity(EnterBillActivity.class);
+                break;
+            case  R.id.fl_total_member:
+                openActivity(MemberManagerActivity.class);
                 break;
         }
     }

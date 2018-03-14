@@ -9,7 +9,7 @@ import com.google.gson.reflect.TypeToken;
 import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
-import com.yaya.merchant.action.BalanceAccountAction;
+import com.yaya.merchant.action.MainDataAction;
 import com.yaya.merchant.base.fragment.BasePtrRecycleFragment;
 import com.yaya.merchant.data.account.BillData;
 import com.yaya.merchant.data.account.Merchant;
@@ -20,7 +20,6 @@ import com.yaya.merchant.widgets.popupwindow.SingleChoiceWindow;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
@@ -81,7 +80,7 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
 
     private void getAllMerchant(){
         Type type=new TypeToken<BaseRowData<Merchant>>(){}.getType();
-        BalanceAccountAction.searchMerchant("", new GsonCallback<BaseRowData<Merchant>>(type) {
+        MainDataAction.searchMerchant("", new GsonCallback<BaseRowData<Merchant>>(type) {
             @Override
             public void onSucceed(JsonResponse<BaseRowData<Merchant>> response) {
                 storeId = "";

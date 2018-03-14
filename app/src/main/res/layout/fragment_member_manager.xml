@@ -73,10 +73,5 @@
             android:text="@string/balance"/>
     </FrameLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </android.support.v7.widget.RecyclerView>
-
+    <include layout="@layout/layout_base_ptr_recycle"/>
 </LinearLayout>
