@@ -16,5 +16,7 @@ public class Urls {
     public static final String GET_MEMBER_BALANCE = HOST + "api/Cashout/GetAmount";
     public static final String WITH_DRAW_MONEY = HOST + "api/Cashout/CreateCashout";
     public static final String GET_WITH_DRAW_MONEY_RECORD = HOST + "api/Cashout/GetList";
+    public static final String USER_DATA = HOST + "api/SystemUser/UserInfoIndex";
+    public static final String GET_MERCHANT_LIST = HOST + "api/SystemUser/StoreManager";
 
 }

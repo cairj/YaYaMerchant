@@ -109,8 +109,8 @@
     <style name="base_toggle_button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textOn"> </item>
-        <item name="android:textOff"> </item>
+        <item name="android:textOn"></item>
+        <item name="android:textOff"></item>
     </style>
 
     <style name="screen_choose_time_title">
@@ -158,4 +158,32 @@
         <item name="android:indeterminateOnly">true</item>
     </style>
 
+    <!--我的界面 列表item-->
+    <style name="user_item_rl">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">42dp</item>
+        <item name="android:paddingLeft">14dp</item>
+        <item name="android:paddingRight">14dp</item>
+    </style>
+
+    <!--我的界面 列表item标题-->
+    <style name="user_item_tv">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/black_333333</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:drawableRight">@mipmap/me_ic_next_black</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <!--我的界面 列表item内容-->
+    <style name="user_item_content_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/black_666666</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginRight">22dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
 </resources>

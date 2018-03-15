@@ -15,4 +15,9 @@ public class MainAction {
                 .build().execute(callback);
     }
 
+    public static void getUserData(Callback callback){
+        OkHttpUtils.get().url(Urls.USER_DATA)
+                .build().execute(callback);
+    }
+
 }

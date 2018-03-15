@@ -43,7 +43,7 @@ public class WithDrawMoneyAction {
                 .build().execute(callback);
     }
 
-    //获取会员列表
+    //获取提现记录列表
     public static JsonResponse<BaseRowData<WithdrawMoneyRecord>> getWithdrawMoneyRecord(String cashoutType, String status,
                                                                                String startTime, String endTime,
                                                                                String page, String pageSize) throws IOException {
