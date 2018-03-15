@@ -156,22 +156,31 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
             JSONObject resultObject = jsonObject.getJSONObject(JSON_KEY_RESULT);
             if (resultObject != null){
                 BaseData<K> baseData = new BaseData<K>();
-                if(resultObject.has(JSON_KEY_RESULT_DATA)) {
-                    if (resultObject.get(JSON_KEY_RESULT_DATA) instanceof String){
-                        String data = resultObject.getString(JSON_KEY_RESULT_DATA);
-                        baseData.setData((K) data);
-                    }else {
-                        JSONObject dataObject = resultObject.getJSONObject(JSON_KEY_RESULT_DATA);
-                        if (dataObject != null) {
-                            baseData.setData(parseItem(dataObject));
-                        }
-                    }
-                }
                 if(resultObject.has(JSON_KEY_RESULT_STATUS)){
                     baseData.setStatus(resultObject.getBoolean(JSON_KEY_RESULT_STATUS));
                 }
                 if(resultObject.has(JSON_KEY_RESULT_USERID)){
                     baseData.setUserId(resultObject.getString(JSON_KEY_RESULT_USERID));
+                }
+                if (baseData.isStatus()) {
+                    if (resultObject.has(JSON_KEY_RESULT_DATA)) {
+                        if (resultObject.get(JSON_KEY_RESULT_DATA) instanceof String) {
+                            String data = resultObject.getString(JSON_KEY_RESULT_DATA);
+                            baseData.setData((K) data);
+                        } else {
+                            JSONObject dataObject = resultObject.getJSONObject(JSON_KEY_RESULT_DATA);
+                            if (dataObject != null) {
+                                baseData.setData(parseItem(dataObject));
+                            }
+                        }
+                    }
+                }else {
+                    if (resultObject.has(JSON_KEY_RESULT_DATA)) {
+                        if (resultObject.get(JSON_KEY_RESULT_DATA) instanceof String) {
+                            String data = resultObject.getString(JSON_KEY_RESULT_DATA);
+                            baseData.setError(data);
+                        }
+                    }
                 }
                 jsonResponse.setData(baseData);
             }

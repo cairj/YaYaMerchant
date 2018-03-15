@@ -1,5 +1,7 @@
 package com.toroke.okhttp;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,6 +14,7 @@ public class BaseData<T extends Serializable> implements Serializable {
     private T data;
     private boolean status;
     private String userId;
+    private String error;
 
     public boolean isStatus() {
         return status;
@@ -37,5 +40,11 @@ public class BaseData<T extends Serializable> implements Serializable {
         this.userId = userId;
     }
 
+    public String getError() {
+        return error;
+    }
 
+    public void setError(String error) {
+        this.error = error;
+    }
 }

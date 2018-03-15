@@ -90,7 +90,7 @@ public class MainDataAction {
         return gson.fromJson(response.body().string(), type);
     }
 
-    //获取会员列表
+    //获取提现记录列表
     public static JsonResponse<BaseRowData<Member>> getMemberList(String search, String memberstate,
                                                                   String page, String pageSize) throws IOException {
         if (TextUtils.isEmpty(page) || TextUtils.isEmpty(pageSize)) {

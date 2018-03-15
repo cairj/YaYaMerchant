@@ -43,7 +43,6 @@
                 android:layout_toLeftOf="@id/iv_next"
                 android:layout_toRightOf="@id/tv_bank_title"
                 android:lines="1"
-                android:text="@string/total_money"
                 android:textColor="@color/blue_576B95"
                 android:textSize="13sp" />
 

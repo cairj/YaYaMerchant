@@ -52,7 +52,7 @@
         <View
             style="@style/divider_vertical"
             android:layout_height="12dp"
-            android:background="@color/gray_f1f2f4" />
+            android:background="@color/gray_f1f2f4"/>
 
         <FrameLayout
             android:layout_width="0dp"
@@ -72,7 +72,7 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <include layout="@layout/layout_base_ptr_recycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="15dp"

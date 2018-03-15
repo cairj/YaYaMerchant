@@ -16,6 +16,8 @@ public class JsonResponse<T extends Serializable> implements Serializable{
     @SerializedName("result")
     private BaseData<T> data;
 
+    private ErrorData error;
+
     public BaseData<T> getData() {
         return data;
     }
@@ -24,4 +26,7 @@ public class JsonResponse<T extends Serializable> implements Serializable{
         this.data = data;
     }
 
+    public ErrorData getError() {
+        return error;
+    }
 }

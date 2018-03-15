@@ -55,7 +55,7 @@
     <string name="no_discount_money">不参与优惠金额</string>
     <string name="confirm_remind">确认提现</string>
     <string name="bank_name">到账银行卡</string>
-    <string name="withdraw_money_count">当前可提现￥$s，</string>
+    <string name="withdraw_money_count">当前可提现￥%s，</string>
     <string name="withdraw_all">全部提现</string>
     <string name="member_balance">账户余额</string>
     <string name="withdraw_money_rule">当日收入款项，次日13:00后才可提现（节日除外）</string>

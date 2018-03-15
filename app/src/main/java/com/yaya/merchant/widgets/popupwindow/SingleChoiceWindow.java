@@ -28,11 +28,11 @@ public class SingleChoiceWindow extends BasePopupWindow {
         choiceItemListRv = windowView.findViewById(R.id.recycler_view);
         choiceItemListRv.setLayoutManager(new LinearLayoutManager(context));
         choiceItemListRv.addItemDecoration(addItemDecoration());
+        choiceItemListRv.setAdapter(mAdapter);
     }
 
     public  <T> void setAdapter(BaseQuickAdapter<T> adapter) {
         mAdapter = adapter;
-        choiceItemListRv.setAdapter(mAdapter);
     }
 
     protected RecyclerView.ItemDecoration addItemDecoration(){

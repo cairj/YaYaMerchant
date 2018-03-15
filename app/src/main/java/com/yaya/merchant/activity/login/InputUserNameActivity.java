@@ -61,6 +61,7 @@ public class InputUserNameActivity extends BaseActivity {
                             public void onSucceed(JsonResponse<String> response) {
                                 ProvingActivity.open(InputUserNameActivity.this,
                                         response.getData().getData(),response.getData().getUserId());
+                                finish();
                             }
                         });
                 break;

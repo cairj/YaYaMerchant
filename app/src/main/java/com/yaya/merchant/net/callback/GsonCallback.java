@@ -1,11 +1,13 @@
 package com.yaya.merchant.net.callback;
 
+import android.text.TextUtils;
 import android.view.View;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.toroke.okhttp.JsonResponse;
 import com.toroke.okhttp.BaseData;
+import com.yaya.merchant.util.ToastUtil;
 
 import org.json.JSONObject;
 
@@ -48,6 +50,8 @@ public abstract class GsonCallback<K extends Serializable> extends BaseCallback<
 
     @Override
     public void onFailed(JsonResponse<K> response) {
-        /*ToastHelper.show(response.getMsg());*/
+        if (!TextUtils.isEmpty(response.getData().getError())) {
+            ToastUtil.toast(response.getData().getError());
+        }
     }
 }

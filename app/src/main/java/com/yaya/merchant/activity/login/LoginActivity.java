@@ -12,6 +12,7 @@ import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.interfaces.OnEditTextChangeListener;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.StatusBarUtil;
+import com.yaya.merchant.util.ToastUtil;
 import com.yaya.merchant.util.sp.SPUtil;
 import com.yaya.merchant.util.sp.SpKeys;
 
@@ -86,6 +87,11 @@ public class LoginActivity extends BaseActivity {
                                 SPUtil.putBoolean(SpKeys.IS_LOGIN, true);
                                 SPUtil.putString(SpKeys.TOKEN, response.getData().getData());
                                 openActivity(MainActivity.class, true);
+                            }
+
+                            @Override
+                            public void onFailed(JsonResponse<String> response) {
+                                ToastUtil.toast(response.getError().getMessage());
                             }
                         });
                 break;

@@ -92,10 +92,13 @@ public class ProvingActivity extends BaseActivity {
             case R.id.proving_tv_post:
                 String inputCode = codeEdit.getText().toString().trim();
                 provingSucceed = inputCode.equals(code);
+                String hint = provingSucceed?"验证成功":"验证码输入有误";
+                ToastUtil.toast(hint);
                 break;
             case R.id.proving_tv_next:
                 if (provingSucceed){
-
+                    ChangePasswordActivity.open(this,userId);
+                    finish();
                 }
                 break;
             case R.id.tv_action_back:

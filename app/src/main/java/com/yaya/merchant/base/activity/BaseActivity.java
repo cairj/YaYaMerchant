@@ -7,10 +7,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.TextView;
 
 import com.yaya.merchant.R;
 import com.yaya.merchant.util.AppManager;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -18,6 +21,10 @@ import butterknife.ButterKnife;
  */
 
 public class BaseActivity extends AppCompatActivity {
+
+    protected TextView backTv;
+    protected TextView titleTv;
+    protected TextView rightTv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,6 +34,12 @@ public class BaseActivity extends AppCompatActivity {
         setContentView(getContentViewId());
         ButterKnife.bind(this);
         fragmentManager = getSupportFragmentManager();
+
+        backTv = findViewById(R.id.tv_action_back);
+        titleTv = findViewById(R.id.tv_title);
+        rightTv = findViewById(R.id.tv_right);
+        initActionBar();
+
         initView();
         initData();
     }
@@ -47,7 +60,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void initData() {
     }
 
-    protected void beforeSetContent(){
+    protected void beforeSetContent() {
     }
 
     protected void openActivity(Class classes) {
@@ -65,25 +78,62 @@ public class BaseActivity extends AppCompatActivity {
     protected Fragment currentFragment;//当前显示的fragment
     protected FragmentManager fragmentManager;
 
-    protected void showFragment(Fragment fragment){
-        if (fragment == currentFragment){
+    protected void showFragment(Fragment fragment) {
+        if (fragment == currentFragment) {
             return;
         }
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        if (currentFragment != null && currentFragment.isAdded()){
+        if (currentFragment != null && currentFragment.isAdded()) {
             transaction.hide(currentFragment);
         }
-        if (fragment.isAdded()){
+        if (fragment.isAdded()) {
             transaction.show(fragment);
-        }else {
+        } else {
             transaction.add(getFragmentContainerId(), fragment);
         }
         transaction.commitAllowingStateLoss();
         currentFragment = fragment;
     }
 
-    protected int getFragmentContainerId(){
+    protected int getFragmentContainerId() {
         return R.id.fragment_container;
     }
 
+    protected void setActionBarTitle(String title) {
+        if (titleTv != null) {
+            titleTv.setText(title);
+        }
+    }
+
+    protected void setActionBarRight(String right) {
+        if (rightTv != null) {
+            rightTv.setText(right);
+        }
+    }
+
+    protected void initActionBar(){
+        if (backTv != null){
+            backTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    backClick();
+                }
+            });
+        }
+
+        if (rightTv != null){
+            rightTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    rightClick();
+                }
+            });
+        }
+    }
+
+    protected void backClick(){
+        finish();
+    }
+    protected void rightClick(){
+    }
 }

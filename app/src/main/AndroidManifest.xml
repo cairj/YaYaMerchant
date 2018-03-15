@@ -34,6 +34,10 @@
             android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|keyboardHidden"/>
         <activity android:name=".activity.account.MemberManagerActivity"/>
+        <activity android:name=".activity.withdraw.WithdrawMoneyActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|keyboardHidden"/>
+        <activity android:name=".activity.withdraw.WithdrawMoneyRecordActivity"/>
 
     </application>
 </manifest>

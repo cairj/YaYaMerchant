@@ -10,6 +10,7 @@
     android:background="@drawable/bg_white_rounded">
 
     <TextView
+        android:id="@+id/tv_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="13sp"
@@ -23,6 +24,7 @@
         android:layout_marginTop="11dp">
 
         <TextView
+            android:id="@+id/tv_way"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="普通提现"
@@ -31,6 +33,7 @@
             android:layout_gravity="center_vertical"/>
 
         <TextView
+            android:id="@+id/tv_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="普通提现"
@@ -59,6 +62,7 @@
             android:textColor="@color/black_454555"/>
 
         <TextView
+            android:id="@+id/tv_poundage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/poundage"
@@ -81,6 +85,7 @@
             android:textColor="@color/black_454555"/>
 
         <TextView
+            android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/withdraw_time"
@@ -103,6 +108,7 @@
             android:textColor="@color/black_454555"/>
 
         <TextView
+            android:id="@+id/tv_bank_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/withdraw_bank_card"
@@ -125,6 +131,7 @@
             android:textColor="@color/black_454555"/>
 
         <TextView
+            android:id="@+id/tv_serial_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/serial_number"
