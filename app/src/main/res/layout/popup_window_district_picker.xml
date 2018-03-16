@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aigestudio="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/alpha_black_30_percent">
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/cancel_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:text="取消"
+                android:textColor="@color/gray_999999"/>
+
+            <TextView
+                android:id="@+id/title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="地区选择"/>
+
+            <TextView
+                android:id="@+id/submit_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:text="完成"
+                android:textColor="@color/gray_999999" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:minHeight="150dp"
+            android:orientation="horizontal">
+
+            <com.yaya.merchant.widgets.aigestudio.wheelpicker.view.WheelCurvedPicker
+                android:id="@+id/province_picker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                aigestudio:wheel_item_count="7"
+                aigestudio:wheel_text_color="@color/text_property"
+                aigestudio:wheel_text_color_current="@color/brown"
+                aigestudio:wheel_text_size="@dimen/sp_16" />
+
+            <com.yaya.merchant.widgets.aigestudio.wheelpicker.view.WheelCurvedPicker
+                android:id="@+id/city_picker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                aigestudio:wheel_item_count="7"
+                aigestudio:wheel_text_color="@color/text_property"
+                aigestudio:wheel_text_color_current="@color/brown"
+                aigestudio:wheel_text_size="@dimen/sp_16" />
+
+            <com.yaya.merchant.widgets.aigestudio.wheelpicker.view.WheelCurvedPicker
+                android:id="@+id/district_picker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                aigestudio:wheel_item_count="7"
+                aigestudio:wheel_text_color="@color/text_property"
+                aigestudio:wheel_text_color_current="@color/brown"
+                aigestudio:wheel_text_size="@dimen/sp_16" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/external_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/content"/>
+
+</RelativeLayout>

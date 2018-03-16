@@ -57,7 +57,7 @@ public abstract class BasePtrRecycleActivity<T extends Serializable> extends Bas
     @Override
     protected void initView() {
         super.initView();
-        /*layoutInflater = LayoutInflater.from(getActivity());*/
+        layoutInflater = LayoutInflater.from(this);
         findViews();
         initTipInfoEmptyView();
         initFooterView();

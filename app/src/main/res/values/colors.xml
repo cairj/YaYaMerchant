@@ -15,6 +15,7 @@
     <color name="black_454555">#454555</color>
     <color name="black_565656">#565656</color>
     <color name="black_666666">#666666</color>
+    <color name="alpha_black_30_percent">#4c000000</color>
 
     <color name="gray_fbfbfb">#fbfbfb</color>
     <color name="gray_f2f2f2">#f2f2f2</color>
@@ -38,4 +39,7 @@
     <color name="pink_FFD6E0">#FFD6E0</color>
 
     <color name="blue_576B95">#576B95</color>
+
+    <color name="brown">#2f2f2e</color>
+    <color name="text_property">@color/gray_999999</color>
 </resources>

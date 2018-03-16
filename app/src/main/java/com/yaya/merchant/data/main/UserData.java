@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 
 public class UserData implements Serializable {
-    private String headImgUrl;//头像
+    private String logo;//头像
     private String name;//管理员名称
     private String roleName;//角色名称
     private String storeCount;//门店数量
@@ -15,7 +15,7 @@ public class UserData implements Serializable {
 
 
     public String getHeadImgUrl() {
-        return headImgUrl;
+        return logo;
     }
 
     public String getName() {

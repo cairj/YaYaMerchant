@@ -1,5 +1,6 @@
 package com.yaya.merchant.activity.user;
 
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -11,6 +12,8 @@ import com.yaya.merchant.action.UserAction;
 import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.base.activity.BasePtrRecycleActivity;
 import com.yaya.merchant.data.user.MerchantData;
+import com.yaya.merchant.util.DpPxUtil;
+import com.yaya.merchant.widgets.adapter.MerchantManagerAdapter;
 
 import butterknife.BindView;
 
@@ -33,7 +36,7 @@ public class MerchantManagerActivity extends BasePtrRecycleActivity<MerchantData
 
     @Override
     protected BaseQuickAdapter getAdapter() {
-        return null;
+        return new MerchantManagerAdapter(mDataList);
     }
 
     @Override
@@ -44,6 +47,11 @@ public class MerchantManagerActivity extends BasePtrRecycleActivity<MerchantData
     @Override
     protected void initView() {
         super.initView();
+        setActionBarTitle("门店");
         statusFl.setVisibility(View.GONE);
+        recyclerView.setBackgroundColor(ContextCompat.getColor(this, R.color.gray_F6F7F9));
+        FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) ptrFrame.getLayoutParams();
+        lp.topMargin = DpPxUtil.dp2px(10);
+        ptrFrame.setLayoutParams(lp);
     }
 }

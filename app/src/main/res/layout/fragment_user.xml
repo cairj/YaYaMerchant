@@ -59,7 +59,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray_E1E9FA">
+        android:background="@color/gray_F6F7F9">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,66 +72,89 @@
                 android:layout_marginTop="14dp"
                 android:background="@color/white"
                 android:divider="@drawable/bg_divider_graye1e9fa"
-                android:showDividers="middle"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:showDividers="middle">
 
-                <RelativeLayout style="@style/user_item_rl"
-                    android:id="@+id/user_rl_merchant_manager">
+                <RelativeLayout
+                    android:id="@+id/user_rl_verification"
+                    style="@style/user_item_rl">
+
+                    <TextView
+                        style="@style/user_item_tv"
+                        android:text="核销" />
+
+                    <TextView
+                        android:id="@+id/user_tv_verification"
+                        style="@style/user_item_content_tv" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/user_rl_merchant_manager"
+                    style="@style/user_item_rl">
 
                     <TextView
                         style="@style/user_item_tv"
                         android:text="门店管理" />
 
-                    <TextView style="@style/user_item_content_tv"
-                        android:id="@+id/user_tv_merchant_manager"/>
+                    <TextView
+                        android:id="@+id/user_tv_merchant_manager"
+                        style="@style/user_item_content_tv" />
                 </RelativeLayout>
 
-                <RelativeLayout style="@style/user_item_rl"
-                    android:id="@+id/user_rl_employee_manager">
+                <RelativeLayout
+                    android:id="@+id/user_rl_employee_manager"
+                    style="@style/user_item_rl">
 
                     <TextView
                         style="@style/user_item_tv"
                         android:text="员工管理" />
 
-                    <TextView style="@style/user_item_content_tv"
-                        android:id="@+id/user_tv_employee_manager"/>
+                    <TextView
+                        android:id="@+id/user_tv_employee_manager"
+                        style="@style/user_item_content_tv" />
 
                 </RelativeLayout>
 
-                <RelativeLayout style="@style/user_item_rl"
-                    android:id="@+id/user_rl_merchant_qrcode">
+                <RelativeLayout
+                    android:id="@+id/user_rl_merchant_qrcode"
+                    style="@style/user_item_rl">
 
                     <TextView
                         style="@style/user_item_tv"
                         android:text="门店二维码" />
 
-                    <TextView style="@style/user_item_content_tv"
-                        android:id="@+id/user_tv_merchant_qrcode"/>
+                    <TextView
+                        android:id="@+id/user_tv_merchant_qrcode"
+                        style="@style/user_item_content_tv" />
 
                 </RelativeLayout>
 
-                <RelativeLayout style="@style/user_item_rl"
-                    android:id="@+id/user_rl_bank_card">
+                <RelativeLayout
+                    android:id="@+id/user_rl_bank_card"
+                    style="@style/user_item_rl">
 
                     <TextView
                         style="@style/user_item_tv"
                         android:text="认证绑卡" />
 
-                    <TextView style="@style/user_item_content_tv"
+                    <TextView
                         android:id="@+id/user_tv_bank_card"
-                        android:text="认证成功"/>
+                        style="@style/user_item_content_tv"
+                        android:text="认证成功" />
 
                 </RelativeLayout>
 
-                <RelativeLayout style="@style/user_item_rl"
-                    android:id="@+id/user_rl_merchant_info">
+                <RelativeLayout
+                    android:id="@+id/user_rl_merchant_info"
+                    style="@style/user_item_rl">
 
                     <TextView
                         style="@style/user_item_tv"
                         android:text="商户资料" />
 
-                    <TextView style="@style/user_item_content_tv"
-                        android:id="@+id/user_tv_merchant_info"/>
+                    <TextView
+                        android:id="@+id/user_tv_merchant_info"
+                        style="@style/user_item_content_tv" />
 
                 </RelativeLayout>
 
@@ -140,21 +163,24 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="14dp"
                 android:background="@color/white"
                 android:divider="@drawable/bg_divider_graye1e9fa"
-                android:showDividers="middle"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:showDividers="middle">
 
-                <RelativeLayout style="@style/user_item_rl"
-                    android:id="@+id/user_rl_contact_service">
+                <RelativeLayout
+                    android:id="@+id/user_rl_contact_service"
+                    style="@style/user_item_rl">
 
                     <TextView
                         style="@style/user_item_tv"
                         android:text="联系客服" />
 
-                    <TextView style="@style/user_item_content_tv"
-                        android:id="@+id/user_tv_contact_service"/>
+                    <TextView
+                        android:id="@+id/user_tv_contact_service"
+                        style="@style/user_item_content_tv" />
                 </RelativeLayout>
 
                 <RelativeLayout style="@style/user_item_rl">
@@ -167,8 +193,9 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout style="@style/user_item_rl"
-                    android:id="@+id/user_rl_feed_back">
+                <RelativeLayout
+                    android:id="@+id/user_rl_feed_back"
+                    style="@style/user_item_rl">
 
                     <TextView
                         style="@style/user_item_tv"
@@ -178,29 +205,33 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout style="@style/user_item_rl"
-                    android:id="@+id/user_rl_set_voice">
+                <RelativeLayout
+                    android:id="@+id/user_rl_set_voice"
+                    style="@style/user_item_rl">
 
                     <TextView
                         style="@style/user_item_tv"
                         android:text="语音设置" />
 
-                    <TextView style="@style/user_item_content_tv"
-                        android:id="@+id/user_tv_set_voice"/>
+                    <TextView
+                        android:id="@+id/user_tv_set_voice"
+                        style="@style/user_item_content_tv" />
 
                 </RelativeLayout>
 
-                <RelativeLayout style="@style/user_item_rl"
-                    android:id="@+id/user_rl_version">
+                <RelativeLayout
+                    android:id="@+id/user_rl_version"
+                    style="@style/user_item_rl">
 
                     <TextView
                         style="@style/user_item_tv"
-                        android:text="当前版本"
-                        android:drawableRight="null"/>
+                        android:drawableRight="@null"
+                        android:text="当前版本" />
 
-                    <TextView style="@style/user_item_content_tv"
-                        android:layout_marginRight="0dp"
-                        android:id="@+id/user_tv_version"/>
+                    <TextView
+                        android:id="@+id/user_tv_version"
+                        style="@style/user_item_content_tv"
+                        android:layout_marginRight="0dp" />
 
                 </RelativeLayout>
 

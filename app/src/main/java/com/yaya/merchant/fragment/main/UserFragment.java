@@ -1,17 +1,20 @@
 package com.yaya.merchant.fragment.main;
 
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainAction;
+import com.yaya.merchant.activity.user.MerchantManagerActivity;
 import com.yaya.merchant.base.fragment.BaseFragment;
 import com.yaya.merchant.data.main.UserData;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.imageloader.GlideLoaderHelper;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by admin on 2018/3/7.
@@ -49,4 +52,14 @@ public class UserFragment extends BaseFragment {
             }
         });
     }
+
+    @OnClick({R.id.user_rl_merchant_manager})
+    protected void onClick(View view){
+        switch (view.getId()){
+            case R.id.user_rl_merchant_manager:
+                openActivity(MerchantManagerActivity.class);
+                break;
+        }
+    }
+
 }

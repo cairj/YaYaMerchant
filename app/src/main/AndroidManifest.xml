@@ -38,6 +38,7 @@
             android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|keyboardHidden"/>
         <activity android:name=".activity.withdraw.WithdrawMoneyRecordActivity"/>
+        <activity android:name=".activity.user.MerchantManagerActivity"/>
 
     </application>
 </manifest>

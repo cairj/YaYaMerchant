@@ -29,7 +29,7 @@ public class UserAction {
         if (TextUtils.isEmpty(page) || TextUtils.isEmpty(pageSize)) {
             return null;
         }
-        GetBuilder builder = OkHttpUtils.get().url(Urls.GET_WITH_DRAW_MONEY_RECORD)
+        GetBuilder builder = OkHttpUtils.get().url(Urls.GET_MERCHANT_LIST)
                 .addParams("page", page)
                 .addParams("pageSize", pageSize);
         if (!TextUtils.isEmpty(status)) {
