@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@drawable/bg_divider_graye1e9fa"
+    android:orientation="vertical"
+    android:showDividers="middle">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/pink_fa4b45">
+
+        <include layout="@layout/layout_dark_action_bar" />
+    </LinearLayout>
+
+    <FrameLayout
+        style="@style/information_ll"
+        android:layout_height="64dp">
+
+        <TextView
+            style="@style/information_left_tv"
+            android:text="头像" />
+
+        <ImageView
+            android:id="@+id/information_iv_head"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center_vertical|right" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        style="@style/information_ll">
+
+        <TextView
+            style="@style/information_left_tv"
+            android:text="用户名" />
+
+        <TextView
+            android:id="@+id/information_tv_username"
+            style="@style/information_right_tv" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        style="@style/information_ll">
+
+        <TextView
+            style="@style/information_left_tv"
+            android:text="手机号" />
+
+        <TextView
+            android:id="@+id/information_tv_phone_number"
+            style="@style/information_right_tv" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        style="@style/information_ll">
+
+        <TextView
+            style="@style/information_left_tv"
+            android:text="公司名" />
+
+        <TextView
+            android:id="@+id/information_tv_company_name"
+            style="@style/information_right_tv" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        style="@style/information_ll">
+
+        <TextView
+            style="@style/information_left_tv"
+            android:text="所属代理商" />
+
+        <TextView
+            android:id="@+id/information_tv_admissible_business"
+            style="@style/information_right_tv" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        style="@style/information_ll">
+
+        <TextView
+            style="@style/information_left_tv"
+            android:text="创建时间" />
+
+        <TextView
+            android:id="@+id/information_tv_create_time"
+            style="@style/information_right_tv" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        style="@style/information_ll">
+
+        <TextView
+            style="@style/information_left_tv"
+            android:text="账户有效期" />
+
+        <TextView
+            android:id="@+id/information_tv_valid_date"
+            style="@style/information_right_tv" />
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -32,7 +32,13 @@ public class WithdrawMoneyRecordActivity extends BasePtrRecycleActivity<Withdraw
 
     @Override
     protected JsonResponse<BaseRowData<WithdrawMoneyRecord>> getData() throws Exception {
-        return WithDrawMoneyAction.getWithdrawMoneyRecord(cashoutType,status,startTime,endTime,
-                String.valueOf(mCurrentPos),String.valueOf(pageSize));
+        return WithDrawMoneyAction.getWithdrawMoneyRecord(cashoutType, status, startTime, endTime,
+                String.valueOf(mCurrentPos), String.valueOf(pageSize));
+    }
+
+    @Override
+    protected void initView() {
+        super.initView();
+        setActionBarTitle("提现记录");
     }
 }

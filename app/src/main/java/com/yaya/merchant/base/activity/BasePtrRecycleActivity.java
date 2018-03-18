@@ -146,7 +146,7 @@ public abstract class BasePtrRecycleActivity<T extends Serializable> extends Bas
     }
 
     public void refresh() {
-        mCurrentPos = 0;
+        mCurrentPos = 1;
         isFull = false;
         requestData();
     }

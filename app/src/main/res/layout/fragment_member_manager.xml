@@ -6,6 +6,7 @@
     android:background="@color/gray_F6F7F9">
 
     <LinearLayout
+        android:id="@+id/ll_screen"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/white"
@@ -56,6 +57,7 @@
             android:visibility="gone"/>
 
         <FrameLayout
+            android:id="@+id/fl_search"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">

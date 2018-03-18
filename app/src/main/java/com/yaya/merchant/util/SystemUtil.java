@@ -1,5 +1,9 @@
 package com.yaya.merchant.util;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -38,6 +42,12 @@ public class SystemUtil {
             }
         }
         return line;
+    }
+
+    public static boolean isConnected(Context context) {
+        ConnectivityManager conn = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = conn.getActiveNetworkInfo();
+        return (info != null && info.isConnected());
     }
 
 }

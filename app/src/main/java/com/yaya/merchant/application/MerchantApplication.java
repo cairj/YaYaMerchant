@@ -2,6 +2,8 @@ package com.yaya.merchant.application;
 
 import android.app.Application;
 
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechUtility;
 import com.yaya.merchant.net.HeaderInterceptor;
 import com.yaya.merchant.net.LogInterceptor;
 import com.yaya.merchant.util.sp.SPUtil;
@@ -9,6 +11,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.util.concurrent.TimeUnit;
 
+import cn.jpush.android.api.JPushInterface;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 
@@ -23,6 +26,11 @@ public class MerchantApplication extends Application {
         super.onCreate();
         SPUtil.init(this);
         initOkHttp();
+        //注册极光
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
+        //讯飞语音
+        SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID +"=5aae2858");
     }
 
     private void initOkHttp() {

@@ -1,16 +1,25 @@
 package com.yaya.merchant.activity;
 
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
+import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
+import com.yaya.merchant.action.MainAction;
 import com.yaya.merchant.base.activity.BaseActivity;
+import com.yaya.merchant.data.main.JPushData;
 import com.yaya.merchant.fragment.main.ActivityFragment;
 import com.yaya.merchant.fragment.main.HomeFragment;
 import com.yaya.merchant.fragment.main.UserFragment;
+import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.JPushUtil;
+
+import java.util.Set;
 
 import butterknife.BindViews;
 import butterknife.OnClick;
+import cn.jpush.android.api.TagAliasCallback;
 
 /**
  * Created by admin on 2018/2/23.
@@ -36,6 +45,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        putAliasAndTags();
         selectedTab(TAB_HOME);
     }
 
@@ -67,9 +77,9 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.main_tv_tab_home,R.id.main_tv_tab_activity,R.id.main_tv_tab_user})
-    protected void onClick(View view){
-        switch (view.getId()){
+    @OnClick({R.id.main_tv_tab_home, R.id.main_tv_tab_activity, R.id.main_tv_tab_user})
+    protected void onClick(View view) {
+        switch (view.getId()) {
             case R.id.main_tv_tab_home:
                 selectedTab(TAB_HOME);
                 break;
@@ -80,6 +90,16 @@ public class MainActivity extends BaseActivity {
                 selectedTab(TAB_USER);
                 break;
         }
+    }
+
+    private void putAliasAndTags() {
+        MainAction.getJPushData(new GsonCallback<JPushData>(JPushData.class) {
+            @Override
+            public void onSucceed(JsonResponse<JPushData> response) {
+                JPushData data = response.getData().getData();
+                JPushUtil.setAliasAndTag(MainActivity.this, data.getId(), data.getTenantId());
+            }
+        });
     }
 
 }

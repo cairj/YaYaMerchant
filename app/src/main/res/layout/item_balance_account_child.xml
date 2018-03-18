@@ -7,7 +7,8 @@
     android:paddingBottom="15dp"
     android:paddingLeft="10dp"
     android:paddingRight="14dp"
-    android:paddingTop="11dp">
+    android:paddingTop="11dp"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/item_iv_head"
@@ -84,6 +85,14 @@
                     android:text="XXX"
                     android:textColor="@color/gray_999999"
                     android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@+id/iv_weixin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_weixin"
+                    android:visibility="gone"/>
+
             </LinearLayout>
         </FrameLayout>
 

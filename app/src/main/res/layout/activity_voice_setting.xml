@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_F6F7F9"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/pink_fa4b45">
+
+        <include layout="@layout/layout_dark_action_bar" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="19dp"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/dp_14"
+        android:paddingRight="11dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="门店码收款语音提示"
+            android:textColor="@color/black_454555"
+            android:textSize="@dimen/sp_14" />
+
+        <ToggleButton
+            android:id="@+id/tg_btn_voice_alert"
+            android:layout_width="40dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center_vertical|right"
+            android:background="@drawable/ic_selector_slide"
+            android:textOff=" "
+            android:textOn=" " />
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="19dp"
+        android:text="请选择提示方式"
+        android:textColor="@color/gray_999AAA"
+        android:textSize="13sp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/dp_14"
+        android:paddingRight="11dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="语音"
+                android:textColor="@color/black_454555"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/tv_audition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="9dp"
+                android:background="@drawable/bg_white_redbox"
+                android:paddingBottom="3dp"
+                android:paddingLeft="9dp"
+                android:paddingRight="9dp"
+                android:paddingTop="3dp"
+                android:text="试听"
+                android:textColor="@color/pink_f25b4e"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <ToggleButton
+            android:id="@+id/tg_btn_alert_way_voice"
+            android:layout_width="40dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center_vertical|right"
+            android:background="@drawable/ic_selector_slide"
+            android:textOff=" "
+            android:textOn=" " />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/dp_14"
+        android:paddingRight="11dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="消息推送"
+            android:textColor="@color/black_454555"
+            android:textSize="@dimen/sp_14" />
+
+        <ToggleButton
+            android:id="@+id/tg_btn_alert_way_push"
+            android:layout_width="40dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center_vertical|right"
+            android:background="@drawable/ic_selector_slide"
+            android:textOff=" "
+            android:textOn=" " />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_receive_push_merchant"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="19dp"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/dp_14"
+        android:paddingRight="11dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="接受门店订单推送"
+            android:textColor="@color/black_454555"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv_receive_push_merchant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:text="全部店铺"
+            android:textColor="@color/black_454555"
+            android:textSize="@dimen/sp_14" />
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="9dp"
+        android:text="初始设置为接收所有门店推送"
+        android:textColor="@color/gray_999AAA"
+        android:textSize="13sp" />
+
+</LinearLayout>

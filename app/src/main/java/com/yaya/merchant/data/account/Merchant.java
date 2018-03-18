@@ -11,6 +11,7 @@ public class Merchant implements Serializable {
     private String storeName;
     private int id;
     private boolean isSelected;
+    private boolean isVoice;
 
     public String getStoreName() {
         return storeName;
@@ -26,5 +27,9 @@ public class Merchant implements Serializable {
 
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+
+    public boolean isVoice() {
+        return isVoice;
     }
 }

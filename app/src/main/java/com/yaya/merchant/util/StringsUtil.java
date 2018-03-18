@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringsUtil {
     public static String buildQueryString(String url, Map<String, String> params, boolean needEncode) throws UnsupportedEncodingException {
@@ -213,5 +215,12 @@ public class StringsUtil {
     public static String formatDecimals(float decimal,String pattern){
         DecimalFormat df = new DecimalFormat(pattern);
         return df.format(decimal);
+    }
+
+    // 校验Tag Alias 只能是数字,英文字母和中文
+    public static boolean isValidTagAndAlias(String s) {
+        Pattern p = Pattern.compile("^[\u4E00-\u9FA50-9a-zA-Z_!@#$&*+=.|]+$");
+        Matcher m = p.matcher(s);
+        return m.matches();
     }
 }

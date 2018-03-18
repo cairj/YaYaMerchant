@@ -37,7 +37,7 @@
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
             android:paddingLeft="9dp"
-            android:text="@string/search_merchant_member"
+            android:hint="@string/search_merchant_member"
             android:textColor="@color/gray_999999"
             android:textSize="14sp" />
 

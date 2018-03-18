@@ -20,4 +20,9 @@ public class MainAction {
                 .build().execute(callback);
     }
 
+    public static void getJPushData(Callback callback){
+        OkHttpUtils.get().url(Urls.GET_JPUSH_TAG_ALIAS)
+                .build().execute(callback);
+    }
+
 }

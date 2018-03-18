@@ -186,4 +186,36 @@
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:gravity">center_vertical</item>
     </style>
+
+    <!--基本资料页面-->
+    <style name="information_ll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:paddingLeft">14dp</item>
+        <item name="android:paddingRight">14dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="information_left_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black_5D646E</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="information_right_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black_333333</item>
+        <item name="android:layout_gravity">center_vertical|right</item>
+    </style>
+
+    <style name="ResultButton" parent="@android:style/Widget.Holo.Button.Borderless.Small">
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
 </resources>
