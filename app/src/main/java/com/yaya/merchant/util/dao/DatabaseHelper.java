@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by 魏新智 on 2015/3/23.
+ * 数据库
  */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "yaya_merchant.db";
@@ -80,7 +80,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
      */
     private void createTableFromAssets(SQLiteDatabase sqLiteDatabase){
         try {
-            executeAssetsSQL(sqLiteDatabase, "tb_industry.sql");
+            /*executeAssetsSQL(sqLiteDatabase, "tb_industry.sql");*/
             executeAssetsSQL(sqLiteDatabase, "tb_region.sql");
         }catch (Exception e){
             e.printStackTrace();

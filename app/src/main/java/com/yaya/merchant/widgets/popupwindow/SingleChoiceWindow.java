@@ -1,12 +1,15 @@
 package com.yaya.merchant.widgets.popupwindow;
 
+import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yaya.merchant.R;
 import com.yaya.merchant.base.BasePopupWindow;
+import com.yaya.merchant.util.DeviceParamsUtil;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 /**
@@ -17,6 +20,10 @@ public class SingleChoiceWindow extends BasePopupWindow {
 
     protected RecyclerView choiceItemListRv;
     protected BaseQuickAdapter mAdapter;
+
+    public SingleChoiceWindow(Context context) {
+        super(context);
+    }
 
     @Override
     protected int getLayoutResId() {
@@ -33,6 +40,7 @@ public class SingleChoiceWindow extends BasePopupWindow {
 
     public  <T> void setAdapter(BaseQuickAdapter<T> adapter) {
         mAdapter = adapter;
+        choiceItemListRv.setAdapter(mAdapter);
     }
 
     protected RecyclerView.ItemDecoration addItemDecoration(){
@@ -44,4 +52,10 @@ public class SingleChoiceWindow extends BasePopupWindow {
         return decoration;
     }
 
+    @Override
+    public void showDropDown(View view) {
+        //int height = DeviceParamsUtil.getScreenWidth(context)/2;
+        //setHeight();
+        super.showDropDown(view);
+    }
 }

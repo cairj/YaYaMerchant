@@ -2,6 +2,7 @@ package com.yaya.merchant.fragment.account;
 
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -11,9 +12,11 @@ import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainDataAction;
 import com.yaya.merchant.base.fragment.BasePtrRecycleFragment;
+import com.yaya.merchant.data.ChoiceItem;
 import com.yaya.merchant.data.account.BillData;
 import com.yaya.merchant.data.account.Merchant;
 import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.Constants;
 import com.yaya.merchant.widgets.adapter.MerchantBillGroupAdapter;
 import com.yaya.merchant.widgets.adapter.SingleChoiceTextAdapter;
 import com.yaya.merchant.widgets.popupwindow.SingleChoiceWindow;
@@ -47,7 +50,7 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
 
     protected SingleChoiceWindow singleChoiceWindow;
     protected SingleChoiceTextAdapter singleChoiceAdapter;
-    protected ArrayList<String> singleChoiceItemList = new ArrayList<>();
+    protected ArrayList<ChoiceItem> singleChoiceItemList = new ArrayList<>();
 
     @Override
     protected int getContentViewId() {
@@ -62,9 +65,15 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
     }
 
     protected void initSingleChoiceWindow(){
-        singleChoiceWindow=new SingleChoiceWindow();
+        singleChoiceWindow=new SingleChoiceWindow(getActivity());
         singleChoiceAdapter = new SingleChoiceTextAdapter(singleChoiceItemList);
         singleChoiceWindow.setAdapter(singleChoiceAdapter);
+        singleChoiceWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                changeStatusTv.setCompoundDrawablesWithIntrinsicBounds(0,0,R.mipmap.ic_down,0);
+            }
+        });
     }
 
     @Override
@@ -94,6 +103,9 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
 
     @Override
     protected void setData(List<BillData> dataList) {
+        if (mCurrentPos == Constants.DEFAULT_FIRST_PAGE_COUNT){
+            map.clear();
+        }
         for (BillData data : dataList) {
             String[] payTime = data.getPayTime().split("T");
             if (map.containsKey(payTime[0])) {
@@ -126,7 +138,8 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
     protected void onClick(View view){
         switch (view.getId()){
             case R.id.balance_account_tv_change_status:
-                singleChoiceWindow.show(changeStatusTv);
+                singleChoiceWindow.showDropDown(changeStatusTv);
+                changeStatusTv.setCompoundDrawablesWithIntrinsicBounds(0,0,R.mipmap.ic_up,0);
                 break;
         }
     }

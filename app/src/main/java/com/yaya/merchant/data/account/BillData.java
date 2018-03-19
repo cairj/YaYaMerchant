@@ -17,6 +17,8 @@ public class BillData implements Serializable {
     public static final String PAY_STATE_REBATES = "4";//部分退款
     public static final String PAY_STATE_CLOSED = "5";//已关闭
     public static final String PAY_STATE_CANCELLED = "6";//已撤销
+    public static final String[] PAY_STATE_PARAMS = {PAY_STATE_ALL, PAY_STATE_PAID, PAY_PENDING_PAID, PAY_STATE_FULL_REFUND,
+            PAY_STATE_REBATES, PAY_STATE_CLOSED, PAY_STATE_CANCELLED};
 
     /*payType支付方式*/
     public static final String PAY_TYPE_ALL = "";//全部
@@ -28,6 +30,7 @@ public class BillData implements Serializable {
     public static final String ORDER_TYPE_ONLINE = "线上充值";//线上充值
     public static final String ORDER_TYPE_CASH = "现金充值";//现金充值
     public static final String ORDER_TYPE_VIP = "会员消费";//会员消费
+    public static final String[] ORDER_TYPE = {ORDER_TYPE_ALL, ORDER_TYPE_ONLINE, ORDER_TYPE_CASH, ORDER_TYPE_VIP}  ;
 
     private String headImgUrl;//头像
     private String payType;//支付方式
