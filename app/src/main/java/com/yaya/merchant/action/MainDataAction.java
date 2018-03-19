@@ -75,7 +75,7 @@ public class MainDataAction {
                 .addParams("page", page)
                 .addParams("pageSize", pageSize);
         if (!TextUtils.isEmpty(orderType)) {
-            builder.addParams("payState", orderType);
+            builder.addParams("orderType", orderType);
         }
         if (!TextUtils.isEmpty(startTime)) {
             builder.addParams("startTime", startTime);

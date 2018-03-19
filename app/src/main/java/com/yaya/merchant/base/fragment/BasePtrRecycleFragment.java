@@ -45,7 +45,7 @@ public abstract class BasePtrRecycleFragment<T extends Serializable> extends Bas
     protected BaseQuickAdapter adapter;
     protected LinearLayoutManager mLayoutManager;
 
-    protected long mCurrentPos = 1;
+    protected long mCurrentPos = Constants.DEFAULT_FIRST_PAGE_COUNT;
     protected int pageSize = 20;
     protected JsonResponse<BaseRowData<T>> mJsonResponse;
 
@@ -150,7 +150,7 @@ public abstract class BasePtrRecycleFragment<T extends Serializable> extends Bas
     }
 
     public void refresh() {
-        mCurrentPos = 0;
+        mCurrentPos = Constants.DEFAULT_FIRST_PAGE_COUNT;
         isFull = false;
         requestData();
     }
@@ -219,10 +219,8 @@ public abstract class BasePtrRecycleFragment<T extends Serializable> extends Bas
         if (mCurrentPos == Constants.DEFAULT_FIRST_PAGE_COUNT){
             this.mDataList.clear();
         }
-
-        mCurrentPos++;
-
         setData(data);
+        mCurrentPos++;
         isLoading = false;
         judgeIsEmpty();
 

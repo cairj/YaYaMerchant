@@ -41,7 +41,7 @@ public abstract class BasePtrRecycleActivity<T extends Serializable> extends Bas
     protected BaseQuickAdapter adapter;
     protected LinearLayoutManager mLayoutManager;
 
-    protected long mCurrentPos = 1;
+    protected long mCurrentPos = Constants.DEFAULT_FIRST_PAGE_COUNT;
     protected int pageSize = 20;
     protected JsonResponse<BaseRowData<T>> mJsonResponse;
 
@@ -146,7 +146,7 @@ public abstract class BasePtrRecycleActivity<T extends Serializable> extends Bas
     }
 
     public void refresh() {
-        mCurrentPos = 1;
+        mCurrentPos = Constants.DEFAULT_FIRST_PAGE_COUNT;
         isFull = false;
         requestData();
     }
@@ -215,10 +215,9 @@ public abstract class BasePtrRecycleActivity<T extends Serializable> extends Bas
         if (mCurrentPos == Constants.DEFAULT_FIRST_PAGE_COUNT){
             this.mDataList.clear();
         }
+        setData(data);
 
         mCurrentPos++;
-
-        setData(data);
         isLoading = false;
         judgeIsEmpty();
 
