@@ -71,4 +71,6 @@ dependencies {
     //扫码
     compile 'com.google.zxing:core:3.2.1'
     compile 'com.journeyapps:zxing-android-embedded:3.5.0'
+    //cardview
+    implementation 'com.android.support:cardview-v7:26.1.0'
 }
