@@ -4,6 +4,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.toroke.okhttp.BaseData;
+import com.toroke.okhttp.ErrorData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.LoginAction;
@@ -16,8 +20,18 @@ import com.yaya.merchant.util.ToastUtil;
 import com.yaya.merchant.util.sp.SPUtil;
 import com.yaya.merchant.util.sp.SpKeys;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.nio.charset.Charset;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+import okhttp3.Call;
+import okhttp3.MediaType;
+import okhttp3.Response;
+import okio.Buffer;
 
 /**
  * 登录界面
@@ -40,16 +54,9 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
-    protected void beforeSetContent() {
-        if (SPUtil.getBoolean(SpKeys.IS_LOGIN)){
-            openActivity(MainActivity.class,true);
-        }
-    }
-
-    @Override
     protected void initView() {
         super.initView();
-        StatusBarUtil.setWindowStatusBarColor(this,R.color.white);
+        StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
         initEditView();
     }
 
@@ -69,6 +76,7 @@ public class LoginActivity extends BaseActivity {
             }
         });
     }
+
     @OnClick({R.id.login_iv_user_clear, R.id.login_iv_password_clear, R.id.login_tv_submit,
             R.id.login_tv_forget_password, R.id.login_tv_register_merchant})
     protected void onClick(View view) {
@@ -82,6 +90,29 @@ public class LoginActivity extends BaseActivity {
             case R.id.login_tv_submit:
                 LoginAction.login(userEditView.getText().toString().trim(),
                         passwordEditView.getText().toString().trim(), new GsonCallback<String>(String.class) {
+
+                            @Override
+                            public JsonResponse<String> parseNetworkResponse(Response response, int i) throws Exception {
+                                if (response.isSuccessful()) {
+                                    return super.parseNetworkResponse(response, i);
+                                } else {
+                                    Buffer buffer = response.body().source().buffer();
+                                    Charset charset = Charset.defaultCharset();
+                                    MediaType contentType = response.body().contentType();
+                                    if (contentType != null) {
+                                        charset = contentType.charset(charset);
+                                    }
+                                    String bodyString = buffer.clone().readString(charset);
+                                    Type type = new TypeToken<JsonResponse<String>>() {
+                                    }.getType();
+                                    JsonResponse<String> error = new Gson().fromJson(bodyString, type);
+                                    BaseData<String> baseData = new BaseData<>();
+                                    baseData.setStatus(false);
+                                    error.setData(baseData);
+                                    return error;
+                                }
+                            }
+
                             @Override
                             public void onSucceed(JsonResponse<String> response) {
                                 SPUtil.putBoolean(SpKeys.IS_LOGIN, true);
@@ -91,7 +122,12 @@ public class LoginActivity extends BaseActivity {
 
                             @Override
                             public void onFailed(JsonResponse<String> response) {
-                                ToastUtil.toast(response.getError().getMessage());
+                                ToastUtil.toast(response.getError().getDetails());
+                            }
+
+                            @Override
+                            public boolean validateReponse(Response response, int id) {
+                                return true;
                             }
                         });
                 break;
@@ -99,6 +135,7 @@ public class LoginActivity extends BaseActivity {
                 openActivity(InputUserNameActivity.class);
                 break;
             case R.id.login_tv_register_merchant:
+                openActivity(RegisterMerchantActivity.class);
                 break;
         }
     }

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.yaya.merchant.widgets.LoadingProgressDialog;
+import com.yaya.merchant.widgets.dialog.LoadingProgressDialog;
 
 /**
  * Created by 蔡蓉婕 on 2017/6/26.

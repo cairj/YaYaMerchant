@@ -14,6 +14,7 @@ import com.yaya.merchant.activity.user.BankCardActivity;
 import com.yaya.merchant.activity.user.EmployeeManagerActivity;
 import com.yaya.merchant.activity.user.FeedBackActivity;
 import com.yaya.merchant.activity.user.MerchantManagerActivity;
+import com.yaya.merchant.activity.user.SettingActivity;
 import com.yaya.merchant.activity.user.UserInfoActivity;
 import com.yaya.merchant.activity.user.VerificationActivity;
 import com.yaya.merchant.activity.user.VoiceSettingActivity;
@@ -57,7 +58,7 @@ public class UserFragment extends BaseFragment {
             @Override
             public void onSucceed(JsonResponse<UserData> response) {
                 UserData userData = response.getData().getData();
-                GlideLoaderHelper.loadAvatar(userData.getHeadImgUrl(),headIv);
+                GlideLoaderHelper.loadAvatar(userData.getHeadImgUrl(), headIv);
                 nameTv.setText(userData.getName());
                 roleNameTv.setText(userData.getRoleName());
                 merchantManagerTv.setText(userData.getStoreCount());
@@ -66,7 +67,7 @@ public class UserFragment extends BaseFragment {
         });
     }
 
-    private void initVersion(){
+    private void initVersion() {
         PackageInfo info = null;
         try {
             info = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
@@ -77,19 +78,19 @@ public class UserFragment extends BaseFragment {
         versionTv.setText(version);
     }
 
-    @OnClick({R.id.user_rl_merchant_manager,R.id.user_rl_employee_manager,R.id.user_rl_merchant_qrcode,
-            R.id.user_rl_bank_card,R.id.user_rl_merchant_info,R.id.user_rl_set_voice,R.id.user_rl_verification,
-            R.id.user_rl_feed_back})
-    protected void onClick(View view){
-        switch (view.getId()){
+    @OnClick({R.id.user_rl_merchant_manager, R.id.user_rl_employee_manager, R.id.user_rl_merchant_qrcode,
+            R.id.user_rl_bank_card, R.id.user_rl_merchant_info, R.id.user_rl_set_voice, R.id.user_rl_verification,
+            R.id.user_rl_feed_back, R.id.user_rl_info})
+    protected void onClick(View view) {
+        switch (view.getId()) {
             case R.id.user_rl_merchant_manager:
-                MerchantManagerActivity.open(getActivity(),MerchantManagerActivity.MERCHANT_MANAGER);
+                MerchantManagerActivity.open(getActivity(), MerchantManagerActivity.MERCHANT_MANAGER);
                 break;
             case R.id.user_rl_employee_manager:
                 openActivity(EmployeeManagerActivity.class);
                 break;
             case R.id.user_rl_merchant_qrcode:
-                MerchantManagerActivity.open(getActivity(),MerchantManagerActivity.MERCHANT_QR_CODE);
+                MerchantManagerActivity.open(getActivity(), MerchantManagerActivity.MERCHANT_QR_CODE);
                 break;
             case R.id.user_rl_bank_card:
                 openActivity(BankCardActivity.class);
@@ -107,8 +108,11 @@ public class UserFragment extends BaseFragment {
                         .setCaptureActivity(VerificationActivity.class) // 设置自定义的activity是VerificationActivity
                         .initiateScan(); // 初始化扫描
                 break;
-            case  R.id.user_rl_feed_back:
+            case R.id.user_rl_feed_back:
                 openActivity(FeedBackActivity.class);
+                break;
+            case R.id.user_rl_info:
+                openActivity(SettingActivity.class);
                 break;
         }
     }

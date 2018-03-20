@@ -12,6 +12,7 @@ import com.yaya.merchant.action.UserAction;
 import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.data.user.VoiceSetData;
 import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.VoiceUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -33,6 +34,8 @@ public class VoiceSettingActivity extends BaseActivity {
     @BindView(R.id.tv_receive_push_merchant)
     protected TextView receivePushTv;
 
+    private String auditionMessage;//试听内容
+
     @Override
     protected int getContentViewId() {
         return R.layout.activity_voice_setting;
@@ -51,6 +54,7 @@ public class VoiceSettingActivity extends BaseActivity {
             @Override
             public void onSucceed(JsonResponse<VoiceSetData> response) {
                 VoiceSetData data = response.getData().getData();
+                auditionMessage = data.getAudition();
                 voiceAlertTgBtn.setChecked("1".equals(data.getIsVoice()));
                 initAlertWay(data.getVoiceType());
                 receivePushTv.setText(data.getStoreCount());
@@ -81,7 +85,7 @@ public class VoiceSettingActivity extends BaseActivity {
     }
 
     @OnClick({R.id.tg_btn_voice_alert, R.id.tg_btn_alert_way_voice,
-            R.id.tg_btn_alert_way_push, R.id.fl_receive_push_merchant})
+            R.id.tg_btn_alert_way_push, R.id.fl_receive_push_merchant, R.id.tv_audition})
     protected void onclick(View view) {
         switch (view.getId()) {
             case R.id.tg_btn_voice_alert:
@@ -92,6 +96,9 @@ public class VoiceSettingActivity extends BaseActivity {
             case R.id.fl_receive_push_merchant:
                 Intent intent = new Intent(this, ChangeMerchantPushActivity.class);
                 startActivityForResult(intent, REQUEST_TO_CHANGE_MERCHANT_PUSH);
+                break;
+            case R.id.tv_audition:
+                VoiceUtils.getInstance().speak(this, auditionMessage);
                 break;
         }
     }

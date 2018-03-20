@@ -10,15 +10,15 @@ import com.luck.picture.lib.entity.LocalMedia;
 import java.util.List;
 
 /**
- * Created by 魏新智 on 2017/12/7.
+ * 图片选择
  */
 public class ImagePickUtil {
 
-    public static void openPictureSelectorActivity(Activity activity, List<LocalMedia> selectedImgList){
-        openPictureSelectorActivity(activity,selectedImgList,3,false);
+    public static void openPictureSelectorActivity(Activity activity, List<LocalMedia> selectedImgList) {
+        openPictureSelectorActivity(activity, selectedImgList, 3, false);
     }
 
-    public static void openPictureSelectorActivity(Activity activity, List<LocalMedia> selectedImgList,int selectNum,boolean isCamera){
+    public static void openPictureSelectorActivity(Activity activity, List<LocalMedia> selectedImgList, int selectNum, boolean isCamera) {
         PictureSelector.create(activity)
                 .openGallery(PictureMimeType.ofImage())//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
                 .isCamera(isCamera)

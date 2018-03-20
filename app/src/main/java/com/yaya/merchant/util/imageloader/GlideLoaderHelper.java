@@ -71,6 +71,10 @@ public class GlideLoaderHelper {
         loadCircleImg(imgUrl, imgView, R.mipmap.tab_ic_my_nor);
     }
 
+    public static void loadAvatar(File file, ImageView imgView) {
+        loadCircleImg(file, imgView, R.mipmap.tab_ic_my_nor);
+    }
+
     public static void loadImg(String imgUrl, ImageView imgView, int defaultImgId) {
         if (hasStopLoadContinue(imgView)) {
             return;
@@ -122,23 +126,23 @@ public class GlideLoaderHelper {
                 .into(imgView);
     }
 
-    public static void loadRoundedImg(String imgUrl, ImageView imgView, int defaultImgId){
-        loadRoundedImg(imgUrl,imgView,defaultImgId,25);
+    public static void loadRoundedImg(String imgUrl, ImageView imgView, int defaultImgId) {
+        loadRoundedImg(imgUrl, imgView, defaultImgId, 25);
     }
 
-    public static void loadRoundedImg(String imgUrl, ImageView imgView, int defaultImgId, int radius){
+    public static void loadRoundedImg(String imgUrl, ImageView imgView, int defaultImgId, int radius) {
         if (hasStopLoadContinue(imgView)) {
             return;
         }
         RequestOptions options = buildDefaultOptions(defaultImgId);
-        options.transform(new MultiTransformation<Bitmap>(new CenterCrop(), new RoundedCornersTransformation(radius,0)));
+        options.transform(new MultiTransformation<Bitmap>(new CenterCrop(), new RoundedCornersTransformation(radius, 0)));
         Glide.with(imgView.getContext())
                 .load(imgUrl)
                 .apply(options)
                 .into(imgView);
     }
 
-    public static void loadCircleImg(String imgUrl, ImageView imgView, int defaultImgId){
+    public static void loadCircleImg(String imgUrl, ImageView imgView, int defaultImgId) {
         if (hasStopLoadContinue(imgView)) {
             return;
         }
@@ -146,6 +150,18 @@ public class GlideLoaderHelper {
         options.transform(new MultiTransformation<Bitmap>(new CenterCrop(), new CircleCrop()));
         Glide.with(imgView.getContext())
                 .load(imgUrl)
+                .apply(options)
+                .into(imgView);
+    }
+
+    public static void loadCircleImg(File file, ImageView imgView, int defaultImgId) {
+        if (hasStopLoadContinue(imgView)) {
+            return;
+        }
+        RequestOptions options = buildDefaultOptions(defaultImgId);
+        options.transform(new MultiTransformation<Bitmap>(new CenterCrop(), new CircleCrop()));
+        Glide.with(imgView.getContext())
+                .load(file)
                 .apply(options)
                 .into(imgView);
     }

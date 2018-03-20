@@ -16,6 +16,7 @@ public class JsonResponse<T extends Serializable> implements Serializable{
     private BaseData<T> data;
 
     private ErrorData error;
+    private boolean success;
 
     public BaseData<T> getData() {
         return data;
@@ -27,5 +28,13 @@ public class JsonResponse<T extends Serializable> implements Serializable{
 
     public ErrorData getError() {
         return error;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setError(ErrorData error) {
+        this.error = error;
     }
 }

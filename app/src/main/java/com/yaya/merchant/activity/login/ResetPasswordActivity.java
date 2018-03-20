@@ -12,7 +12,9 @@ import com.yaya.merchant.action.LoginAction;
 import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.interfaces.OnEditTextChangeListener;
 import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.DialogUtil;
 import com.yaya.merchant.util.StatusBarUtil;
+import com.yaya.merchant.widgets.dialog.SingleBtnDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -21,7 +23,7 @@ import butterknife.OnClick;
  * Created by admin on 2018/3/5.
  */
 
-public class ChangePasswordActivity extends BaseActivity {
+public class ResetPasswordActivity extends BaseActivity {
     private String userId;
 
     @BindView(R.id.reset_password_ed_new_word)
@@ -47,6 +49,7 @@ public class ChangePasswordActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
+        userId = getIntent().getStringExtra("userId");
         StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
         initEditView();
     }
@@ -84,7 +87,7 @@ public class ChangePasswordActivity extends BaseActivity {
                         new GsonCallback<String>(String.class) {
                             @Override
                             public void onSucceed(JsonResponse<String> response) {
-
+                                resetSuccess();
                             }
                         });
                 break;
@@ -92,6 +95,15 @@ public class ChangePasswordActivity extends BaseActivity {
                 finish();
                 break;
         }
+    }
+
+    private void resetSuccess(){
+        DialogUtil.changePasswordSuccessDialog(this, new SingleBtnDialog.OnClickListener() {
+            @Override
+            public void submit() {
+                finish();
+            }
+        });
     }
 
 }

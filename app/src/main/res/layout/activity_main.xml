@@ -35,7 +35,8 @@
             android:paddingTop="6dp"
             android:text="@string/activity"
             android:textColor="@color/main_bottom_tab_text"
-            android:textSize="11sp" />
+            android:textSize="11sp"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/main_tv_tab_user"

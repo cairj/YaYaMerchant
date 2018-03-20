@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/pink_f25b4e">
+
+        <include layout="@layout/layout_dark_action_bar" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_change_pic"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableRight="@mipmap/me_ic_next_black"
+            android:gravity="center_vertical"
+            android:text="修改头像"
+            android:textColor="@color/black_454555" />
+
+        <ImageView
+            android:id="@+id/iv_pic"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="20dp" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_change_password"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:drawableRight="@mipmap/me_ic_next_black"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:privateImeOptions="10dp"
+        android:text="修改密码"
+        android:textColor="@color/black_454555" />
+
+</LinearLayout>

@@ -97,7 +97,7 @@ public class ProvingActivity extends BaseActivity {
                 break;
             case R.id.proving_tv_next:
                 if (provingSucceed){
-                    ChangePasswordActivity.open(this,userId);
+                    ResetPasswordActivity.open(this,userId);
                     finish();
                 }
                 break;

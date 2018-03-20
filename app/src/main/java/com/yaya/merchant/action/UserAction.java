@@ -183,4 +183,40 @@ public class UserAction {
                 .build().execute(callback);
     }
 
+    //客服电话
+    public static void getServicePhone(Callback callback) {
+        OkHttpUtils.get().url(Urls.GET_SERVICE_PHONE)
+                .build().execute(callback);
+    }
+
+    //更改用户头像
+    public static void changeProfilePic(LocalMedia media, final Callback callback) {
+        if (media == null) {
+            return;
+        }
+        File file = new File(media.getPath());
+        new ImgLoadPayUntil(file, new ImgLoadPayUntil.getStringListener() {
+            @Override
+            public void getString(String str) {
+                OkHttpUtils.get().url(Urls.CHANGE_PROFILE_PIC)
+                        .addParams("profilePic", str)
+                        .build().execute(callback);
+            }
+        }).execute("");
+    }
+
+    //更改密码
+    public static void changePassword(String oldPassword,String newPassword, Callback callback) {
+        if (TextUtils.isEmpty(oldPassword)){
+            ToastUtil.toast("当前密码不能为空");
+        }
+        if (TextUtils.isEmpty(newPassword)){
+            ToastUtil.toast("新密码不能为空");
+        }
+        OkHttpUtils.get().url(Urls.CHANGE_PASSWORD)
+                .addParams("currentPassword", oldPassword)
+                .addParams("newPassword", newPassword)
+                .build().execute(callback);
+    }
+
 }

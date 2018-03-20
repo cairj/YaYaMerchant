@@ -51,12 +51,6 @@ public class ImgLoadPayUntil extends AsyncTask<String, Void, String> {
     private getStringListener mListener;
     public static String requestURL = Urls.UPLOAD_IMG_FILES;//上传图片地址
 
-    private static final String TAG = "uploadFile";
-    private static final String BOUNDARY = "FlPm4LpSXsE"; //UUID.randomUUID().toString(); //边界标识 随机生成 String PREFIX = "--" , LINE_END = "\r\n";
-    private static final String PREFIX = "--";
-    private static final String LINE_END = "\n\r";
-    private static final String CONTENT_TYPE = "multipart/form-data"; //内容类型
-
     public static String uploadFile(File file) {
         OkHttpClient client = new OkHttpClient();
         RequestBody fileBody = RequestBody.create(MediaType.parse("image/png"), file);
@@ -76,13 +70,6 @@ public class ImgLoadPayUntil extends AsyncTask<String, Void, String> {
             } else {
                 ImagePathEntity pathEntity = new Gson().fromJson(jsonString, ImagePathEntity.class);
                 return pathEntity.result.filename;
-                /*JSONObject jsonObject = new JSONObject(jsonString);
-                int errorCode = jsonObject.getInt("errorCode");
-                if(errorCode == 0){
-                    Log.d(TAG," upload data ="+jsonObject.getString("data"));
-                    return jsonObject.getString("data");
-                }else {
-                }*/
             }
 
         } catch (IOException e) {

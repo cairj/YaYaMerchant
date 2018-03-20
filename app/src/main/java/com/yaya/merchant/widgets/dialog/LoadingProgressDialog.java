@@ -1,4 +1,4 @@
-package com.yaya.merchant.widgets;
+package com.yaya.merchant.widgets.dialog;
 
 import android.app.Dialog;
 import android.content.Context;

@@ -7,9 +7,13 @@
     <include layout="@layout/layout_light_action_bar" />
 
     <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
+        android:id="@+id/rv_images"
+        android:layout_width="wrap_content"
         android:layout_height="121dp"
-        android:layout_marginTop="13dp" />
+        android:layout_marginTop="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_gravity="center_horizontal"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,12 +29,14 @@
         android:paddingTop="25dp">
 
         <TextView
+            android:id="@+id/tv_order_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black_333333"
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/tv_pay_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_14"
@@ -38,6 +44,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/tv_total_money"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_14"
@@ -57,6 +64,7 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/tv_goods_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black_333333"
@@ -66,6 +74,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_submit_verfication"
         style="@style/tv_submit_btn"
         android:layout_marginLeft="13dp"
         android:layout_marginRight="13dp"
