@@ -30,5 +30,7 @@ public class Urls {
     public static final String UPLOAD_IMG_FILES = HOST + "Upload/UploadFiles";
     public static final String UPLOAD_IMG_PICS = HOST + "Upload/Uploadpics";
     public static final String PUSH_FEED_BACK = HOST + "SystemUser/Feedback";
+    public static final String VERIFICATION_INDEX = HOST + "api/SystemUser/VerificationIndex";
+    public static final String VERIFICATION_SET = HOST + "api/SystemUser/VerificationSet";
 
 }

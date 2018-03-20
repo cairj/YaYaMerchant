@@ -159,13 +159,27 @@ public class UserAction {
                     }
                 }).execute("");
             }
+        } else {
+            pushFeedBack(content, "", callback);
         }
     }
 
-    public static void pushFeedBack(String content, String img, Callback callback) {
-        OkHttpUtils.get().url(Urls.PUSH_FEED_BACK)
-                .addParams("content", content)
-                .addParams("img", img)
+    private static void pushFeedBack(String content, String img, Callback callback) {
+        GetBuilder builder = OkHttpUtils.get().url(Urls.PUSH_FEED_BACK)
+                .addParams("content", content);
+        if (TextUtils.isEmpty(img)) {
+            builder.addParams("img", img);
+        }
+        builder.build().execute(callback);
+    }
+
+    //核销
+    public static void verification(String url, String verificationSn, Callback callback) {
+        if (!TextUtils.isEmpty(verificationSn)) {
+            ToastUtil.toast("核销码不能为空");
+        }
+        OkHttpUtils.get().url(url)
+                .addParams("verificationSn", verificationSn)
                 .build().execute(callback);
     }
 

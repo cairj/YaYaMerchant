@@ -103,6 +103,7 @@ public class UserFragment extends BaseFragment {
             case R.id.user_rl_verification:
                 new IntentIntegrator(getActivity())
                         .setOrientationLocked(false)
+                        .setPrompt("将提货二维码放入框内即可自动扫描")
                         .setCaptureActivity(VerificationActivity.class) // 设置自定义的activity是VerificationActivity
                         .initiateScan(); // 初始化扫描
                 break;
