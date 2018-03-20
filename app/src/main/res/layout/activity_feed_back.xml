@@ -87,13 +87,17 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <GridView
         android:id="@+id/rv_images"
         android:layout_width="match_parent"
-        android:layout_height="114dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:horizontalSpacing="9dp"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="4"
+        android:verticalSpacing="9dp" >
 
-    </android.support.v7.widget.RecyclerView>
+    </GridView>
     
 </LinearLayout>

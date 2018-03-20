@@ -12,6 +12,7 @@ import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainAction;
 import com.yaya.merchant.activity.user.BankCardActivity;
 import com.yaya.merchant.activity.user.EmployeeManagerActivity;
+import com.yaya.merchant.activity.user.FeedBackActivity;
 import com.yaya.merchant.activity.user.MerchantManagerActivity;
 import com.yaya.merchant.activity.user.UserInfoActivity;
 import com.yaya.merchant.activity.user.VerificationActivity;
@@ -77,7 +78,8 @@ public class UserFragment extends BaseFragment {
     }
 
     @OnClick({R.id.user_rl_merchant_manager,R.id.user_rl_employee_manager,R.id.user_rl_merchant_qrcode,
-            R.id.user_rl_bank_card,R.id.user_rl_merchant_info,R.id.user_rl_set_voice,R.id.user_rl_verification})
+            R.id.user_rl_bank_card,R.id.user_rl_merchant_info,R.id.user_rl_set_voice,R.id.user_rl_verification,
+            R.id.user_rl_feed_back})
     protected void onClick(View view){
         switch (view.getId()){
             case R.id.user_rl_merchant_manager:
@@ -103,6 +105,9 @@ public class UserFragment extends BaseFragment {
                         .setOrientationLocked(false)
                         .setCaptureActivity(VerificationActivity.class) // 设置自定义的activity是VerificationActivity
                         .initiateScan(); // 初始化扫描
+                break;
+            case  R.id.user_rl_feed_back:
+                openActivity(FeedBackActivity.class);
                 break;
         }
     }

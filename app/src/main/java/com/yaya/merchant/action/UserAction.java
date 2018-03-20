@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.luck.picture.lib.entity.LocalMedia;
 import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.data.account.Merchant;
@@ -11,6 +12,8 @@ import com.yaya.merchant.data.user.EmployeeData;
 import com.yaya.merchant.data.user.MerchantData;
 import com.yaya.merchant.data.withdraw.WithdrawMoneyRecord;
 import com.yaya.merchant.net.Urls;
+import com.yaya.merchant.util.ToastUtil;
+import com.yaya.merchant.util.imageloader.ImgLoadPayUntil;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.GetBuilder;
 import com.zhy.http.okhttp.callback.Callback;
@@ -18,8 +21,10 @@ import com.zhy.http.okhttp.callback.Callback;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.List;
 
 import okhttp3.Response;
 
@@ -127,6 +132,40 @@ public class UserAction {
     public static void setMerchantVoice(JSONArray jsonArray, Callback callback) {
         OkHttpUtils.get().url(Urls.SET_MERCHANT_VOICE)
                 .addParams("model", jsonArray.toString())
+                .build().execute(callback);
+    }
+
+    //意见反馈
+    public static void postFeedBack(final String content, final List<LocalMedia> imgList, final Callback callback) {
+        if (TextUtils.isEmpty(content)) {
+            ToastUtil.toast("意见内容不能为空");
+            return;
+        }
+        final StringBuffer img = new StringBuffer();
+        if (imgList != null && !imgList.isEmpty()) {
+            for (int i = 0; i < imgList.size(); i++) {
+                File file = new File(imgList.get(i).getPath());
+                final int finalI = i;
+                new ImgLoadPayUntil(file, new ImgLoadPayUntil.getStringListener() {
+                    @Override
+                    public void getString(String str) {
+                        if (finalI != 0) {
+                            img.append(",");
+                        }
+                        img.append(str);
+                        if (finalI == imgList.size() - 1) {//最后一张
+                            pushFeedBack(content, img.toString(), callback);
+                        }
+                    }
+                }).execute("");
+            }
+        }
+    }
+
+    public static void pushFeedBack(String content, String img, Callback callback) {
+        OkHttpUtils.get().url(Urls.PUSH_FEED_BACK)
+                .addParams("content", content)
+                .addParams("img", img)
                 .build().execute(callback);
     }
 

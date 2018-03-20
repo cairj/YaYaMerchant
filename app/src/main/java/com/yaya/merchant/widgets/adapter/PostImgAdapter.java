@@ -20,7 +20,7 @@ import java.util.List;
 public class PostImgAdapter extends BaseAdapter {
 
     private List<LocalMedia> mMediaList;
-    private int MAX_COUNT = 9;//最大显示数量
+    private int MAX_COUNT = 3;//最大显示数量
 
     private Context context;
     private LayoutInflater inflater;
@@ -84,7 +84,6 @@ public class PostImgAdapter extends BaseAdapter {
             holder.defaultImg.setVisibility(View.INVISIBLE);
             holder.cancelBtn.setVisibility(View.VISIBLE);
             holder.photoImg.setVisibility(View.VISIBLE);
-//            ImageLoaderHelper.loadRoundCornerImg("file://" + photoModel.getOriginalPath(), holder.photoImg);
             GlideLoaderHelper.loadRoundedImg(media.getPath(), holder.photoImg, R.mipmap.ic_card);
             holder.cancelBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -141,6 +140,10 @@ public class PostImgAdapter extends BaseAdapter {
 
     public void setOnCancelClickListener(OnCancelClickListener listener) {
         this.cancellistener = listener;
+    }
+
+    public void setMAX_COUNT(int MAX_COUNT) {
+        this.MAX_COUNT = MAX_COUNT;
     }
 
     /*public void resetAddPhotoImg(){

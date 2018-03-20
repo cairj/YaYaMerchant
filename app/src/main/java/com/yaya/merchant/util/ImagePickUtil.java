@@ -15,10 +15,14 @@ import java.util.List;
 public class ImagePickUtil {
 
     public static void openPictureSelectorActivity(Activity activity, List<LocalMedia> selectedImgList){
+        openPictureSelectorActivity(activity,selectedImgList,3,false);
+    }
+
+    public static void openPictureSelectorActivity(Activity activity, List<LocalMedia> selectedImgList,int selectNum,boolean isCamera){
         PictureSelector.create(activity)
                 .openGallery(PictureMimeType.ofImage())//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
-                .isCamera(false)
-                .maxSelectNum(9)// 最大图片选择数量 int
+                .isCamera(isCamera)
+                .maxSelectNum(selectNum)// 最大图片选择数量 int
                 .imageSpanCount(3)// 每行显示个数 int
                 .selectionMode(PictureConfig.MULTIPLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
                 .previewImage(true)// 是否可预览图片 true or false

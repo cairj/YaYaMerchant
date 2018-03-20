@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by 魏新智 on 2016/5/17.
  * 存放返回的json数据
  */
 public class JsonResponse<T extends Serializable> implements Serializable{

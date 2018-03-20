@@ -105,6 +105,10 @@
             android:name=".activity.user.ChangeMerchantPushActivity"
             android:configChanges="orientation|keyboardHidden"
             android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activity.user.VerificationActivity"/>
+        <activity android:name=".activity.user.FeedBackActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="stateHidden"/>
 
         <!--极光推送-->
         <!-- Required SDK 核心功能-->

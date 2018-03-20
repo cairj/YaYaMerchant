@@ -1,9 +1,10 @@
-package com.yaya.merchant.util;
+package com.yaya.merchant.util.imageloader;
 
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.os.Handler;
 
+import com.yaya.merchant.util.ToastUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.io.File;

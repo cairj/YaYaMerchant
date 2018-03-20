@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@mipmap/ic_empty"
+        android:src="@mipmap/ic_increase"
         android:visibility="invisible">
 
     </ImageView>

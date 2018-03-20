@@ -27,5 +27,8 @@ public class Urls {
     public static final String GET_MERCHANT_VOICE_INDEX = HOST + "api/SystemUser/VoiceStoreSet";
     public static final String SET_MERCHANT_VOICE = HOST + "api/SystemUser/VoiceStoreUpdate";
     public static final String GET_JPUSH_TAG_ALIAS = HOST + "api/Account/GetUserInfo";
+    public static final String UPLOAD_IMG_FILES = HOST + "Upload/UploadFiles";
+    public static final String UPLOAD_IMG_PICS = HOST + "Upload/Uploadpics";
+    public static final String PUSH_FEED_BACK = HOST + "SystemUser/Feedback";
 
 }

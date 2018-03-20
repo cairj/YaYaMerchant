@@ -10,17 +10,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.ImageView;
 
-import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.UserAction;
 import com.yaya.merchant.base.activity.BaseActivity;
-import com.yaya.merchant.net.callback.GsonCallback;
-import com.yaya.merchant.util.ImageHelper;
+import com.yaya.merchant.util.imageloader.ImageHelper;
 import com.yaya.merchant.util.ToastUtil;
-import com.yaya.merchant.util.imageloader.GlideLoaderHelper;
 import com.zhy.http.okhttp.callback.Callback;
-
-import java.io.InputStream;
 
 import butterknife.BindView;
 import butterknife.OnClick;
