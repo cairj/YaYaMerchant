@@ -175,8 +175,9 @@ public class UserAction {
 
     //核销
     public static void verification(String url, String verificationSn, Callback callback) {
-        if (!TextUtils.isEmpty(verificationSn)) {
+        if (TextUtils.isEmpty(verificationSn)) {
             ToastUtil.toast("核销码不能为空");
+            return;
         }
         OkHttpUtils.get().url(url)
                 .addParams("verificationSn", verificationSn)

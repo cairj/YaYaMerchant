@@ -54,10 +54,10 @@ public class WithDrawMoneyAction {
                 .addParams("page", page)
                 .addParams("pageSize", pageSize);
         if (!TextUtils.isEmpty(cashoutType)) {
-            builder.addParams("search", cashoutType);
+            builder.addParams("cashoutType", cashoutType);
         }
         if (!TextUtils.isEmpty(status)) {
-            builder.addParams("memberstate", status);
+            builder.addParams("status", status);
         }
         if (!TextUtils.isEmpty(startTime)) {
             builder.addParams("startTime", startTime);

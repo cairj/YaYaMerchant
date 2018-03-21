@@ -10,6 +10,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainAction;
+import com.yaya.merchant.activity.search.MerchantSearchActivity;
 import com.yaya.merchant.activity.user.BankCardActivity;
 import com.yaya.merchant.activity.user.EmployeeManagerActivity;
 import com.yaya.merchant.activity.user.FeedBackActivity;
@@ -21,6 +22,7 @@ import com.yaya.merchant.activity.user.VoiceSettingActivity;
 import com.yaya.merchant.base.fragment.BaseFragment;
 import com.yaya.merchant.data.main.UserData;
 import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.DialogUtil;
 import com.yaya.merchant.util.imageloader.GlideLoaderHelper;
 import com.yaya.merchant.widgets.adapter.EmployeeManagerAdapter;
 
@@ -32,6 +34,8 @@ import butterknife.OnClick;
  */
 
 public class UserFragment extends BaseFragment {
+
+    private UserData userData;
 
     @BindView(R.id.user_iv_head)
     protected ImageView headIv;
@@ -57,7 +61,7 @@ public class UserFragment extends BaseFragment {
         MainAction.getUserData(new GsonCallback<UserData>(UserData.class) {
             @Override
             public void onSucceed(JsonResponse<UserData> response) {
-                UserData userData = response.getData().getData();
+                userData = response.getData().getData();
                 GlideLoaderHelper.loadAvatar(userData.getHeadImgUrl(), headIv);
                 nameTv.setText(userData.getName());
                 roleNameTv.setText(userData.getRoleName());
@@ -80,7 +84,7 @@ public class UserFragment extends BaseFragment {
 
     @OnClick({R.id.user_rl_merchant_manager, R.id.user_rl_employee_manager, R.id.user_rl_merchant_qrcode,
             R.id.user_rl_bank_card, R.id.user_rl_merchant_info, R.id.user_rl_set_voice, R.id.user_rl_verification,
-            R.id.user_rl_feed_back, R.id.user_rl_info})
+            R.id.user_rl_feed_back, R.id.user_rl_info,R.id.user_rl_contact_service})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.user_rl_merchant_manager:
@@ -90,7 +94,7 @@ public class UserFragment extends BaseFragment {
                 openActivity(EmployeeManagerActivity.class);
                 break;
             case R.id.user_rl_merchant_qrcode:
-                MerchantManagerActivity.open(getActivity(), MerchantManagerActivity.MERCHANT_QR_CODE);
+                MerchantSearchActivity.open(getActivity(), MerchantManagerActivity.MERCHANT_QR_CODE);
                 break;
             case R.id.user_rl_bank_card:
                 openActivity(BankCardActivity.class);
@@ -112,7 +116,10 @@ public class UserFragment extends BaseFragment {
                 openActivity(FeedBackActivity.class);
                 break;
             case R.id.user_rl_info:
-                openActivity(SettingActivity.class);
+                SettingActivity.open(getActivity(),userData);
+                break;
+            case R.id.user_rl_contact_service:
+                DialogUtil.chatToService(getActivity(),"");
                 break;
         }
     }

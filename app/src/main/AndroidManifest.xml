@@ -47,13 +47,16 @@
         android:theme="@style/BaseAppTheme">
 
         <activity
-            android:name=".activity.login.LoginActivity"
-            android:theme="@style/GrayActionBar">
+            android:name=".activity.SplashActivity"
+            android:theme="@style/ImageTranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.login.LoginActivity"
+            android:theme="@style/GrayActionBar" />
         <activity
             android:name=".activity.login.InputUserNameActivity"
             android:theme="@style/GrayActionBar" />
@@ -108,12 +111,14 @@
             android:name=".activity.user.ChangeMerchantPushActivity"
             android:configChanges="orientation|keyboardHidden"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".activity.user.VerificationActivity" />
+        <activity android:name=".activity.user.VerificationActivity"
+            android:theme="@style/ImageTranslucentTheme"/>
         <activity
             android:name=".activity.user.FeedBackActivity"
             android:configChanges="orientation|keyboardHidden"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".activity.user.VerificationResultActivity" />
+        <activity android:name=".activity.user.VerificationResultActivity"
+            android:theme="@style/GrayActionBar"/>
         <activity android:name=".activity.user.SettingActivity" />
         <activity
             android:name=".activity.user.ChangePasswordActivity"

@@ -7,6 +7,8 @@ import android.widget.Toast;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import static com.yaya.merchant.util.TagAliasOperatorHelper.ACTION_CLEAN;
+import static com.yaya.merchant.util.TagAliasOperatorHelper.ACTION_DELETE;
 import static com.yaya.merchant.util.TagAliasOperatorHelper.ACTION_SET;
 import static com.yaya.merchant.util.TagAliasOperatorHelper.sequence;
 
@@ -23,6 +25,26 @@ public class JPushUtil {
         tagAliasBean.alias = getAlias(alias);
         tagAliasBean.tags = getTags(tags);
         tagAliasBean.isAliasAction = true;
+        TagAliasOperatorHelper.getInstance().handleAction(context,sequence,tagAliasBean);
+    }
+
+    //删除别名
+    public static void deleteAlias(Context context){
+        TagAliasOperatorHelper.TagAliasBean tagAliasBean = new TagAliasOperatorHelper.TagAliasBean();
+        tagAliasBean.action = ACTION_DELETE;
+        sequence++;
+        tagAliasBean.alias = " ";
+        tagAliasBean.isAliasAction = true;
+        TagAliasOperatorHelper.getInstance().handleAction(context,sequence,tagAliasBean);
+    }
+
+    //清空标签
+    public static void cleanTags(Context context){
+        TagAliasOperatorHelper.TagAliasBean tagAliasBean = new TagAliasOperatorHelper.TagAliasBean();
+        tagAliasBean.action = ACTION_CLEAN;
+        sequence++;
+        tagAliasBean.tags = getTags("a");
+        tagAliasBean.isAliasAction = false;
         TagAliasOperatorHelper.getInstance().handleAction(context,sequence,tagAliasBean);
     }
 

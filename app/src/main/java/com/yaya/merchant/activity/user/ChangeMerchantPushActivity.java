@@ -67,7 +67,14 @@ public class ChangeMerchantPushActivity extends BasePtrRecycleActivity<Merchant>
 
     @Override
     protected BaseQuickAdapter getAdapter() {
-        return new SearchMerchantAdapter(mDataList);
+        SearchMerchantAdapter adapter=new SearchMerchantAdapter(mDataList);
+        adapter.setListener(new SearchMerchantAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(Merchant merchant) {
+                merchant.setSelected(!merchant.isSelected());
+            }
+        });
+        return adapter;
     }
 
     @Override
@@ -118,9 +125,11 @@ public class ChangeMerchantPushActivity extends BasePtrRecycleActivity<Merchant>
         UserAction.setMerchantVoice(jsonArray, new GsonCallback<String>(String.class) {
             @Override
             public void onSucceed(JsonResponse<String> response) {
-                ToastUtil.toast(response.getData().getData());
-                setResult(RESULT_OK);
-                finish();
+                if (Boolean.parseBoolean(response.getData().getData())) {
+                    ToastUtil.toast("成功");
+                    setResult(RESULT_OK);
+                    finish();
+                }
             }
         });
     }

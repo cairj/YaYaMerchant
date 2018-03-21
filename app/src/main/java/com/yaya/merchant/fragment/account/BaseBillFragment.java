@@ -116,7 +116,7 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
                 map.put(payTime[0], balanceList);
             }
         }
-        Iterator<String> iterator = map.keySet().iterator();
+        Iterator<String> iterator = map.descendingKeySet().iterator();
         groupList.clear();
         while (iterator.hasNext()) {
             groupList.add(iterator.next());

@@ -50,7 +50,7 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
         try {
             String json = response.body().string();
             if (TextUtils.isEmpty(json)) return null;
-
+            Log.e("body============",json);
             parse(jsonResponse, json);
 
             /*switch (jsonResponse.getre) {
@@ -166,6 +166,9 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
                     if (resultObject.has(JSON_KEY_RESULT_DATA)) {
                         if (resultObject.get(JSON_KEY_RESULT_DATA) instanceof String) {
                             String data = resultObject.getString(JSON_KEY_RESULT_DATA);
+                            baseData.setData((K) data);
+                        } else if (resultObject.get(JSON_KEY_RESULT_DATA) instanceof Boolean) {
+                            String data = String.valueOf(resultObject.getBoolean(JSON_KEY_RESULT_DATA));
                             baseData.setData((K) data);
                         } else {
                             JSONObject dataObject = resultObject.getJSONObject(JSON_KEY_RESULT_DATA);

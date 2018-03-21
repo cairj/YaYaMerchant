@@ -1,6 +1,8 @@
 package com.yaya.merchant.activity.user;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,13 +14,19 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.UserAction;
+import com.yaya.merchant.activity.MainActivity;
+import com.yaya.merchant.activity.login.LoginActivity;
 import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.data.main.UserData;
 import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.AppManager;
 import com.yaya.merchant.util.DpPxUtil;
 import com.yaya.merchant.util.ImagePickUtil;
+import com.yaya.merchant.util.JPushUtil;
 import com.yaya.merchant.util.ToastUtil;
 import com.yaya.merchant.util.imageloader.GlideLoaderHelper;
+import com.yaya.merchant.util.sp.SPUtil;
+import com.yaya.merchant.util.sp.SpKeys;
 import com.yaya.merchant.widgets.dialog.DoubleBtnDialog;
 
 import java.io.File;
@@ -60,7 +68,7 @@ public class SettingActivity extends BaseActivity {
         GlideLoaderHelper.loadAvatar(userData.getHeadImgUrl(), picIv);
     }
 
-    @OnClick({R.id.fl_change_pic,R.id.tv_change_password})
+    @OnClick({R.id.fl_change_pic, R.id.tv_change_password, R.id.tv_logout})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_change_password:
@@ -68,6 +76,23 @@ public class SettingActivity extends BaseActivity {
                 break;
             case R.id.fl_change_pic:
                 ImagePickUtil.openPictureSelectorActivity(this, selectImgList, 1, false);
+                break;
+            case R.id.tv_logout:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("确认退出").setMessage("是否确认退出？")
+                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                SPUtil.putBoolean(SpKeys.IS_LOGIN, false);
+                                SPUtil.putString(SpKeys.TOKEN, "");
+                                JPushUtil.deleteAlias(SettingActivity.this);
+                                JPushUtil.cleanTags(SettingActivity.this);
+                                AppManager.getAppManager().finishAllActivity();
+                                openActivity(LoginActivity.class, true);
+                            }
+                        })
+                        .setNegativeButton("否",null);
+                builder.show();
                 break;
         }
     }
@@ -109,6 +134,7 @@ public class SettingActivity extends BaseActivity {
     private void judgeChangePicDialog() {
         final DoubleBtnDialog dialog = new DoubleBtnDialog(this);
         dialog.setCancelable(false);
+        GlideLoaderHelper.loadAvatar(new File(selectImgList.get(0).getPath()), dialog.getPictureIv());
         dialog.getTitleTv().setText("是否确定更改成这张图");
         dialog.getContentTv().setVisibility(View.GONE);
         dialog.getLeftBtnTv().setText("取消");
