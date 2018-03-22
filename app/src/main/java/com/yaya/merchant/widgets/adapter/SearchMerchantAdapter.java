@@ -25,12 +25,13 @@ public class SearchMerchantAdapter extends BaseQuickAdapter<Merchant> {
         baseViewHolder.setText(R.id.tv_merchant_name, merchant.getStoreName())
                 .setText(R.id.tv_merchant_address, "");
 
-        ToggleButton toggleButton = baseViewHolder.getView(R.id.item_search_tg_btn);
+        final ToggleButton toggleButton = baseViewHolder.getView(R.id.item_search_tg_btn);
         toggleButton.setChecked(merchant.isSelected());
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                merchant.setSelected(toggleButton.isChecked());
                 if (listener != null) {
                     listener.onClick(merchant);
                 }

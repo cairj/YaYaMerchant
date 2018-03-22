@@ -88,13 +88,13 @@ public class UserFragment extends BaseFragment {
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.user_rl_merchant_manager:
-                MerchantManagerActivity.open(getActivity(), MerchantManagerActivity.MERCHANT_MANAGER);
+                openActivity(MerchantManagerActivity.class);
                 break;
             case R.id.user_rl_employee_manager:
                 openActivity(EmployeeManagerActivity.class);
                 break;
             case R.id.user_rl_merchant_qrcode:
-                MerchantSearchActivity.open(getActivity(), MerchantManagerActivity.MERCHANT_QR_CODE);
+                MerchantSearchActivity.open(getActivity(), MerchantSearchActivity.MERCHANT_QR_CODE);
                 break;
             case R.id.user_rl_bank_card:
                 openActivity(BankCardActivity.class);

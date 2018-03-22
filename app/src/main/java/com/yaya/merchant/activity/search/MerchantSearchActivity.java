@@ -2,6 +2,7 @@ package com.yaya.merchant.activity.search;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.toroke.okhttp.BaseRowData;
@@ -28,7 +29,7 @@ public class MerchantSearchActivity extends BaseSearchActivity<MerchantData> {
     private int type;
 
     public static void open(Context context, int type) {
-        Intent intent = new Intent(context, MerchantManagerActivity.class);
+        Intent intent = new Intent(context, MerchantSearchActivity.class);
         intent.putExtra("type", type);
         context.startActivity(intent);
     }
@@ -59,6 +60,7 @@ public class MerchantSearchActivity extends BaseSearchActivity<MerchantData> {
         type = getIntent().getIntExtra("type", MERCHANT_MANAGER);
         super.initView();
         inputSearchEt.setHint("搜索门店");
+        statusFl.setVisibility(View.GONE);
     }
 
 }

@@ -123,7 +123,8 @@
         <activity
             android:name=".activity.user.ChangePasswordActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            />
 
         <!--极光推送-->
         <!-- Required SDK 核心功能-->

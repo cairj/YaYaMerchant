@@ -1,6 +1,7 @@
 package com.yaya.merchant.widgets.adapter;
 
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,15 +36,21 @@ public class MerchantBillChildAdapter extends BaseQuickAdapter<BillData> {
 
         GlideLoaderHelper.loadAvatar(billData.getHeadImgUrl(), (ImageView) baseViewHolder.getView(R.id.item_iv_head));
 
-        //左上
+        //右下
+        TextView refundTv=baseViewHolder.getView(R.id.tv_pay_refund);
         if (!TextUtils.isEmpty(billData.getPayStatus())) {
             baseViewHolder.setText(R.id.tv_pay_status,billData.getPayStatus() );
+            if (billData.getPayStatus().contains("退款")){
+                refundTv.setVisibility(View.VISIBLE);
+            }else {
+                refundTv.setVisibility(View.GONE);
+            }
         }
         if (!TextUtils.isEmpty(billData.getOrderType())) {
             baseViewHolder.setText(R.id.tv_pay_status,billData.getOrderType() );
         }
 
-        //右下
+        //左上
         TextView payTypeTv = baseViewHolder.getView(R.id.tv_pay_type);
         if (!TextUtils.isEmpty(billData.getPayType())) {//入账
             if (billData.getPayType().contains("微信")) {

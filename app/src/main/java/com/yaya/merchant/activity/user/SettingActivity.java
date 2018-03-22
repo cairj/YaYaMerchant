@@ -153,6 +153,7 @@ public class SettingActivity extends BaseActivity {
                     public void onSucceed(JsonResponse<String> response) {
                         ToastUtil.toast(response.getData().getData());
                         GlideLoaderHelper.loadAvatar(new File(selectImgList.get(0).getPath()), picIv);
+                        dialog.dismiss();
                     }
                 });
             }

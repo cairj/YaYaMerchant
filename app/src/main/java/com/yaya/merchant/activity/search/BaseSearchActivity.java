@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.yaya.merchant.R;
@@ -29,6 +30,8 @@ public abstract class BaseSearchActivity<T extends Serializable> extends BasePtr
     protected LinearLayout screenLL;
     @BindView(R.id.search_ed_input)
     protected EditText inputSearchEt;
+    @BindView(R.id.fl_status)
+    protected FrameLayout statusFl;
 
     @Override
     protected int getContentViewId() {

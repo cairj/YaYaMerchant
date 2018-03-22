@@ -67,14 +67,7 @@ public class ChangeMerchantPushActivity extends BasePtrRecycleActivity<Merchant>
 
     @Override
     protected BaseQuickAdapter getAdapter() {
-        SearchMerchantAdapter adapter=new SearchMerchantAdapter(mDataList);
-        adapter.setListener(new SearchMerchantAdapter.OnItemClickListener() {
-            @Override
-            public void onClick(Merchant merchant) {
-                merchant.setSelected(!merchant.isSelected());
-            }
-        });
-        return adapter;
+        return new SearchMerchantAdapter(mDataList);
     }
 
     @Override

@@ -41,8 +41,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_shadow"
                 android:orientation="vertical"
-                android:paddingBottom="25dp"
-                android:paddingLeft="15dp">
+                android:paddingBottom="35dp"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -63,7 +64,7 @@
                     android:id="@+id/tv_company_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="19dp"
+                    android:layout_marginTop="15dp"
                     android:textColor="@color/black_333333"
                     android:textSize="@dimen/sp_14" />
 
@@ -129,7 +130,8 @@
                         android:layout_marginTop="14dp"
                         android:text="****   ****   ****   "
                         android:textColor="@color/white_f2f5f8"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:id="@+id/tv_card_number"
