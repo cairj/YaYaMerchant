@@ -22,13 +22,22 @@ android {
                 JPUSH_APPKEY : "e41bcd9063243e9beb184c4e", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
         ]
-
-
     }
+
+    lintOptions {
+        disable 'MissingTranslation'
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "吖吖购商家版_${variant.name}_${variant.versionName}.apk"
         }
     }
 }
