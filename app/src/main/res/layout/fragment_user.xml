@@ -83,7 +83,7 @@
 
                     <TextView
                         style="@style/user_item_tv"
-                        android:text="核销" />
+                        android:text="商品核销" />
 
                     <TextView
                         android:id="@+id/user_tv_verification"

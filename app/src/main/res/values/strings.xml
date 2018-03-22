@@ -2,13 +2,13 @@
     <string name="app_name">吖吖购商家端</string>
 
     <string name="login_title">登录</string>
-    <string name="login_content">吖吖掌柜账号登录</string>
+    <string name="login_content">吖吖购商家版账号登录</string>
     <string name="username">账号</string>
     <string name="password">密码</string>
     <string name="forget_password">忘记密码？</string>
     <string name="register_merchant">商户开通申请</string>
     <string name="forget_password_title">忘记密码</string>
-    <string name="input_username">请输入吖吖掌柜账号</string>
+    <string name="input_username">请输入吖吖购商家版账号</string>
     <string name="next">下一步</string>
     <string name="phone_proving">手机验证</string>
     <string name="phone_proving_content">验证码已发送至%s</string>
@@ -29,7 +29,7 @@
     <string name="total_member_number">会员总数</string>
     <string name="total_transaction_number">交易金总额</string>
     <string name="total_order_number">总订单数量</string>
-    <string name="receivables">收款</string>
+    <string name="receivables">核销</string>
     <string name="cash">提现</string>
     <string name="balance_account">对账</string>
     <string name="member_data">—— 会员信息 ——</string>
