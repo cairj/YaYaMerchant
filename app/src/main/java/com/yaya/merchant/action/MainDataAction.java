@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.data.account.BillData;
+import com.yaya.merchant.data.account.BillListData;
 import com.yaya.merchant.data.account.Member;
 import com.yaya.merchant.net.Urls;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -108,6 +109,40 @@ public class MainDataAction {
         Response response = builder.build().execute();
         Gson gson = new Gson();
         Type type = new TypeToken<JsonResponse<BaseRowData<Member>>>() {
+        }.getType();
+        return gson.fromJson(response.body().string(), type);
+    }
+
+    //对账
+    public static void getBalanceAccount(String storeId,String startTime,String endTime,Callback callback){
+        if (TextUtils.isEmpty(storeId) ) {
+            return;
+        }
+        GetBuilder builder = OkHttpUtils.get().url(Urls.BILL_GET_RECONCILIATION)
+                .addParams("storeId", storeId);
+        if (!TextUtils.isEmpty(startTime)) {
+            builder.addParams("startTime", startTime);
+        }
+        if (!TextUtils.isEmpty(endTime)) {
+            builder.addParams("endTime", endTime);
+        }
+        builder.build().execute(callback);
+    }
+
+    //获取账单列表
+    public static JsonResponse<BillListData > getBillList(String startTime, String endTime,
+                                                           String page, String pageSize) throws IOException {
+        if (TextUtils.isEmpty(page) || TextUtils.isEmpty(pageSize)|| TextUtils.isEmpty(startTime)|| TextUtils.isEmpty(endTime)) {
+            return null;
+        }
+        GetBuilder builder = OkHttpUtils.get().url(Urls.BILL_GET_BILL_LIST)
+                .addParams("page", page)
+                .addParams("pageSize", pageSize)
+                .addParams("startTime", startTime)
+                .addParams("endTime", endTime);
+        Response response = builder.build().execute();
+        Gson gson = new Gson();
+        Type type = new TypeToken<JsonResponse<BillListData>>() {
         }.getType();
         return gson.fromJson(response.body().string(), type);
     }

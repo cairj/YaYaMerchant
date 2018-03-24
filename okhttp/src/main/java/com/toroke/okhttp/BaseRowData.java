@@ -11,7 +11,6 @@ public class BaseRowData<T extends Serializable> implements Serializable{
 
     private List<T> rows;
     private int total;
-    private int pageSize;
 
     public List<T> getRows() {
         return rows;
@@ -29,10 +28,10 @@ public class BaseRowData<T extends Serializable> implements Serializable{
         this.total = total;
     }
 
-    public int getPageSize() {
+    public int getPageCount(int pageSize) {
         if (rows !=null){
-            float pageSize=1.0f*total/rows.size();
-            return (int) Math.ceil(pageSize);
+            float pageCount=1.0f*total/pageSize;
+            return (int) Math.ceil(pageCount);
         }
         return 0;
     }

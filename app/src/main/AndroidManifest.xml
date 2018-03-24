@@ -123,8 +123,13 @@
         <activity
             android:name=".activity.user.ChangePasswordActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="stateHidden"
-            />
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity android:name=".activity.account.BalanceAccountActivity"
+            android:theme="@style/GrayActionBar"/>
+
+        <activity android:name=".activity.account.BillListActivity"
+            android:theme="@style/GrayActionBar"/>
 
         <!--极光推送-->
         <!-- Required SDK 核心功能-->

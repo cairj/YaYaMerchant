@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_F6F7F9"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_last"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="上一周"
+            android:textColor="@color/black_666666"
+            android:textSize="13sp" />
+
+        <View style="@style/divider_vertical"
+            android:background="@color/gray_f1f2f4"
+            android:layout_height="12dp"/>
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="上一周"
+            android:textColor="@color/pink_f25b4e"
+            android:textSize="13sp" />
+
+        <View style="@style/divider_vertical"
+            android:background="@color/gray_f1f2f4"
+            android:layout_height="12dp"/>
+
+        <TextView
+            android:id="@+id/tv_next"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="下一周"
+            android:textColor="@color/black_666666"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/bg_white_rounded_2dp"
+            android:paddingBottom="16dp"
+            android:paddingTop="18dp">
+
+            <TextView
+                android:id="@+id/tv_real_amount"
+                style="@style/balance_account_tv"
+                android:text="xxxx"
+                android:textColor="@color/black_454555"
+                android:textSize="18sp" />
+
+            <TextView
+                style="@style/balance_account_tv"
+                android:layout_marginTop="11dp"
+                android:text="实际到账(元)"
+                android:textColor="@color/black_454555"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/bg_white_rounded_2dp"
+            android:paddingBottom="16dp"
+            android:paddingTop="18dp">
+
+            <TextView
+                android:id="@+id/tv_order_total"
+                style="@style/balance_account_tv"
+                android:text="xxxx"
+                android:textColor="@color/black_454555"
+                android:textSize="18sp" />
+
+            <TextView
+                style="@style/balance_account_tv"
+                android:layout_marginTop="11dp"
+                android:text="订单笔数"
+                android:textColor="@color/black_454555"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/layout_base_ptr_recycle"/>
+
+</LinearLayout>

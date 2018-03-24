@@ -224,7 +224,7 @@ public abstract class BasePtrRecycleFragment<T extends Serializable> extends Bas
         isLoading = false;
         judgeIsEmpty();
 
-        if (mJsonResponse.getData().getData().getPageSize() < mCurrentPos) {
+        if (mJsonResponse.getData().getData().getPageCount(pageSize) < mCurrentPos) {
             isFull = true;
             isLoading = false;
             setFootFull();

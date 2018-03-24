@@ -22,7 +22,7 @@ public class EnterBillActivity extends BaseTabLayoutActivity {
 
     @Override
     protected int getContentViewId() {
-        return R.layout.activity_balance_account;
+        return R.layout.activity_enter_bill;
     }
 
     @Override

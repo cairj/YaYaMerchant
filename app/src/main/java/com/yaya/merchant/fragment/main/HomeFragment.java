@@ -7,6 +7,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainAction;
+import com.yaya.merchant.activity.account.BalanceAccountActivity;
 import com.yaya.merchant.activity.account.EnterBillActivity;
 import com.yaya.merchant.activity.account.MemberManagerActivity;
 import com.yaya.merchant.activity.user.VerificationActivity;
@@ -60,13 +61,13 @@ public class HomeFragment extends BaseFragment {
         });
     }
 
-    @OnClick({R.id.home_tv_amount,R.id.fl_total_member,R.id.tv_cash,R.id.tv_receivables})
+    @OnClick({R.id.home_tv_amount,R.id.ll_member,R.id.tv_cash,R.id.tv_receivables,R.id.tv_balance_account})
     protected void onClick(View view){
         switch (view.getId()){
             case R.id.home_tv_amount:
                 openActivity(EnterBillActivity.class);
                 break;
-            case R.id.fl_total_member:
+            case R.id.ll_member:
                 openActivity(MemberManagerActivity.class);
                 break;
             case R.id.tv_cash:
@@ -78,6 +79,9 @@ public class HomeFragment extends BaseFragment {
                         .setPrompt("将提货二维码放入框内即可自动扫描")
                         .setCaptureActivity(VerificationActivity.class) // 设置自定义的activity是VerificationActivity
                         .initiateScan(); // 初始化扫描
+                break;
+            case R.id.tv_balance_account:
+                openActivity(BalanceAccountActivity.class);
                 break;
         }
     }

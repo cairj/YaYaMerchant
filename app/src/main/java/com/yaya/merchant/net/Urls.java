@@ -37,5 +37,7 @@ public class Urls {
     public static final String GET_SERVICE_PHONE = HOST + "api/Account/GetPhone";
     public static final String CHANGE_PROFILE_PIC= HOST + "api/SystemUser/ChangeProfilePic";
     public static final String CHANGE_PASSWORD= HOST + "api/SystemUser/ChangePassword";
+    public static final String BILL_GET_RECONCILIATION = HOST + "api/bill/Reconciliation";
+    public static final String BILL_GET_BILL_LIST= HOST + "api/bill/BillList";
 
 }

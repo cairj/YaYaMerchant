@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/pink_fa4b45"
+        android:orientation="vertical">
+
+        <include layout="@layout/layout_tab_dark_action_bar"/>
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_white_rounded"
+            android:paddingLeft="9dp"
+            android:drawableLeft="@mipmap/top_ic_search"
+            android:drawablePadding="5dp"
+            android:text="@string/search_merchant_member"
+            android:gravity="center_vertical"
+            android:textColor="@color/gray_999999"
+            android:textSize="14sp"/>
+        
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>

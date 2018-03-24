@@ -45,8 +45,8 @@ public abstract class BasePtrRecycleActivity<T extends Serializable> extends Bas
     protected int pageSize = 20;
     protected JsonResponse<BaseRowData<T>> mJsonResponse;
 
-    private boolean isLoading = false;
-    private boolean isFull = false;
+    protected boolean isLoading = false;
+    protected boolean isFull = false;
 
     protected LayoutInflater layoutInflater;
     protected View footerView;
@@ -221,13 +221,17 @@ public abstract class BasePtrRecycleActivity<T extends Serializable> extends Bas
         isLoading = false;
         judgeIsEmpty();
 
-        if (mJsonResponse.getData().getData().getPageSize() < mCurrentPos) {
+        if (isFull()) {
             isFull = true;
             isLoading = false;
             setFootFull();
         } else {
             isFull = false;
         }
+    }
+
+    protected boolean isFull(){
+        return mJsonResponse.getData().getData().getPageCount(pageSize) < mCurrentPos;
     }
 
     protected void judgeIsEmpty() {
