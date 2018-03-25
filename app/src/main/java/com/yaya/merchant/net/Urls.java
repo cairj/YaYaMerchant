@@ -35,9 +35,18 @@ public class Urls {
     public static final String VERIFICATION_INDEX = HOST + "api/SystemUser/VerificationIndex";
     public static final String VERIFICATION_SET = HOST + "api/SystemUser/VerificationSet";
     public static final String GET_SERVICE_PHONE = HOST + "api/Account/GetPhone";
-    public static final String CHANGE_PROFILE_PIC= HOST + "api/SystemUser/ChangeProfilePic";
-    public static final String CHANGE_PASSWORD= HOST + "api/SystemUser/ChangePassword";
+    public static final String CHANGE_PROFILE_PIC = HOST + "api/SystemUser/ChangeProfilePic";
+    public static final String CHANGE_PASSWORD = HOST + "api/SystemUser/ChangePassword";
     public static final String BILL_GET_RECONCILIATION = HOST + "api/bill/Reconciliation";
-    public static final String BILL_GET_BILL_LIST= HOST + "api/bill/BillList";
+    public static final String BILL_GET_BILL_LIST = HOST + "api/bill/BillList";
+    public static final String GET_ORDER_DATA = HOST + "api/ShopOrder/Index";
+    public static final String GET_ORDER_LIST = HOST + "api/ShopOrder/OrderList";
+    public static final String GET_DELIVER_ORDER_LIST = HOST + "api/ShopOrder/DeliverGoodsList";
+    public static final String GET_REFUND_ORDER_LIST = HOST + "api/ShopOrder/RefundApplyList";
+    public static final String GET_ORDER_DETAIL = HOST + "api/ShopOrder/OrderDetail";
+    public static final String GET_EXPRESS_COMPANY_LIST = HOST + "api/ShopOrder/GetExpressName";
+    public static final String DELIVER_GOODS = HOST + "ShopOrder/DeliverGoodsSet";
+    public static final String ALLOW_REFUND = HOST + "ShopOrder/RefundSuccess";
+    public static final String DISALLOW_REFUND = HOST + "ShopOrder/RefundFail";
 
 }

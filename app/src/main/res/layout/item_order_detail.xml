@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="6dp"
+    android:paddingRight="12dp"
+    android:paddingTop="6dp"
+    android:gravity="center_vertical"
+    android:paddingLeft="12dp"
+    android:background="@color/gray_fbfbfb"
+    android:id="@+id/ll_parent">
+
+    <ImageView
+        android:id="@+id/iv_pic"
+        android:layout_width="72dp"
+        android:layout_height="72dp" />
+
+    <LinearLayout
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_333333"
+            android:textSize="13sp"
+            android:text="xxx"/>
+
+        <TextView
+            android:id="@+id/tv_attribute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/gray_999999"
+            android:textSize="12sp"
+            android:text="xxx"/>
+
+        <TextView
+            android:id="@+id/tv_remark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/gray_999999"
+            android:textSize="12sp"
+            android:text="xxx"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="right"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red_e93a38"
+            android:textSize="13sp"
+            android:text="xxx"/>
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black_333333"
+            android:textSize="13sp"
+            android:text="xxx"/>
+
+    </LinearLayout>
+
+</LinearLayout>

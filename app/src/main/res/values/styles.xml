@@ -236,4 +236,16 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="order_num_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:background">@drawable/bg_red_circle</item>
+        <item name="android:layout_marginTop">7dp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
 </resources>

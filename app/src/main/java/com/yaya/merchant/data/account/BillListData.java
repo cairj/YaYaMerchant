@@ -1,5 +1,7 @@
 package com.yaya.merchant.data.account;
 
+import com.toroke.okhttp.BaseRowData;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -7,14 +9,10 @@ import java.util.List;
  * Created by admin on 2018/3/24.
  */
 
-public class BillListData implements Serializable {
+public class BillListData extends BaseRowData<BillData> {
 
     private String ordertotal;//2,
     private String realAmount;//2,
-    private List<BillData> rows;//
-
-    private int total;
-    private int pageCount;
 
     public String getOrdertotal() {
         return ordertotal;
@@ -23,6 +21,11 @@ public class BillListData implements Serializable {
     public String getRealAmount() {
         return realAmount;
     }
+
+    /*private List<BillData> rows;//
+
+    private int total;
+    private int pageCount;
 
     public List<BillData> getRows() {
         return rows;
@@ -34,5 +37,5 @@ public class BillListData implements Serializable {
             return (int) Math.ceil(pageCount);
         }
         return 0;
-    }
+    }*/
 }

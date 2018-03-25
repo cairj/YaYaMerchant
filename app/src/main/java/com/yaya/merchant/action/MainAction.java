@@ -25,4 +25,9 @@ public class MainAction {
                 .build().execute(callback);
     }
 
+    public static void getOrderData(Callback callback){
+        OkHttpUtils.get().url(Urls.GET_ORDER_DATA)
+                .build().execute(callback);
+    }
+
 }

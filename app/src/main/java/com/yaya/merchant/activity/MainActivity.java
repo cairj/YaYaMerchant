@@ -1,6 +1,5 @@
 package com.yaya.merchant.activity;
 
-import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
@@ -9,17 +8,14 @@ import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainAction;
 import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.data.main.JPushData;
-import com.yaya.merchant.fragment.main.ActivityFragment;
+import com.yaya.merchant.fragment.main.OrderFragment;
 import com.yaya.merchant.fragment.main.HomeFragment;
 import com.yaya.merchant.fragment.main.UserFragment;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.JPushUtil;
 
-import java.util.Set;
-
 import butterknife.BindViews;
 import butterknife.OnClick;
-import cn.jpush.android.api.TagAliasCallback;
 
 /**
  * Created by admin on 2018/2/23.
@@ -32,7 +28,7 @@ public class MainActivity extends BaseActivity {
     public static final int TAB_USER = 2;
 
     protected HomeFragment homeFragment;
-    protected ActivityFragment activityFragment;
+    protected OrderFragment orderFragment;
     protected UserFragment userFragment;
 
     @BindViews({R.id.main_tv_tab_home, R.id.main_tv_tab_activity, R.id.main_tv_tab_user})
@@ -62,10 +58,10 @@ public class MainActivity extends BaseActivity {
                 showFragment(homeFragment);
                 break;
             case TAB_ACTIVITY:
-                if (activityFragment == null) {
-                    activityFragment = new ActivityFragment();
+                if (orderFragment == null) {
+                    orderFragment = new OrderFragment();
                 }
-                showFragment(activityFragment);
+                showFragment(orderFragment);
                 break;
             case TAB_USER:
                 if (userFragment == null) {

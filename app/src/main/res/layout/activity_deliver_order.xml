@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_F5F6F7"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_light_action_bar" />
+
+    <TextView
+        android:id="@+id/tv_company"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:padding="14dp"
+        android:text="快递公司："
+        android:textColor="@color/black_333333"
+        android:drawableRight="@mipmap/ic_down"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:padding="14dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="快递单号："
+            android:textColor="@color/black_333333"/>
+
+        <EditText
+            android:id="@+id/edit_input_express_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:paddingBottom="10dp"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/tv_submit"
+                style="@style/tv_submit_btn"
+                android:text="确认发货"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

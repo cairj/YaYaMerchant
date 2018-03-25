@@ -3,6 +3,7 @@ package com.toroke.okhttp;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ public class BaseData<T extends Serializable> implements Serializable {
     private boolean status;
     private String userId;
     private String error;
+    private List<T> datas = new ArrayList<>();
 
     public boolean isStatus() {
         return status;
@@ -46,5 +48,13 @@ public class BaseData<T extends Serializable> implements Serializable {
 
     public void setError(String error) {
         this.error = error;
+    }
+
+    public List<T> getDatas() {
+        return datas;
+    }
+
+    public void setDatas(List<T> datas) {
+        this.datas = datas;
     }
 }

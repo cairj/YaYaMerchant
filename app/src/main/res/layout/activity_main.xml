@@ -24,19 +24,35 @@
             android:textColor="@color/main_bottom_tab_text"
             android:textSize="11sp" />
 
-        <TextView
-            android:id="@+id/main_tv_tab_activity"
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/ic_tab_activity"
-            android:gravity="center"
-            android:paddingBottom="6dp"
-            android:paddingTop="6dp"
-            android:text="@string/activity"
-            android:textColor="@color/main_bottom_tab_text"
-            android:textSize="11sp"
-            android:visibility="gone"/>
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/main_tv_tab_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_tab_order"
+                android:gravity="center"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
+                android:text="@string/order"
+                android:textColor="@color/main_bottom_tab_text"
+                android:textSize="11sp"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:id="@+id/tv_order_count"
+                android:text="1"
+                android:layout_alignRight="@id/main_tv_tab_activity"
+                android:layout_alignTop="@id/main_tv_tab_activity"
+                style="@style/order_num_tv"
+                android:layout_marginRight="-5dp"
+                android:layout_marginTop="2dp"/>
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/main_tv_tab_user"

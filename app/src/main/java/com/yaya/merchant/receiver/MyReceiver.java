@@ -48,8 +48,10 @@ public class MyReceiver extends BroadcastReceiver {
                 String extra = bundle.getString(JPushInterface.EXTRA_EXTRA);
                 JSONObject jsonObject = new JSONObject(extra);
                 String message = jsonObject.getString("message");
-                Log.e("message", message);
-                VoiceUtils.getInstance().speak(context, message);
+                String voice = jsonObject.getString("voice");
+                if (!"0".equals(voice)) {
+                    VoiceUtils.getInstance().speak(context, message);
+                }
             } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
                 //Logger.d(TAG, "[MyReceiver] 用户点击打开了通知");
 
@@ -113,7 +115,7 @@ public class MyReceiver extends BroadcastReceiver {
     //send msg to MainActivity
     private void processCustomMessage(Context context, Bundle bundle) {
         /*if (MainActivity.isForeground) {
-			String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
+            String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
 			String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
 			Intent msgIntent = new Intent(MainActivity.MESSAGE_RECEIVED_ACTION);
 			msgIntent.putExtra(MainActivity.KEY_MESSAGE, message);

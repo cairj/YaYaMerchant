@@ -1,6 +1,7 @@
 package com.yaya.merchant.activity.user;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,7 +57,7 @@ public class VoiceSettingActivity extends BaseActivity {
                 VoiceSetData data = response.getData().getData();
                 auditionMessage = data.getAudition();
                 voiceAlertTgBtn.setChecked("1".equals(data.getIsVoice()));
-                initAlertWay(data.getVoiceType());
+                initAlertWay(data.getVoiceType() == null ? "" : data.getVoiceType());
                 receivePushTv.setText(data.getStoreCount());
             }
         });

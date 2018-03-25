@@ -131,6 +131,15 @@
         <activity android:name=".activity.account.BillListActivity"
             android:theme="@style/GrayActionBar"/>
 
+        <activity android:name=".activity.order.OrderListActivity"
+            android:theme="@style/GrayActionBar"/>
+        <activity android:name=".activity.order.OrderDetailActivity"
+            android:theme="@style/GrayActionBar"/>
+        <activity android:name=".activity.order.DeliverOrderActivity"
+            android:theme="@style/GrayActionBar"/>
+        <activity android:name=".activity.order.RefundOrderActivity"
+            android:theme="@style/GrayActionBar"/>
+
         <!--极光推送-->
         <!-- Required SDK 核心功能-->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->

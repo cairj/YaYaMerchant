@@ -170,10 +170,15 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
                         } else if (resultObject.get(JSON_KEY_RESULT_DATA) instanceof Boolean) {
                             String data = String.valueOf(resultObject.getBoolean(JSON_KEY_RESULT_DATA));
                             baseData.setData((K) data);
-                        } else {
+                        } else if (resultObject.get(JSON_KEY_RESULT_DATA) instanceof JSONObject){
                             JSONObject dataObject = resultObject.getJSONObject(JSON_KEY_RESULT_DATA);
                             if (dataObject != null) {
                                 baseData.setData(parseItem(dataObject));
+                            }
+                        }else if (resultObject.get(JSON_KEY_RESULT_DATA) instanceof JSONArray){
+                            JSONArray dataObject = resultObject.getJSONArray(JSON_KEY_RESULT_DATA);
+                            if (dataObject != null) {
+                                baseData.setDatas(parseItems(dataObject));
                             }
                         }
                     }

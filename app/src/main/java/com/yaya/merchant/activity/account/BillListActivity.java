@@ -16,6 +16,7 @@ import com.yaya.merchant.base.activity.BasePtrRecycleActivity;
 import com.yaya.merchant.data.account.BillData;
 import com.yaya.merchant.data.account.BillListData;
 import com.yaya.merchant.util.Constants;
+import com.yaya.merchant.util.StatusBarUtil;
 import com.yaya.merchant.widgets.adapter.MerchantBillGroupAdapter;
 
 import java.io.IOException;
@@ -74,6 +75,7 @@ public class BillListActivity extends BasePtrRecycleActivity<BillData> {
 
     @Override
     protected void initData() {
+        StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
         billType = getIntent().getIntExtra("billType", 0);
         initCalendar();
         initDate();
@@ -214,7 +216,6 @@ public class BillListActivity extends BasePtrRecycleActivity<BillData> {
     }
 
     private JsonResponse<BillListData> getBillList() throws IOException {
-        Log.e("getBillList====", startTime);
         return MainDataAction.getBillList(startTime, endTime, String.valueOf(mCurrentPos), String.valueOf(pageSize));
     }
 
