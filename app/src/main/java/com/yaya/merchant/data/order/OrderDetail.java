@@ -9,6 +9,10 @@ import java.util.List;
 
 public class OrderDetail implements Serializable {
 
+    public static final int TYPE_ORDER_LIST=1;
+    public static final int TYPE_DELIVER_ORDER_LIST=2;
+    public static final int TYPE_REFUND_ORDER_LIST=3;
+
     private String id;//"68", //发货设置的参数
     private String memberId;// "1", //发货设置的参数
     private String orderSn;// "2018031916095000032118",
@@ -25,6 +29,7 @@ public class OrderDetail implements Serializable {
     private String deliverPrice;// 0,//运费
     private String totalPrice;// 1700,//实付款
     private String refundReason;// 退货原因
+    private String memberInfo;// 退货原因
     private List<OrderDetailData> orderdetail;//
 
     public String getId() {
@@ -89,6 +94,10 @@ public class OrderDetail implements Serializable {
 
     public String getRefundReason() {
         return refundReason;
+    }
+
+    public String getMemberInfo() {
+        return memberInfo;
     }
 
     public List<OrderDetailData> getOrderdetail() {

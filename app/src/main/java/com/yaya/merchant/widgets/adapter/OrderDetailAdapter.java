@@ -6,9 +6,7 @@ import android.widget.ImageView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.yaya.merchant.R;
-import com.yaya.merchant.data.order.OrderData;
 import com.yaya.merchant.data.order.OrderDetailData;
-import com.yaya.merchant.util.ToastUtil;
 import com.yaya.merchant.util.imageloader.GlideLoaderHelper;
 
 import java.util.List;

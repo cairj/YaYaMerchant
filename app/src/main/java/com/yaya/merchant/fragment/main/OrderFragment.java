@@ -65,7 +65,7 @@ public class OrderFragment extends BaseFragment {
 
     @OnClick({R.id.ll_order_list,R.id.tv_receive,R.id.tv_return_review,R.id.tv_verification})
     protected void onClick(View view){
-        switch (view.getId()){
+        switch (view.ge-tId()){
             case R.id.ll_order_list:
                 OrderListActivity.open(getActivity(), com.yaya.merchant.data.order.OrderData.TYPE_ORDER_LIST);
                 break;

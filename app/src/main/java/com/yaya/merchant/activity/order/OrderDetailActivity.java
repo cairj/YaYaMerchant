@@ -13,7 +13,7 @@ import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.OrderAction;
 import com.yaya.merchant.base.activity.BaseActivity;
-import com.yaya.merchant.data.order.OrderData;
+import com.yaya.merchant.data.order.OrderDetail;
 import com.yaya.merchant.data.order.OrderDetail;
 import com.yaya.merchant.data.order.OrderDetailData;
 import com.yaya.merchant.net.callback.GsonCallback;
@@ -75,6 +75,8 @@ public class OrderDetailActivity extends BaseActivity {
     protected LinearLayout bottomLL;
     @BindView(R.id.tv_submit)
     protected TextView submitTv;
+    @BindView(R.id.tv_user_name)
+    protected TextView userNameTv;
 
     @Override
     protected int getContentViewId() {
@@ -89,14 +91,14 @@ public class OrderDetailActivity extends BaseActivity {
         type = getIntent().getIntExtra("type", 0);
         orderSn = getIntent().getStringExtra("orderSn");
         switch (type) {
-            case OrderData.TYPE_ORDER_LIST:
+            case OrderDetail.TYPE_ORDER_LIST:
                 bottomLL.setVisibility(View.GONE);
                 break;
-            case OrderData.TYPE_DELIVER_ORDER_LIST:
+            case OrderDetail.TYPE_DELIVER_ORDER_LIST:
                 bottomLL.setVisibility(View.VISIBLE);
                 submitTv.setText("去发货");
                 break;
-            case OrderData.TYPE_REFUND_ORDER_LIST:
+            case OrderDetail.TYPE_REFUND_ORDER_LIST:
                 bottomLL.setVisibility(View.VISIBLE);
                 submitTv.setText("审核");
                 break;
@@ -128,6 +130,7 @@ public class OrderDetailActivity extends BaseActivity {
                 orderTimeTv.setText("下单时间：" + orderDetail.getCreationTime());
                 payTypeTv.setText("支付方式：" + orderDetail.getPaySource());
                 deliveryTypeTv.setText("配送方式：" + orderDetail.getType());
+                userNameTv.setText(orderDetail.getMemberInfo());
                 list.addAll(orderDetail.getOrderdetail());
                 detailAdapter.notifyDataSetChanged();
             }
@@ -137,10 +140,10 @@ public class OrderDetailActivity extends BaseActivity {
     @OnClick(R.id.tv_submit)
     protected void OnClick() {
         switch (type) {
-            case OrderData.TYPE_DELIVER_ORDER_LIST:
+            case OrderDetail.TYPE_DELIVER_ORDER_LIST:
                 DeliverOrderActivity.open(this, orderDetail);
                 break;
-            case OrderData.TYPE_REFUND_ORDER_LIST:
+            case OrderDetail.TYPE_REFUND_ORDER_LIST:
                 RefundOrderActivity.open(this, orderDetail);
                 break;
         }

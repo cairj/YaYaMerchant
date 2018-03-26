@@ -12,6 +12,7 @@
         android:paddingLeft="14dp">
 
         <TextView
+            android:id="@+id/tv_choose_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="付款方式"

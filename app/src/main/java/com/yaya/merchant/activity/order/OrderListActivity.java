@@ -15,7 +15,7 @@ import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.OrderAction;
 import com.yaya.merchant.base.activity.BasePtrRecycleActivity;
-import com.yaya.merchant.data.order.OrderData;
+import com.yaya.merchant.data.order.OrderDetail;
 import com.yaya.merchant.net.Urls;
 import com.yaya.merchant.util.DpPxUtil;
 import com.yaya.merchant.util.StatusBarUtil;
@@ -34,7 +34,7 @@ import butterknife.OnClick;
  * Created by admin on 2018/3/25.
  */
 
-public class OrderListActivity extends BasePtrRecycleActivity<OrderData> {
+public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
 
     private int type;
     private String startTime;
@@ -78,20 +78,20 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderData> {
     @Override
     protected void initView() {
         type = getIntent().getIntExtra("type", 0);
-        if (type != OrderData.TYPE_ORDER_LIST) {
+        if (type != OrderDetail.TYPE_ORDER_LIST) {
             choiceLL.setVisibility(View.GONE);
         }
         super.initView();
         StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
         switch (type) {
-            case OrderData.TYPE_ORDER_LIST:
+            case OrderDetail.TYPE_ORDER_LIST:
                 setActionBarTitle("订单列表");
                 break;
-            case OrderData.TYPE_DELIVER_ORDER_LIST:
+            case OrderDetail.TYPE_DELIVER_ORDER_LIST:
                 url = Urls.GET_DELIVER_ORDER_LIST;
                 setActionBarTitle("发货");
                 break;
-            case OrderData.TYPE_REFUND_ORDER_LIST:
+            case OrderDetail.TYPE_REFUND_ORDER_LIST:
                 url = Urls.GET_REFUND_ORDER_LIST;
                 setActionBarTitle("退货审核");
                 break;
@@ -131,20 +131,27 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderData> {
         adapter.setType(type);
         adapter.setListener(new OrderListAdapter.OnClickListener() {
             @Override
-            public void onParentClick(OrderData orderData) {
+            public void onParentClick(OrderDetail orderData) {
                 OrderDetailActivity.open(OrderListActivity.this,type,orderData.getOrderSn());
             }
 
             @Override
-            public void onBtnClick(OrderData orderData) {
-
+            public void onBtnClick(OrderDetail orderData) {
+                switch (type) {
+                    case OrderDetail.TYPE_DELIVER_ORDER_LIST:
+                        DeliverOrderActivity.open(this, orderDetail);
+                        break;
+                    case OrderDetail.TYPE_REFUND_ORDER_LIST:
+                        RefundOrderActivity.open(this, orderDetail);
+                        break;
+                }
             }
         });
         return adapter;
     }
 
     @Override
-    protected JsonResponse<BaseRowData<OrderData>> getData() throws Exception {
+    protected JsonResponse<BaseRowData<OrderDetail>> getData() throws Exception {
         return OrderAction.getOrderList(url, startTime, endTime,
                 String.valueOf(mCurrentPos), String.valueOf(pageSize));
     }

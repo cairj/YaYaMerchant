@@ -7,7 +7,6 @@ import com.google.gson.reflect.TypeToken;
 import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.data.order.ExpressCompany;
-import com.yaya.merchant.data.order.OrderData;
 import com.yaya.merchant.data.order.OrderDetail;
 import com.yaya.merchant.net.Urls;
 import com.yaya.merchant.util.ToastUtil;
@@ -27,7 +26,7 @@ import okhttp3.Response;
 public class OrderAction {
 
     //获取订单列表
-    public static JsonResponse<BaseRowData<OrderData>> getOrderList(String url, String startTime, String endTime,
+    public static JsonResponse<BaseRowData<OrderDetail>> getOrderList(String url, String startTime, String endTime,
                                                                     String page, String pageSize) throws IOException {
         if (TextUtils.isEmpty(page) || TextUtils.isEmpty(pageSize)) {
             return null;
@@ -43,7 +42,7 @@ public class OrderAction {
         }
         Response response = builder.build().execute();
         Gson gson = new Gson();
-        Type type = new TypeToken<JsonResponse<BaseRowData<OrderData>>>() {
+        Type type = new TypeToken<JsonResponse<BaseRowData<OrderDetail>>>() {
         }.getType();
         return gson.fromJson(response.body().string(), type);
     }

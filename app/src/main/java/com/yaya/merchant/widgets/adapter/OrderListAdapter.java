@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.yaya.merchant.R;
-import com.yaya.merchant.data.order.OrderData;
+import com.yaya.merchant.data.order.OrderDetail;
 import com.yaya.merchant.data.order.OrderDetailData;
 import com.yaya.merchant.util.DpPxUtil;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
@@ -21,18 +21,18 @@ import java.util.List;
  * Created by admin on 2018/3/25.
  */
 
-public class OrderListAdapter extends BaseQuickAdapter<OrderData> {
+public class OrderListAdapter extends BaseQuickAdapter<OrderDetail> {
 
     private RecyclerView.ItemDecoration decoration;
     private int type;
 
-    public OrderListAdapter(List<OrderData> data) {
+    public OrderListAdapter(List<OrderDetail> data) {
         super(R.layout.item_order_list, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder baseViewHolder, final OrderData orderData) {
-        baseViewHolder.setText(R.id.tv_user_name, "平台用户：" + orderData.getUserName())
+    protected void convert(BaseViewHolder baseViewHolder, final OrderDetail orderData) {
+        baseViewHolder.setText(R.id.tv_user_name, "平台用户：" + orderData.getMemberInfo())
                 .setText(R.id.tv_date, orderData.getPayTime())
                 .setText(R.id.tv_pay_status, orderData.getPayStatus())
                 .setText(R.id.tv_total_money, "￥"+String.valueOf(totalPrice(orderData)));
@@ -61,11 +61,11 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderData> {
 
         TextView btn = baseViewHolder.getView(R.id.tv_btn);
         switch (type) {
-            case OrderData.TYPE_DELIVER_ORDER_LIST:
+            case OrderDetail.TYPE_DELIVER_ORDER_LIST:
                 btn.setText("发货");
                 btn.setVisibility(View.VISIBLE);
                 break;
-            case OrderData.TYPE_REFUND_ORDER_LIST:
+            case OrderDetail.TYPE_REFUND_ORDER_LIST:
                 btn.setText("审核");
                 baseViewHolder.getView(R.id.tv_pay_status).setVisibility(View.GONE);
                 btn.setVisibility(View.VISIBLE);
@@ -74,6 +74,14 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderData> {
                 btn.setVisibility(View.GONE);
                 break;
         }
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener!=null){
+                    listener.onBtnClick(orderData);
+                }
+            }
+        });
 
         baseViewHolder.getView(R.id.ll_parent).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +105,7 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderData> {
     }
 
     //计算总价
-    private double totalPrice(OrderData orderData) {
+    private double totalPrice(OrderDetail orderData) {
         double totalPrice = 0;
         for (OrderDetailData detailData : orderData.getOrderdetail()) {
             totalPrice += detailData.getOrderPrice() * detailData.getOrderNum();
@@ -117,8 +125,8 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderData> {
     }
 
     public interface OnClickListener{
-        void onParentClick(OrderData orderData);
-        void onBtnClick(OrderData orderData);
+        void onParentClick(OrderDetail orderData);
+        void onBtnClick(OrderDetail orderData);
     }
 
 }
