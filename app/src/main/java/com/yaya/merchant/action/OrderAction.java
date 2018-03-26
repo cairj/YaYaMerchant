@@ -93,7 +93,7 @@ public class OrderAction {
     }
 
     public static void disallowRefund(String orderSn, String refundFailReason, String memberId, Callback callback) {
-        GetBuilder builder = OkHttpUtils.get().url(Urls.ALLOW_REFUND)
+        GetBuilder builder = OkHttpUtils.get().url(Urls.DISALLOW_REFUND)
                 .addParams("orderSn", orderSn)
                 .addParams("memberId", memberId);
         if (!TextUtils.isEmpty(refundFailReason)) {
