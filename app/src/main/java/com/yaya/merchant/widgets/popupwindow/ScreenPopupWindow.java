@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yaya.merchant.R;
 import com.yaya.merchant.base.BasePopupWindow;
+import com.yaya.merchant.util.DpPxUtil;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
+import com.yqritc.recyclerviewflexibledivider.VerticalDividerItemDecoration;
 
 /**
  * 筛选
@@ -42,9 +44,9 @@ public class ScreenPopupWindow extends BasePopupWindow {
     }
 
     protected RecyclerView.ItemDecoration addItemDecoration(){
-        RecyclerView.ItemDecoration decoration = new HorizontalDividerItemDecoration.Builder(context)
-                .color(ContextCompat.getColor(context, R.color.gray_F6F7F9))
-                .sizeResId(R.dimen.divider_height)
+        RecyclerView.ItemDecoration decoration = new VerticalDividerItemDecoration.Builder(context)
+                .color(ContextCompat.getColor(context, R.color.transparent))
+                .size(DpPxUtil.dp2px(11))
                 .marginResId(R.dimen.margin_edge)
                 .build();
         return decoration;

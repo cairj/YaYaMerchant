@@ -55,10 +55,12 @@
                 android:padding="5dp">
 
                 <TextView
+                    android:id="@+id/tv_start_date"
                     style="@style/screen_choose_time_content"
                     android:text="XXX" />
 
                 <TextView
+                    android:id="@+id/tv_start_time"
                     style="@style/screen_choose_time_content"
                     android:layout_marginLeft="7dp"
                     android:text="XXX" />
@@ -84,10 +86,12 @@
                 android:padding="5dp">
 
                 <TextView
+                    android:id="@+id/tv_end_date"
                     style="@style/screen_choose_time_content"
                     android:text="XXX" />
 
                 <TextView
+                    android:id="@+id/tv_end_time"
                     style="@style/screen_choose_time_content"
                     android:layout_marginLeft="7dp"
                     android:text="XXX" />
