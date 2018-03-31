@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="16dp">
+
+    <TextView
+        android:id="@+id/tv_action_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/top_ic_back_black"
+        android:layout_marginLeft="10dp"/>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="186dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:tabMode="fixed"
+        app:tabTextColor="@color/black_454555"
+        app:tabSelectedTextColor="@color/black_454555"
+        app:tabIndicatorColor="@color/pink_f25b4e"
+        app:tabGravity="center"
+        app:tabMinWidth="93dp">
+
+    </android.support.design.widget.TabLayout>
+
+</FrameLayout>

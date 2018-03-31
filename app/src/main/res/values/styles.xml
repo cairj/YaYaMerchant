@@ -85,6 +85,7 @@
         <item name="android:textColor">@color/gray_999999</item>
         <item name="android:textSize">13sp</item>
         <item name="android:layout_gravity">bottom</item>
+        <item name="android:layout_marginTop">5dp</item>
     </style>
 
     <style name="home_btn_tv">

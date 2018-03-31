@@ -75,8 +75,6 @@ public class OrderDetailActivity extends BaseActivity {
     protected LinearLayout bottomLL;
     @BindView(R.id.tv_submit)
     protected TextView submitTv;
-    @BindView(R.id.tv_user_name)
-    protected TextView userNameTv;
 
     @Override
     protected int getContentViewId() {

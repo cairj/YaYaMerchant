@@ -14,6 +14,7 @@ import com.yaya.merchant.fragment.main.UserFragment;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.JPushUtil;
 
+import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.OnClick;
 
@@ -33,6 +34,9 @@ public class MainActivity extends BaseActivity {
 
     @BindViews({R.id.main_tv_tab_home, R.id.main_tv_tab_activity, R.id.main_tv_tab_user})
     protected TextView[] tabTvs;
+
+    @BindView(R.id.tv_order_count)
+    protected TextView orderCountTv;
 
     @Override
     protected int getContentViewId() {
@@ -96,6 +100,15 @@ public class MainActivity extends BaseActivity {
                 JPushUtil.setAliasAndTag(MainActivity.this, data.getId(), data.getTenantId());
             }
         });
+    }
+
+    public void setOrderCount(String orderCount){
+        if(Integer.parseInt(orderCount)>0) {
+            orderCountTv.setText(orderCount);
+            orderCountTv.setVisibility(View.VISIBLE);
+        }else {
+            orderCountTv.setVisibility(View.GONE);
+        }
     }
 
 }

@@ -136,13 +136,13 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
             }
 
             @Override
-            public void onBtnClick(OrderDetail orderData) {
+            public void onBtnClick(OrderDetail orderDetail) {
                 switch (type) {
                     case OrderDetail.TYPE_DELIVER_ORDER_LIST:
-                        DeliverOrderActivity.open(this, orderDetail);
+                        DeliverOrderActivity.open(OrderListActivity.this, orderDetail);
                         break;
                     case OrderDetail.TYPE_REFUND_ORDER_LIST:
-                        RefundOrderActivity.open(this, orderDetail);
+                        RefundOrderActivity.open(OrderListActivity.this, orderDetail);
                         break;
                 }
             }

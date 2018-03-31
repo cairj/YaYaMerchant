@@ -17,6 +17,7 @@ public class HomeData implements Serializable{
     private String memberTotal;//会员总数
     private String orderPriceTotal;//订单总额
     private String orderPriceCount;//总订单数量
+    private String orderCount;//订单数量
 
     public String getCollectionAmount() {
         return collectionAmount;
@@ -44,5 +45,9 @@ public class HomeData implements Serializable{
 
     public String getOrderPriceCount() {
         return orderPriceCount;
+    }
+
+    public String getOrderCount() {
+        return orderCount;
     }
 }

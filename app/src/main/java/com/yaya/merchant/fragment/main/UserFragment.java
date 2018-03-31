@@ -23,6 +23,7 @@ import com.yaya.merchant.base.fragment.BaseFragment;
 import com.yaya.merchant.data.main.UserData;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.DialogUtil;
+import com.yaya.merchant.util.ToastUtil;
 import com.yaya.merchant.util.imageloader.GlideLoaderHelper;
 import com.yaya.merchant.widgets.adapter.EmployeeManagerAdapter;
 
@@ -116,6 +117,10 @@ public class UserFragment extends BaseFragment {
                 openActivity(FeedBackActivity.class);
                 break;
             case R.id.user_rl_info:
+                if(userData == null){
+                    ToastUtil.toast("请稍等");
+                    return;
+                }
                 SettingActivity.open(getActivity(),userData);
                 break;
             case R.id.user_rl_contact_service:

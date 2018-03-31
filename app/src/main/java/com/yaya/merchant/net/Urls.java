@@ -14,6 +14,7 @@ public class Urls {
     public static final String BILL_GET_ALL_STORE = HOST + "api/bill/GetAllStore";
     public static final String BILL_GET_MEMBER_BILL = HOST + "api/bill/BillMember";
     public static final String GET_MEMBER_MANAGER_LIST = HOST + "api/Homeindex/MemberManager";
+    public static final String GET_MEMBER_DATA = HOST + "api/Homeindex/DataStatistics";
     public static final String GET_BANK_CARD = HOST + "api/Cashout/GetBankCard";
     public static final String GET_MEMBER_BALANCE = HOST + "api/Cashout/GetAmount";
     public static final String WITH_DRAW_MONEY = HOST + "api/Cashout/CreateCashout";
@@ -48,5 +49,8 @@ public class Urls {
     public static final String DELIVER_GOODS = HOST + "ShopOrder/DeliverGoodsSet";
     public static final String ALLOW_REFUND = HOST + "ShopOrder/RefundSuccess";
     public static final String DISALLOW_REFUND = HOST + "ShopOrder/RefundFail";
+    public static final String GET_ARTICLE_LIST = HOST + "api/SystemUser/ArticleList";
+    public static final String GET_HOUSTON_DETAIL = HOST + "api/bill/HoustonDetail";
+    public static final String GET_MEMBER_DETAIL = HOST + "api/bill/BillMemberDetail";
 
 }

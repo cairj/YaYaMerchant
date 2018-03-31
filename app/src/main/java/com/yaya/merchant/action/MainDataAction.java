@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
+import com.yaya.merchant.data.Article;
 import com.yaya.merchant.data.account.BillData;
 import com.yaya.merchant.data.account.BillListData;
 import com.yaya.merchant.data.account.Member;
@@ -145,6 +146,33 @@ public class MainDataAction {
         Type type = new TypeToken<JsonResponse<BillListData>>() {
         }.getType();
         return gson.fromJson(response.body().string(), type);
+    }
+
+    //获取会员数据
+    public static void getMemberData(Callback callback){
+        OkHttpUtils.get().url(Urls.GET_MEMBER_DATA).build().execute(callback);
+    }
+
+    // 获取文章通知列表
+    public static JsonResponse<BaseRowData<Article>> getArticleList(String articleType, String page, String pageSize) throws IOException {
+        if (TextUtils.isEmpty(articleType) || TextUtils.isEmpty(page) || TextUtils.isEmpty(pageSize)) {
+            return null;
+        }
+        Response response = OkHttpUtils.get().url(Urls.GET_ARTICLE_LIST)
+                .addParams("articleType", articleType)
+                .addParams("page", page)
+                .addParams("pageSize", pageSize).build().execute();
+        Gson gson = new Gson();
+        Type type = new TypeToken<JsonResponse<BaseRowData<Article>>>() {
+        }.getType();
+        return gson.fromJson(response.body().string(), type);
+    }
+
+    //获取收款详情
+    public static void getGatheringDetail(String id,String url,Callback callback){
+        OkHttpUtils.get().url(url)
+                .addParams("id", id)
+                .build().execute(callback);
     }
 
 }

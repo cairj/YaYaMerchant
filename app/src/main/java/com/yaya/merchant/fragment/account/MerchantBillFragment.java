@@ -3,8 +3,12 @@ package com.yaya.merchant.fragment.account;
 import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.action.MainDataAction;
+import com.yaya.merchant.activity.account.GatheringDetailActivity;
+import com.yaya.merchant.activity.account.RefundDetailActivity;
 import com.yaya.merchant.data.ChoiceItem;
 import com.yaya.merchant.data.account.BillData;
+import com.yaya.merchant.net.Urls;
+import com.yaya.merchant.widgets.adapter.MerchantBillGroupAdapter;
 import com.yaya.merchant.widgets.adapter.SingleChoiceTextAdapter;
 
 import java.util.Collections;
@@ -28,6 +32,20 @@ public class MerchantBillFragment extends BaseBillFragment {
     protected JsonResponse<BaseRowData<BillData>> getData() throws Exception {
         return MainDataAction.getAccountList(storeId, payState, payType, startTime, endTime,
                 String.valueOf(mCurrentPos), String.valueOf(pageSize));
+    }
+
+    @Override
+    protected MerchantBillGroupAdapter.OnItemClickListener getItemListener() {
+        return new MerchantBillGroupAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BillData billData) {
+                if (billData.getPayStatus().contains("退款")){
+                    RefundDetailActivity.open(getActivity(),String.valueOf(billData.getId()));
+                }else {
+                    GatheringDetailActivity.open(getActivity(),String.valueOf(billData.getId()), Urls.GET_HOUSTON_DETAIL);
+                }
+            }
+        };
     }
 
     @Override

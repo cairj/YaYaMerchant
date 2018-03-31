@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray_f2f5fa">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:paddingTop="15dp">
+
+        <TextView
+            android:id="@+id/tv_today_recharge"
+            style="@style/home_today_data_number"
+            android:text=""
+            android:textSize="32sp" />
+
+        <TextView
+            style="@style/home_today_data_title"
+            android:text="今日充值（元）"
+            android:textSize="9sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:gravity="center_vertical"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_online"
+                style="@style/home_today_data_number"
+                android:text="" />
+
+            <TextView
+                style="@style/home_today_data_title"
+                android:lines="1"
+                android:text="线上充值"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/divider_vertical"
+            android:layout_marginTop="4dp"
+            android:background="@color/gray_DADDE6" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_return"
+                style="@style/home_today_data_number"
+                android:text="" />
+
+            <TextView
+                style="@style/home_today_data_title"
+                android:lines="1"
+                android:text="赠送返现"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/divider_vertical"
+            android:layout_marginTop="4dp"
+            android:background="@color/gray_DADDE6" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_cash"
+                style="@style/home_today_data_number"
+                android:text="" />
+
+            <TextView
+                style="@style/home_today_data_title"
+                android:lines="1"
+                android:text="现金充值"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:gravity="center_vertical"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_today_consume"
+                style="@style/home_today_data_number"
+                android:text="" />
+
+            <TextView
+                style="@style/home_today_data_title"
+                android:lines="1"
+                android:text="今日消费（元）"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/divider_vertical"
+            android:layout_marginTop="4dp"
+            android:background="@color/gray_DADDE6" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_today_activation_member"
+                style="@style/home_today_data_number"
+                android:text="" />
+
+            <TextView
+                style="@style/home_today_data_title"
+                android:lines="1"
+                android:text="今日激活会员（元）"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingTop="@dimen/dp_10"
+        android:src="@mipmap/ic_wave"
+        android:scaleType="fitXY"
+        android:background="@color/white"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/bg_white_rounded_2dp"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10">
+
+            <TextView
+                android:id="@+id/tv_total_recharge"
+                style="@style/home_today_data_number"
+                android:text="" />
+
+            <TextView
+                style="@style/home_today_data_title"
+                android:lines="1"
+                android:text="会员充值总额（元）"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_white_rounded_2dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10">
+
+            <TextView
+                android:id="@+id/tv_total_recharge_balance"
+                style="@style/home_today_data_number"
+                android:text="" />
+
+            <TextView
+                style="@style/home_today_data_title"
+                android:lines="1"
+                android:text="会员充值总额（元）"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/bg_white_rounded_2dp"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10">
+
+            <TextView
+                android:id="@+id/tv_total_consume"
+                style="@style/home_today_data_number"
+                android:text="" />
+
+            <TextView
+                style="@style/home_today_data_title"
+                android:lines="1"
+                android:text="会员消费总额（元）"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_white_rounded_2dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10">
+
+            <TextView
+                android:id="@+id/tv_total_member"
+                style="@style/home_today_data_number"
+                android:text="" />
+
+            <TextView
+                style="@style/home_today_data_title"
+                android:lines="1"
+                android:text="会员总人数（人）"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

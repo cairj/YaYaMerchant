@@ -38,11 +38,15 @@ public class MerchantBillGroupAdapter extends BaseQuickAdapter<String> {
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         addItemDecoration(recyclerView);
         MerchantBillChildAdapter childAdapter = new MerchantBillChildAdapter(balanceHashMap.get(date));
+        childAdapter.setListener(new MerchantBillChildAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BillData billData) {
+                if (listener != null){
+                    listener.onItemClick(billData);
+                }
+            }
+        });
         recyclerView.setAdapter(childAdapter);
-        /*//子列表的高度
-        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) recyclerView.getLayoutParams();
-        lp.height = balanceHashMap.get(date).size() * DpPxUtil.dp2px(64);
-        recyclerView.setLayoutParams(lp);*/
     }
 
     public void setBalanceHashMap(Map<String, List<BillData>> balanceHashMap) {
@@ -69,4 +73,13 @@ public class MerchantBillGroupAdapter extends BaseQuickAdapter<String> {
         return String.format("共%d笔，￥%s", list.size(), StringsUtil.formatDecimals(totalMoney));
     }
 
+    private OnItemClickListener listener;
+
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(BillData billData);
+    }
 }

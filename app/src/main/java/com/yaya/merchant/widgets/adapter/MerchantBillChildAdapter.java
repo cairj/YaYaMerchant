@@ -25,7 +25,7 @@ public class MerchantBillChildAdapter extends BaseQuickAdapter<BillData> {
     }
 
     @Override
-    protected void convert(BaseViewHolder baseViewHolder, BillData billData) {
+    protected void convert(BaseViewHolder baseViewHolder, final BillData billData) {
         String[] time = billData.getPayTime().split("T");
         String payTime="";
         if (time.length>1){
@@ -63,5 +63,24 @@ public class MerchantBillChildAdapter extends BaseQuickAdapter<BillData> {
         if (!TextUtils.isEmpty(billData.getName())){//会员
             payTypeTv.setText(billData.getName());
         }
+
+        baseViewHolder.getView(R.id.ll_parent).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(billData);
+            }
+        });
+
     }
+
+    private OnItemClickListener listener;
+
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(BillData billData);
+    }
+
 }

@@ -139,6 +139,12 @@
             android:theme="@style/GrayActionBar"/>
         <activity android:name=".activity.order.RefundOrderActivity"
             android:theme="@style/GrayActionBar"/>
+        <activity android:name=".activity.article.ArticleListActivity"
+            android:theme="@style/GrayActionBar"/>
+        <activity android:name=".activity.account.GatheringDetailActivity"
+            android:theme="@style/ImageTranslucentTheme"/>
+        <activity android:name=".activity.account.RefundDetailActivity"
+            android:theme="@style/ImageTranslucentTheme"/>
 
         <!--极光推送-->
         <!-- Required SDK 核心功能-->

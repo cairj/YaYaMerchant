@@ -2,291 +2,313 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="243dp"
-        android:background="@mipmap/top_bg">
+    <in.srain.cube.views.ptr.PtrFrameLayout
+        android:id="@+id/ptr_frame"
+        style="@style/BasePtrFrameLayout">
 
-        <FrameLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/home_tv_title"
-                style="@style/text_title"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/home_title"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:orientation="vertical">
 
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginRight="8dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="243dp"
+                    android:background="@mipmap/top_bg">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp">
+
+                        <TextView
+                            android:id="@+id/home_tv_title"
+                            style="@style/text_title"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/home_title"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="8dp">
+
+                            <ImageView
+                                android:id="@+id/iv_news"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="5dp"
+                                android:src="@mipmap/home_ic_news" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:background="@drawable/bg_red_circle"
+                                android:paddingBottom="1dp"
+                                android:paddingLeft="4dp"
+                                android:paddingRight="4dp"
+                                android:paddingTop="1dp"
+                                android:text="2"
+                                android:textColor="@color/white_fefefe"
+                                android:textSize="9sp"
+                                android:visibility="gone" />
+                        </FrameLayout>
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/order_tv_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="43sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/order_tv_amount"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:text="今日线上商城订单（元）"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_order_list"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="5dp"
-                    android:src="@mipmap/home_ic_news" />
+                    android:layout_marginTop="-45dp"
+                    android:background="@drawable/ic_shadow"
+                    android:paddingBottom="32dp"
+                    android:paddingTop="32dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:background="@drawable/bg_red_circle"
-                    android:paddingBottom="1dp"
-                    android:paddingLeft="4dp"
-                    android:paddingRight="4dp"
-                    android:paddingTop="1dp"
-                    android:text="2"
-                    android:textColor="@color/white_fefefe"
-                    android:textSize="9sp"
-                    android:visibility="gone" />
-            </FrameLayout>
-        </FrameLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/order_tv_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="0"
-            android:textColor="@color/white"
-            android:textSize="43sp"
-            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/tv_already_order"
+                            style="@style/home_today_data_number"
+                            android:text="" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/order_tv_amount"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:text="今日订单总额（元）"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-    </RelativeLayout>
+                        <TextView
+                            style="@style/home_today_data_title"
+                            android:text="已下单" />
 
-    <LinearLayout
-        android:id="@+id/ll_order_list"
-        android:layout_width="match_parent"
-        android:layout_height="112dp"
-        android:layout_marginTop="-45dp"
-        android:background="@drawable/ic_shadow"
-        android:paddingBottom="32dp"
-        android:paddingTop="32dp">
+                    </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+                    <View
+                        style="@style/divider_vertical"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/pink_FFD6E0" />
 
-            <TextView
-                android:id="@+id/tv_already_order"
-                style="@style/home_today_data_number"
-                android:text="100" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-            <TextView
-                style="@style/home_today_data_title"
-                android:text="已下单" />
+                        <TextView
+                            android:id="@+id/tv_waiting_receive"
+                            style="@style/home_today_data_number"
+                            android:text="" />
 
-        </FrameLayout>
+                        <TextView
+                            style="@style/home_today_data_title"
+                            android:text="待收货" />
 
-        <View
-            style="@style/divider_vertical"
-            android:layout_marginTop="4dp"
-            android:background="@color/pink_FFD6E0" />
+                    </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+                    <View
+                        style="@style/divider_vertical"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/pink_FFD6E0" />
 
-            <TextView
-                android:id="@+id/tv_waiting_receive"
-                style="@style/home_today_data_number"
-                android:text="100" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-            <TextView
-                style="@style/home_today_data_title"
-                android:text="待收货" />
+                        <TextView
+                            android:id="@+id/tv_return"
+                            style="@style/home_today_data_number"
+                            android:text="" />
 
-        </FrameLayout>
-
-        <View
-            style="@style/divider_vertical"
-            android:layout_marginTop="4dp"
-            android:background="@color/pink_FFD6E0" />
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/tv_return"
-                style="@style/home_today_data_number"
-                android:text="100" />
-
-            <TextView
-                style="@style/home_today_data_title"
-                android:text="退单" />
-        </FrameLayout>
-    </LinearLayout>
+                        <TextView
+                            style="@style/home_today_data_title"
+                            android:text="退单" />
+                    </LinearLayout>
+                </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginRight="14dp"
-        android:background="@color/white">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:background="@color/white">
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/tv_receive"
-                style="@style/home_btn_tv"
-                android:drawableTop="@mipmap/home_ic_car"
-                android:text="发货"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
+                        <TextView
+                            android:id="@+id/tv_receive"
+                            style="@style/home_btn_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:drawableTop="@mipmap/home_ic_car"
+                            android:text="发货" />
 
-            <TextView
-                android:id="@+id/tv_receive_count"
-                android:text="1"
-                android:layout_alignRight="@id/tv_receive"
-                android:layout_alignTop="@id/tv_receive"
-                style="@style/order_num_tv"/>
-        </RelativeLayout>
+                        <TextView
+                            android:id="@+id/tv_receive_count"
+                            style="@style/order_num_tv"
+                            android:layout_alignRight="@id/tv_receive"
+                            android:layout_alignTop="@id/tv_receive"
+                            android:text="1" />
+                    </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/tv_verification"
-                style="@style/home_btn_tv"
-                android:drawableTop="@mipmap/home_ic_scan"
-                android:text="核销"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
+                        <TextView
+                            android:id="@+id/tv_verification"
+                            style="@style/home_btn_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:drawableTop="@mipmap/home_ic_scan"
+                            android:text="核销" />
 
-            <TextView
-                android:text="1"
-                android:layout_alignRight="@id/tv_verification"
-                android:layout_alignTop="@id/tv_verification"
-                style="@style/order_num_tv"/>
-        </RelativeLayout>
+                        <TextView
+                            style="@style/order_num_tv"
+                            android:layout_alignRight="@id/tv_verification"
+                            android:layout_alignTop="@id/tv_verification"
+                            android:text="1" />
+                    </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/tv_return_review"
-                style="@style/home_btn_tv"
-                android:drawableTop="@mipmap/home_ic_return"
-                android:text="退货审核"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
+                        <TextView
+                            android:id="@+id/tv_return_review"
+                            style="@style/home_btn_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:drawableTop="@mipmap/home_ic_return"
+                            android:text="退货审核" />
 
-            <TextView
-                android:id="@+id/tv_return_count"
-                android:text="1"
-                android:layout_alignRight="@id/tv_return_review"
-                android:layout_alignTop="@id/tv_return_review"
-                style="@style/order_num_tv"/>
-        </RelativeLayout>
+                        <TextView
+                            android:id="@+id/tv_return_count"
+                            style="@style/order_num_tv"
+                            android:layout_alignRight="@id/tv_return_review"
+                            android:layout_alignTop="@id/tv_return_review"
+                            android:text="1" />
+                    </RelativeLayout>
 
-    </LinearLayout>
+                </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginRight="14dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/white">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/white">
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/tv_push_goods"
-                style="@style/home_btn_tv"
-                android:drawableTop="@mipmap/home_ic_upload"
-                android:text="商品上传"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
+                        <TextView
+                            android:id="@+id/tv_push_goods"
+                            style="@style/home_btn_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:drawableTop="@mipmap/home_ic_upload"
+                            android:text="商品上传"
+                            android:textColor="@color/gray_999999" />
 
-            <TextView
-                android:text="1"
-                android:layout_alignRight="@id/tv_push_goods"
-                android:layout_alignTop="@id/tv_push_goods"
-                style="@style/order_num_tv"/>
-        </RelativeLayout>
+                        <TextView
+                            style="@style/order_num_tv"
+                            android:layout_alignRight="@id/tv_push_goods"
+                            android:layout_alignTop="@id/tv_push_goods"
+                            android:text="1" />
+                    </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/tv_goods_class"
-                style="@style/home_btn_tv"
-                android:drawableTop="@mipmap/home_ic_type"
-                android:text="商品分类"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
+                        <TextView
+                            android:id="@+id/tv_goods_class"
+                            style="@style/home_btn_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:drawableTop="@mipmap/home_ic_type"
+                            android:text="商品分类"
+                            android:textColor="@color/gray_999999" />
 
-            <TextView
-                android:text="1"
-                android:layout_alignRight="@id/tv_goods_class"
-                android:layout_alignTop="@id/tv_goods_class"
-                style="@style/order_num_tv"/>
-        </RelativeLayout>
+                        <TextView
+                            style="@style/order_num_tv"
+                            android:layout_alignRight="@id/tv_goods_class"
+                            android:layout_alignTop="@id/tv_goods_class"
+                            android:text="1" />
+                    </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/tv_release_activity"
-                style="@style/home_btn_tv"
-                android:drawableTop="@mipmap/home_ic_return"
-                android:text="活动发布"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
+                        <TextView
+                            android:id="@+id/tv_release_activity"
+                            style="@style/home_btn_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:drawableTop="@mipmap/home_ic_activity"
+                            android:text="活动发布"
+                            android:textColor="@color/gray_999999" />
 
-            <TextView
-                android:text="1"
-                android:layout_alignRight="@id/tv_release_activity"
-                android:layout_alignTop="@id/tv_release_activity"
-                style="@style/order_num_tv"/>
-        </RelativeLayout>
+                        <TextView
+                            style="@style/order_num_tv"
+                            android:layout_alignRight="@id/tv_release_activity"
+                            android:layout_alignTop="@id/tv_release_activity"
+                            android:text="1" />
+                    </RelativeLayout>
 
-    </LinearLayout>
-
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </in.srain.cube.views.ptr.PtrFrameLayout>
 </LinearLayout>

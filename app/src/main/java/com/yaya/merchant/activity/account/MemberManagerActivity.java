@@ -2,6 +2,7 @@ package com.yaya.merchant.activity.account;
 
 import com.yaya.merchant.R;
 import com.yaya.merchant.base.activity.BaseTabLayoutActivity;
+import com.yaya.merchant.fragment.account.MemberDataFragment;
 import com.yaya.merchant.fragment.account.MemberManagerFragment;
 
 /**
@@ -11,6 +12,7 @@ import com.yaya.merchant.fragment.account.MemberManagerFragment;
 public class MemberManagerActivity extends BaseTabLayoutActivity {
 
     private MemberManagerFragment memberManagerFragment;
+    private MemberDataFragment memberDataFragment;
 
     @Override
     protected int getContentViewId() {
@@ -23,6 +25,9 @@ public class MemberManagerActivity extends BaseTabLayoutActivity {
 
         memberManagerFragment = new MemberManagerFragment();
         fragmentList.add(memberManagerFragment);
+
+        memberDataFragment = new MemberDataFragment();
+        fragmentList.add(memberDataFragment);
 
         adapter.notifyDataSetChanged();
     }

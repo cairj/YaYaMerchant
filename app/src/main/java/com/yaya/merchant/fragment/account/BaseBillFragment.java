@@ -84,7 +84,13 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
 
     @Override
     protected BaseQuickAdapter getAdapter() {
-        return new MerchantBillGroupAdapter(groupList);
+        MerchantBillGroupAdapter adapter = new MerchantBillGroupAdapter(groupList);
+        adapter.setListener(getItemListener());
+        return adapter;
+    }
+
+    protected MerchantBillGroupAdapter.OnItemClickListener getItemListener(){
+        return null;
     }
 
     private void getAllMerchant(){
