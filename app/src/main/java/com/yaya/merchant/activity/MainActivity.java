@@ -77,13 +77,13 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.main_tv_tab_home, R.id.main_tv_tab_activity, R.id.main_tv_tab_user})
+    @OnClick({R.id.main_tv_tab_home, R.id.main_rl_tab_activity, R.id.main_tv_tab_user})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_tv_tab_home:
                 selectedTab(TAB_HOME);
                 break;
-            case R.id.main_tv_tab_activity:
+            case R.id.main_rl_tab_activity:
                 selectedTab(TAB_ACTIVITY);
                 break;
             case R.id.main_tv_tab_user:

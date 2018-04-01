@@ -25,6 +25,7 @@
             android:textSize="11sp" />
 
         <RelativeLayout
+            android:id="@+id/main_rl_tab_activity"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">

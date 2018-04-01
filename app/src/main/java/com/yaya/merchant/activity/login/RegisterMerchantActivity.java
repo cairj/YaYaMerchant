@@ -115,6 +115,7 @@ public class RegisterMerchantActivity extends BaseActivity {
                 DoubleBtnDialog dialog = new DoubleBtnDialog(RegisterMerchantActivity.this);
                 dialog.setCancelable(false);
                 dialog.getTitleTv().setText("提交成功");
+                dialog.getPictureIv().setImageResource(R.mipmap.ic_submit);
                 dialog.getContentTv().setText("我们将会在24小时联系您\n" + "请注意接听");
                 dialog.getLeftBtnTv().setText("取消");
                 dialog.getRightBtnTv().setText("立即拨打");

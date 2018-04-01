@@ -21,6 +21,10 @@ public class SingleChoiceTextAdapter extends BaseQuickAdapter<ChoiceItem> {
         super(R.layout.textview, data);
     }
 
+    public SingleChoiceTextAdapter(int layoutId,List<ChoiceItem> data) {
+        super(layoutId, data);
+    }
+
     @Override
     protected void convert(BaseViewHolder baseViewHolder, final ChoiceItem item) {
         baseViewHolder.setText(R.id.text_view, item.getContent());

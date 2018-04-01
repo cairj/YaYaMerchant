@@ -47,6 +47,9 @@ public class MerchantBillGroupAdapter extends BaseQuickAdapter<String> {
             }
         });
         recyclerView.setAdapter(childAdapter);
+
+        recyclerView.setFocusableInTouchMode(false);
+        recyclerView.requestFocus();
     }
 
     public void setBalanceHashMap(Map<String, List<BillData>> balanceHashMap) {

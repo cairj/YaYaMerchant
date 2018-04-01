@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.toroke.okhttp.JsonResponse;
+import com.yaya.merchant.R;
 import com.yaya.merchant.action.UserAction;
 import com.yaya.merchant.activity.withdraw.WithdrawMoneyRecordActivity;
 import com.yaya.merchant.net.callback.GsonCallback;
@@ -22,6 +23,7 @@ public class DialogUtil {
     //密码修改成功对话框
     public static void changePasswordSuccessDialog(Context context, SingleBtnDialog.OnClickListener listener) {
         SingleBtnDialog dialog = new SingleBtnDialog(context);
+        dialog.getPictureIv().setImageResource(R.mipmap.ic_password);
         dialog.getTitleTv().setVisibility(View.GONE);
         dialog.getContentTv().setText("密码修改成功");
         dialog.getSubmitBtnTv().setText("我知道了");
@@ -38,6 +40,7 @@ public class DialogUtil {
                 ViewGroup.LayoutParams lp = dialog.getPictureIv().getLayoutParams();
                 lp.height = DpPxUtil.dp2px(130);
                 dialog.getPictureIv().setLayoutParams(lp);
+                dialog.getPictureIv().setImageResource(R.mipmap.ic_popup_service);
                 dialog.getTitleTv().setVisibility(View.GONE);
                 dialog.getContentTv().setText(content+ "联系电话：" + response.getData().getData());
                 dialog.getLeftBtnTv().setText("取消");

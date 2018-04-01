@@ -89,6 +89,7 @@ public class BillListActivity extends BasePtrRecycleActivity<BillData> {
             case DAILY_BILL:
                 lastTv.setText("上一天");
                 nextTv.setText("下一天");
+                setActionBarTitle("日账单");
                 break;
             case WEEK_BILL:
                 lastTv.setText("上一周");
@@ -96,6 +97,7 @@ public class BillListActivity extends BasePtrRecycleActivity<BillData> {
                 startCalendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
                 endCalendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
                 endCalendar.set(Calendar.WEEK_OF_YEAR, endCalendar.get(Calendar.WEEK_OF_YEAR) + 1);
+                setActionBarTitle("周账单");
                 break;
             case MONTH_BILL:
                 lastTv.setText("上一月");
@@ -103,6 +105,7 @@ public class BillListActivity extends BasePtrRecycleActivity<BillData> {
                 startCalendar.set(Calendar.DAY_OF_MONTH, 1);
                 endCalendar.set(startCalendar.get(Calendar.YEAR),
                         startCalendar.get(Calendar.MONTH) + 1, 0);
+                setActionBarTitle("月账单");
                 break;
         }
         startCalendar.set(Calendar.HOUR_OF_DAY, 0);

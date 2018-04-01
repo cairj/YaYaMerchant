@@ -39,6 +39,7 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
     protected String storeId = "";
     protected String startTime = "";
     protected String endTime = "";
+    protected String search = "";
 
     protected List<String> groupList = new ArrayList<>();
     protected TreeMap<String, List<BillData>> map = new TreeMap<>();
@@ -95,7 +96,7 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
 
     private void getAllMerchant(){
         Type type=new TypeToken<BaseRowData<Merchant>>(){}.getType();
-        MainDataAction.searchMerchant("", new GsonCallback<BaseRowData<Merchant>>(type) {
+        MainDataAction.searchMerchant(search, new GsonCallback<BaseRowData<Merchant>>(type) {
             @Override
             public void onSucceed(JsonResponse<BaseRowData<Merchant>> response) {
                 storeId = "";

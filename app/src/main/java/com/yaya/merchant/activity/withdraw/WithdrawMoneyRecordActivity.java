@@ -1,11 +1,8 @@
 package com.yaya.merchant.activity.withdraw;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -13,19 +10,16 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
-import com.yaya.merchant.action.UserAction;
 import com.yaya.merchant.action.WithDrawMoneyAction;
-import com.yaya.merchant.activity.login.RegisterMerchantActivity;
 import com.yaya.merchant.base.activity.BasePtrRecycleActivity;
 import com.yaya.merchant.data.ChoiceItem;
 import com.yaya.merchant.data.withdraw.WithdrawMoneyRecord;
-import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.DialogUtil;
 import com.yaya.merchant.util.DpPxUtil;
 import com.yaya.merchant.widgets.adapter.SingleChoiceTextAdapter;
 import com.yaya.merchant.widgets.adapter.WithdrawMoneyAdapter;
-import com.yaya.merchant.widgets.dialog.DoubleBtnDialog;
 import com.yaya.merchant.widgets.popupwindow.SingleChoiceWindow;
+import com.yaya.merchant.widgets.popupwindow.screenwindow.TimePickerWindow;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -62,6 +56,8 @@ public class WithdrawMoneyRecordActivity extends BasePtrRecycleActivity<Withdraw
     protected SingleChoiceTextAdapter statusChoiceAdapter;
     protected ArrayList<ChoiceItem> statusChoiceItemList = new ArrayList<>();
 
+    private TimePickerWindow timePickerWindow;
+
     @Override
     protected int getContentViewId() {
         return R.layout.activity_withdraw_record;
@@ -94,6 +90,7 @@ public class WithdrawMoneyRecordActivity extends BasePtrRecycleActivity<Withdraw
         setActionBarTitle("提现记录");
         setActionBarRight("客服");
         initSingleChoiceWindow();
+        initTimePickerWindow();
     }
 
     //初始化选择框
@@ -124,6 +121,24 @@ public class WithdrawMoneyRecordActivity extends BasePtrRecycleActivity<Withdraw
         initWindowList(WithdrawMoneyRecord.CASH_OUT_STATUS, WithdrawMoneyRecord.CASH_OUT_STATUS, "所有状态",
                 statusChoiceItemList, statusChoiceAdapter, cashOutStatusTv, statusChoiceWindow, CASH_OUT_STATUS);
 
+    }
+
+    private void initTimePickerWindow() {
+        timePickerWindow = new TimePickerWindow(this);
+        timePickerWindow.setListener(new TimePickerWindow.OnSubmitListener() {
+            @Override
+            public void submit(String startTime, String endTime, String phone) {
+                WithdrawMoneyRecordActivity.this.startTime = startTime;
+                WithdrawMoneyRecordActivity.this.endTime = endTime;
+                refresh();
+            }
+        });
+        timePickerWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                chooseTimeTv.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_down, 0);
+            }
+        });
     }
 
     private void initWindowList(String[] dataContent, String[] dataId, String firstContent,
@@ -160,7 +175,7 @@ public class WithdrawMoneyRecordActivity extends BasePtrRecycleActivity<Withdraw
         });
     }
 
-    @OnClick({R.id.fl_cash_out_way, R.id.fl_cash_out_status})
+    @OnClick({R.id.fl_cash_out_way, R.id.fl_cash_out_status, R.id.fl_choose_time})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.fl_cash_out_way:
@@ -170,6 +185,10 @@ public class WithdrawMoneyRecordActivity extends BasePtrRecycleActivity<Withdraw
             case R.id.fl_cash_out_status:
                 statusChoiceWindow.showDropDown(cashOutWayTv);
                 cashOutStatusTv.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_up, 0);
+                break;
+            case R.id.fl_choose_time:
+                timePickerWindow.showDropDown(cashOutWayTv);
+                chooseTimeTv.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_up, 0);
                 break;
         }
     }

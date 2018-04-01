@@ -2,6 +2,7 @@ package com.yaya.merchant.fragment.account;
 
 import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
+import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainDataAction;
 import com.yaya.merchant.activity.account.GatheringDetailActivity;
 import com.yaya.merchant.data.ChoiceItem;
@@ -9,6 +10,9 @@ import com.yaya.merchant.data.account.BillData;
 import com.yaya.merchant.net.Urls;
 import com.yaya.merchant.widgets.adapter.MerchantBillGroupAdapter;
 import com.yaya.merchant.widgets.adapter.SingleChoiceTextAdapter;
+import com.yaya.merchant.widgets.popupwindow.screenwindow.TimePickerWindow;
+
+import butterknife.OnClick;
 
 /**
  * Created by 蔡蓉婕 on 2018/3/12.
@@ -17,6 +21,7 @@ import com.yaya.merchant.widgets.adapter.SingleChoiceTextAdapter;
 public class MemberBillFragment extends BaseBillFragment {
 
     protected String orderType;
+    private TimePickerWindow timePickerWindow;
 
     @Override
     protected JsonResponse<BaseRowData<BillData>> getData() throws Exception {
@@ -32,6 +37,12 @@ public class MemberBillFragment extends BaseBillFragment {
                 GatheringDetailActivity.open(getActivity(), String.valueOf(billData.getId()), Urls.GET_MEMBER_DETAIL);
             }
         };
+    }
+
+    @Override
+    protected void initView() {
+        super.initView();
+        initTimePickerWindow();
     }
 
     @Override
@@ -59,6 +70,26 @@ public class MemberBillFragment extends BaseBillFragment {
                 singleChoiceWindow.dismiss();
             }
         });
+    }
+
+    private void initTimePickerWindow() {
+        timePickerWindow = new TimePickerWindow(getActivity());
+        timePickerWindow.setHintTvVisible(true);
+        timePickerWindow.setPhoneLLVisible(true);
+        timePickerWindow.setListener(new TimePickerWindow.OnSubmitListener() {
+            @Override
+            public void submit(String startTime, String endTime, String phone) {
+                MemberBillFragment.this.startTime = startTime;
+                MemberBillFragment.this.endTime = endTime;
+                search = phone;
+                refresh();
+            }
+        });
+    }
+
+    @OnClick(R.id.balance_account_tv_screen)
+    protected void screen(){
+        timePickerWindow.showDropDown(changeStatusTv);
     }
 
     @Override

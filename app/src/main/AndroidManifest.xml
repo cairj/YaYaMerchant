@@ -145,6 +145,8 @@
             android:theme="@style/ImageTranslucentTheme"/>
         <activity android:name=".activity.account.RefundDetailActivity"
             android:theme="@style/ImageTranslucentTheme"/>
+        <activity android:name=".activity.article.ArticleDetailActivity"
+            android:theme="@style/GrayActionBar"/>
 
         <!--极光推送-->
         <!-- Required SDK 核心功能-->

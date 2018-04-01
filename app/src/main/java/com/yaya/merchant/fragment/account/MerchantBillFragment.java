@@ -2,6 +2,7 @@ package com.yaya.merchant.fragment.account;
 
 import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
+import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainDataAction;
 import com.yaya.merchant.activity.account.GatheringDetailActivity;
 import com.yaya.merchant.activity.account.RefundDetailActivity;
@@ -10,8 +11,11 @@ import com.yaya.merchant.data.account.BillData;
 import com.yaya.merchant.net.Urls;
 import com.yaya.merchant.widgets.adapter.MerchantBillGroupAdapter;
 import com.yaya.merchant.widgets.adapter.SingleChoiceTextAdapter;
+import com.yaya.merchant.widgets.popupwindow.screenwindow.MerchantBillScreenWindow;
 
 import java.util.Collections;
+
+import butterknife.OnClick;
 
 /**
  * 入账
@@ -22,10 +26,13 @@ public class MerchantBillFragment extends BaseBillFragment {
     protected String payState = "";
     protected String payType = "";
 
+    MerchantBillScreenWindow screenWindow;
+
     @Override
     protected void initView() {
         super.initView();
         changeStatusTv.setText("订单类型");
+        initScreenWindow();
     }
 
     @Override
@@ -73,6 +80,25 @@ public class MerchantBillFragment extends BaseBillFragment {
             }
         });
     }
+
+    private void initScreenWindow() {
+        screenWindow = new MerchantBillScreenWindow(getActivity());
+        screenWindow.setListener(new MerchantBillScreenWindow.OnSubmitListener() {
+            @Override
+            public void submit(String startTime, String endTime, String state) {
+                MerchantBillFragment.this.startTime = startTime;
+                MerchantBillFragment.this.endTime = endTime;
+                payType = state;
+                refresh();
+            }
+        });
+    }
+
+    @OnClick(R.id.balance_account_tv_screen)
+    protected void screen(){
+        screenWindow.showDropDown(changeStatusTv);
+    }
+
 
     @Override
     public String getTitle() {

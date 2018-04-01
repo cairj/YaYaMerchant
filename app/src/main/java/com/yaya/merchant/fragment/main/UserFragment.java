@@ -2,8 +2,10 @@ package com.yaya.merchant.fragment.main;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -23,12 +25,18 @@ import com.yaya.merchant.base.fragment.BaseFragment;
 import com.yaya.merchant.data.main.UserData;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.DialogUtil;
+import com.yaya.merchant.util.LoadingUtil;
 import com.yaya.merchant.util.ToastUtil;
 import com.yaya.merchant.util.imageloader.GlideLoaderHelper;
+import com.yaya.merchant.widgets.GifPtrHeader;
 import com.yaya.merchant.widgets.adapter.EmployeeManagerAdapter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
+import okhttp3.Request;
 
 /**
  * Created by admin on 2018/3/7.
@@ -50,6 +58,10 @@ public class UserFragment extends BaseFragment {
     protected TextView employeeManagerTv;
     @BindView(R.id.user_tv_version)
     protected TextView versionTv;
+    @BindView(R.id.ptr_frame)
+    protected PtrFrameLayout ptrFrame;
+    @BindView(R.id.scrollView)
+    protected ScrollView scrollView;
 
     @Override
     protected int getContentViewId() {
@@ -57,8 +69,55 @@ public class UserFragment extends BaseFragment {
     }
 
     @Override
+    protected void initView() {
+        super.initView();
+        initPtrFrame();
+
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (scrollView.getScrollY()>0){
+                    ptrFrame.setEnabled(false);
+                }else {
+                    ptrFrame.setEnabled(true);
+                }
+                return false;
+            }
+        });
+    }
+
+    /** 设置ptr */
+    protected void initPtrFrame(){
+        setPtrHandler();
+
+        //设置下拉header
+        GifPtrHeader header = new GifPtrHeader(getActivity());
+        ptrFrame.setHeaderView(header);
+        ptrFrame.addPtrUIHandler(header);
+    }
+
+    //设置下拉事件
+    protected void setPtrHandler(){
+        ptrFrame.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                getData();
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
+    }
+
+    @Override
     protected void initData() {
         initVersion();
+        getData();
+    }
+
+    private void getData(){
         MainAction.getUserData(new GsonCallback<UserData>(UserData.class) {
             @Override
             public void onSucceed(JsonResponse<UserData> response) {
@@ -69,6 +128,27 @@ public class UserFragment extends BaseFragment {
                 merchantManagerTv.setText(userData.getStoreCount());
                 employeeManagerTv.setText(userData.getUserCount());
             }
+
+            @Override
+            public void onBefore(Request request, int id) {
+                super.onBefore(request,id);
+                LoadingUtil.showAsyncProgressDialog(getActivity(),"正在加载数据");
+            }
+
+            @Override
+            public void onAfter(int id) {
+                super.onAfter(id);
+                LoadingUtil.hideProcessingIndicator();
+                if (ptrFrame != null){
+                    ptrFrame.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            ptrFrame.refreshComplete();
+                        }
+                    });
+                }
+            }
+
         });
     }
 
@@ -129,4 +209,11 @@ public class UserFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+            getData();
+        }
+    }
 }

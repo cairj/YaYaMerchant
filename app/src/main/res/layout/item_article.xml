@@ -5,7 +5,8 @@
     android:background="@drawable/bg_white_rounded_2dp"
     android:paddingLeft="22dp"
     android:paddingRight="29dp"
-    android:paddingBottom="12dp">
+    android:paddingBottom="12dp"
+    android:id="@+id/fl_parent">
 
     <LinearLayout
         android:layout_width="wrap_content"

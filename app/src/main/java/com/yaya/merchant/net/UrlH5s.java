@@ -7,13 +7,13 @@ import java.util.Map;
 
 public class UrlH5s {
 
-    private static final String HOST = "http://static.qingkr.cn/html/";
+    private static final String HOST = "http://mobile.xinghezhijia.com/#/";
 
-    private static final String CARD_DETAIL = HOST + "cardDetail1.html";//卡片详情页
-    public static String getCardDetail(int cardId){
+    private static final String ARTICLES_DETAIL = HOST + "shop";//通知、咨询详情页
+    public static String getArticleDetail(String id){
         HashMap<String,String> params=new HashMap();
-        params.put("cardId",String.valueOf(cardId));
-        return buildQueryString(CARD_DETAIL,params);
+        params.put("id",String.valueOf(id));
+        return buildQueryString(ARTICLES_DETAIL,params);
     }
 
     public static final String buildQueryString(String baseUrl, Map<String, String> params) {

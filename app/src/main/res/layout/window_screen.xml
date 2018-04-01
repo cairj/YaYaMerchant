@@ -1,166 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <View
+        android:id="@+id/external_view"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/alpha_black_10_percent"/>
+
+    <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
         android:orientation="vertical"
-        android:paddingLeft="14dp">
-
-        <TextView
-            android:id="@+id/tv_choose_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="付款方式"
-            android:textColor="@color/black_454555"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_choose_items"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center_horizontal"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="选择时间"
-            android:textColor="@color/black_454555"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+        android:background="@color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:clickable="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center_vertical">
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp">
 
             <TextView
-                style="@style/screen_choose_time_title"
-                android:text="@string/start_time" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:layout_marginLeft="19dp"
-                android:background="@color/gray_F5F6F7"
-                android:gravity="center"
-                android:padding="5dp">
-
-                <TextView
-                    android:id="@+id/tv_start_date"
-                    style="@style/screen_choose_time_content"
-                    android:text="XXX" />
-
-                <TextView
-                    android:id="@+id/tv_start_time"
-                    style="@style/screen_choose_time_content"
-                    android:layout_marginLeft="7dp"
-                    android:text="XXX" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                style="@style/screen_choose_time_title"
-                android:text="@string/end_time" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:layout_marginLeft="19dp"
-                android:background="@color/gray_F5F6F7"
-                android:gravity="center"
-                android:padding="5dp">
-
-                <TextView
-                    android:id="@+id/tv_end_date"
-                    style="@style/screen_choose_time_content"
-                    android:text="XXX" />
-
-                <TextView
-                    android:id="@+id/tv_end_time"
-                    style="@style/screen_choose_time_content"
-                    android:layout_marginLeft="7dp"
-                    android:text="XXX" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center_vertical">
-
-            <TextView
+                android:id="@+id/tv_choose_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/member_phone"
+                android:text="付款方式"
+                android:textColor="@color/black_454555"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_choose_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp" />
+
+            <TextView
+                android:id="@+id/tv_time_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="选择时间"
                 android:textColor="@color/black_454555"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:layout_marginLeft="19dp"
-                android:background="@color/gray_F5F6F7"
-                android:gravity="center"
-                android:padding="5dp">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical">
 
                 <TextView
-                    style="@style/screen_choose_time_content"
-                    android:text="XXX" />
+                    style="@style/screen_choose_time_title"
+                    android:text="@string/start_time" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="19dp"
+                    android:background="@color/gray_F5F6F7"
+                    android:gravity="center"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_start_date"
+                        style="@style/screen_choose_time_content"
+                        android:text="XXX" />
+
+                    <TextView
+                        android:id="@+id/tv_start_time"
+                        style="@style/screen_choose_time_content"
+                        android:layout_marginLeft="7dp"
+                        android:text="XXX" />
+                </LinearLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/screen_choose_time_title"
+                    android:text="@string/end_time" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="19dp"
+                    android:background="@color/gray_F5F6F7"
+                    android:gravity="center"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_end_date"
+                        style="@style/screen_choose_time_content"
+                        android:text="XXX" />
+
+                    <TextView
+                        android:id="@+id/tv_end_time"
+                        style="@style/screen_choose_time_content"
+                        android:layout_marginLeft="7dp"
+                        android:text="XXX" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/member_phone"
+                    android:textColor="@color/black_454555"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="19dp"
+                    android:background="@color/gray_F5F6F7"
+                    android:gravity="center"
+                    android:padding="5dp">
+
+                    <EditText
+                        android:id="@+id/ed_phone"
+                        style="@style/screen_choose_time_content"
+                        android:text="" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/screen_hint"
+                android:textColor="@color/gray_999999"
+                android:textSize="12sp"
+                android:visibility="invisible" />
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="14dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/screen_hint"
-            android:textColor="@color/gray_999999"
-            android:textSize="12sp" />
+            android:layout_height="48dp">
+
+            <TextView
+                android:id="@+id/tv_reset"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/pink_feeeed"
+                android:gravity="center"
+                android:text="@string/reset"
+                android:textColor="@color/pink_f25b4e"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_submit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/pink_f25b4e"
+                android:gravity="center"
+                android:text="@string/sure"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/pink_feeeed"
-            android:gravity="center"
-            android:text="@string/reset"
-            android:textColor="@color/pink_f25b4e"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/pink_f25b4e"
-            android:gravity="center"
-            android:text="@string/sure"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-</LinearLayout>
+</FrameLayout>

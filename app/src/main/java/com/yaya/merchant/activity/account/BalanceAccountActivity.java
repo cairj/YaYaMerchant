@@ -3,6 +3,8 @@ package com.yaya.merchant.activity.account;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.google.gson.reflect.TypeToken;
@@ -15,6 +17,7 @@ import com.yaya.merchant.data.account.BalanceAccount;
 import com.yaya.merchant.data.account.Merchant;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.StatusBarUtil;
+import com.yaya.merchant.widgets.popupwindow.screenwindow.TimePickerWindow;
 
 import java.lang.reflect.Type;
 
@@ -45,10 +48,16 @@ public class BalanceAccountActivity extends BaseActivity {
     protected TextView orderTotalTv;
     @BindView(R.id.tv_refund_count)
     protected TextView refundCountTv;
+    @BindView(R.id.tv_choose_time)
+    protected TextView chooseTimeTv;
+    @BindView(R.id.fl_merchant)
+    protected FrameLayout merchantFl;
 
     protected String storeId = "";
     protected String startTime = "";
     protected String endTime = "";
+
+    private TimePickerWindow timePickerWindow;
 
     @Override
     protected int getContentViewId() {
@@ -61,6 +70,26 @@ public class BalanceAccountActivity extends BaseActivity {
         StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
         setActionBarTitle("对账");
         getAllMerchant();
+        initTimePickerWindow();
+    }
+
+    private void initTimePickerWindow() {
+        timePickerWindow = new TimePickerWindow(this);
+        timePickerWindow.setListener(new TimePickerWindow.OnSubmitListener() {
+            @Override
+            public void submit(String startTime, String endTime, String phone) {
+                BalanceAccountActivity.this.startTime = startTime;
+                BalanceAccountActivity.this.endTime = endTime;
+                getBalanceAccount();
+                chooseTimeTv.setText(startTime+"\n"+endTime);
+            }
+        });
+        timePickerWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                chooseTimeTv.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_down, 0);
+            }
+        });
     }
 
     private void getAllMerchant() {
@@ -95,7 +124,7 @@ public class BalanceAccountActivity extends BaseActivity {
         });
     }
 
-    @OnClick({R.id.fl_merchant, R.id.tv_day_bill, R.id.tv_week_bill, R.id.tv_month_bill})
+    @OnClick({R.id.fl_merchant, R.id.tv_day_bill, R.id.tv_week_bill, R.id.tv_month_bill,R.id.fl_choose_time})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.fl_merchant:
@@ -111,6 +140,10 @@ public class BalanceAccountActivity extends BaseActivity {
                 break;
             case R.id.tv_month_bill:
                 BillListActivity.open(this, BillListActivity.MONTH_BILL);
+                break;
+            case R.id.fl_choose_time:
+                timePickerWindow.showDropDown(merchantFl);
+                chooseTimeTv.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_up, 0);
                 break;
         }
     }
