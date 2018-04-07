@@ -56,7 +56,7 @@ public class ArticleListFragment extends BasePtrRecycleFragment<Article> {
         adapter.setListener(new ArticleListAdapter.OnItemClickListener() {
             @Override
             public void onClick(Article article) {
-                String title = articleType.equals(Article.TYPE_NOTIFY) ? "通知" : "咨询";
+                String title = articleType.equals(Article.TYPE_NOTIFY) ? "通知" : "咨讯";
                 ArticleDetailActivity.open(getActivity(), article.getId(), title);
             }
         });
