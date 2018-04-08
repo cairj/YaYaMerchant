@@ -118,17 +118,6 @@ public class LoginAction {
                     .build();
             Response response = client.newCall(request).execute();
             if(response.isSuccessful()) {
-                ResponseBody body = response.body();
-                BufferedSource source = body.source();
-                source.request(Long.MAX_VALUE); // Buffer the entire body.
-                Buffer buffer = source.buffer();
-                Charset charset = Charset.defaultCharset();
-                MediaType contentType = body.contentType();
-                if (contentType != null) {
-                    charset = contentType.charset(charset);
-                }
-                String bodyString = buffer.clone().readString(charset);
-                Log.d("registerMerchant", String.format("Received response json string [%s]",bodyString));
                 Type type = new TypeToken<JsonResponse<String>>() {
                 }.getType();
                 JsonResponse<String> data = new Gson().fromJson(response.body().string(), type);

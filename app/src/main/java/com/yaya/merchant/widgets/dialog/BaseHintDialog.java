@@ -35,7 +35,7 @@ public abstract class BaseHintDialog extends Dialog {
     protected TextView contentTv;
 
     public BaseHintDialog(@NonNull Context context) {
-        super(context);
+        super(context,R.style.Dialog);
         mContent = context;
         rootView = LayoutInflater.from(mContent).inflate(getContentViewId(), null);
         setContentView(rootView);
