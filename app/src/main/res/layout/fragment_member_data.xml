@@ -145,7 +145,7 @@
             <TextView
                 style="@style/home_today_data_title"
                 android:lines="1"
-                android:text="今日激活会员（元）"
+                android:text="今日激活会员（人）"
                 android:textSize="10sp" />
 
         </LinearLayout>

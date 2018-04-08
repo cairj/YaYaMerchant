@@ -70,7 +70,8 @@
                 style="@style/edit_text"
                 android:layout_toLeftOf="@id/login_iv_password_clear"
                 android:hint="@string/password"
-                android:paddingLeft="12dp" />
+                android:paddingLeft="12dp"
+                android:inputType="textPassword"/>
 
         </RelativeLayout>
         

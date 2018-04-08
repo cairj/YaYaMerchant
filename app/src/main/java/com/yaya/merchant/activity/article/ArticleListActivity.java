@@ -23,7 +23,7 @@ public class ArticleListActivity extends BaseTabLayoutActivity {
         tabTitleList.add("通知");
         fragmentList.add(ArticleListFragment.getInstance(Article.TYPE_NOTIFY));
 
-        tabTitleList.add("咨询");
+        tabTitleList.add("资讯");
         fragmentList.add(ArticleListFragment.getInstance(Article.TYPE_INFORMATION));
 
         adapter.notifyDataSetChanged();

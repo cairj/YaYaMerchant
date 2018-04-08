@@ -94,9 +94,10 @@ public class BillListActivity extends BasePtrRecycleActivity<BillData> {
             case WEEK_BILL:
                 lastTv.setText("上一周");
                 nextTv.setText("下一周");
+                startCalendar.setFirstDayOfWeek(Calendar.MONDAY);
+                endCalendar.setFirstDayOfWeek(Calendar.MONDAY);
                 startCalendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
                 endCalendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-                endCalendar.set(Calendar.WEEK_OF_YEAR, endCalendar.get(Calendar.WEEK_OF_YEAR) + 1);
                 setActionBarTitle("周账单");
                 break;
             case MONTH_BILL:

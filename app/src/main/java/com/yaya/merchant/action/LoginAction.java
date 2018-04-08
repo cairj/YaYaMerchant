@@ -1,6 +1,7 @@
 package com.yaya.merchant.action;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -17,12 +18,16 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.nio.charset.Charset;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okio.Buffer;
+import okio.BufferedSource;
 
 /**
  * Created by admin on 2018/3/4.
@@ -113,10 +118,21 @@ public class LoginAction {
                     .build();
             Response response = client.newCall(request).execute();
             if(response.isSuccessful()) {
-                Type type = new TypeToken<JsonResponse<BaseData<String>>>() {
+                ResponseBody body = response.body();
+                BufferedSource source = body.source();
+                source.request(Long.MAX_VALUE); // Buffer the entire body.
+                Buffer buffer = source.buffer();
+                Charset charset = Charset.defaultCharset();
+                MediaType contentType = body.contentType();
+                if (contentType != null) {
+                    charset = contentType.charset(charset);
+                }
+                String bodyString = buffer.clone().readString(charset);
+                Log.d("registerMerchant", String.format("Received response json string [%s]",bodyString));
+                Type type = new TypeToken<JsonResponse<String>>() {
                 }.getType();
-                BaseData<String> data = new Gson().fromJson(response.body().string(), type);
-                return data.getData();
+                JsonResponse<String> data = new Gson().fromJson(response.body().string(), type);
+                return data.getData().getData();
             }else {
                 return "";
             }
@@ -127,6 +143,7 @@ public class LoginAction {
             e.printStackTrace();
             return "";
         }catch (Exception e){
+            e.printStackTrace();
             return "";
         }
     }
