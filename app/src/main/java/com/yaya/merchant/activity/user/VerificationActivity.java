@@ -68,6 +68,7 @@ public class VerificationActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setActionBarTitle("核销");
         captureManager = new CustomCaptureManager(this, mDBV);
         captureManager.initializeFromIntent(getIntent(), savedInstanceState);
         captureManager.setCallback(new CustomCaptureManager.OnGetResultCallback() {
