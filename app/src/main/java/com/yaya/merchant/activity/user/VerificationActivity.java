@@ -15,8 +15,10 @@ import com.yaya.merchant.data.user.VerificationInfo;
 import com.yaya.merchant.net.Urls;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.CustomCaptureManager;
+import com.yaya.merchant.util.LoadingUtil;
 
 import butterknife.BindView;
+import okhttp3.Request;
 
 /**
  * Created by admin on 2018/3/19.
@@ -64,7 +66,7 @@ public class VerificationActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         captureManager = new CustomCaptureManager(this, mDBV);
         captureManager.initializeFromIntent(getIntent(), savedInstanceState);
@@ -72,6 +74,21 @@ public class VerificationActivity extends BaseActivity {
             @Override
             public void parseResult(final BarcodeResult rawResult) {
                 UserAction.verification(Urls.VERIFICATION_INDEX, rawResult.getText(), new GsonCallback<VerificationInfo>(VerificationInfo.class) {
+
+                    @Override
+                    public void onBefore(Request request, int id) {
+                        super.onBefore(request, id);
+                        LoadingUtil.showAsyncProgressDialog(VerificationActivity.this,"正在进行核销");
+                    }
+
+                    @Override
+                    public void onAfter(int id) {
+                        super.onAfter(id);
+                        LoadingUtil.hideProcessingIndicator();
+                        captureManager.onResume();
+                        captureManager.decode();
+                    }
+
                     @Override
                     public void onSucceed(JsonResponse<VerificationInfo> response) {
                         VerificationInfo info = response.getData().getData();

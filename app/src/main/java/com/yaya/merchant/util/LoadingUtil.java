@@ -18,7 +18,7 @@ public class LoadingUtil {
         mUIHandler.post(new Runnable() {
             @Override
             public void run() {
-                if (loadingProgressDialog == null) {
+                if (loadingProgressDialog == null || loadingProgressDialog.getContext() != context) {
                     loadingProgressDialog = new LoadingProgressDialog(context);
                 }
 
