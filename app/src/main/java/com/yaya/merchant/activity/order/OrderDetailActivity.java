@@ -16,6 +16,7 @@ import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.data.order.OrderDetail;
 import com.yaya.merchant.data.order.OrderDetail;
 import com.yaya.merchant.data.order.OrderDetailData;
+import com.yaya.merchant.net.Urls;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.DpPxUtil;
 import com.yaya.merchant.util.StatusBarUtil;
@@ -114,7 +115,16 @@ public class OrderDetailActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
-        OrderAction.getOrderDetail(orderSn, new GsonCallback<OrderDetail>(OrderDetail.class) {
+        String url= Urls.GET_ORDER_DETAIL;
+        switch (type) {
+            case OrderDetail.TYPE_DELIVER_ORDER_LIST:
+                url = Urls.GET_DELIVER_ORDER_DETAIL;
+                break;
+            case OrderDetail.TYPE_REFUND_ORDER_LIST:
+                url = Urls.GET_REFUND_ORDER_DETAIL;
+                break;
+        }
+        OrderAction.getOrderDetail(url,orderSn, new GsonCallback<OrderDetail>(OrderDetail.class) {
             @Override
             public void onSucceed(JsonResponse<OrderDetail> response) {
                 orderDetail = response.getData().getData();

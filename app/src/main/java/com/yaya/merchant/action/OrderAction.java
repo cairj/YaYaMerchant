@@ -48,8 +48,8 @@ public class OrderAction {
     }
 
     //订单详情
-    public static void getOrderDetail(String orderSn, Callback callback) {
-        OkHttpUtils.get().url(Urls.GET_ORDER_DETAIL)
+    public static void getOrderDetail(String url,String orderSn, Callback callback) {
+        OkHttpUtils.get().url(url)
                 .addParams("orderSn", orderSn)
                 .build().execute(callback);
     }
