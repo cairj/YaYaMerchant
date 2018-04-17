@@ -82,4 +82,6 @@ dependencies {
     compile 'com.journeyapps:zxing-android-embedded:3.5.0'
     //cardview
     implementation 'com.android.support:cardview-v7:26.1.0'
+    //eventBus
+    compile 'org.simple:androideventbus:1.0.5'
 }

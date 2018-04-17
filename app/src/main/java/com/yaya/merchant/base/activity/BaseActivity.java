@@ -13,7 +13,8 @@ import android.widget.TextView;
 import com.yaya.merchant.R;
 import com.yaya.merchant.util.AppManager;
 
-import butterknife.BindView;
+import org.simple.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 
 /**
@@ -29,6 +30,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         AppManager.getAppManager().addActivity(this);
         beforeSetContent();
         setContentView(getContentViewId());
@@ -48,6 +50,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         AppManager.getAppManager().removeActivity(this);
+        EventBus.getDefault().unregister(this);
     }
 
     protected int getContentViewId() {

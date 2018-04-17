@@ -18,11 +18,14 @@ import com.yaya.merchant.base.activity.BasePtrRecycleActivity;
 import com.yaya.merchant.data.order.OrderDetail;
 import com.yaya.merchant.net.Urls;
 import com.yaya.merchant.util.DpPxUtil;
+import com.yaya.merchant.util.EventBusTags;
 import com.yaya.merchant.util.StatusBarUtil;
 import com.yaya.merchant.widgets.adapter.OrderDetailAdapter;
 import com.yaya.merchant.widgets.adapter.OrderListAdapter;
 import com.yaya.merchant.widgets.popupwindow.DatePickerPopupWindow;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
+
+import org.simple.eventbus.Subscriber;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -224,6 +227,11 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
         SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         startTime = sp.format(startCalendar.getTime());
         endTime = sp.format(endCalendar.getTime());
+        refresh();
+    }
+
+    @Subscriber(tag= EventBusTags.DELIVER_ORDER_SUCCESS)
+    private void deliverOrderSuccess(String str){
         refresh();
     }
 

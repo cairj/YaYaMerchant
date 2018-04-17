@@ -19,9 +19,12 @@ import com.yaya.merchant.data.order.OrderDetailData;
 import com.yaya.merchant.net.Urls;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.DpPxUtil;
+import com.yaya.merchant.util.EventBusTags;
 import com.yaya.merchant.util.StatusBarUtil;
 import com.yaya.merchant.widgets.adapter.OrderDetailAdapter;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
+
+import org.simple.eventbus.Subscriber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -155,6 +158,11 @@ public class OrderDetailActivity extends BaseActivity {
                 RefundOrderActivity.open(this, orderDetail);
                 break;
         }
+    }
+
+    @Subscriber(tag= EventBusTags.DELIVER_ORDER_SUCCESS)
+    private void deliverOrderSuccess(String str){
+        finish();
     }
 
 }

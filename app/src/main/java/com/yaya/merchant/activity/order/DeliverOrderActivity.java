@@ -15,12 +15,14 @@ import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.data.order.ExpressCompany;
 import com.yaya.merchant.data.order.OrderDetail;
 import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.EventBusTags;
 import com.yaya.merchant.util.StatusBarUtil;
 import com.yaya.merchant.util.ToastUtil;
 import com.yaya.merchant.widgets.adapter.CompanyChoiceAdapter;
 import com.yaya.merchant.widgets.popupwindow.SingleChoiceWindow;
 
-import java.lang.reflect.Type;
+import org.simple.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,6 +113,8 @@ public class DeliverOrderActivity extends BaseActivity {
                             @Override
                             public void onSucceed(JsonResponse<String> response) {
                                 ToastUtil.toast(response.getData().getData());
+                                EventBus.getDefault().post("", EventBusTags.DELIVER_ORDER_SUCCESS);
+                                finish();
                             }
                         });
                 break;

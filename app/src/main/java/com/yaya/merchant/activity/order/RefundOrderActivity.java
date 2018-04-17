@@ -14,8 +14,11 @@ import com.yaya.merchant.action.OrderAction;
 import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.data.order.OrderDetail;
 import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.EventBusTags;
 import com.yaya.merchant.util.StatusBarUtil;
 import com.yaya.merchant.util.ToastUtil;
+
+import org.simple.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -94,6 +97,8 @@ public class RefundOrderActivity extends BaseActivity {
         @Override
         public void onSucceed(JsonResponse<String> response) {
             ToastUtil.toast(response.getData().getData());
+            EventBus.getDefault().post("", EventBusTags.DELIVER_ORDER_SUCCESS);
+            finish();
         }
     };
 

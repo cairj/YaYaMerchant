@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.simple.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 
 /**
@@ -19,9 +21,21 @@ public class BaseFragment extends Fragment {
     protected View rootView;
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(getContentViewId(), null);
-        ButterKnife.bind(this,rootView);
+        ButterKnife.bind(this, rootView);
         initView();
         initData();
         return rootView;
@@ -37,7 +51,7 @@ public class BaseFragment extends Fragment {
     protected void initData() {
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return "";
     }
 

@@ -14,9 +14,12 @@ import com.yaya.merchant.activity.user.VerificationActivity;
 import com.yaya.merchant.base.fragment.BaseFragment;
 import com.yaya.merchant.data.main.OrderData;
 import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.EventBusTags;
 import com.yaya.merchant.util.LoadingUtil;
 import com.yaya.merchant.util.ToastUtil;
 import com.yaya.merchant.widgets.GifPtrHeader;
+
+import org.simple.eventbus.Subscriber;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -121,10 +124,14 @@ public class OrderFragment extends BaseFragment {
                 if (Integer.parseInt(data.getWaitReceiveCount())>0) {
                     receiveCountTv.setText(data.getWaitReceiveCount());
                     receiveCountTv.setVisibility(View.VISIBLE);
+                }else {
+                    receiveCountTv.setVisibility(View.GONE);
                 }
                 if (Integer.parseInt(data.getRefundCount())>0) {
-                    receiveCountTv.setText(data.getRefundCount());
-                    receiveCountTv.setVisibility(View.VISIBLE);
+                    returnCountTv.setText(data.getRefundCount());
+                    returnCountTv.setVisibility(View.VISIBLE);
+                }else {
+                    returnCountTv.setVisibility(View.GONE);
                 }
 
                 if (getActivity() instanceof MainActivity){
@@ -172,5 +179,10 @@ public class OrderFragment extends BaseFragment {
         if (!hidden){
             getData();
         }
+    }
+
+    @Subscriber(tag= EventBusTags.DELIVER_ORDER_SUCCESS)
+    private void deliverOrderSuccess(String str){
+        getData();
     }
 }
