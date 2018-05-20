@@ -8,6 +8,7 @@ import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainAction;
 import com.yaya.merchant.activity.MainActivity;
+import com.yaya.merchant.activity.activities.ReleaseActivitiesActivity;
 import com.yaya.merchant.activity.article.ArticleListActivity;
 import com.yaya.merchant.activity.order.OrderListActivity;
 import com.yaya.merchant.activity.user.VerificationActivity;
@@ -165,9 +166,11 @@ public class OrderFragment extends BaseFragment {
             case R.id.iv_news:
                 openActivity(ArticleListActivity.class);
                 break;
+            case R.id.tv_release_activity:
+                openActivity(ReleaseActivitiesActivity.class);
+                break;
             case R.id.tv_push_goods:
             case R.id.tv_goods_class:
-            case R.id.tv_release_activity:
                 ToastUtil.toast("功能开发中");
                 break;
         }

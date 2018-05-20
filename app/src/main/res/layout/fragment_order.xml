@@ -297,8 +297,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:drawableTop="@mipmap/home_ic_activity"
-                            android:text="活动发布"
-                            android:textColor="@color/gray_999999" />
+                            android:text="活动发布" />
 
                         <TextView
                             style="@style/order_num_tv"

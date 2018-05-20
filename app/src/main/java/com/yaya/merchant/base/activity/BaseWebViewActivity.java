@@ -234,12 +234,12 @@ public class BaseWebViewActivity extends BaseActivity {
         headers.put(Constants.HTTP_REQUEST_HEADER_KEY_DEVICE_MODEL, DeviceParamsHelper.getDeviceModel());
         headers.put(Constants.HTTP_REQUEST_HEADER_KEY_APP_VER, DeviceParamsHelper.getAppVer());
         headers.put(Constants.HTTP_REQUEST_HEADER_KEY_APP_VER_CODE, String.valueOf(DeviceParamsHelper.getAppVersionCode()));
-        headers.put(Constants.HTTP_REQUEST_HEADER_KEY_APP_DEBUG, DeviceParamsHelper.getAppDebug());
+        headers.put(Constants.HTTP_REQUEST_HEADEUR_KEY_APP_DEBUG, DeviceParamsHelper.getAppDebug());
         headers.put(Constants.HTTP_REQUEST_HEADER_KEY_CHANNEL, DeviceParamsHelper.getChannel());
         if (MemberHelper.isLogin()){
             headers.put(Constants.HTTP_REQUEST_HEADER_KEY_QTOKEN, SPUtil.getString(SPKeys.TOKEN));
         }*/
-        headers.put("Authorization", "Bearer "+SPUtil.getString(SpKeys.TOKEN));
+        headers.put("Authorization", SPUtil.getString(SpKeys.TOKEN));
         return headers;
     }
 

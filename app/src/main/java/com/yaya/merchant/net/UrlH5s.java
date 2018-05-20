@@ -16,6 +16,8 @@ public class UrlH5s {
         return buildQueryString(ARTICLES_DETAIL,params);
     }
 
+    public static final String RELEASE_ACTIVITIES = "http://mall.91yayagou.com/activity/index.php";
+
     public static final String buildQueryString(String baseUrl, Map<String, String> params) {
         String url = "";
         try {
