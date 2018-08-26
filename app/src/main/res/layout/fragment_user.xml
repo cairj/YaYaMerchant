@@ -39,7 +39,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/user_tv_role_name"
+                android:id="@+id/user_tv_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -79,6 +79,16 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/tv_my_info"
+                        style="@style/user_item_tv"
+                        android:text="个人资料"
+                        android:layout_height="42dp"
+                        android:paddingLeft="14dp"
+                        android:paddingRight="14dp"
+                        android:background="@color/white"
+                        android:layout_marginTop="14dp"/>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -87,19 +97,6 @@
                         android:divider="@drawable/bg_divider_graye1e9fa"
                         android:orientation="vertical"
                         android:showDividers="middle">
-
-                        <RelativeLayout
-                            android:id="@+id/user_rl_verification"
-                            style="@style/user_item_rl">
-
-                            <TextView
-                                style="@style/user_item_tv"
-                                android:text="商品核销" />
-
-                            <TextView
-                                android:id="@+id/user_tv_verification"
-                                style="@style/user_item_content_tv" />
-                        </RelativeLayout>
 
                         <RelativeLayout
                             android:id="@+id/user_rl_merchant_manager"
@@ -115,26 +112,12 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:id="@+id/user_rl_employee_manager"
-                            style="@style/user_item_rl">
-
-                            <TextView
-                                style="@style/user_item_tv"
-                                android:text="员工管理" />
-
-                            <TextView
-                                android:id="@+id/user_tv_employee_manager"
-                                style="@style/user_item_content_tv" />
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
                             android:id="@+id/user_rl_merchant_qrcode"
                             style="@style/user_item_rl">
 
                             <TextView
                                 style="@style/user_item_tv"
-                                android:text="门店二维码" />
+                                android:text="我的二维码" />
 
                             <TextView
                                 android:id="@+id/user_tv_merchant_qrcode"
@@ -153,7 +136,18 @@
                             <TextView
                                 android:id="@+id/user_tv_bank_card"
                                 style="@style/user_item_content_tv"
-                                android:text="认证成功" />
+                                android:text="" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/user_rl_subscribe_info"
+                            style="@style/user_item_rl">
+
+                            <TextView
+                                style="@style/user_item_tv"
+                                android:text="签约信息" />
+
 
                         </RelativeLayout>
 
@@ -200,19 +194,7 @@
 
                             <TextView
                                 style="@style/user_item_tv"
-                                android:text="帮助视频" />
-
-                            <TextView style="@style/user_item_content_tv" />
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@+id/user_rl_feed_back"
-                            style="@style/user_item_rl">
-
-                            <TextView
-                                style="@style/user_item_tv"
-                                android:text="意见反馈" />
+                                android:text="客户服务" />
 
                             <TextView style="@style/user_item_content_tv" />
 

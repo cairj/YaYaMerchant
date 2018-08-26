@@ -1,5 +1,7 @@
 package com.yaya.merchant.data.main;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -7,11 +9,19 @@ import java.io.Serializable;
  */
 
 public class UserData implements Serializable {
+    @SerializedName("user_headimg")
     private String logo;//头像
+    @SerializedName("user_name")
     private String name;//管理员名称
-    private String roleName;//角色名称
-    private String storeCount;//门店数量
-    private String userCount;//员工数量
+
+    @SerializedName("user_tel")
+    private String phone;
+    @SerializedName("shop_company_name")
+    private String companyName;
+    @SerializedName("agent_name")
+    private String agentName;
+    @SerializedName("reg_time")
+    private String regTime;
 
 
     public String getHeadImgUrl() {
@@ -22,15 +32,19 @@ public class UserData implements Serializable {
         return name;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getPhone() {
+        return phone;
     }
 
-    public String getStoreCount() {
-        return storeCount;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public String getUserCount() {
-        return userCount;
+    public String getAgentName() {
+        return agentName;
+    }
+
+    public String getRegTime() {
+        return regTime;
     }
 }

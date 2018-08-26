@@ -50,12 +50,10 @@ public class UserFragment extends BaseFragment {
     protected ImageView headIv;
     @BindView(R.id.user_tv_name)
     protected TextView nameTv;
-    @BindView(R.id.user_tv_role_name)
-    protected TextView roleNameTv;
+    @BindView(R.id.user_tv_phone)
+    protected TextView phoneTv;
     @BindView(R.id.user_tv_merchant_manager)
     protected TextView merchantManagerTv;
-    @BindView(R.id.user_tv_employee_manager)
-    protected TextView employeeManagerTv;
     @BindView(R.id.user_tv_version)
     protected TextView versionTv;
     @BindView(R.id.ptr_frame)
@@ -121,12 +119,11 @@ public class UserFragment extends BaseFragment {
         MainAction.getUserData(new GsonCallback<UserData>(UserData.class) {
             @Override
             public void onSucceed(JsonResponse<UserData> response) {
-                userData = response.getData().getData();
+                userData = response.getResultData();
                 GlideLoaderHelper.loadAvatar(userData.getHeadImgUrl(), headIv);
                 nameTv.setText(userData.getName());
-                roleNameTv.setText(userData.getRoleName());
-                merchantManagerTv.setText(userData.getStoreCount());
-                employeeManagerTv.setText(userData.getUserCount());
+                phoneTv.setText(userData.getPhone());
+                //merchantManagerTv.setText(userData.getStoreCount());
             }
 
             @Override
@@ -163,17 +160,17 @@ public class UserFragment extends BaseFragment {
         versionTv.setText(version);
     }
 
-    @OnClick({R.id.user_rl_merchant_manager, R.id.user_rl_employee_manager, R.id.user_rl_merchant_qrcode,
-            R.id.user_rl_bank_card, R.id.user_rl_merchant_info, R.id.user_rl_set_voice, R.id.user_rl_verification,
-            R.id.user_rl_feed_back, R.id.user_rl_info,R.id.user_rl_contact_service})
+    @OnClick({R.id.user_rl_merchant_manager, R.id.user_rl_merchant_qrcode,
+            R.id.user_rl_bank_card, R.id.user_rl_merchant_info, R.id.user_rl_set_voice,
+            R.id.user_rl_info,R.id.user_rl_contact_service})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.user_rl_merchant_manager:
                 openActivity(MerchantManagerActivity.class);
                 break;
-            case R.id.user_rl_employee_manager:
+           /* case R.id.user_rl_employee_manager:
                 openActivity(EmployeeManagerActivity.class);
-                break;
+                break;*/
             case R.id.user_rl_merchant_qrcode:
                 MerchantSearchActivity.open(getActivity(), MerchantSearchActivity.MERCHANT_QR_CODE);
                 break;
@@ -186,16 +183,16 @@ public class UserFragment extends BaseFragment {
             case R.id.user_rl_set_voice:
                 openActivity(VoiceSettingActivity.class);
                 break;
-            case R.id.user_rl_verification:
+            /*case R.id.user_rl_verification:
                 new IntentIntegrator(getActivity())
                         .setOrientationLocked(false)
                         .setPrompt("将提货二维码放入框内即可自动扫描")
                         .setCaptureActivity(VerificationActivity.class) // 设置自定义的activity是VerificationActivity
                         .initiateScan(); // 初始化扫描
-                break;
-            case R.id.user_rl_feed_back:
+                break;*/
+           /* case R.id.user_rl_feed_back:
                 openActivity(FeedBackActivity.class);
-                break;
+                break;*/
             case R.id.user_rl_info:
                 if(userData == null){
                     ToastUtil.toast("请稍等");
