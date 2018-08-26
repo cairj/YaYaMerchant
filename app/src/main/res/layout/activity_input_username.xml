@@ -56,6 +56,48 @@
 
         </RelativeLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            android:layout_marginLeft="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择"
+                android:textColor="@color/black_333333"
+                android:textSize="@dimen/sp_15"/>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="28dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/login_rb_merchant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp_15"
+                    android:textColor="@color/black_333333"
+                    android:button="@drawable/ic_circle_selector"
+                    android:text="  我是商户"/>
+
+                <RadioButton
+                    android:id="@+id/login_rb_agent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp_15"
+                    android:textColor="@color/black_333333"
+                    android:button="@drawable/ic_circle_selector"
+                    android:text="  我是代理"
+                    android:layout_marginLeft="24dp"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
         <TextView
             android:id="@+id/input_tv_next"
             style="@style/tv_submit_btn"

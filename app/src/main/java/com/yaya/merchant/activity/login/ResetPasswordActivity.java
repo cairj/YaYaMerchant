@@ -24,7 +24,7 @@ import butterknife.OnClick;
  */
 
 public class ResetPasswordActivity extends BaseActivity {
-    private String userId;
+    private String token;
 
     @BindView(R.id.reset_password_ed_new_word)
     protected EditText newPasswordEdit;
@@ -35,9 +35,9 @@ public class ResetPasswordActivity extends BaseActivity {
     @BindView(R.id.reset_password_iv_confirm_password_clear)
     protected ImageView confirmPasswordClearIv;
 
-    public static void open(Context context, String userId) {
-        Intent intent = new Intent(context, ProvingActivity.class);
-        intent.putExtra("userId", userId);
+    public static void open(Context context, String token) {
+        Intent intent = new Intent(context, ResetPasswordActivity.class);
+        intent.putExtra("token", token);
         context.startActivity(intent);
     }
 
@@ -49,7 +49,7 @@ public class ResetPasswordActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
-        userId = getIntent().getStringExtra("userId");
+        token = getIntent().getStringExtra("token");
         StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
         initEditView();
     }
@@ -72,7 +72,7 @@ public class ResetPasswordActivity extends BaseActivity {
     }
 
     @OnClick({R.id.reset_password_iv_new_word_clear,R.id.reset_password_iv_confirm_password_clear,
-            R.id.input_iv_user_clear,R.id.tv_action_back})
+            R.id.reset_password_tv_submit,R.id.tv_action_back})
     protected void onClick(View view){
         switch (view.getId()) {
             case R.id.reset_password_iv_new_word_clear:
@@ -81,9 +81,9 @@ public class ResetPasswordActivity extends BaseActivity {
             case R.id.reset_password_iv_confirm_password_clear:
                 confirmPasswordEdit.setText("");
                 break;
-            case R.id.input_tv_next:
+            case R.id.reset_password_tv_submit:
                 LoginAction.changePassword(newPasswordEdit.getText().toString().trim(),
-                        confirmPasswordEdit.getText().toString().trim(), userId,
+                        confirmPasswordEdit.getText().toString().trim(), token,
                         new GsonCallback<String>(String.class) {
                             @Override
                             public void onSucceed(JsonResponse<String> response) {
@@ -105,5 +105,4 @@ public class ResetPasswordActivity extends BaseActivity {
             }
         });
     }
-
 }

@@ -16,6 +16,8 @@ import butterknife.OnClick;
 
 public class SingleBtnDialog extends BaseHintDialog {
 
+    private int contentViewLayoutId = R.layout.dialog_single_button;
+
     @BindView(R.id.tv_submit)
     protected TextView submitBtnTv;
 
@@ -23,16 +25,24 @@ public class SingleBtnDialog extends BaseHintDialog {
         super(context);
     }
 
+    public SingleBtnDialog(@NonNull Context context,int contentViewLayoutId) {
+        super(context,contentViewLayoutId);
+    }
+
     @Override
     protected int getContentViewId() {
-        return R.layout.dialog_single_button;
+        return contentViewLayoutId;
     }
 
     @OnClick({R.id.tv_submit})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_submit:
-                listener.submit();
+                if (listener != null) {
+                    listener.submit();
+                } else {
+                    dismiss();
+                }
                 break;
         }
     }

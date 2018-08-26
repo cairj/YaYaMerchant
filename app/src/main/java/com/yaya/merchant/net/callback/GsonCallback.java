@@ -50,8 +50,8 @@ public abstract class GsonCallback<K extends Serializable> extends BaseCallback<
 
     @Override
     public void onFailed(JsonResponse<K> response) {
-        if (!TextUtils.isEmpty(response.getData().getError())) {
-            ToastUtil.toast(response.getData().getError());
+        if (!TextUtils.isEmpty(response.getMsg())) {
+            ToastUtil.toast(response.getMsg());
         }
     }
 }

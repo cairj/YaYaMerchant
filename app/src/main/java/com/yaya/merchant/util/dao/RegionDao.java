@@ -45,7 +45,7 @@ public class RegionDao {
      */
     public List<Region> query(int level){
         try {
-            return daoOpe.queryBuilder().where().eq("level", level).query();
+            return daoOpe.queryBuilder().where().eq("region_type", level).query();
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -97,7 +97,7 @@ public class RegionDao {
      */
     public List<Region> queryChildren(int id){
         try {
-            return daoOpe.queryBuilder().where().eq("parentId", id).query();
+            return daoOpe.queryBuilder().where().eq("parent_id", id).query();
         }catch (Exception e){
             e.printStackTrace();
             return null;

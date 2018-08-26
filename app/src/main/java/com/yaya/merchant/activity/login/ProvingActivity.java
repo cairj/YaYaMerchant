@@ -2,7 +2,8 @@ package com.yaya.merchant.activity.login;
 
 import android.content.Context;
 import android.content.Intent;
-import android.text.TextUtils;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -11,11 +12,9 @@ import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.LoginAction;
 import com.yaya.merchant.base.activity.BaseActivity;
-import com.yaya.merchant.data.login.SendMessageData;
-import com.yaya.merchant.interfaces.OnEditTextChangeListener;
+import com.yaya.merchant.data.login.TokenData;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.StatusBarUtil;
-import com.yaya.merchant.util.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -29,12 +28,17 @@ public class ProvingActivity extends BaseActivity {
     private String phone;
     private String code;
     private boolean provingSucceed;
-    private String userId;
+    private String userName;
+    private int memberType;
 
-    public static void open(Context context, String phone, String userId) {
+    private int countDown = 60;//倒计时
+    private final int WHAT_COUNT_DOWN = 1;
+
+    public static void open(Context context, String phone, String userName, int memberType) {
         Intent intent = new Intent(context, ProvingActivity.class);
         intent.putExtra("phone", phone);
-        intent.putExtra("userId", userId);
+        intent.putExtra("userName", userName);
+        intent.putExtra("memberType", memberType);
         context.startActivity(intent);
     }
 
@@ -56,55 +60,76 @@ public class ProvingActivity extends BaseActivity {
     protected void initView() {
         super.initView();
         StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
-        initEditView();
+
+        postTv.setText(String.format("重新发送(%d)",countDown));
+        handler.sendEmptyMessageDelayed(WHAT_COUNT_DOWN,1000);
+        postTv.setEnabled(false);
+        contentTv.setVisibility(View.VISIBLE);
     }
 
     @Override
     protected void initData() {
-        userId = getIntent().getStringExtra("userId");
-        phone = getIntent().getStringExtra("phone");
-        if (!TextUtils.isEmpty(phone)) {
-            LoginAction.sendMessage(phone, new GsonCallback<SendMessageData>(SendMessageData.class) {
-                @Override
-                public void onSucceed(JsonResponse<SendMessageData> response) {
-                    ToastUtil.toast(response.getData().getData().getMsg());
-                    code = response.getData().getData().getCode();
-                    contentTv.setText(String.format("验证码已发送至%s", phone));
-                    contentTv.setVisibility(View.VISIBLE);
-                }
-            });
-        }
-    }
+        userName = getIntent().getStringExtra("userName");
+        phone = getIntent().getStringExtra("phone").trim();
+        memberType = getIntent().getIntExtra("memberType",0);
 
-    //初始化输入框
-    private void initEditView() {
-        codeEdit.addTextChangedListener(new OnEditTextChangeListener() {
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                postTv.setEnabled(codeEdit.getText().length() > 0);
-            }
-        });
+        contentTv.setText(String.format("验证码已发送至%s****%s",phone.substring(0,3),phone.substring(phone.length()-4)));
     }
 
     @OnClick({R.id.proving_tv_post, R.id.proving_tv_next,R.id.tv_action_back})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.proving_tv_post:
-                String inputCode = codeEdit.getText().toString().trim();
-                provingSucceed = inputCode.equals(code);
-                String hint = provingSucceed?"验证成功":"验证码输入有误";
-                ToastUtil.toast(hint);
+                sendMessage();
                 break;
             case R.id.proving_tv_next:
-                if (provingSucceed){
-                    ResetPasswordActivity.open(this,userId);
-                    finish();
-                }
+                LoginAction.verification(userName, codeEdit.getText().toString().trim(),
+                        new GsonCallback<TokenData>(TokenData.class) {
+                            @Override
+                            public void onSucceed(JsonResponse<TokenData> response) {
+                                String token = response.getResultData().getToken();
+                                ResetPasswordActivity.open(ProvingActivity.this,token);
+                                finish();
+                            }
+                        });
                 break;
             case R.id.tv_action_back:
                 finish();
                 break;
         }
     }
+
+    //发送验证码
+    private void sendMessage(){
+        postTv.setText(String.format("重新发送(%d)",countDown));
+        handler.sendEmptyMessageDelayed(WHAT_COUNT_DOWN,1000);
+        postTv.setEnabled(false);
+        LoginAction.sendMessage(userName,memberType,
+                new GsonCallback<String>(String.class) {
+                    @Override
+                    public void onSucceed(JsonResponse<String> response) {
+                    }
+                });
+    }
+
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case WHAT_COUNT_DOWN:
+                    countDown--;
+                    if (countDown>0){
+                        postTv.setText(String.format("重新发送(%d)",countDown));
+                        handler.sendEmptyMessageDelayed(WHAT_COUNT_DOWN,1000);
+                    }else {
+                        postTv.setText("发送");
+                        postTv.setEnabled(true);
+                        countDown = 60;
+                    }
+                    break;
+            }
+        }
+    };
 
 }

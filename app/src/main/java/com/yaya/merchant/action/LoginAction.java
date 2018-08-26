@@ -35,7 +35,7 @@ import okio.BufferedSource;
 
 public class LoginAction {
 
-    public static void login(String username, String password, Callback callback) {
+    public static void login(String username, String password,int memberType, Callback callback) {
         if (TextUtils.isEmpty(username)) {
             ToastUtil.toast("用户名不能为空");
             return;
@@ -44,29 +44,40 @@ public class LoginAction {
             ToastUtil.toast("密码不能为空");
             return;
         }
-        OkHttpUtils.post().url(Urls.LOGIN)
-                .addParams("usernameOrEmailAddress", username)
+        OkHttpUtils.get().url(Urls.LOGIN)
+                .addParams("user_name", username)
                 .addParams("password", password)
+                .addParams("user_type", String.valueOf(memberType))
                 .build().execute(callback);
     }
 
-    public static void getPhoneByUser(String username, Callback callback) {
+    public static void sendMessage(String username,int memberType, Callback callback) {
         if (TextUtils.isEmpty(username)) {
             ToastUtil.toast("用户名不能为空");
             return;
         }
-        OkHttpUtils.get().url(Urls.GET_PHONE_BY_USER)
-                .addParams("loginName", username)
-                .build().execute(callback);
-    }
-
-    public static void sendMessage(String phone, Callback callback) {
         OkHttpUtils.get().url(Urls.SEND_MESSAGE)
-                .addParams("phone", phone)
+                .addParams("user_name", username)
+                .addParams("user_type", String.valueOf(memberType))
                 .build().execute(callback);
     }
 
-    public static void changePassword(String newPassword, String confirmPassword, String userId, Callback callback) {
+    public static void verification(String userName, String code, Callback callback) {
+        if (TextUtils.isEmpty(userName)) {
+            ToastUtil.toast("用户名不能为空");
+            return;
+        }
+        if (TextUtils.isEmpty(code)) {
+            ToastUtil.toast("验证码不能为空");
+            return;
+        }
+        OkHttpUtils.get().url(Urls.VERIFICATION_CODE)
+                .addParams("user_name", userName)
+                .addParams("code", code)
+                .build().execute(callback);
+    }
+
+    public static void changePassword(String newPassword, String confirmPassword, String token, Callback callback) {
         if (TextUtils.isEmpty(newPassword)) {
             ToastUtil.toast("新密码不能为空");
             return;
@@ -79,37 +90,40 @@ public class LoginAction {
             ToastUtil.toast("确认密码与新密码不一致");
             return;
         }
-        OkHttpUtils.get().url(Urls.SEND_MESSAGE)
-                .addParams("newPassword", newPassword)
-                .addParams("userId", userId)
+        OkHttpUtils.get().url(Urls.RESET_PASSWORD)
+                .addParams("one_password", newPassword)
+                .addParams("two_password", confirmPassword)
+                .addParams("token", token)
                 .build().execute(callback);
     }
 
-    public static String registerMerchant(String name, String phone, String storeName, String storeAddress,
-                                        String remark) {
+    public static void registerMerchant(String name, String phone, String storeName, String storeAddress,
+                                          int provinceId, int cityId, int districtId,Callback callback) {
         if (TextUtils.isEmpty(name)) {
-            return "姓名不能为空";
+            ToastUtil.toast("姓名不能为空");
         }
         if (TextUtils.isEmpty(phone)) {
-            return "电话不能为空";
+            ToastUtil.toast("电话不能为空");
         }
         if (TextUtils.isEmpty(storeName)) {
-            return "店名不能为空";
+            ToastUtil.toast("店名不能为空");
         }
         if (TextUtils.isEmpty(storeAddress)) {
-            return "地址不能为空";
-        }
-        if (TextUtils.isEmpty(remark)) {
-            return "街道信息不能为空";
+            ToastUtil.toast( "地址不能为空");
         }
 
-        JSONObject jsonObject = new JSONObject();
+        OkHttpUtils.get().url(Urls.REGISTER_MERCHAT).addParams("name", name)
+                .addParams("tel", phone)
+                .addParams("shop_name", storeName)
+                .addParams("address", storeAddress)
+                .addParams("province_id", String.valueOf(provinceId))
+                .addParams("city_id", String.valueOf(cityId))
+                .addParams("area_id", String.valueOf(districtId))
+                .build().execute(callback);
+
+        /*JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("name", name)
-                    .put("phone", phone)
-                    .put("storeName", storeName)
-                    .put("storeAddress", storeAddress)
-                    .put("remark", remark);
+            jsonObject
             MediaType json = MediaType.parse("application/json;charset=utf-8");
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
@@ -134,7 +148,7 @@ public class LoginAction {
         }catch (Exception e){
             e.printStackTrace();
             return "";
-        }
+        }*/
     }
 
 }

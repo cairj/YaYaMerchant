@@ -20,7 +20,7 @@ import java.util.Map;
  */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "yaya_merchant.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private Context context;
 
     private static final String ASSETS_SQL_PATH = "sql/";
@@ -37,11 +37,12 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
         createTableFromAssets(sqLiteDatabase);
+        upgradeTableVer1(sqLiteDatabase);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int oldVersion, int newVersion) {
-
+        upgradeTableVer1(sqLiteDatabase);
     }
 
     /**
@@ -111,5 +112,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         }catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void upgradeTableVer1(SQLiteDatabase sqLiteDatabase){
+        executeAssetsSQL(sqLiteDatabase, "sys_region.sql");
     }
 }

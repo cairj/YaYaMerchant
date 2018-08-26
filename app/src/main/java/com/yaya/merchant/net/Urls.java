@@ -2,13 +2,13 @@ package com.yaya.merchant.net;
 
 public class Urls {
 
-    private static final String HOST = "http://api.xinghezhijia.com/";
+    private static final String HOST = "https://mall.91yayagou.com.cn/index.php/app/";
 
-    public static final String LOGIN = HOST + "api/Account";
-    public static final String GET_PHONE_BY_USER = HOST + "api/Account/GetUserPhone";
-    public static final String SEND_MESSAGE = HOST + "api/Account/SendMessage";
-    public static final String RESET_PASSWORD = HOST + "api/Account/ChangePasswordSave";
-    public static final String REGISTER_MERCHAT = HOST + "api/Account/CreateIntention";
+    public static final String LOGIN = HOST + "Login/login";
+    public static final String SEND_MESSAGE = HOST + "Login/getVerificationCode";
+    public static final String VERIFICATION_CODE = HOST + "Login/verificationCode";
+    public static final String RESET_PASSWORD = HOST + "Login/changePassword";
+    public static final String REGISTER_MERCHAT = HOST + "Shop/Apply";
     public static final String HOME_DATA = HOST + "api/Homeindex/Index";
     public static final String BILL_HOUSTON = HOST + "api/bill/Houston";
     public static final String BILL_GET_ALL_STORE = HOST + "api/bill/GetAllStore";
@@ -35,7 +35,7 @@ public class Urls {
     public static final String PUSH_FEED_BACK = HOST + "SystemUser/Feedback";
     public static final String VERIFICATION_INDEX = HOST + "api/SystemUser/VerificationIndex";
     public static final String VERIFICATION_SET = HOST + "api/SystemUser/VerificationSet";
-    public static final String GET_SERVICE_PHONE = HOST + "api/Account/GetPhone";
+    public static final String GET_SERVICE_PHONE = HOST + "Login/GetPhoneapi/Account/GetPhone";
     public static final String CHANGE_PROFILE_PIC = HOST + "api/SystemUser/ChangeProfilePic";
     public static final String CHANGE_PASSWORD = HOST + "api/SystemUser/ChangePassword";
     public static final String BILL_GET_RECONCILIATION = HOST + "api/bill/Reconciliation";

@@ -13,28 +13,41 @@ public class JsonResponse<T extends Serializable> implements Serializable{
 
     /** 单个对象 */
     @SerializedName("result")
-    private BaseData<T> data;
+    private BaseData<T> result;
 
-    private ErrorData error;
-    private boolean success;
+    private T data;
+    private int code;
+    private String msg;
 
     public BaseData<T> getData() {
-        return data;
+        return result;
     }
 
     public void setData(BaseData<T> data) {
+        this.result = data;
+    }
+
+    public void setData(T data) {
         this.data = data;
     }
 
-    public ErrorData getError() {
-        return error;
+    public T getResultData(){
+        return data;
     }
 
-    public boolean isSuccess() {
-        return success;
+    public int getCode() {
+        return code;
     }
 
-    public void setError(ErrorData error) {
-        this.error = error;
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

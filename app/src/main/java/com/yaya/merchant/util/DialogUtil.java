@@ -28,6 +28,7 @@ public class DialogUtil {
         dialog.getContentTv().setText("密码修改成功");
         dialog.getSubmitBtnTv().setText("我知道了");
         dialog.setListener(listener);
+        dialog.setCancelable(false);
         dialog.show();
     }
 

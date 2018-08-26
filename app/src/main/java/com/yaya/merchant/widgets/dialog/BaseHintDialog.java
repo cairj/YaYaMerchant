@@ -27,19 +27,32 @@ public abstract class BaseHintDialog extends Dialog {
     protected Context mContent;
     protected View rootView;
 
-    @BindView(R.id.iv_picture)
+    //@BindView(R.id.iv_picture)
     protected ImageView pictureIv;
-    @BindView(R.id.tv_title)
+    //@BindView(R.id.tv_title)
     protected TextView titleTv;
-    @BindView(R.id.tv_content)
+    //@BindView(R.id.tv_content)
     protected TextView contentTv;
 
     public BaseHintDialog(@NonNull Context context) {
-        super(context,R.style.Dialog);
+        super(context, R.style.Dialog);
+        initView(context, getContentViewId());
+    }
+
+    public BaseHintDialog(@NonNull Context context, int contentViewLayoutId) {
+        super(context, R.style.Dialog);
+        initView(context, contentViewLayoutId);
+    }
+
+    private void initView(Context context, int contentViewLayoutId) {
         mContent = context;
-        rootView = LayoutInflater.from(mContent).inflate(getContentViewId(), null);
+        rootView = LayoutInflater.from(mContent).inflate(contentViewLayoutId, null);
         setContentView(rootView);
         ButterKnife.bind(this, rootView);
+
+        pictureIv = rootView.findViewById(R.id.iv_picture);
+        titleTv = rootView.findViewById(R.id.tv_title);
+        contentTv = rootView.findViewById(R.id.tv_content);
     }
 
     @Override

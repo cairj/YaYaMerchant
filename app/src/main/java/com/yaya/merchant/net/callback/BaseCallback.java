@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.toroke.okhttp.JsonResponse;
 import com.toroke.okhttp.BaseData;
+import com.yaya.merchant.util.Constants;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
@@ -26,10 +27,9 @@ import okhttp3.Response;
 
 public abstract class BaseCallback<K extends Serializable> extends Callback<JsonResponse<K>> {
 
-    protected String JSON_KEY_RESULT = "result";//单个结果
-    protected String JSON_KEY_RESULT_DATA = "data";//单个结果
-    protected String JSON_KEY_RESULT_STATUS = "status";//单个结果
-    protected String JSON_KEY_RESULT_USERID = "userId";//单个结果
+    protected String JSON_KEY_DATA = "data";//单个结果
+    protected String JSON_KEY_CODE = "code";//单个结果
+    protected String JSON_KEY_MSG = "msg";//单个结果
 
     protected JsonResponse<K> jsonResponse;
 
@@ -101,7 +101,7 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
 
     @Override
     public void onResponse(JsonResponse<K> kJsonResponse, int i){
-        if ((kJsonResponse.getData()).isStatus()){
+        if (kJsonResponse.getCode() == Constants.RESPONSE_SUCCESS){
             onSucceed(kJsonResponse);
         }else {
             onFailed(kJsonResponse);
@@ -120,9 +120,9 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
 
     public void parse(JsonResponse<K> jsonResponse, String json) throws JSONException {
         JSONObject jsonObject = new JSONObject(json);
-        /*jsonResponse.setMsg(jsonObject.optString(JSON_KEY_MSG, "")); ;
-        jsonResponse.setTip(jsonObject.optString(JSON_KEY_TIP, "")); ;
+        jsonResponse.setMsg(jsonObject.optString(JSON_KEY_MSG, ""));
         jsonResponse.setCode(jsonObject.optInt(JSON_KEY_CODE, 0));
+        /* jsonResponse.setTip(jsonObject.optString(JSON_KEY_TIP, "")); ;
         jsonResponse.setRowNum(jsonObject.optInt(JSON_KEY_ROW_NUM, 0));
         jsonResponse.setCount(jsonObject.optInt(JSON_KEY_COUNT, 0));
         if (jsonObject.has(JSON_KEY_PAGEINFO)){
@@ -152,46 +152,9 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
     }
 
     protected void parseResult(JSONObject jsonObject) throws JSONException {
-        if (jsonObject.has(JSON_KEY_RESULT)){
-            JSONObject resultObject = jsonObject.getJSONObject(JSON_KEY_RESULT);
-            if (resultObject != null){
-                BaseData<K> baseData = new BaseData<K>();
-                if(resultObject.has(JSON_KEY_RESULT_STATUS)){
-                    baseData.setStatus(resultObject.getBoolean(JSON_KEY_RESULT_STATUS));
-                }
-                if(resultObject.has(JSON_KEY_RESULT_USERID)){
-                    baseData.setUserId(resultObject.getString(JSON_KEY_RESULT_USERID));
-                }
-                if (baseData.isStatus()) {
-                    if (resultObject.has(JSON_KEY_RESULT_DATA)) {
-                        if (resultObject.get(JSON_KEY_RESULT_DATA) instanceof String) {
-                            String data = resultObject.getString(JSON_KEY_RESULT_DATA);
-                            baseData.setData((K) data);
-                        } else if (resultObject.get(JSON_KEY_RESULT_DATA) instanceof Boolean) {
-                            String data = String.valueOf(resultObject.getBoolean(JSON_KEY_RESULT_DATA));
-                            baseData.setData((K) data);
-                        } else if (resultObject.get(JSON_KEY_RESULT_DATA) instanceof JSONObject){
-                            JSONObject dataObject = resultObject.getJSONObject(JSON_KEY_RESULT_DATA);
-                            if (dataObject != null) {
-                                baseData.setData(parseItem(dataObject));
-                            }
-                        }else if (resultObject.get(JSON_KEY_RESULT_DATA) instanceof JSONArray){
-                            JSONArray dataObject = resultObject.getJSONArray(JSON_KEY_RESULT_DATA);
-                            if (dataObject != null) {
-                                baseData.setDatas(parseItems(dataObject));
-                            }
-                        }
-                    }
-                }else {
-                    if (resultObject.has(JSON_KEY_RESULT_DATA)) {
-                        if (resultObject.get(JSON_KEY_RESULT_DATA) instanceof String) {
-                            String data = resultObject.getString(JSON_KEY_RESULT_DATA);
-                            baseData.setError(data);
-                        }
-                    }
-                }
-                jsonResponse.setData(baseData);
-            }
+        if (jsonResponse.getCode() == Constants.RESPONSE_SUCCESS && jsonObject.has(JSON_KEY_DATA)) {
+            JSONObject resultObject = jsonObject.getJSONObject(JSON_KEY_DATA);
+            jsonResponse.setData(parseItem(resultObject));
         }
     }
 

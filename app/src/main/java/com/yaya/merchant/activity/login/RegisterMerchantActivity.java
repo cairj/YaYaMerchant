@@ -2,8 +2,6 @@ package com.yaya.merchant.activity.login;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,7 +14,6 @@ import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.data.Region;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.DpPxUtil;
-import com.yaya.merchant.util.LoadingUtil;
 import com.yaya.merchant.util.StatusBarUtil;
 import com.yaya.merchant.util.ToastUtil;
 import com.yaya.merchant.widgets.dialog.DoubleBtnDialog;
@@ -24,7 +21,6 @@ import com.yaya.merchant.widgets.popupwindow.RegionPickerPopupWindow;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import okhttp3.Request;
 
 /**
  * 注册商户
@@ -45,6 +41,7 @@ public class RegisterMerchantActivity extends BaseActivity {
 
     RegionPickerPopupWindow regionPickerPopupWindow;
     private String merchantCity;
+    private Region selectedProvince, selectedCity, selectedDistrict;
 
     @Override
     protected int getContentViewId() {
@@ -62,6 +59,9 @@ public class RegisterMerchantActivity extends BaseActivity {
             public void onSubmitTvClick(Region province, Region city, Region district) {
                 merchantCity = RegionPickerPopupWindow.getAddress(province, city, district);
                 cityTv.setText("店铺地址：" + merchantCity);
+                selectedProvince = province;
+                selectedCity = city;
+                selectedDistrict = district;
             }
         });
     }
@@ -78,34 +78,19 @@ public class RegisterMerchantActivity extends BaseActivity {
         }
     }
 
-    private void registerMerchant(){
-        new AsyncTask<String, Integer, String>() {
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                LoadingUtil.showAsyncProgressDialog(RegisterMerchantActivity.this);
-            }
-
-            @Override
-            protected String doInBackground(String... strings) {
-                return LoginAction.registerMerchant(nameEd.getText().toString().trim(), phoneEd.getText().toString().trim(),
-                        merchantNameEd.getText().toString().trim(), merchantCity, addressEd.getText().toString().trim());
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                LoadingUtil.hideProcessingIndicator();
-                if (!TextUtils.isEmpty(s)) {
-                    if (s.contains("成功")) {
+    private void registerMerchant() {
+        if (selectedProvince == null || selectedCity == null || selectedDistrict == null) {
+            ToastUtil.toast("请选择正确地址");
+            return;
+        }
+        LoginAction.registerMerchant(nameEd.getText().toString().trim(), phoneEd.getText().toString().trim(),
+                merchantNameEd.getText().toString().trim(), addressEd.getText().toString().trim(), selectedProvince.getId(),
+                selectedCity.getId(), selectedDistrict.getId(), new GsonCallback<String>(String.class) {
+                    @Override
+                    public void onSucceed(JsonResponse<String> response) {
                         getServicePhone();
-                    }else {
-                        ToastUtil.toast(s);
                     }
-                }
-
-            }
-        }.execute("");
+                });
     }
 
     private void getServicePhone() {

@@ -3,14 +3,18 @@ package com.yaya.merchant.activity.login;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.LoginAction;
 import com.yaya.merchant.base.activity.BaseActivity;
+import com.yaya.merchant.data.login.TokenData;
 import com.yaya.merchant.interfaces.OnEditTextChangeListener;
 import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.Constants;
 import com.yaya.merchant.util.StatusBarUtil;
+import com.yaya.merchant.util.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -25,6 +29,11 @@ public class InputUserNameActivity extends BaseActivity {
     protected EditText userNameEdit;
     @BindView(R.id.input_iv_user_clear)
     protected ImageView userNameClearIv;
+
+    @BindView(R.id.login_rb_merchant)
+    protected RadioButton merchantRb;
+    @BindView(R.id.login_rb_agent)
+    protected RadioButton agentRb;
 
     @Override
     protected int getContentViewId() {
@@ -55,12 +64,18 @@ public class InputUserNameActivity extends BaseActivity {
                 userNameEdit.setText("");
                 break;
             case R.id.input_tv_next:
-                LoginAction.getPhoneByUser(userNameEdit.getText().toString().trim(),
-                        new GsonCallback<String>(String.class) {
+                if (!merchantRb.isChecked()&&!agentRb.isChecked()){
+                    ToastUtil.toast("请选择是商户或代理" );
+                    return;
+                }
+                final int memberType = merchantRb.isChecked()? Constants.MEMBER_TYPE_MERCHANT:Constants.MEMBER_TYPE_AGENT;
+                final String userName = userNameEdit.getText().toString().trim();
+                LoginAction.sendMessage(userName,memberType,
+                        new GsonCallback<TokenData>(TokenData.class) {
                             @Override
-                            public void onSucceed(JsonResponse<String> response) {
-                                ProvingActivity.open(InputUserNameActivity.this,
-                                        response.getData().getData(),response.getData().getUserId());
+                            public void onSucceed(JsonResponse<TokenData> response) {
+                                String tel = response.getResultData().getTel();
+                                ProvingActivity.open(InputUserNameActivity.this, tel, userName, memberType);
                                 finish();
                             }
                         });

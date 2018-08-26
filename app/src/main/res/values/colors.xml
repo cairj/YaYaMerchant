@@ -14,6 +14,7 @@
     <color name="black_333333">#333333</color>
     <color name="black_444444">#444444</color>
     <color name="black_454555">#454555</color>
+    <color name="black_4b4b5a">#4b4b5a</color>
     <color name="black_565656">#565656</color>
     <color name="black_59596e">#59596e</color>
     <color name="black_5D646E">#5D646E</color>
@@ -45,6 +46,7 @@
     <color name="red_fa1805">#fa1805</color>
     <color name="red_ff6257">#FF6257</color>
     <color name="red_e93a38">#e93a38</color>
+    <color name="pink_eb5650">#EB5650</color>
     <color name="pink_fa4b45">#fa4b45</color>
     <color name="pink_f25b4e">#f25b4e</color>
     <color name="pink_feeeed">#feeeed</color>
