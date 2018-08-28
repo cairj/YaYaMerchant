@@ -26,10 +26,14 @@ public class ChangePasswordActivity extends BaseActivity {
     protected EditText oldPasswordEd;
     @BindView(R.id.ed_new_password)
     protected EditText newPasswordEd;
+    @BindView(R.id.ed_confirm_password)
+    protected EditText confirmPasswordEd;
     @BindView(R.id.iv_old_password_clear)
     protected ImageView oldPasswordClearIv;
     @BindView(R.id.iv_new_password_clear)
     protected ImageView newPasswordClearIv;
+    @BindView(R.id.iv_confirm_password_clear)
+    protected ImageView confirmPasswordClearIv;
 
     @Override
     protected int getContentViewId() {
@@ -57,22 +61,42 @@ public class ChangePasswordActivity extends BaseActivity {
                 newPasswordClearIv.setVisibility(charSequence.length() > 0 ? View.VISIBLE : View.GONE);
             }
         });
+        confirmPasswordEd.addTextChangedListener(new OnEditTextChangeListener() {
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                confirmPasswordClearIv.setVisibility(charSequence.length() > 0 ? View.VISIBLE : View.GONE);
+            }
+        });
     }
 
-    @OnClick(R.id.tv_submit_change)
-    protected void onClick() {
-        UserAction.changePassword(oldPasswordEd.getText().toString().trim(), newPasswordEd.getText().toString().trim(),
-                new GsonCallback<String>(String.class) {
-                    @Override
-                    public void onSucceed(JsonResponse<String> response) {
-                        DialogUtil.changePasswordSuccessDialog(ChangePasswordActivity.this, new SingleBtnDialog.OnClickListener() {
+    @OnClick({R.id.tv_submit_change,R.id.iv_old_password_clear,R.id.iv_new_password_clear,R.id.iv_confirm_password_clear})
+    protected void onClick(View view) {
+        switch (view.getId()){
+            case R.id.tv_submit_change:
+                UserAction.changePassword(oldPasswordEd.getText().toString().trim(), newPasswordEd.getText().toString().trim(),
+                        confirmPasswordEd.getText().toString().trim(),
+                        new GsonCallback<String>(String.class) {
                             @Override
-                            public void submit() {
-                                finish();
+                            public void onSucceed(JsonResponse<String> response) {
+                                DialogUtil.changePasswordSuccessDialog(ChangePasswordActivity.this, new SingleBtnDialog.OnClickListener() {
+                                    @Override
+                                    public void submit() {
+                                        finish();
+                                    }
+                                });
                             }
                         });
-                    }
-                });
+                break;
+            case R.id.iv_old_password_clear:
+                oldPasswordEd.setText("");
+                break;
+            case R.id.iv_new_password_clear:
+                newPasswordEd.setText("");
+                break;
+            case R.id.iv_confirm_password_clear:
+                confirmPasswordEd.setText("");
+                break;
+        }
     }
 
 }

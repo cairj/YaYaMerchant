@@ -200,23 +200,34 @@ public class UserAction {
             @Override
             public void getString(String str) {
                 OkHttpUtils.get().url(Urls.CHANGE_PROFILE_PIC)
-                        .addParams("profilePic", str)
+                        .addParams("head_img_url", str)
                         .build().execute(callback);
             }
         }).execute("");
     }
 
     //更改密码
-    public static void changePassword(String oldPassword,String newPassword, Callback callback) {
+    public static void changePassword(String oldPassword,String newPassword,String confirmPassword, Callback callback) {
         if (TextUtils.isEmpty(oldPassword)){
             ToastUtil.toast("当前密码不能为空");
+            return;
         }
         if (TextUtils.isEmpty(newPassword)){
             ToastUtil.toast("新密码不能为空");
+            return;
+        }
+        if (TextUtils.isEmpty(confirmPassword)){
+            ToastUtil.toast("第二次输入的密码不能为空");
+            return;
+        }
+        if (!newPassword.equals(confirmPassword)){
+            ToastUtil.toast("两次新密码不相同，请重新确认并输入");
+            return;
         }
         OkHttpUtils.get().url(Urls.CHANGE_PASSWORD)
-                .addParams("currentPassword", oldPassword)
-                .addParams("newPassword", newPassword)
+                .addParams("old_password", oldPassword)
+                .addParams("one_password", newPassword)
+                .addParams("two_password", newPassword)
                 .build().execute(callback);
     }
 

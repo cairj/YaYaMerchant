@@ -151,7 +151,7 @@ public class SettingActivity extends BaseActivity {
                 UserAction.changeProfilePic(selectImgList.get(0), new GsonCallback<String>(String.class) {
                     @Override
                     public void onSucceed(JsonResponse<String> response) {
-                        ToastUtil.toast(response.getData().getData());
+                        ToastUtil.toast("修改成功");
                         GlideLoaderHelper.loadAvatar(new File(selectImgList.get(0).getPath()), picIv);
                         dialog.dismiss();
                     }

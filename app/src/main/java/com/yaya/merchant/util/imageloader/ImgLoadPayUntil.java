@@ -6,28 +6,18 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Base64;
-import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.toroke.okhttp.BaseData;
 import com.yaya.merchant.data.ImagePathEntity;
 import com.yaya.merchant.net.Urls;
-import com.yaya.merchant.util.AppManager;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.lang.reflect.Type;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -53,10 +43,10 @@ public class ImgLoadPayUntil extends AsyncTask<String, Void, String> {
 
     public static String uploadFile(File file) {
         OkHttpClient client = new OkHttpClient();
-        RequestBody fileBody = RequestBody.create(MediaType.parse("image/png"), file);
+        RequestBody fileBody = RequestBody.create(MediaType.parse("image/jpeg"), file);
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("file", "head_image", fileBody)
+                .addFormDataPart("file_upload", "head_image", fileBody)
                 .build();
         Request request = new Request.Builder()
                 .url(requestURL)
@@ -68,8 +58,9 @@ public class ImgLoadPayUntil extends AsyncTask<String, Void, String> {
             String jsonString = response.body().string();
             if (!response.isSuccessful()) {
             } else {
-                ImagePathEntity pathEntity = new Gson().fromJson(jsonString, ImagePathEntity.class);
-                return pathEntity.result.filename;
+                Type type = new TypeToken<BaseData<String>>(){}.getType();
+                BaseData<String> pathEntity = new Gson().fromJson(jsonString, type);
+                return pathEntity.getData();
             }
 
         } catch (IOException e) {

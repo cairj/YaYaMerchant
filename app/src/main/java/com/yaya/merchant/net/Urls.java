@@ -30,14 +30,14 @@ public class Urls {
     public static final String GET_MERCHANT_VOICE_INDEX = HOST + "api/SystemUser/VoiceStoreSet";
     public static final String SET_MERCHANT_VOICE = HOST + "api/SystemUser/VoiceStoreUpdate";
     public static final String GET_JPUSH_TAG_ALIAS = HOST + "api/Account/GetUserInfo";
-    public static final String UPLOAD_IMG_FILES = HOST + "Upload/UploadFiles";
+    public static final String UPLOAD_IMG_FILES = HOST + "Upload/avatorUpload";
     public static final String UPLOAD_IMG_PICS = HOST + "Upload/Uploadpics";
     public static final String PUSH_FEED_BACK = HOST + "SystemUser/Feedback";
     public static final String VERIFICATION_INDEX = HOST + "api/SystemUser/VerificationIndex";
     public static final String VERIFICATION_SET = HOST + "api/SystemUser/VerificationSet";
     public static final String GET_SERVICE_PHONE = HOST + "Login/GetPhoneapi/Account/GetPhone";
-    public static final String CHANGE_PROFILE_PIC = HOST + "api/SystemUser/ChangeProfilePic";
-    public static final String CHANGE_PASSWORD = HOST + "api/SystemUser/ChangePassword";
+    public static final String CHANGE_PROFILE_PIC = HOST + "Login/modifyHeadImg";
+    public static final String CHANGE_PASSWORD = HOST + "Login/changePwd";
     public static final String BILL_GET_RECONCILIATION = HOST + "api/bill/Reconciliation";
     public static final String BILL_GET_BILL_LIST = HOST + "api/bill/BillList";
     public static final String GET_ORDER_DATA = HOST + "api/ShopOrder/Index";
