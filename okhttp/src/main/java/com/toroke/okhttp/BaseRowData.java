@@ -9,15 +9,15 @@ import java.util.List;
 
 public class BaseRowData<T extends Serializable> implements Serializable{
 
-    private List<T> rows;
+    private List<T> data;
     private int total;
 
     public List<T> getRows() {
-        return rows;
+        return data;
     }
 
     public void setRows(List<T> rows) {
-        this.rows = rows;
+        this.data = rows;
     }
 
     public int getTotal() {
@@ -29,7 +29,7 @@ public class BaseRowData<T extends Serializable> implements Serializable{
     }
 
     public int getPageCount(int pageSize) {
-        if (rows !=null){
+        if (data !=null){
             float pageCount=1.0f*total/pageSize;
             return (int) Math.ceil(pageCount);
         }

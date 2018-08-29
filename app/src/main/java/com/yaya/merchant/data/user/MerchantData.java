@@ -17,22 +17,19 @@ public class MerchantData implements Serializable {
     public static final String[] OPEARTING_STATUS={"全部状态","待营业","营业中","已关闭"};
     public static final String[] OPEARTING_STATUS_ID={OPEARTING_STATUS_ALL,OPEARTING_STATUS_PREPARE,OPEARTING_STATUS_ON,OPEARTING_STATUS_OFF};
 
-    private String name;//门店名称
-    private String logo;//Logo
-    private String address;//地址
+    private String shop_id;//商家id
+    private String store_name;//门店名称
+    private String store_address;//地址
     private String status;//营业状态
-    private String storeId;//Id
+    private String store_id;//门店Id
+    private String shop_company_name;//公司名
 
     public String getName() {
-        return name;
-    }
-
-    public String getLogo() {
-        return logo;
+        return store_name;
     }
 
     public String getAddress() {
-        return address;
+        return store_address;
     }
 
     public String getStatus() {
@@ -40,6 +37,6 @@ public class MerchantData implements Serializable {
     }
 
     public String getStoreId() {
-        return storeId;
+        return store_id;
     }
 }

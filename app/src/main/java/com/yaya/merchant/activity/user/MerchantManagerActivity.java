@@ -3,8 +3,12 @@ package com.yaya.merchant.activity.user;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -20,6 +24,7 @@ import com.yaya.merchant.base.activity.BasePtrRecycleActivity;
 import com.yaya.merchant.data.ChoiceItem;
 import com.yaya.merchant.data.account.Member;
 import com.yaya.merchant.data.user.MerchantData;
+import com.yaya.merchant.util.Constants;
 import com.yaya.merchant.util.DpPxUtil;
 import com.yaya.merchant.widgets.adapter.MerchantManagerAdapter;
 import com.yaya.merchant.widgets.adapter.SingleChoiceTextAdapter;
@@ -29,6 +34,9 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.iflytek.sunflower.config.a.G;
+import static com.iflytek.sunflower.config.a.v;
 
 /**
  * 门店管理
@@ -44,6 +52,11 @@ public class MerchantManagerActivity extends BasePtrRecycleActivity<MerchantData
 
     @BindView(R.id.tv_status)
     protected TextView merchantStatusTv;
+
+    @BindView(R.id.ll_search)
+    protected LinearLayout searchLL;
+    @BindView(R.id.search_ed_input)
+    protected EditText inputEd;
 
     protected SingleChoiceWindow singleChoiceWindow;
     protected SingleChoiceTextAdapter singleChoiceAdapter;
@@ -76,6 +89,7 @@ public class MerchantManagerActivity extends BasePtrRecycleActivity<MerchantData
 
         merchantStatusTv.setText("门店状态");
         initSingleChoiceWindow();
+        initInputEd();
     }
 
     protected void initSingleChoiceWindow() {
@@ -111,14 +125,35 @@ public class MerchantManagerActivity extends BasePtrRecycleActivity<MerchantData
         });
     }
 
-    @OnClick({R.id.fl_search,R.id.fl_member_status})
+    private void initInputEd(){
+        inputEd.setHint("搜索电话/名称");
+        inputEd.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    search = inputEd.getText().toString().trim();
+                    mCurrentPos = Constants.DEFAULT_FIRST_PAGE_COUNT;
+                    searchLL.setVisibility(View.GONE);
+                    refresh();
+                    inputEd.setText("");
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    @OnClick({R.id.fl_search,R.id.fl_member_status,R.id.external_view})
     protected void onClick(View view){
         switch (view.getId()){
             case R.id.fl_search:
-                openActivity(MerchantSearchActivity.class);
+                searchLL.setVisibility(View.VISIBLE);
                 break;
             case R.id.fl_member_status:
                 singleChoiceWindow.showDropDown(merchantStatusTv);
+                break;
+            case R.id.external_view:
+                searchLL.setVisibility(View.GONE);
                 break;
         }
     }

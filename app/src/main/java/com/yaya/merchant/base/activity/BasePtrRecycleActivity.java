@@ -185,7 +185,7 @@ public abstract class BasePtrRecycleActivity<T extends Serializable> extends Bas
                         }
                     });
                 }
-                if (ts == null || !ts.getData().isStatus()){
+                if (ts == null || ts.getCode() != Constants.RESPONSE_SUCCESS){
                     isLoading = false;
                     onLoadFailed();
                 }else {
@@ -197,7 +197,7 @@ public abstract class BasePtrRecycleActivity<T extends Serializable> extends Bas
     }
 
     protected void onLoadJsonResponse(JsonResponse<BaseRowData<T>> ts){
-        onLoadSucceed(ts.getData().getData().getRows());
+        onLoadSucceed(ts.getResultData().getRows());
     }
 
     protected void onLoadFailed(){
@@ -231,7 +231,7 @@ public abstract class BasePtrRecycleActivity<T extends Serializable> extends Bas
     }
 
     protected boolean isFull(){
-        return mJsonResponse.getData().getData().getPageCount(pageSize) < mCurrentPos;
+        return mJsonResponse.getResultData().getPageCount(pageSize) < mCurrentPos;
     }
 
     protected void judgeIsEmpty() {

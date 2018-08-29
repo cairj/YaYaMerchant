@@ -44,10 +44,10 @@ public class UserAction {
                 .addParams("page", page)
                 .addParams("pageSize", pageSize);
         if (!TextUtils.isEmpty(status)) {
-            builder.addParams("status", status);
+            builder.addParams("state", status);
         }
         if (!TextUtils.isEmpty(search)) {
-            builder.addParams("search", search);
+            builder.addParams("keyword", search);
         }
         Response response = builder.build().execute();
         Gson gson = new Gson();

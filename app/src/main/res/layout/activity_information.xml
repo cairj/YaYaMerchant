@@ -96,16 +96,23 @@
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/fl_change_password"
         style="@style/information_ll">
 
         <TextView
             style="@style/information_left_tv"
-            android:text="账户有效期" />
-
-        <TextView
-            android:id="@+id/information_tv_valid_date"
-            style="@style/information_right_tv" />
+            android:text="修改密码"
+            android:drawableRight="@mipmap/me_ic_next_black"
+            android:layout_width="match_parent"/>
 
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_logout"
+        style="@style/tv_submit_btn"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="80dp"
+        android:text="退出登录" />
 
 </LinearLayout>

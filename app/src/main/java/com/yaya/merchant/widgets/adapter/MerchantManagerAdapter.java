@@ -25,7 +25,7 @@ public class MerchantManagerAdapter extends BaseQuickAdapter<MerchantData> {
         baseViewHolder.setText(R.id.tv_merchant_name, merchantData.getName())
                 .setText(R.id.tv_merchant_address, merchantData.getAddress());
 
-        GlideLoaderHelper.loadImg(merchantData.getLogo(), (ImageView) baseViewHolder.getView(R.id.iv_logo));
+        //GlideLoaderHelper.loadImg(merchantData.getLogo(), (ImageView) baseViewHolder.getView(R.id.iv_logo));
 
         baseViewHolder.getView(R.id.ll_parent).setOnClickListener(new View.OnClickListener() {
             @Override

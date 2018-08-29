@@ -44,6 +44,7 @@ public class ChangePasswordActivity extends BaseActivity {
     protected void initView() {
         super.initView();
         initEditView();
+        setActionBarTitle("修改密码");
     }
 
     //初始化输入框

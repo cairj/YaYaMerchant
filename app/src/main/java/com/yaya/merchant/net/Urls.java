@@ -20,7 +20,7 @@ public class Urls {
     public static final String WITH_DRAW_MONEY = HOST + "api/Cashout/CreateCashout";
     public static final String GET_WITH_DRAW_MONEY_RECORD = HOST + "api/Cashout/GetList";
     public static final String USER_DATA = HOST + "Personal/personal";
-    public static final String GET_MERCHANT_LIST = HOST + "api/SystemUser/StoreManager";
+    public static final String GET_MERCHANT_LIST = HOST + "Stores/stores";
     public static final String GET_EMPLOYEE_LIST = HOST + "api/SystemUser/EmployeeManager";
     public static final String GET_MERCHANT_QR_CODE = HOST + "SystemUser/QrCode";
     public static final String GET_BIND_INFO = HOST + "api/SystemUser/BankCardIndex";
