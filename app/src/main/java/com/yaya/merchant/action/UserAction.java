@@ -76,9 +76,8 @@ public class UserAction {
     }
 
     //获取门店二维码
-    public static void getMerchantQrCode(String storeId, Callback callback) {
+    public static void getMerchantQrCode(Callback callback) {
         OkHttpUtils.get().url(Urls.GET_MERCHANT_QR_CODE)
-                .addParams("storeId", storeId)
                 .build().execute(callback);
     }
 

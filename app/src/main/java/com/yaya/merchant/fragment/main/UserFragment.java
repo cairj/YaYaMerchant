@@ -18,6 +18,7 @@ import com.yaya.merchant.activity.user.EmployeeManagerActivity;
 import com.yaya.merchant.activity.user.FeedBackActivity;
 import com.yaya.merchant.activity.user.InformationActivity;
 import com.yaya.merchant.activity.user.MerchantManagerActivity;
+import com.yaya.merchant.activity.user.MerchantQRCodeActivity;
 import com.yaya.merchant.activity.user.SettingActivity;
 import com.yaya.merchant.activity.user.UserInfoActivity;
 import com.yaya.merchant.activity.user.VerificationActivity;
@@ -173,7 +174,7 @@ public class UserFragment extends BaseFragment {
                 openActivity(EmployeeManagerActivity.class);
                 break;*/
             case R.id.user_rl_merchant_qrcode:
-                MerchantSearchActivity.open(getActivity(), MerchantSearchActivity.MERCHANT_QR_CODE);
+                openActivity(MerchantQRCodeActivity.class);
                 break;
             case R.id.user_rl_bank_card:
                 openActivity(BankCardActivity.class);

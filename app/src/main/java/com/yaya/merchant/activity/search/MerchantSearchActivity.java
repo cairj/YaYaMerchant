@@ -41,8 +41,8 @@ public class MerchantSearchActivity extends BaseSearchActivity<MerchantData> {
             @Override
             public void onClick(MerchantData merchantData) {
                 if (type == MERCHANT_QR_CODE) {
-                    MerchantQRCodeActivity.open(MerchantSearchActivity.this, merchantData.getStoreId(),
-                            merchantData.getName());
+                    /*MerchantQRCodeActivity.open(MerchantSearchActivity.this, merchantData.getStoreId(),
+                            merchantData.getName());*/
                 }
             }
         });

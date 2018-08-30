@@ -10,9 +10,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.ImageView;
 
+import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.UserAction;
 import com.yaya.merchant.base.activity.BaseActivity;
+import com.yaya.merchant.data.account.Merchant;
+import com.yaya.merchant.data.user.MerchantData;
+import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.imageloader.GlideLoaderHelper;
 import com.yaya.merchant.util.imageloader.ImageHelper;
 import com.yaya.merchant.util.ToastUtil;
 import com.zhy.http.okhttp.callback.Callback;
@@ -33,16 +38,8 @@ public class MerchantQRCodeActivity extends BaseActivity {
     @BindView(R.id.iv_qr_code)
     ImageView qrCodeIv;
 
-    private String storeId;
     private String storeName;
-    private Bitmap storeQrCodeBitmap;
-
-    public static void open(Context context, String storeId,String storeName) {
-        Intent intent = new Intent(context, MerchantQRCodeActivity.class);
-        intent.putExtra("storeId", storeId);
-        intent.putExtra("storeName", storeName);
-        context.startActivity(intent);
-    }
+    private String storeQrCordUrl;
 
     @Override
     protected int getContentViewId() {
@@ -57,24 +54,13 @@ public class MerchantQRCodeActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        storeId = getIntent().getStringExtra("storeId");
-        storeName = getIntent().getStringExtra("storeName");
         super.initData();
-        UserAction.getMerchantQrCode(storeId, new Callback<byte[]>() {
+        UserAction.getMerchantQrCode(new GsonCallback<MerchantData>(MerchantData.class) {
             @Override
-            public byte[] parseNetworkResponse(Response response, int i) throws Exception {
-                return response.body().bytes();
-            }
-
-            @Override
-            public void onError(Call call, Exception e, int i) {
-                ToastUtil.toast("加载失败");
-            }
-
-            @Override
-            public void onResponse(byte[] s, int i) {
-                storeQrCodeBitmap= BitmapFactory.decodeByteArray(s,0,s.length);
-                qrCodeIv.setImageBitmap(storeQrCodeBitmap);
+            public void onSucceed(JsonResponse<MerchantData> response) {
+                storeQrCordUrl = response.getResultData().getUrl();
+                storeName = response.getResultData().getShopName();
+                GlideLoaderHelper.loadImg(response.getResultData().getUrl(),qrCodeIv);
             }
         });
     }
@@ -105,7 +91,7 @@ public class MerchantQRCodeActivity extends BaseActivity {
     }
 
     private void savePicture(){
-        ImageHelper.downloadImage(storeQrCodeBitmap,storeName+"_"+System.currentTimeMillis()+".png");
+        ImageHelper.downloadImage(storeQrCordUrl,storeName+"_"+System.currentTimeMillis()+".png");
     }
 
 }
