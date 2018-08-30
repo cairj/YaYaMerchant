@@ -8,56 +8,24 @@ import java.io.Serializable;
 
 public class BindInfo implements Serializable {
 
-    private UserInfo userInfo;//公司法人信息对象
-    private BankInfo bankInfo;//银行卡信息对象，如果是空为已解绑
+    private String shop_company_name;//公司名字",
+    private String license_number;//营业执照",
+    private String company_fuze;//负责人(登入账号为商家时的字段)",
+    private String company_faren;//负责人(登入账号为代理商时的字段)",
 
-    public UserInfo getUserInfo() {
-        return userInfo;
+    public String getShopCompanyName() {
+        return shop_company_name;
     }
 
-    public BankInfo getBankInfo() {
-        return bankInfo;
+    public String getLicenseNumber() {
+        return license_number;
     }
 
-    public class UserInfo{
-        private String name;//公司名称
-        private String businessLicenseNo;//营业执照
-        private String corporation;//企业法人
-        private String cardId;//身份证
-
-        public String getName() {
-            return name;
-        }
-
-        public String getBusinessLicenseNo() {
-            return businessLicenseNo;
-        }
-
-        public String getCorporation() {
-            return corporation;
-        }
-
-        public String getCardId() {
-            return cardId;
-        }
+    public String getCompanyFuze() {
+        return company_fuze;
     }
 
-    public class BankInfo{
-        private String id;//解绑所需id
-        private String bankName;//银行卡名称
-        private String cardNo;//银行卡号
-
-        public String getId() {
-            return id;
-        }
-
-        public String getBankName() {
-            return bankName;
-        }
-
-        public String getCardNo() {
-            return cardNo;
-        }
+    public String getCompanyFaren() {
+        return company_faren;
     }
-
 }

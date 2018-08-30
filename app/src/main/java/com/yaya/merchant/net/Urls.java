@@ -23,7 +23,7 @@ public class Urls {
     public static final String GET_MERCHANT_LIST = HOST + "Stores/stores";
     public static final String GET_EMPLOYEE_LIST = HOST + "api/SystemUser/EmployeeManager";
     public static final String GET_MERCHANT_QR_CODE = HOST + "Code/Code";
-    public static final String GET_BIND_INFO = HOST + "api/SystemUser/BankCardIndex";
+    public static final String GET_BIND_INFO = HOST + "Authentication/authentication";
     public static final String GET_INFORMATION = HOST + "api/SystemUser/BasicInfo";
     public static final String SET_VOICE_INDEX = HOST + "api/SystemUser/VoiceSetIndex";
     public static final String SET_VOICE = HOST + "api/SystemUser/VoiceSet";

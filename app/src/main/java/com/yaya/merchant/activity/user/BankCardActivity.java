@@ -8,6 +8,7 @@ import com.yaya.merchant.action.UserAction;
 import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.data.user.BindInfo;
 import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.UserHelper;
 
 import butterknife.BindView;
 
@@ -28,8 +29,6 @@ public class BankCardActivity extends BaseActivity {
 
     @BindView(R.id.tv_bank_name)
     protected TextView bankNameTv;
-    @BindView(R.id.tv_card_number)
-    protected TextView bankCardNumberTv;
     @BindView(R.id.tv_card_type)
     protected TextView cardTypeTv;
 
@@ -45,15 +44,19 @@ public class BankCardActivity extends BaseActivity {
         UserAction.getBindInfo(new GsonCallback<BindInfo>(BindInfo.class) {
             @Override
             public void onSucceed(JsonResponse<BindInfo> response) {
-                BindInfo bindInfo = response.getData().getData();
-                companyNameTv.setText("公司名称："+bindInfo.getUserInfo().getName());
-                businessLicenceTv.setText("营业执照："+bindInfo.getUserInfo().getBusinessLicenseNo());
-                legalPersonTv.setText("企业法人："+bindInfo.getUserInfo().getCorporation());
-                legalPersonIdCardTv.setText("法人身份证号："+bindInfo.getUserInfo().getCardId());
+                BindInfo bindInfo = response.getResultData();
+                companyNameTv.setText("公司名称："+bindInfo.getShopCompanyName());
+                businessLicenceTv.setText("营业执照："+bindInfo.getLicenseNumber());
+                /*legalPersonTv.setText("企业法人："+bindInfo.getUserInfo().getCorporation());
+                legalPersonIdCardTv.setText("法人身份证号："+bindInfo.getUserInfo().getCardId());*/
 
-                bankNameTv.setText(bindInfo.getBankInfo().getBankName());
-                bankCardNumberTv.setText(bindInfo.getBankInfo().getCardNo());
-                bankNameTv.setText("储蓄卡");
+                if (UserHelper.isMerchant()) {
+                    legalPersonTv.setText("企业法人:" + bindInfo.getCompanyFuze());
+                }
+
+                if (UserHelper.isAgent()) {
+                    legalPersonTv.setText("企业法人:" + bindInfo.getCompanyFaren());
+                }
             }
         });
     }

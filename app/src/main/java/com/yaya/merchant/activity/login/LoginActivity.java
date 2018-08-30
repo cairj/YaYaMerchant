@@ -99,7 +99,7 @@ public class LoginActivity extends BaseActivity {
             ToastUtil.toast("请选择是商户或代理" );
             return;
         }
-        int memberType = merchantRb.isChecked()? Constants.MEMBER_TYPE_MERCHANT:Constants.MEMBER_TYPE_AGENT;
+        final int memberType = merchantRb.isChecked()? Constants.MEMBER_TYPE_MERCHANT:Constants.MEMBER_TYPE_AGENT;
         LoginAction.login(userEditView.getText().toString().trim(),
                 passwordEditView.getText().toString().trim(), memberType,new GsonCallback<TokenData>(TokenData.class) {
 
@@ -107,6 +107,7 @@ public class LoginActivity extends BaseActivity {
                     public void onSucceed(JsonResponse<TokenData> response) {
                         SPUtil.putBoolean(SpKeys.IS_LOGIN, true);
                         SPUtil.putString(SpKeys.TOKEN, response.getResultData().getToken());
+                        SPUtil.putInt(SpKeys.USER_TYPE, memberType);
                         openActivity(MainActivity.class, true);
                     }
 

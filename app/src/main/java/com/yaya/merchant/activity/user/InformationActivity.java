@@ -19,6 +19,7 @@ import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.AppManager;
 import com.yaya.merchant.util.ImagePickUtil;
 import com.yaya.merchant.util.JPushUtil;
+import com.yaya.merchant.util.UserHelper;
 import com.yaya.merchant.util.imageloader.GlideLoaderHelper;
 import com.yaya.merchant.util.sp.SPUtil;
 import com.yaya.merchant.util.sp.SpKeys;
@@ -82,12 +83,7 @@ public class InformationActivity extends BaseActivity {
                         .setPositiveButton("是", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                SPUtil.putBoolean(SpKeys.IS_LOGIN, false);
-                                SPUtil.putString(SpKeys.TOKEN, "");
-                                JPushUtil.deleteAlias(InformationActivity.this);
-                                JPushUtil.cleanTags(InformationActivity.this);
-                                AppManager.getAppManager().finishAllActivity();
-                                openActivity(LoginActivity.class, true);
+                                UserHelper.logout(InformationActivity.this);
                             }
                         })
                         .setNegativeButton("否",null);
