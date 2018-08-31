@@ -14,6 +14,7 @@ import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainAction;
 import com.yaya.merchant.activity.search.MerchantSearchActivity;
 import com.yaya.merchant.activity.user.BankCardActivity;
+import com.yaya.merchant.activity.user.ContractInformationActivity;
 import com.yaya.merchant.activity.user.EmployeeManagerActivity;
 import com.yaya.merchant.activity.user.FeedBackActivity;
 import com.yaya.merchant.activity.user.InformationActivity;
@@ -164,7 +165,7 @@ public class UserFragment extends BaseFragment {
 
     @OnClick({R.id.user_rl_merchant_manager, R.id.user_rl_merchant_qrcode,R.id.tv_my_info,
             R.id.user_rl_bank_card, R.id.user_rl_merchant_info, R.id.user_rl_set_voice,
-            R.id.user_rl_info,R.id.user_rl_contact_service})
+            R.id.user_rl_info,R.id.user_rl_contact_service,R.id.user_rl_subscribe_info})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.user_rl_merchant_manager:
@@ -211,6 +212,9 @@ public class UserFragment extends BaseFragment {
                     return;
                 }
                 InformationActivity.open(getActivity(),userData);
+                break;
+            case R.id.user_rl_subscribe_info:
+                openActivity(ContractInformationActivity.class);
                 break;
         }
     }

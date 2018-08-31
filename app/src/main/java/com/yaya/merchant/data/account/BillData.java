@@ -21,9 +21,9 @@ public class BillData implements Serializable {
             PAY_STATE_REBATES, PAY_STATE_CLOSED, PAY_STATE_CANCELLED};
 
     /*payType支付方式*/
-    public static final String[] PAY_TYPE = {"全部", "微信支付", "支付宝支付"};
+    public static final String[] PAY_TYPE = {"全部", "sign_ic_wechat", "支付宝支付"};
     public static final String PAY_TYPE_ALL = "";//全部
-    public static final String PAY_TYPE_WECHAT = "1";//微信支付
+    public static final String PAY_TYPE_WECHAT = "1";//sign_ic_wechat
     public static final String PAY_TYPE_ALIPAY = "2";//支付宝支付
     public static final String[] PAY_TYPE_PARAMS = {PAY_TYPE_ALL, PAY_TYPE_WECHAT, PAY_TYPE_ALIPAY};
 

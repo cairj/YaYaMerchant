@@ -24,13 +24,6 @@ public class BankCardActivity extends BaseActivity {
     protected TextView businessLicenceTv;
     @BindView(R.id.tv_legal_person)
     protected TextView legalPersonTv;
-    @BindView(R.id.tv_legal_person_id_card)
-    protected TextView legalPersonIdCardTv;
-
-    @BindView(R.id.tv_bank_name)
-    protected TextView bankNameTv;
-    @BindView(R.id.tv_card_type)
-    protected TextView cardTypeTv;
 
     @Override
     protected int getContentViewId() {
@@ -47,8 +40,6 @@ public class BankCardActivity extends BaseActivity {
                 BindInfo bindInfo = response.getResultData();
                 companyNameTv.setText("公司名称："+bindInfo.getShopCompanyName());
                 businessLicenceTv.setText("营业执照："+bindInfo.getLicenseNumber());
-                /*legalPersonTv.setText("企业法人："+bindInfo.getUserInfo().getCorporation());
-                legalPersonIdCardTv.setText("法人身份证号："+bindInfo.getUserInfo().getCardId());*/
 
                 if (UserHelper.isMerchant()) {
                     legalPersonTv.setText("企业法人:" + bindInfo.getCompanyFuze());

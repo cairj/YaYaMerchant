@@ -24,7 +24,7 @@ public class OrderDetail implements Serializable {
     private String userName;// "孙悟空",
     private String userAddress;// "花果山水帘洞",
     private String creationTime;//"2018-03-19T16:09:53",//下单时间
-    private String paySource;// "微信支付",//支付方式
+    private String paySource;// "sign_ic_wechat",//支付方式
     private String orderPrice;//1700,//商品总额
     private String deliverPrice;// 0,//运费
     private String totalPrice;// 1700,//实付款

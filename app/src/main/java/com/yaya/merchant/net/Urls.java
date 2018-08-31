@@ -54,5 +54,6 @@ public class Urls {
     public static final String GET_ARTICLE_LIST = HOST + "api/SystemUser/ArticleList";
     public static final String GET_HOUSTON_DETAIL = HOST + "api/bill/HoustonDetail";
     public static final String GET_MEMBER_DETAIL = HOST + "api/bill/BillMemberDetail";
+    public static final String GET_CONTRACT_INFORMATION = HOST + "Commission/commission";
 
 }

@@ -150,6 +150,7 @@
         <activity android:name=".activity.activities.ReleaseActivitiesActivity"
             android:theme="@style/GrayActionBar"/>
 
+        <activity android:name=".activity.user.ContractInformationActivity"/>
         <!--极光推送-->
         <!-- Required SDK 核心功能-->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->

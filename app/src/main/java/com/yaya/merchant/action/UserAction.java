@@ -230,4 +230,10 @@ public class UserAction {
                 .build().execute(callback);
     }
 
+    //签约信息
+    public static void getContractInformation(Callback callback){
+        OkHttpUtils.post().url(Urls.GET_CONTRACT_INFORMATION)
+                .build().execute(callback);
+    }
+
 }

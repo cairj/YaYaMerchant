@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
     android:background="@color/gray_fbfbfb"
     android:orientation="vertical">
 
@@ -15,13 +16,132 @@
     
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="21dp"
+        android:paddingLeft="15dp"
+        android:paddingBottom="15dp">
         
         <View
             android:layout_width="3dp"
-            android:layout_height="14dp"
+            android:layout_height="16dp"
             android:background="@drawable/bg_red_circle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="费率"
+            android:textColor="@color/black_454555"
+            android:layout_marginLeft="15dp"
+            android:textSize="@dimen/sp_15"
+            android:includeFontPadding="false"/>
         
     </LinearLayout>
-    
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:showDividers="middle"
+        android:divider="@drawable/divider_gray_1dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        android:paddingLeft="18dp"
+        android:paddingRight="15dp">
+
+        <FrameLayout
+            android:id="@+id/fl_shop_offline_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="13dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_353543"
+                android:textSize="@dimen/sp_15"
+                android:text="扫码支付订单"
+                android:drawableLeft="@mipmap/ic_shop_offline_rate"
+                android:drawablePadding="14dp"/>
+
+            <TextView
+                android:id="@+id/tv_shop_offline_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_5D646E"
+                android:textSize="@dimen/sp_15"
+                android:layout_gravity="end"
+                tool:text="0.00%"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_platform_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="13dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_353543"
+                android:textSize="@dimen/sp_15"
+                android:text="线上商城订单"
+                android:drawableLeft="@mipmap/ic_shop_platform_rate"
+                android:drawablePadding="14dp"/>
+
+            <TextView
+                android:id="@+id/tv_platform_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_5D646E"
+                android:textSize="@dimen/sp_15"
+                android:layout_gravity="end"
+                tool:text="0.00%"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_commission_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="13dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_353543"
+                android:textSize="@dimen/sp_15"
+                android:text="营收比例"
+                android:drawableLeft="@mipmap/ic_shop_commission_rate"
+                android:drawablePadding="14dp"/>
+
+            <TextView
+                android:id="@+id/tv_commission_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_5D646E"
+                android:textSize="@dimen/sp_15"
+                android:layout_gravity="end"
+                tool:text="0.00%"/>
+        </FrameLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:paddingLeft="21dp"
+        android:paddingTop="17dp"
+        android:paddingBottom="17dp"
+        android:drawableLeft="@mipmap/ic_tick_gray"
+        android:paddingRight="16dp"
+        android:drawableRight="@mipmap/me_ic_next_black"
+        android:drawablePadding="12dp"
+        android:text="《平安银行条码支付业务商户服务协议》"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/blue_4D7FFF"/>
+
 </LinearLayout>
