@@ -25,8 +25,10 @@ public class Urls {
     public static final String GET_MERCHANT_QR_CODE = HOST + "Code/Code";
     public static final String GET_BIND_INFO = HOST + "Authentication/authentication";
     public static final String GET_INFORMATION = HOST + "api/SystemUser/BasicInfo";
-    public static final String SET_VOICE_INDEX = HOST + "api/SystemUser/VoiceSetIndex";
-    public static final String SET_VOICE = HOST + "api/SystemUser/VoiceSet";
+    public static final String SET_VOICE_INDEX = HOST + "Voice/voice";
+    public static final String SET_VOICE = HOST + "Voice/voices";
+    public static final String SET_VOICE_SOUND = HOST + "Voice/sounds";
+    public static final String SET_VOICE_PUSH = HOST + "Voice/letter";
     public static final String GET_MERCHANT_VOICE_INDEX = HOST + "api/SystemUser/VoiceStoreSet";
     public static final String SET_MERCHANT_VOICE = HOST + "api/SystemUser/VoiceStoreUpdate";
     public static final String GET_JPUSH_TAG_ALIAS = HOST + "api/Account/GetUserInfo";
@@ -35,7 +37,7 @@ public class Urls {
     public static final String PUSH_FEED_BACK = HOST + "SystemUser/Feedback";
     public static final String VERIFICATION_INDEX = HOST + "api/SystemUser/VerificationIndex";
     public static final String VERIFICATION_SET = HOST + "api/SystemUser/VerificationSet";
-    public static final String GET_SERVICE_PHONE = HOST + "Login/GetPhoneapi/Account/GetPhone";
+    public static final String GET_SERVICE_PHONE = HOST + "Login/GetPhone";
     public static final String CHANGE_PROFILE_PIC = HOST + "Login/modifyHeadImg";
     public static final String CHANGE_PASSWORD = HOST + "Login/changePwd";
     public static final String BILL_GET_RECONCILIATION = HOST + "api/bill/Reconciliation";
@@ -55,5 +57,9 @@ public class Urls {
     public static final String GET_HOUSTON_DETAIL = HOST + "api/bill/HoustonDetail";
     public static final String GET_MEMBER_DETAIL = HOST + "api/bill/BillMemberDetail";
     public static final String GET_CONTRACT_INFORMATION = HOST + "Commission/commission";
+    public static final String GET_MERCHANT_INFO = HOST + "Merchant/merchant";
+    public static final String GET_MERCHANT_LIST_BY_AGENT = HOST + "Business/business";
+    public static final String GET_MERCHANT_DETAIL = HOST + "Data/datas";
+    public static final String GET_MERCHANT_CLASSIFY = HOST + "Business/cate";
 
 }

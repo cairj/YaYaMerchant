@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -18,6 +19,8 @@ import com.yaya.merchant.activity.user.ContractInformationActivity;
 import com.yaya.merchant.activity.user.EmployeeManagerActivity;
 import com.yaya.merchant.activity.user.FeedBackActivity;
 import com.yaya.merchant.activity.user.InformationActivity;
+import com.yaya.merchant.activity.user.MerchantInfoActivity;
+import com.yaya.merchant.activity.user.MerchantListActivity;
 import com.yaya.merchant.activity.user.MerchantManagerActivity;
 import com.yaya.merchant.activity.user.MerchantQRCodeActivity;
 import com.yaya.merchant.activity.user.SettingActivity;
@@ -30,6 +33,7 @@ import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.DialogUtil;
 import com.yaya.merchant.util.LoadingUtil;
 import com.yaya.merchant.util.ToastUtil;
+import com.yaya.merchant.util.UserHelper;
 import com.yaya.merchant.util.imageloader.GlideLoaderHelper;
 import com.yaya.merchant.widgets.GifPtrHeader;
 import com.yaya.merchant.widgets.adapter.EmployeeManagerAdapter;
@@ -63,6 +67,16 @@ public class UserFragment extends BaseFragment {
     protected PtrFrameLayout ptrFrame;
     @BindView(R.id.scrollView)
     protected ScrollView scrollView;
+    @BindView(R.id.user_tv_merchant_manager_title)
+    protected TextView merchantManagerTitleTv;
+    @BindView(R.id.tv_merchant_service)
+    protected TextView merchantServiceTv;
+    @BindView(R.id.user_rl_merchant_qrcode)
+    protected RelativeLayout qrCodeRl;
+    @BindView(R.id.user_rl_merchant_info)
+    protected RelativeLayout merchantInfoRl;
+    @BindView(R.id.user_rl_set_voice)
+    protected RelativeLayout setVoiceRl;
 
     @Override
     protected int getContentViewId() {
@@ -85,6 +99,14 @@ public class UserFragment extends BaseFragment {
                 return false;
             }
         });
+
+        if (UserHelper.isAgent()){
+            merchantManagerTitleTv.setText("商户管理");
+            merchantServiceTv.setText("商户服务");
+            qrCodeRl.setVisibility(View.GONE);
+            merchantInfoRl.setVisibility(View.GONE);
+            setVoiceRl.setVisibility(View.GONE);
+        }
     }
 
     /** 设置ptr */
@@ -169,7 +191,12 @@ public class UserFragment extends BaseFragment {
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.user_rl_merchant_manager:
-                openActivity(MerchantManagerActivity.class);
+                if (UserHelper.isMerchant()) {
+                    openActivity(MerchantManagerActivity.class);
+                }
+                if (UserHelper.isAgent()){
+                    openActivity(MerchantListActivity.class);
+                }
                 break;
            /* case R.id.user_rl_employee_manager:
                 openActivity(EmployeeManagerActivity.class);
@@ -181,7 +208,7 @@ public class UserFragment extends BaseFragment {
                 openActivity(BankCardActivity.class);
                 break;
             case R.id.user_rl_merchant_info:
-                openActivity(UserInfoActivity.class);
+                openActivity(MerchantInfoActivity.class);
                 break;
             case R.id.user_rl_set_voice:
                 openActivity(VoiceSettingActivity.class);

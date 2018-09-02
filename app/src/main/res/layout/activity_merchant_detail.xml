@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/pink_fa4b45">
+
+        <include layout="@layout/layout_dark_action_bar" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="29dp"
+        android:paddingTop="34dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="15dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_merchant_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_merchant_name"
+            android:drawablePadding="8dp"
+            android:textColor="@color/black_333333"
+            android:textSize="@dimen/sp_14"
+            tool:text="xxxx"/>
+
+        <TextView
+            android:id="@+id/tv_merchant_master"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_merchant_master"
+            android:drawablePadding="8dp"
+            android:textColor="@color/black_333333"
+            android:textSize="@dimen/sp_14"
+            tool:text="xxxx"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:id="@+id/tv_merchant_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_merchant_phone"
+            android:drawablePadding="8dp"
+            android:textColor="@color/black_333333"
+            android:textSize="@dimen/sp_14"
+            tool:text="xxxx"
+            android:layout_below="@id/tv_merchant_name"
+            android:layout_marginTop="13dp"/>
+
+        <TextView
+            android:id="@+id/tv_merchant_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_merchant_address"
+            android:drawablePadding="8dp"
+            android:textColor="@color/black_333333"
+            android:textSize="@dimen/sp_14"
+            tool:text="xxxx"
+            android:layout_below="@id/tv_merchant_phone"
+            android:layout_marginTop="13dp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_22"
+        android:layout_marginTop="9dp"
+        android:background="@color/white">
+
+        <LinearLayout style="@style/merchant_data_ll"
+            android:layout_marginLeft="0dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_aaaaaa"
+                android:textSize="11sp"
+                android:text="商品"/>
+
+            <TextView
+                android:id="@+id/tv_merchant_data_goods"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_565656"
+                android:textSize="11sp"
+                tool:text="500"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout style="@style/merchant_data_ll">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_aaaaaa"
+                android:textSize="10sp"
+                android:text="订单"/>
+
+            <TextView
+                android:id="@+id/tv_merchant_data_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_565656"
+                android:textSize="11sp"
+                tool:text="500"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout style="@style/merchant_data_ll">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_aaaaaa"
+                android:textSize="11sp"
+                android:text="交易"/>
+
+            <TextView
+                android:id="@+id/tv_merchant_data_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_565656"
+                android:textSize="10sp"
+                tool:text="500"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout style="@style/merchant_data_ll">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_aaaaaa"
+                android:textSize="11sp"
+                android:text="用户"/>
+
+            <TextView
+                android:id="@+id/tv_merchant_data_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_565656"
+                android:textSize="10sp"
+                tool:text="500"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart_line"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="11dp"
+        android:background="@color/white"/>
+
+</LinearLayout>

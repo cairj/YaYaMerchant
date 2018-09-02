@@ -44,7 +44,29 @@ public class UserAction {
                 .addParams("page", page)
                 .addParams("pageSize", pageSize);
         if (!TextUtils.isEmpty(status)) {
-            builder.addParams("state", status);
+            builder.addParams("store_state", status);
+        }
+        if (!TextUtils.isEmpty(search)) {
+            builder.addParams("keyword", search);
+        }
+        Response response = builder.build().execute();
+        Gson gson = new Gson();
+        Type type = new TypeToken<JsonResponse<BaseRowData<MerchantData>>>() {
+        }.getType();
+        return gson.fromJson(response.body().string(), type);
+    }
+
+    //获取我的商户列表
+    public static JsonResponse<BaseRowData<MerchantData>> getMerchantListByAgent(String categoryId, String search,
+                                                                          String page, String pageSize) throws IOException {
+        if (TextUtils.isEmpty(page) || TextUtils.isEmpty(pageSize)) {
+            return null;
+        }
+        GetBuilder builder = OkHttpUtils.get().url(Urls.GET_MERCHANT_LIST_BY_AGENT)
+                .addParams("page", page)
+                .addParams("pageSize", pageSize);
+        if (!TextUtils.isEmpty(categoryId)) {
+            builder.addParams("category_id", categoryId);
         }
         if (!TextUtils.isEmpty(search)) {
             builder.addParams("keyword", search);
@@ -99,12 +121,24 @@ public class UserAction {
                 .build().execute(callback);
     }
 
-    public static void setVoice(String IsVoice, String VoiceType, Callback callback) {
+    //语音提示总开关
+    public static void setVoice(String IsVoice, Callback callback) {
         GetBuilder builder = OkHttpUtils.get().url(Urls.SET_VOICE)
-                .addParams("IsVoice", IsVoice);
-        if (!TextUtils.isEmpty(VoiceType)) {
-            builder.addParams("VoiceType", VoiceType);
-        }
+                .addParams("voices", IsVoice);
+        builder.build().execute(callback);
+    }
+
+    //语言开关
+    public static void setVoiceSound(String IsVoice, Callback callback) {
+        GetBuilder builder = OkHttpUtils.get().url(Urls.SET_VOICE_SOUND)
+                .addParams("sounds", IsVoice);
+        builder.build().execute(callback);
+    }
+
+    //推送开关
+    public static void setVoicePush(String IsVoice, Callback callback) {
+        GetBuilder builder = OkHttpUtils.get().url(Urls.SET_VOICE_PUSH)
+                .addParams("letter", IsVoice);
         builder.build().execute(callback);
     }
 
@@ -233,6 +267,25 @@ public class UserAction {
     //签约信息
     public static void getContractInformation(Callback callback){
         OkHttpUtils.post().url(Urls.GET_CONTRACT_INFORMATION)
+                .build().execute(callback);
+    }
+
+    //商户资料
+    public static void getMerchantInfo(Callback callback){
+        OkHttpUtils.post().url(Urls.GET_MERCHANT_INFO)
+                .build().execute(callback);
+    }
+
+    //商户详情
+    public static void getMerchantDetail(String shopId,Callback callback){
+        OkHttpUtils.post().url(Urls.GET_MERCHANT_DETAIL)
+                .addParams("shop_id",shopId)
+                .build().execute(callback);
+    }
+
+    //商户分类
+    public static void getMerchantClassify(Callback callback){
+        OkHttpUtils.post().url(Urls.GET_MERCHANT_CLASSIFY)
                 .build().execute(callback);
     }
 

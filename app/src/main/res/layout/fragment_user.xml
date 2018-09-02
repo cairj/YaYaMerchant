@@ -103,6 +103,7 @@
                             style="@style/user_item_rl">
 
                             <TextView
+                                android:id="@+id/user_tv_merchant_manager_title"
                                 style="@style/user_item_tv"
                                 android:text="门店管理" />
 
@@ -193,6 +194,7 @@
                         <RelativeLayout style="@style/user_item_rl">
 
                             <TextView
+                                android:id="@+id/tv_merchant_service"
                                 style="@style/user_item_tv"
                                 android:text="客户服务" />
 

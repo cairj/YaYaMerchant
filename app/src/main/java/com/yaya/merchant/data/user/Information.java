@@ -10,7 +10,7 @@ public class Information implements Serializable {
 
     private String headImg;//头像
     private String corporation;//用户名
-    private String phone;//手机
+    private String phone;//ic_merchant_phone
     private String name;//公司名
     private String admissibleBusiness;//所属代理商
     private String creationTime;//创建时间

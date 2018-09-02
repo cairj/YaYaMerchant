@@ -10,6 +10,7 @@ public class TokenData implements Serializable {
 
     private String token;
     private String tel;
+    private String phone;
 
     public String getToken() {
         return token;
@@ -17,5 +18,9 @@ public class TokenData implements Serializable {
 
     public String getTel() {
         return tel;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 }

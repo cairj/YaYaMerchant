@@ -18,6 +18,7 @@ public class JsonResponse<T extends Serializable> implements Serializable{
     private T data;
     private int code;
     private String msg;
+    private List<T> dataList;
 
     public BaseData<T> getData() {
         return result;
@@ -49,5 +50,21 @@ public class JsonResponse<T extends Serializable> implements Serializable{
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public BaseData<T> getResult() {
+        return result;
+    }
+
+    public void setResult(BaseData<T> result) {
+        this.result = result;
+    }
+
+    public List<T> getDataList() {
+        return dataList;
+    }
+
+    public void setDataList(List<T> dataList) {
+        this.dataList = dataList;
     }
 }

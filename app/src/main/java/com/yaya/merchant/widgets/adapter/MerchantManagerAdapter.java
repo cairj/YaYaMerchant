@@ -16,16 +16,28 @@ import java.util.List;
  */
 
 public class MerchantManagerAdapter extends BaseQuickAdapter<MerchantData> {
+    private boolean isMerchantByAgent = false;
+
     public MerchantManagerAdapter(List<MerchantData> data) {
         super(R.layout.item_merchant_manager, data);
     }
 
+    public MerchantManagerAdapter(List<MerchantData> data,boolean isMerchantByAgent) {
+        super(R.layout.item_merchant_manager, data);
+        this.isMerchantByAgent =  isMerchantByAgent;
+    }
+
     @Override
     protected void convert(BaseViewHolder baseViewHolder, final MerchantData merchantData) {
-        baseViewHolder.setText(R.id.tv_merchant_name, merchantData.getName())
-                .setText(R.id.tv_merchant_address, merchantData.getAddress());
+        if (!isMerchantByAgent) {
+            baseViewHolder.setText(R.id.tv_merchant_name, merchantData.getName())
+                    .setText(R.id.tv_merchant_address, merchantData.getAddress());
+        }else {
+            baseViewHolder.setText(R.id.tv_merchant_name, merchantData.getShopCompanyName())
+                    .setText(R.id.tv_merchant_address, merchantData.getShopGroupIds());
+        }
 
-        //GlideLoaderHelper.loadImg(merchantData.getLogo(), (ImageView) baseViewHolder.getView(R.id.iv_logo));
+        GlideLoaderHelper.loadImg(merchantData.getLogo(), (ImageView) baseViewHolder.getView(R.id.iv_logo));
 
         baseViewHolder.getView(R.id.ll_parent).setOnClickListener(new View.OnClickListener() {
             @Override

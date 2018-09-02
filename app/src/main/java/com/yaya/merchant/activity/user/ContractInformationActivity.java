@@ -34,7 +34,7 @@ public class ContractInformationActivity extends BaseActivity {
 
     @Override
     protected int getContentViewId() {
-        return R.layout.avtivity_contract_information;
+        return R.layout.activity_contract_information;
     }
 
     @Override
@@ -57,8 +57,13 @@ public class ContractInformationActivity extends BaseActivity {
             @Override
             public void onSucceed(JsonResponse<ContractInformation> response) {
                 ContractInformation information = response.getResultData();
-                offlineRateTv.setText(information.getShopOfflineCommissionRate());
-                platformRateTv.setText(information.getShopPlatformCommissionRate());
+                if (UserHelper.isMerchant()) {
+                    offlineRateTv.setText(information.getShopOfflineCommissionRate());
+                    platformRateTv.setText(information.getShopPlatformCommissionRate());
+                }
+                if(UserHelper.isAgent()){
+                    commissionRateTv.setText(information.getShopPlatformCommissionRate());
+                }
             }
         });
     }

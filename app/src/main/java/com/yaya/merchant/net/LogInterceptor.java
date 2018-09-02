@@ -28,7 +28,7 @@ public class LogInterceptor implements Interceptor {
         //the request method
         String method = request.method();
         long t1 = System.nanoTime();
-        //打印请求方法，地址
+        //打印请求方法，ic_merchant_address
         Log.d(TAG, String.format(Locale.getDefault(),"Sending %s request [url = %s]",method,url));
         //打印请求头
 //        Log.d(TAG, "headers:" + request.headers().toString());

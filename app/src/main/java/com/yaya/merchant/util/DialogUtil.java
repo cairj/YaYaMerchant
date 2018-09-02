@@ -10,6 +10,7 @@ import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.UserAction;
 import com.yaya.merchant.activity.withdraw.WithdrawMoneyRecordActivity;
+import com.yaya.merchant.data.login.TokenData;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.widgets.dialog.DoubleBtnDialog;
 import com.yaya.merchant.widgets.dialog.SingleBtnDialog;
@@ -34,16 +35,16 @@ public class DialogUtil {
 
     //联系客服对话框
     public static void chatToService(final Context context, final String content){
-        UserAction.getServicePhone(new GsonCallback<String>(String.class) {
+        UserAction.getServicePhone(new GsonCallback<TokenData>(TokenData.class) {
             @Override
-            public void onSucceed(final JsonResponse<String> response) {
+            public void onSucceed(final JsonResponse<TokenData> response) {
                 final DoubleBtnDialog dialog = new DoubleBtnDialog(context);
                 ViewGroup.LayoutParams lp = dialog.getPictureIv().getLayoutParams();
                 lp.height = DpPxUtil.dp2px(130);
                 dialog.getPictureIv().setLayoutParams(lp);
                 dialog.getPictureIv().setImageResource(R.mipmap.ic_popup_service);
                 dialog.getTitleTv().setVisibility(View.GONE);
-                dialog.getContentTv().setText(content+ "联系电话：" + response.getData().getData());
+                dialog.getContentTv().setText(content+ "联系电话：" + response.getResultData().getPhone());
                 dialog.getLeftBtnTv().setText("取消");
                 dialog.getRightBtnTv().setText("立即拨打");
                 dialog.setWidth(DpPxUtil.dp2px(248));

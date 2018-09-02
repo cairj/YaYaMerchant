@@ -1,5 +1,7 @@
 package com.toroke.okhttp;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import java.util.List;
 public class BaseRowData<T extends Serializable> implements Serializable{
 
     private List<T> data;
+    @SerializedName(value = "total_count",alternate = {"total"})
     private int total;
 
     public List<T> getRows() {

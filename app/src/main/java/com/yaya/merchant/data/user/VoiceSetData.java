@@ -1,5 +1,7 @@
 package com.yaya.merchant.data.user;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -8,8 +10,10 @@ import java.io.Serializable;
 
 public class VoiceSetData implements Serializable {
 
-    private String isVoice;//是否开启语音提示 1开 else不开启
-    private String voiceType;//null 都不选，1语音，2消息推送 3 都选
+    @SerializedName("voice")
+    private String isVoice;//总开关 1开 else不开启
+    private String sound;//语音设置 默认为开值为1",
+    private String letter;//消息推送设置 默认为开值为1
     private String storeCount;//全部店铺
     private String audition;//试听内容
 
@@ -17,8 +21,12 @@ public class VoiceSetData implements Serializable {
         return isVoice;
     }
 
-    public String getVoiceType() {
-        return voiceType;
+    public String getSound() {
+        return sound;
+    }
+
+    public String getLetter() {
+        return letter;
     }
 
     public String getStoreCount() {
