@@ -8,7 +8,7 @@
         android:id="@+id/ptr_frame"
         style="@style/BasePtrFrameLayout">
 
-        <ScrollView
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -108,8 +108,8 @@
 
                         <TextView
                             style="@style/home_today_data_title"
-                            android:text="@string/today_transaction_number"
-                            android:lines="1"/>
+                            android:lines="1"
+                            android:text="@string/today_transaction_number" />
 
                     </LinearLayout>
 
@@ -131,8 +131,8 @@
 
                         <TextView
                             style="@style/home_today_data_title"
-                            android:text="@string/today_visitor_number"
-                            android:lines="1"/>
+                            android:lines="1"
+                            android:text="@string/today_visitor_number" />
 
                     </LinearLayout>
 
@@ -154,37 +154,100 @@
 
                         <TextView
                             style="@style/home_today_data_title"
-                            android:text="@string/today_new_member_number"
-                            android:lines="1"/>
+                            android:lines="1"
+                            android:text="@string/today_new_member_number" />
 
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="124dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="-10dp"
                     android:background="@drawable/ic_shadow"
-                    android:paddingBottom="14dp"
+                    android:orientation="vertical"
+                    android:paddingBottom="25dp"
                     android:paddingTop="14dp">
 
-                    <TextView
-                        android:id="@+id/tv_receivables"
-                        style="@style/home_btn_tv"
-                        android:drawableTop="@mipmap/home_ic_receivables"
-                        android:text="@string/receivables" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/tv_cash"
-                        style="@style/home_btn_tv"
-                        android:drawableTop="@mipmap/home_ic_cash"
-                        android:text="@string/cash" />
+                        <TextView
+                            android:id="@+id/tv_receivables"
+                            style="@style/home_btn_tv"
+                            android:drawableTop="@mipmap/home_ic_receivables"
+                            android:text="@string/receivables" />
 
-                    <TextView
-                        android:id="@+id/tv_balance_account"
-                        style="@style/home_btn_tv"
-                        android:drawableTop="@mipmap/home_ic_money"
-                        android:text="@string/balance_account" />
+                        <TextView
+                            android:id="@+id/tv_scan_payment"
+                            style="@style/home_btn_tv"
+                            android:drawableTop="@mipmap/home_ic_scan_payment"
+                            android:text="@string/scan_payment" />
+
+                        <TextView
+                            android:id="@+id/tv_online_payment"
+                            style="@style/home_btn_tv"
+                            android:drawableTop="@mipmap/home_ic_online_payment"
+                            android:text="@string/online_payment" />
+
+                        <TextView
+                            android:id="@+id/tv_with_draw_money"
+                            style="@style/home_btn_tv"
+                            android:drawableTop="@mipmap/home_ic_withdraw_money"
+                            android:text="@string/recharge" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_cash"
+                            style="@style/home_btn_tv"
+                            android:drawableTop="@mipmap/home_ic_cash"
+                            android:text="@string/cash" />
+
+                        <TextView
+                            android:id="@+id/tv_balance_account"
+                            style="@style/home_btn_tv"
+                            android:drawableTop="@mipmap/home_ic_money"
+                            android:text="@string/balance_account" />
+
+                        <TextView
+                            android:id="@+id/tv_report"
+                            style="@style/home_btn_tv"
+                            android:drawableTop="@mipmap/home_ic_report"
+                            android:text="@string/report" />
+
+                        <TextView
+                            android:id="@+id/tv_vip"
+                            style="@style/home_btn_tv"
+                            android:drawableTop="@mipmap/home_ic_vip"
+                            android:text="@string/vip" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_return_review"
+                            style="@style/home_btn_tv"
+                            android:drawableTop="@mipmap/home_ic_return_review"
+                            android:text="退货审核" />
+
+                        <TextView
+                            android:id="@+id/tv_receive"
+                            style="@style/home_btn_tv"
+                            android:drawableTop="@mipmap/home_ic_car"
+                            android:text="发货" />
+
+                        <TextView
+                            style="@style/home_btn_tv"
+                            android:layout_weight="2" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -213,21 +276,21 @@
                         android:layout_marginTop="18dp">
 
                         <LinearLayout
-                            android:id="@+id/fl_total_member"
+                            android:id="@+id/fl_total_order_number"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tv_total_member_number"
+                                android:id="@+id/tv_total_order_number"
                                 style="@style/home_today_data_number"
                                 android:text="" />
 
                             <TextView
                                 style="@style/home_today_data_title"
                                 android:layout_marginTop="5dp"
-                                android:text="@string/total_member_number" />
+                                android:text="@string/total_order_number" />
 
                         </LinearLayout>
 
@@ -260,27 +323,178 @@
                             android:background="@color/gray_DADDE6" />
 
                         <LinearLayout
-                            android:id="@+id/fl_total_order_number"
+                            android:id="@+id/fl_total_member"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tv_total_order_number"
+                                android:id="@+id/tv_total_member_number"
                                 style="@style/home_today_data_number"
                                 android:text="" />
 
                             <TextView
                                 style="@style/home_today_data_title"
                                 android:layout_marginTop="5dp"
-                                android:text="@string/total_order_number" />
+                                android:text="@string/total_member_number" />
 
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-10dp"
+                    android:background="@drawable/ic_shadow"
+                    android:orientation="vertical"
+                    android:paddingBottom="28dp"
+                    android:paddingTop="14dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/gray_999999"
+                            android:text="昨日\n销量"
+                            android:gravity="center"/>
+
+                        <View
+                            style="@style/divider_vertical"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/gray_DADDE6" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/home_today_data_title"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/total_order_number" />
+
+                            <TextView
+                                android:id="@+id/tv_yesterday_order_count"
+                                style="@style/home_today_data_number"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <View
+                            style="@style/divider_vertical"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/gray_DADDE6" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/home_today_data_title"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/total_member_number" />
+
+                            <TextView
+                                android:id="@+id/tv_yesterday_order_amount"
+                                style="@style/home_today_data_number"
+                                android:text="" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View style="@style/divider_horizontal"
+                        android:background="@color/gray_DADDE6"
+                        android:layout_marginTop="@dimen/dp_14"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_14">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textColor="@color/gray_999999"
+                            android:text="本月\n销量"
+                            android:gravity="center"/>
+
+                        <View
+                            style="@style/divider_vertical"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/gray_DADDE6" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/home_today_data_title"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/total_order_number" />
+
+                            <TextView
+                                android:id="@+id/tv_this_month_order_count"
+                                style="@style/home_today_data_number"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <View
+                            style="@style/divider_vertical"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/gray_DADDE6" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/home_today_data_title"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/total_member_number" />
+
+                            <TextView
+                                android:id="@+id/tv_this_month_order_amount"
+                                style="@style/home_today_data_number"
+                                android:text="" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="15dp"
+                    android:textColor="@color/gray_999999"
+                    android:textSize="@dimen/sp_14"
+                    android:gravity="right"
+                    android:text="近30日销售排名"
+                    android:background="@color/white"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_goods_sale_rank"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"/>
+
             </LinearLayout>
-        </ScrollView>
+        </android.support.v4.widget.NestedScrollView>
     </in.srain.cube.views.ptr.PtrFrameLayout>
 
 </LinearLayout>

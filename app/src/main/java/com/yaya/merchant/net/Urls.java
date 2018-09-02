@@ -9,7 +9,7 @@ public class Urls {
     public static final String VERIFICATION_CODE = HOST + "Login/verificationCode";
     public static final String RESET_PASSWORD = HOST + "Login/changePassword";
     public static final String REGISTER_MERCHAT = HOST + "Shop/Apply";
-    public static final String HOME_DATA = HOST + "api/Homeindex/Index";
+    public static final String HOME_DATA = HOST + "Home/getStat";
     public static final String BILL_HOUSTON = HOST + "api/bill/Houston";
     public static final String BILL_GET_ALL_STORE = HOST + "api/bill/GetAllStore";
     public static final String BILL_GET_MEMBER_BILL = HOST + "api/bill/BillMember";
@@ -35,8 +35,8 @@ public class Urls {
     public static final String UPLOAD_IMG_FILES = HOST + "Upload/avatorUpload";
     public static final String UPLOAD_IMG_PICS = HOST + "Upload/Uploadpics";
     public static final String PUSH_FEED_BACK = HOST + "SystemUser/Feedback";
-    public static final String VERIFICATION_INDEX = HOST + "api/SystemUser/VerificationIndex";
-    public static final String VERIFICATION_SET = HOST + "api/SystemUser/VerificationSet";
+    public static final String VERIFICATION_INDEX = HOST + "Order/qrCode";
+    public static final String VERIFICATION_SET = HOST + "Order/cancel";
     public static final String GET_SERVICE_PHONE = HOST + "Login/GetPhone";
     public static final String CHANGE_PROFILE_PIC = HOST + "Login/modifyHeadImg";
     public static final String CHANGE_PASSWORD = HOST + "Login/changePwd";
@@ -61,5 +61,6 @@ public class Urls {
     public static final String GET_MERCHANT_LIST_BY_AGENT = HOST + "Business/business";
     public static final String GET_MERCHANT_DETAIL = HOST + "Data/datas";
     public static final String GET_MERCHANT_CLASSIFY = HOST + "Business/cate";
+    public static final String QUERY_GOODS_SALE_RANK = HOST + "Home/getGoodsRealSalesRank";
 
 }

@@ -74,7 +74,7 @@ public class VerificationActivity extends BaseActivity {
         captureManager.setCallback(new CustomCaptureManager.OnGetResultCallback() {
             @Override
             public void parseResult(final BarcodeResult rawResult) {
-                UserAction.verification(Urls.VERIFICATION_INDEX, rawResult.getText(), new GsonCallback<VerificationInfo>(VerificationInfo.class) {
+                UserAction.getOrderByQrCode(rawResult.getText(), new GsonCallback<VerificationInfo>(VerificationInfo.class) {
 
                     @Override
                     public void onBefore(Request request, int id) {
@@ -92,14 +92,13 @@ public class VerificationActivity extends BaseActivity {
 
                     @Override
                     public void onSucceed(JsonResponse<VerificationInfo> response) {
-                        VerificationInfo info = response.getData().getData();
-                        info.setVerificationSn(rawResult.getText());
+                        VerificationInfo info = response.getResultData();
                         VerificationResultActivity.open(VerificationActivity.this,info);
                     }
 
                     @Override
                     public void onFailed(JsonResponse<VerificationInfo> response) {
-                        mDBV.setStatusText(response.getData().getError());
+                        mDBV.setStatusText(response.getMsg());
                     }
                 });
             }

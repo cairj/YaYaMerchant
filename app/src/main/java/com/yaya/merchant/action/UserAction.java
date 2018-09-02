@@ -207,13 +207,24 @@ public class UserAction {
     }
 
     //核销
-    public static void verification(String url, String verificationSn, Callback callback) {
+    public static void verification(String verificationSn, Callback callback) {
+        if (TextUtils.isEmpty(verificationSn)) {
+            ToastUtil.toast("订单号不能为空");
+            return;
+        }
+        OkHttpUtils.get().url(Urls.VERIFICATION_SET)
+                .addParams("order_id", verificationSn)
+                .build().execute(callback);
+    }
+
+    //根据二维码获取订单信息
+    public static void getOrderByQrCode(String verificationSn, Callback callback){
         if (TextUtils.isEmpty(verificationSn)) {
             ToastUtil.toast("核销码不能为空");
             return;
         }
-        OkHttpUtils.get().url(url)
-                .addParams("verificationSn", verificationSn)
+        OkHttpUtils.get().url(Urls.VERIFICATION_INDEX)
+                .addParams("order_id", verificationSn)
                 .build().execute(callback);
     }
 

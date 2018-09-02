@@ -1,82 +1,98 @@
 package com.yaya.merchant.data.user;
 
+import com.yaya.merchant.data.order.OrderDetailData;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  */
 
 public class VerificationInfo implements Serializable {
 
-    private String img;
-    private String orderSn;//2018030710390200022424",
-    private String payTime;//null,
-    private String payStatus;//未付款",
-    private String productName;//产品2",
-    private String orderPrice;//120,
-    private String orderNum;// 2，
-    private String verificationSn;// 核销码
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
+    private String orderSn;//2018082113470001", // 订单号
+    private String payStatus;//已支付",
+    private String orderStatus;//待发货",
+    private String payTime;//2018-08-21T14:19:21", // 付款时间
+    private String type;//买家自提",
+    private String userPhone;//15055055011",
+    private String userName;//Jun",
+    private String userAddress;//海南省海口市琼山区45464564",
+    private String memberInfo;//Jun:15055055011",
+    private String creationTime;//2018-08-21T13:47:49",
+    private String paySource;//微信支付",
+    private String orderPrice;//0.01",
+    private String deliverPrice;//0.00",
+    private String totalPrice;//0.01", // 商品总价
+    private String order_id;//8639, // order_id
+    private int status;// 1,  // 不等1为核销过了
+    private List<OrderDetailData> orderdetail;// [{ // 商品列表
 
     public String getOrderSn() {
         return orderSn;
-    }
-
-    public void setOrderSn(String orderSn) {
-        this.orderSn = orderSn;
-    }
-
-    public String getPayTime() {
-        return payTime;
-    }
-
-    public void setPayTime(String payTime) {
-        this.payTime = payTime;
     }
 
     public String getPayStatus() {
         return payStatus;
     }
 
-    public void setPayStatus(String payStatus) {
-        this.payStatus = payStatus;
+    public String getOrderStatus() {
+        return orderStatus;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getPayTime() {
+        return payTime;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public String getType() {
+        return type;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getUserAddress() {
+        return userAddress;
+    }
+
+    public String getMemberInfo() {
+        return memberInfo;
+    }
+
+    public String getCreationTime() {
+        return creationTime;
+    }
+
+    public String getPaySource() {
+        return paySource;
     }
 
     public String getOrderPrice() {
         return orderPrice;
     }
 
-    public void setOrderPrice(String orderPrice) {
-        this.orderPrice = orderPrice;
+    public String getDeliverPrice() {
+        return deliverPrice;
     }
 
-    public String getOrderNum() {
-        return orderNum;
+    public String getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setOrderNum(String orderNum) {
-        this.orderNum = orderNum;
+    public String getOrder_id() {
+        return order_id;
     }
 
-    public String getVerificationSn() {
-        return verificationSn;
+    public int getStatus() {
+        return status;
     }
 
-    public void setVerificationSn(String verificationSn) {
-        this.verificationSn = verificationSn;
+    public List<OrderDetailData> getOrderdetail() {
+        return orderdetail;
     }
 }

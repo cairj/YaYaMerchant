@@ -1,11 +1,15 @@
 package com.yaya.merchant.fragment.main;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
+import com.yaya.merchant.action.GoodsAction;
 import com.yaya.merchant.action.MainAction;
 import com.yaya.merchant.activity.MainActivity;
 import com.yaya.merchant.activity.account.BalanceAccountActivity;
@@ -15,10 +19,14 @@ import com.yaya.merchant.activity.article.ArticleListActivity;
 import com.yaya.merchant.activity.user.VerificationActivity;
 import com.yaya.merchant.activity.withdraw.WithdrawMoneyActivity;
 import com.yaya.merchant.base.fragment.BaseFragment;
+import com.yaya.merchant.data.goods.Goods;
 import com.yaya.merchant.data.main.HomeData;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.LoadingUtil;
 import com.yaya.merchant.widgets.GifPtrHeader;
+import com.yaya.merchant.widgets.adapter.GoodsSaleRankAdapter;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -50,6 +58,20 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.ptr_frame)
     protected PtrFrameLayout ptrFrame;
 
+    @BindView(R.id.tv_yesterday_order_count)
+    protected TextView yesterdayOrderCountTv;
+    @BindView(R.id.tv_yesterday_order_amount)
+    protected TextView yesterdayOrderAmountTv;
+    @BindView(R.id.tv_this_month_order_count)
+    protected TextView thisMonthOrderCountTv;
+    @BindView(R.id.tv_this_month_order_amount)
+    protected TextView thisMonthOrderAmountTv;
+    @BindView(R.id.rv_goods_sale_rank)
+    protected RecyclerView goodsSaleRankRv;
+
+    private GoodsSaleRankAdapter saleRankAdapter;
+    private ArrayList<Goods> goodList = new ArrayList<>();
+
     @Override
     protected int getContentViewId() {
         return R.layout.fragment_home;
@@ -59,6 +81,8 @@ public class HomeFragment extends BaseFragment {
     protected void initView() {
         super.initView();
         initPtrFrame();
+
+        initGoodsSaleRank();
     }
 
     /** 设置ptr */
@@ -76,7 +100,7 @@ public class HomeFragment extends BaseFragment {
         ptrFrame.setPtrHandler(new PtrHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
-                getData();
+                initData();
             }
 
             @Override
@@ -86,9 +110,16 @@ public class HomeFragment extends BaseFragment {
         });
     }
 
+    private void initGoodsSaleRank(){
+        goodsSaleRankRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        saleRankAdapter = new GoodsSaleRankAdapter(goodList);
+        goodsSaleRankRv.setAdapter(saleRankAdapter);
+    }
+
     @Override
     protected void initData() {
         getData();
+        getGoodsSaleRank();
     }
 
     private void getData(){
@@ -116,17 +147,33 @@ public class HomeFragment extends BaseFragment {
 
             @Override
             public void onSucceed(JsonResponse<HomeData> response) {
-                amountTv.setText(response.getData().getData().getCollectionAmount());
-                todayTransactionNumberTv.setText(response.getData().getData().getOrderNumber());
-                todayVisitorNumberTv.setText(response.getData().getData().getVisitorCount());
-                todayNewMemberNumberTv.setText(response.getData().getData().getAddMemberCount());
-                totalTransactionNumberTv.setText(response.getData().getData().getOrderPriceTotal());
-                totalMemberNumberTv.setText(response.getData().getData().getMemberTotal());
-                totalOrderNumberTv.setText(response.getData().getData().getOrderPriceCount());
+                amountTv.setText(response.getResultData().getCollectionAmount());
+                todayTransactionNumberTv.setText(response.getResultData().getOrderNumber());
+                todayVisitorNumberTv.setText(response.getResultData().getOrderPrice());
+                todayNewMemberNumberTv.setText(response.getResultData().getAddMemberCount());
+                totalTransactionNumberTv.setText(response.getResultData().getOrderPriceTotal());
+                totalMemberNumberTv.setText(response.getResultData().getMemberTotal());
+                totalOrderNumberTv.setText(response.getResultData().getOrderPriceCount());
 
-                if (getActivity() instanceof MainActivity){
-                    ((MainActivity)getActivity()).setOrderCount(response.getData().getData().getOrderCount());
+                yesterdayOrderCountTv.setText(response.getResultData().getYesterdayOrderTotal());
+                yesterdayOrderAmountTv.setText(response.getResultData().getYesterdayOrderPrice());
+                thisMonthOrderCountTv.setText(response.getResultData().getMonthOrderTotal());
+                thisMonthOrderAmountTv.setText(response.getResultData().getMonthOrderPrice());
+
+                if (getActivity() instanceof MainActivity && !TextUtils.isEmpty(response.getResultData().getOrderCount())){
+                    ((MainActivity)getActivity()).setOrderCount(response.getResultData().getOrderCount());
                 }
+            }
+        });
+    }
+
+    private void getGoodsSaleRank(){
+        GoodsAction.queryGoodsSaleRank("", new GsonCallback<Goods>(Goods.class) {
+            @Override
+            public void onSucceed(JsonResponse<Goods> response) {
+                goodList.clear();
+                goodList.addAll(response.getDataList());
+                saleRankAdapter.notifyDataSetChanged();
             }
         });
     }
