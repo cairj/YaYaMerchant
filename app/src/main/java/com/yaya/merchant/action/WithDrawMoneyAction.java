@@ -7,8 +7,12 @@ import com.google.gson.reflect.TypeToken;
 import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.data.account.Member;
+import com.yaya.merchant.data.withdraw.BankCard;
 import com.yaya.merchant.data.withdraw.WithdrawMoneyRecord;
 import com.yaya.merchant.net.Urls;
+import com.yaya.merchant.util.ToastUtil;
+import com.yaya.merchant.util.sp.SPUtil;
+import com.yaya.merchant.util.sp.SpKeys;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.GetBuilder;
 import com.zhy.http.okhttp.callback.Callback;
@@ -26,6 +30,7 @@ public class WithDrawMoneyAction {
 
     public static void getBankCard(Callback callback){
         OkHttpUtils.get().url(Urls.GET_BANK_CARD)
+                .addParams("token", SPUtil.getString(SpKeys.TOKEN))
                 .build().execute(callback);
     }
 
@@ -34,12 +39,14 @@ public class WithDrawMoneyAction {
                 .build().execute(callback);
     }
 
-    public static void getWithDrawMoney(String amount,Callback callback){
+    public static void getWithDrawMoney(String amount,String bankAccountId,Callback callback){
         if (TextUtils.isEmpty(amount)){
+            ToastUtil.toast("提现金额不能为空");
             return;
         }
         OkHttpUtils.get().url(Urls.WITH_DRAW_MONEY)
-                .addParams("amount",amount)
+                .addParams("cash",amount)
+                .addParams("bank_account_id",bankAccountId)
                 .build().execute(callback);
     }
 
@@ -54,7 +61,7 @@ public class WithDrawMoneyAction {
                 .addParams("page", page)
                 .addParams("pageSize", pageSize);
         if (!TextUtils.isEmpty(cashoutType)) {
-            builder.addParams("cashoutType", cashoutType);
+            builder.addParams("withdraw_type", cashoutType);
         }
         if (!TextUtils.isEmpty(status)) {
             builder.addParams("status", status);
@@ -70,6 +77,18 @@ public class WithDrawMoneyAction {
         Type type = new TypeToken<JsonResponse<BaseRowData<WithdrawMoneyRecord>>>() {
         }.getType();
         return gson.fromJson(response.body().string(), type);
+    }
+
+    //银行卡
+    public static void getBankAccountList(Callback callback) {
+        OkHttpUtils.get().url(Urls.QUERY_BANK_ACCOUNT_LIST).build().execute(callback);
+    }
+
+    //银行卡
+    public static void changeDefaultBankCard(String id,Callback callback) {
+        OkHttpUtils.get().url(Urls.CHANGE_DEFAULT_BANK)
+                .addParams("id",id)
+                .build().execute(callback);
     }
 
 }

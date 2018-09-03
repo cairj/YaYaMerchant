@@ -6,7 +6,9 @@ import android.view.View;
 
 import com.toroke.okhttp.JsonResponse;
 import com.toroke.okhttp.BaseData;
+import com.yaya.merchant.util.AppManager;
 import com.yaya.merchant.util.Constants;
+import com.yaya.merchant.util.UserHelper;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
@@ -53,25 +55,14 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
             Log.e("body============",json);
             parse(jsonResponse, json);
 
-            /*switch (jsonResponse.getre) {
+            switch (jsonResponse.getCode()) {
                 case 0:
-                    *//*code = 0 代表成功，默认实现了Gson解析成相应的实体Bean返回，可以自己替换成fastjson等
-                        * 对于返回参数，先支持 String，然后优先支持class类型的字节码，最后支持type类型的参数
-                        *//*
+
                     break;
-                case 104:
-                    //比如：用户授权信息无效，在此实现相应的逻辑，弹出对话或者跳转到其他页面等
+                case 101://token过期
+                    UserHelper.logout(AppManager.getAppManager().getCurrentActivity());
                     break;
-                case 105:
-                    //比如：用户收取信息已过期，在此实现相应的逻辑，弹出对话或者跳转到其他页面等
-                    break;
-                case 106:
-                    //比如：用户账户被禁用，在此实现相应的逻辑，弹出对话或者跳转到其他页面等
-                    break;
-                case 300:
-                    //比如：其他乱七八糟的等，在此实现相应的逻辑，弹出对话或者跳转到其他页面等
-                    break;
-            }*/
+            }
             //如果要更新UI，需要使用handler，可以如下方式实现，也可以自己写handler
             OkHttpUtils.getInstance().getDelivery().execute(new Runnable() {
                 @Override
@@ -134,7 +125,7 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
     }
 
     protected void parseResults(JSONObject jsonObject) throws JSONException {
-        if (jsonResponse.getCode() == Constants.RESPONSE_SUCCESS && jsonObject.has(JSON_KEY_DATA)) {
+        if (jsonResponse.getCode() == Constants.RESPONSE_SUCCESS && jsonObject.has(JSON_KEY_DATA) && (jsonObject.get(JSON_KEY_DATA) instanceof JSONArray)) {
             JSONArray resultsArray = jsonObject.getJSONArray(JSON_KEY_DATA);
             if (resultsArray != null) {
                 jsonResponse.setDataList(parseItems(resultsArray));

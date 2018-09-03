@@ -1,32 +1,71 @@
 package com.yaya.merchant.data.withdraw;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class BankCard implements Serializable {
 
-     /*"tenantId": 1,
-             "bankName": "建行福建分行南靖支行",
-             "cardOwner": "虎伯寮",
-             "cardType": "公司",
-             "cardNo": "1232131232131321305",
-             "cardLicence": "http://127.0.0.1:800/Upload/Images//1/1_131620054250515412.jpg",
-             "status": "通过",
-             "creationTime": "2018-02-07T14:09:40",
-             "creatorUserId": null,
-             "deleterUserId": 2,
-             "deletionTime": "2018-02-25T11:16:53",
-             "isDeleted": false,
-             "lastModifierUserId": null,
-             "lastModificationTime": "2018-02-08T00:49:39",
-             "id": 3*/
-     private String bankName;
-     private String cardNo;
+    @SerializedName("account_balance")
+    private float accountBalance;
+    @SerializedName("can_account_proceeds")
+    private float canAccountProceeds;
+    @SerializedName("shop_bank_account")
+    private BankAccount bankAccount;
 
-    public String getBankName() {
-        return bankName;
+    public float getAccountBalance() {
+        return accountBalance;
     }
 
-    public String getCardNo() {
-        return cardNo;
+    public float getCanAccountProceeds() {
+        return canAccountProceeds;
+    }
+
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
+
+    public class BankAccount implements Serializable{
+        private int id;
+        @SerializedName("shop_id")
+        private int shopId;
+        @SerializedName("branch_bank_name")
+        private String bankName;
+        @SerializedName("bank_type")
+        private String bankType;
+        @SerializedName("account_number")
+        private String accountNumber;
+        @SerializedName("is_default")
+        private int isDefault;
+        @SerializedName("realname")
+        private String realName;
+
+        public int getId() {
+            return id;
+        }
+
+        public int getShopId() {
+            return shopId;
+        }
+
+        public String getBankName() {
+            return bankName;
+        }
+
+        public String getBankType() {
+            return bankType;
+        }
+
+        public String getAccountNumber() {
+            return accountNumber;
+        }
+
+        public int getIsDefault() {
+            return isDefault;
+        }
+
+        public String getRealName() {
+            return realName;
+        }
     }
 }

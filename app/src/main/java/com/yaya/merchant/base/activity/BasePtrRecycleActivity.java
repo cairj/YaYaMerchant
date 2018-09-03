@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -60,6 +61,7 @@ public abstract class BasePtrRecycleActivity<T extends Serializable> extends Bas
         layoutInflater = LayoutInflater.from(this);
         findViews();
         initTipInfoEmptyView();
+        initTipInfoErrorView();
         initFooterView();
         initRecycleView();
         initPtrFrame();
@@ -235,7 +237,7 @@ public abstract class BasePtrRecycleActivity<T extends Serializable> extends Bas
     }
 
     protected void judgeIsEmpty() {
-        if (mDataList.size() > 0) {
+        if (!isDataListEmpty()) {
             onDataNoEmpty();
         } else {
             onDataEmpty();
@@ -256,8 +258,17 @@ public abstract class BasePtrRecycleActivity<T extends Serializable> extends Bas
         adapter.notifyDataSetChanged();
     }
 
+    //判断整个列表是否为空，有些界面虽然mDataList为空，但是添加了header
+    protected boolean isDataListEmpty(){
+        if (adapter instanceof BaseQuickAdapter){
+            return ((BaseQuickAdapter)adapter).getHeaderLayoutCount() == 0 && mDataList.isEmpty();
+        }else {
+            return mDataList.isEmpty();
+        }
+    }
+
     protected void initTipInfoEmptyView() {
-        /*View view = layoutInflater.inflate(R.layout.layout_member_feed_empty, null);
+        View view = layoutInflater.inflate(R.layout.layout_member_feed_empty, null);
         ImageView emptyImg = (ImageView) view.findViewById(R.id.empty_img);
         TextView emptyHintTv = (TextView)view.findViewById(R.id.hint_tv);
         emptyImg.setImageResource(getEmptyViewImgId());
@@ -268,11 +279,11 @@ public abstract class BasePtrRecycleActivity<T extends Serializable> extends Bas
                 refresh();
             }
         });
-        tipInfo.setEmptyViewContainer(view);*/
+        tipInfo.setEmptyViewContainer(view);
     }
 
     protected void initTipInfoErrorView() {
-        /*View view = layoutInflater.inflate(R.layout.layout_member_feed_empty, null);
+        View view = layoutInflater.inflate(R.layout.layout_member_feed_empty, null);
         ImageView emptyImg = (ImageView) view.findViewById(R.id.empty_img);
         TextView emptyHintTv = (TextView)view.findViewById(R.id.hint_tv);
         emptyImg.setImageResource(getEmptyViewImgId());
@@ -283,15 +294,15 @@ public abstract class BasePtrRecycleActivity<T extends Serializable> extends Bas
                 refresh();
             }
         });
-        tipInfo.setEmptyViewContainer(view);*/
+        tipInfo.setEmptyViewContainer(view);
     }
 
-    /*protected String getEmptyViewHint() {
+    protected String getEmptyViewHint() {
         return getString(R.string.hint_empty_data);
     }
     protected int getEmptyViewImgId() {
-        return R.drawable.empty_img;
-    }*/
+        return R.mipmap.ic_empty;
+    }
 
     public PtrFrameLayout getPtrFrame(){
         return ptrFrame;

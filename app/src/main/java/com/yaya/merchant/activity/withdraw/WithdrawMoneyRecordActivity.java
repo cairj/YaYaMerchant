@@ -118,7 +118,7 @@ public class WithdrawMoneyRecordActivity extends BasePtrRecycleActivity<Withdraw
                 cashOutStatusTv.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_down, 0);
             }
         });
-        initWindowList(WithdrawMoneyRecord.CASH_OUT_STATUS, WithdrawMoneyRecord.CASH_OUT_STATUS, "所有状态",
+        initWindowList(WithdrawMoneyRecord.CASH_OUT_STATUS, WithdrawMoneyRecord.CASH_OUT_STATUS_VALUES, "全部状态",
                 statusChoiceItemList, statusChoiceAdapter, cashOutStatusTv, statusChoiceWindow, CASH_OUT_STATUS);
 
     }
@@ -203,4 +203,8 @@ public class WithdrawMoneyRecordActivity extends BasePtrRecycleActivity<Withdraw
         DialogUtil.chatToService(this,"预计24小时到账\n");
     }
 
+    @Override
+    protected String getEmptyViewHint() {
+        return "还没有提现记录哦";
+    }
 }

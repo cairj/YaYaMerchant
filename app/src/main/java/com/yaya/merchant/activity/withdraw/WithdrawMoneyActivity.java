@@ -11,11 +11,16 @@ import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.data.withdraw.BankCard;
 import com.yaya.merchant.data.withdraw.MemberBalance;
 import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.EventBusTags;
+import com.yaya.merchant.util.LoadingUtil;
 import com.yaya.merchant.util.StatusBarUtil;
 import com.yaya.merchant.util.ToastUtil;
 
+import org.simple.eventbus.Subscriber;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+import okhttp3.Request;
 
 /**
  * Created by admin on 2018/3/15.
@@ -24,6 +29,7 @@ import butterknife.OnClick;
 public class WithdrawMoneyActivity extends BaseActivity {
 
     private String amount = "";
+    private String bankAccountId;
 
     @BindView(R.id.tv_bank_card)
     protected TextView bankCardTv;
@@ -46,34 +52,23 @@ public class WithdrawMoneyActivity extends BaseActivity {
         setActionBarRight("提现记录");
 
         getBankCardData();
-        getMemberBalance();
     }
 
     private void getBankCardData() {
         WithDrawMoneyAction.getBankCard(new GsonCallback<BankCard>(BankCard.class) {
             @Override
             public void onSucceed(JsonResponse<BankCard> response) {
-                String text = response.getData().getData().getBankName();
-                String bankCard = response.getData().getData().getCardNo();
-                bankCard = bankCard.substring(bankCard.length() - 4);
-                bankCardTv.setText(text + "(" + bankCard + ")");
+                BankCard bankCard = response.getResultData();
+                bankCardTv.setText(bankCard.getBankAccount().getBankName());
+                totalMoneyTv.setText(String.format(getString(R.string.withdraw_money_count), String.valueOf(bankCard.getCanAccountProceeds())));
+                memberBalanceTv.setText("￥" + bankCard.getAccountBalance());
+                amount = String.valueOf(bankCard.getCanAccountProceeds());
+                bankAccountId = String.valueOf(bankCard.getBankAccount().getId());
             }
         });
     }
 
-    private void getMemberBalance() {
-        WithDrawMoneyAction.getMemberBalance(new GsonCallback<MemberBalance>(MemberBalance.class) {
-            @Override
-            public void onSucceed(JsonResponse<MemberBalance> response) {
-                MemberBalance memberBalance = response.getData().getData();
-                totalMoneyTv.setText(String.format(getString(R.string.withdraw_money_count), memberBalance.getAmount()));
-                memberBalanceTv.setText("￥" + memberBalance.getBalance());
-                amount = memberBalance.getAmount();
-            }
-        });
-    }
-
-    @OnClick({R.id.tv_withdraw_all, R.id.tv_submit_withdraw})
+    @OnClick({R.id.tv_withdraw_all, R.id.tv_submit_withdraw, R.id.ll_bank_card})
     protected void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_withdraw_all:
@@ -82,15 +77,31 @@ public class WithdrawMoneyActivity extends BaseActivity {
             case R.id.tv_submit_withdraw:
                 submitWithDrawMoney();
                 break;
+            case R.id.ll_bank_card:
+                openActivity(ChangeDefaultBankCardActivity.class);
+                break;
         }
     }
 
     private void submitWithDrawMoney() {
-        WithDrawMoneyAction.getWithDrawMoney(moneyCountEdit.getText().toString().trim(),
+        WithDrawMoneyAction.getWithDrawMoney(moneyCountEdit.getText().toString().trim(), bankAccountId,
                 new GsonCallback<String>(String.class) {
                     @Override
                     public void onSucceed(JsonResponse<String> response) {
-                        ToastUtil.toast(response.getData().getData());
+                        ToastUtil.toast("提现成功");
+                        getBankCardData();
+                    }
+
+                    @Override
+                    public void onBefore(Request request, int id) {
+                        super.onBefore(request, id);
+                        LoadingUtil.showAsyncProgressDialog(WithdrawMoneyActivity.this, "提现中");
+                    }
+
+                    @Override
+                    public void onAfter(int id) {
+                        super.onAfter(id);
+                        LoadingUtil.hideProcessingIndicator();
                     }
                 });
     }
@@ -98,5 +109,10 @@ public class WithdrawMoneyActivity extends BaseActivity {
     @Override
     protected void rightClick() {
         openActivity(WithdrawMoneyRecordActivity.class);
+    }
+
+    @Subscriber(tag = EventBusTags.REFRESH_DEFAULT_BANK)
+    private void refreshDefaultBank(String str) {
+        getBankCardData();
     }
 }
