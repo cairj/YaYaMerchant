@@ -26,12 +26,12 @@ import okhttp3.Response;
 public class OrderAction {
 
     //获取订单列表
-    public static JsonResponse<BaseRowData<OrderDetail>> getOrderList(String url, String startTime, String endTime,
+    public static JsonResponse<BaseRowData<OrderDetail>> getOrderList(String startTime, String endTime,String isScan,String orderStatus,
                                                                     String page, String pageSize) throws IOException {
         if (TextUtils.isEmpty(page) || TextUtils.isEmpty(pageSize)) {
             return null;
         }
-        GetBuilder builder = OkHttpUtils.get().url(url)
+        GetBuilder builder = OkHttpUtils.get().url(Urls.GET_ORDER_LIST)
                 .addParams("page", page)
                 .addParams("pageSize", pageSize);
         if (!TextUtils.isEmpty(startTime)) {
@@ -39,6 +39,12 @@ public class OrderAction {
         }
         if (!TextUtils.isEmpty(endTime)) {
             builder.addParams("endTime", endTime);
+        }
+        if (!TextUtils.isEmpty(isScan)) {
+            builder.addParams("is_scan", isScan);
+        }
+        if (!TextUtils.isEmpty(orderStatus)) {
+            builder.addParams("order_status", orderStatus);
         }
         Response response = builder.build().execute();
         Gson gson = new Gson();
@@ -48,8 +54,8 @@ public class OrderAction {
     }
 
     //订单详情
-    public static void getOrderDetail(String url,String orderSn, Callback callback) {
-        OkHttpUtils.get().url(url)
+    public static void getOrderDetail(String orderSn, Callback callback) {
+        OkHttpUtils.get().url(Urls.GET_ORDER_DETAIL)
                 .addParams("orderSn", orderSn)
                 .build().execute(callback);
     }

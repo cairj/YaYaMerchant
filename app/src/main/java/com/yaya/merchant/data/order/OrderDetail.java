@@ -13,6 +13,9 @@ public class OrderDetail implements Serializable {
     public static final int TYPE_DELIVER_ORDER_LIST=2;
     public static final int TYPE_REFUND_ORDER_LIST=3;
 
+    public static final int ORDER_PAYMENT_TYPE_SCAN = 1;//扫码
+    public static final int ORDER_PAYMENT_TYPE_ONLINE = 0;//线上
+
     private String id;//"68", //发货设置的参数
     private String memberId;// "1", //发货设置的参数
     private String orderSn;// "2018031916095000032118",
@@ -25,8 +28,8 @@ public class OrderDetail implements Serializable {
     private String userAddress;// "花果山水帘洞",
     private String creationTime;//"2018-03-19T16:09:53",//下单时间
     private String paySource;// "sign_ic_wechat",//支付方式
-    private String orderPrice;//1700,//商品总额
-    private String deliverPrice;// 0,//运费
+    private float orderPrice;//1700,//商品总额
+    private float deliverPrice;// 0,//运费
     private String totalPrice;// 1700,//实付款
     private String refundReason;// 退货原因
     private String memberInfo;// 退货原因
@@ -80,11 +83,11 @@ public class OrderDetail implements Serializable {
         return paySource;
     }
 
-    public String getOrderPrice() {
+    public float getOrderPrice() {
         return orderPrice;
     }
 
-    public String getDeliverPrice() {
+    public float getDeliverPrice() {
         return deliverPrice;
     }
 

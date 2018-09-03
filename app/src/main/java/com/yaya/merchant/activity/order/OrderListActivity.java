@@ -39,10 +39,10 @@ import butterknife.OnClick;
 
 public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
 
-    private int type;
+    private int isScan;
     private String startTime;
     private String endTime;
-    private String url = Urls.GET_ORDER_LIST;
+    private String orderStatus;
 
     private Calendar startCalendar;
     private Calendar endCalendar;
@@ -67,9 +67,9 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
     private DatePickerPopupWindow startTimePopupWindow;
     private DatePickerPopupWindow endTimePopupWindow;
 
-    public static void open(Context context, int type) {
+    public static void open(Context context, int isScan) {
         Intent intent = new Intent(context, OrderListActivity.class);
-        intent.putExtra("type", type);
+        intent.putExtra("isScan", isScan);
         context.startActivity(intent);
     }
 
@@ -80,25 +80,10 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
 
     @Override
     protected void initView() {
-        type = getIntent().getIntExtra("type", 0);
-        if (type != OrderDetail.TYPE_ORDER_LIST) {
-            choiceLL.setVisibility(View.GONE);
-        }
+        isScan = getIntent().getIntExtra("isScan", 0);
         super.initView();
         StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
-        switch (type) {
-            case OrderDetail.TYPE_ORDER_LIST:
-                setActionBarTitle("订单列表");
-                break;
-            case OrderDetail.TYPE_DELIVER_ORDER_LIST:
-                url = Urls.GET_DELIVER_ORDER_LIST;
-                setActionBarTitle("发货");
-                break;
-            case OrderDetail.TYPE_REFUND_ORDER_LIST:
-                url = Urls.GET_REFUND_ORDER_LIST;
-                setActionBarTitle("退货审核");
-                break;
-        }
+        setActionBarTitle("订单列表");
         startTimePopupWindow = new DatePickerPopupWindow(this);
         startTimePopupWindow.setOnSubmitTvClickListener(new DatePickerPopupWindow.OnSubmitTvClickListener() {
             @Override
@@ -131,23 +116,22 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
     @Override
     protected BaseQuickAdapter getAdapter() {
         OrderListAdapter adapter = new OrderListAdapter(mDataList);
-        adapter.setType(type);
         adapter.setListener(new OrderListAdapter.OnClickListener() {
             @Override
             public void onParentClick(OrderDetail orderData) {
-                OrderDetailActivity.open(OrderListActivity.this,type,orderData.getOrderSn());
+                OrderDetailActivity.open(OrderListActivity.this,orderData.getOrderSn());
             }
 
             @Override
             public void onBtnClick(OrderDetail orderDetail) {
-                switch (type) {
+                /*switch (type) {
                     case OrderDetail.TYPE_DELIVER_ORDER_LIST:
                         DeliverOrderActivity.open(OrderListActivity.this, orderDetail);
                         break;
                     case OrderDetail.TYPE_REFUND_ORDER_LIST:
                         RefundOrderActivity.open(OrderListActivity.this, orderDetail);
                         break;
-                }
+                }*/
             }
         });
         return adapter;
@@ -155,7 +139,7 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
 
     @Override
     protected JsonResponse<BaseRowData<OrderDetail>> getData() throws Exception {
-        return OrderAction.getOrderList(url, startTime, endTime,
+        return OrderAction.getOrderList(startTime, endTime,String.valueOf(isScan),orderStatus,
                 String.valueOf(mCurrentPos), String.valueOf(pageSize));
     }
 
@@ -178,6 +162,10 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
                     startTimeTv.setText("");
                     endTimeTv.setText("");
                     chooseDateLL.setVisibility(View.VISIBLE);
+                    todayTv.setSelected(false);
+                    yesterdayTv.setSelected(false);
+                    thisMonthTv.setSelected(false);
+                    customTv.setSelected(true);
                 }
                 break;
             case R.id.tv_start_time:

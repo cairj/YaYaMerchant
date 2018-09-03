@@ -16,11 +16,13 @@ import com.yaya.merchant.activity.account.BalanceAccountActivity;
 import com.yaya.merchant.activity.account.EnterBillActivity;
 import com.yaya.merchant.activity.account.MemberManagerActivity;
 import com.yaya.merchant.activity.article.ArticleListActivity;
+import com.yaya.merchant.activity.order.OrderListActivity;
 import com.yaya.merchant.activity.user.VerificationActivity;
 import com.yaya.merchant.activity.withdraw.WithdrawMoneyActivity;
 import com.yaya.merchant.base.fragment.BaseFragment;
 import com.yaya.merchant.data.goods.Goods;
 import com.yaya.merchant.data.main.HomeData;
+import com.yaya.merchant.data.order.OrderDetail;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.LoadingUtil;
 import com.yaya.merchant.widgets.GifPtrHeader;
@@ -179,7 +181,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     @OnClick({R.id.home_tv_amount,R.id.fl_total_member,R.id.fl_total_order_number,R.id.tv_cash,
-            R.id.tv_receivables,R.id.tv_balance_account,R.id.iv_news})
+            R.id.tv_receivables,R.id.tv_balance_account,R.id.iv_news,R.id.tv_scan_payment,R.id.tv_online_payment})
     protected void onClick(View view){
         switch (view.getId()){
             case R.id.home_tv_amount:
@@ -206,6 +208,12 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.iv_news:
                 openActivity(ArticleListActivity.class);
+                break;
+            case R.id.tv_scan_payment:
+                OrderListActivity.open(getActivity(), OrderDetail.ORDER_PAYMENT_TYPE_SCAN);
+                break;
+            case R.id.tv_online_payment:
+                OrderListActivity.open(getActivity(), OrderDetail.ORDER_PAYMENT_TYPE_ONLINE);
                 break;
         }
     }

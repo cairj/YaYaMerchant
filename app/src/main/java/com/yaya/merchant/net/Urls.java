@@ -43,10 +43,10 @@ public class Urls {
     public static final String BILL_GET_RECONCILIATION = HOST + "api/bill/Reconciliation";
     public static final String BILL_GET_BILL_LIST = HOST + "api/bill/BillList";
     public static final String GET_ORDER_DATA = HOST + "api/ShopOrder/Index";
-    public static final String GET_ORDER_LIST = HOST + "api/ShopOrder/OrderList";
+    public static final String GET_ORDER_LIST = HOST + "Order/OrderList";
     public static final String GET_DELIVER_ORDER_LIST = HOST + "api/ShopOrder/DeliverGoodsList";
     public static final String GET_REFUND_ORDER_LIST = HOST + "api/ShopOrder/RefundApplyList";
-    public static final String GET_ORDER_DETAIL = HOST + "api/ShopOrder/OrderDetail";
+    public static final String GET_ORDER_DETAIL = HOST + "Order/OrderDetail";
     public static final String GET_DELIVER_ORDER_DETAIL = HOST + "api/ShopOrder/DeliverGoodsDetail";
     public static final String GET_REFUND_ORDER_DETAIL = HOST + "api/ShopOrder/RefundApplyDetail";
     public static final String GET_EXPRESS_COMPANY_LIST = HOST + "api/ShopOrder/GetExpressName";

@@ -60,7 +60,7 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderDetail> {
         });
 
         TextView btn = baseViewHolder.getView(R.id.tv_btn);
-        switch (type) {
+        /*switch (type) {
             case OrderDetail.TYPE_DELIVER_ORDER_LIST:
                 btn.setText("发货");
                 btn.setVisibility(View.VISIBLE);
@@ -73,7 +73,8 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderDetail> {
             default:
                 btn.setVisibility(View.GONE);
                 break;
-        }
+        }*/
+        btn.setVisibility(View.GONE);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

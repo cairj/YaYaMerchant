@@ -11,6 +11,7 @@ import java.util.List;
 
 public class BaseRowData<T extends Serializable> implements Serializable{
 
+    @SerializedName(value = "data",alternate = {"rows"})
     private List<T> data;
     @SerializedName(value = "total_count",alternate = {"total"})
     private int total;
