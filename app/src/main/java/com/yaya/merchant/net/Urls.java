@@ -10,9 +10,9 @@ public class Urls {
     public static final String RESET_PASSWORD = HOST + "Login/changePassword";
     public static final String REGISTER_MERCHAT = HOST + "Shop/Apply";
     public static final String HOME_DATA = HOST + "Home/getStat";
-    public static final String BILL_HOUSTON = HOST + "api/bill/Houston";
-    public static final String BILL_GET_ALL_STORE = HOST + "api/bill/GetAllStore";
-    public static final String BILL_GET_MEMBER_BILL = HOST + "api/bill/BillMember";
+    public static final String BILL_HOUSTON = HOST + "Account/orderPayment";
+    public static final String BILL_GET_ALL_STORE = HOST + "Account/getStoreList";
+    public static final String BILL_GET_MEMBER_BILL = HOST + "Account/storePayment";
     public static final String GET_MEMBER_MANAGER_LIST = HOST + "api/Homeindex/MemberManager";
     public static final String GET_MEMBER_DATA = HOST + "api/Homeindex/DataStatistics";
     public static final String GET_BANK_CARD = HOST + "Account/getShopAccountWithdraw";

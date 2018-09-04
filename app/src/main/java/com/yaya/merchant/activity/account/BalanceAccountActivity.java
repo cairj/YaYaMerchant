@@ -95,7 +95,7 @@ public class BalanceAccountActivity extends BaseActivity {
     private void getAllMerchant() {
         Type type = new TypeToken<BaseRowData<Merchant>>() {
         }.getType();
-        MainDataAction.searchMerchant("", new GsonCallback<BaseRowData<Merchant>>(type) {
+        MainDataAction.searchMerchant( new GsonCallback<BaseRowData<Merchant>>(type) {
             @Override
             public void onSucceed(JsonResponse<BaseRowData<Merchant>> response) {
                 storeId = "";

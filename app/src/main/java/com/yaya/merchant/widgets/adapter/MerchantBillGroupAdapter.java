@@ -7,11 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.yaya.merchant.R;
-import com.yaya.merchant.data.account.BillData;
+import com.yaya.merchant.data.account.BillDetailData;
 import com.yaya.merchant.util.StringsUtil;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +21,7 @@ import java.util.Map;
 
 public class MerchantBillGroupAdapter extends BaseQuickAdapter<String> {
 
-    private Map<String, List<BillData>> balanceHashMap;//每个日期下对应的账单
+    private Map<String, List<BillDetailData>> balanceHashMap;//每个日期下对应的账单
     private RecyclerView.ItemDecoration decoration;
 
     public MerchantBillGroupAdapter(List<String> data) {
@@ -40,9 +39,9 @@ public class MerchantBillGroupAdapter extends BaseQuickAdapter<String> {
         MerchantBillChildAdapter childAdapter = new MerchantBillChildAdapter(balanceHashMap.get(date));
         childAdapter.setListener(new MerchantBillChildAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(BillData billData) {
+            public void onItemClick(BillDetailData billDetailData) {
                 if (listener != null){
-                    listener.onItemClick(billData);
+                    listener.onItemClick(billDetailData);
                 }
             }
         });
@@ -52,7 +51,7 @@ public class MerchantBillGroupAdapter extends BaseQuickAdapter<String> {
         recyclerView.requestFocus();
     }
 
-    public void setBalanceHashMap(Map<String, List<BillData>> balanceHashMap) {
+    public void setBalanceHashMap(Map<String, List<BillDetailData>> balanceHashMap) {
         this.balanceHashMap = balanceHashMap;
     }
 
@@ -68,10 +67,10 @@ public class MerchantBillGroupAdapter extends BaseQuickAdapter<String> {
         recyclerView.addItemDecoration(decoration);
     }
 
-    private String statisticData(List<BillData> list) {
+    private String statisticData(List<BillDetailData> list) {
         float totalMoney = 0;
-        for (BillData billData : list) {
-            totalMoney += billData.getOrderSumprice();
+        for (BillDetailData billDetailData : list) {
+            totalMoney += billDetailData.getOrderSumprice();
         }
         return String.format("共%d笔，￥%s", list.size(), StringsUtil.formatDecimals(totalMoney));
     }
@@ -83,6 +82,6 @@ public class MerchantBillGroupAdapter extends BaseQuickAdapter<String> {
     }
 
     public interface OnItemClickListener{
-        void onItemClick(BillData billData);
+        void onItemClick(BillDetailData billDetailData);
     }
 }

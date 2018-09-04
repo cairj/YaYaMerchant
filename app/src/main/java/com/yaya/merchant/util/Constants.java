@@ -13,4 +13,7 @@ public class Constants {
 
     public static final int RESPONSE_SUCCESS = 1;//联网获取数据成功
 
+    public static final String XG_PUSH_APP_ID = "5b80695235873";
+    public static final String XG_PUSH_APP_KEY = "c626f6264974941c93e91c1b0c1316ea";
+
 }

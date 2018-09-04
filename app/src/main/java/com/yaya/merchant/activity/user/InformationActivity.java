@@ -8,21 +8,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
-import com.yaya.merchant.action.UserAction;
-import com.yaya.merchant.activity.login.LoginActivity;
 import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.data.main.UserData;
-import com.yaya.merchant.data.user.Information;
-import com.yaya.merchant.net.callback.GsonCallback;
-import com.yaya.merchant.util.AppManager;
-import com.yaya.merchant.util.ImagePickUtil;
-import com.yaya.merchant.util.JPushUtil;
 import com.yaya.merchant.util.UserHelper;
 import com.yaya.merchant.util.imageloader.GlideLoaderHelper;
-import com.yaya.merchant.util.sp.SPUtil;
-import com.yaya.merchant.util.sp.SpKeys;
 
 import butterknife.BindView;
 import butterknife.OnClick;

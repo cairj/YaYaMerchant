@@ -3,7 +3,6 @@ package com.yaya.merchant.activity.account;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,7 +12,7 @@ import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainDataAction;
 import com.yaya.merchant.base.activity.BasePtrRecycleActivity;
-import com.yaya.merchant.data.account.BillData;
+import com.yaya.merchant.data.account.BillDetailData;
 import com.yaya.merchant.data.account.BillListData;
 import com.yaya.merchant.util.Constants;
 import com.yaya.merchant.util.StatusBarUtil;
@@ -34,7 +33,7 @@ import butterknife.OnClick;
  * Created by admin on 2018/3/24.
  */
 
-public class BillListActivity extends BasePtrRecycleActivity<BillData> {
+public class BillListActivity extends BasePtrRecycleActivity<BillDetailData> {
 
     private int billType = 0;
     public static final int DAILY_BILL = 1;
@@ -49,7 +48,7 @@ public class BillListActivity extends BasePtrRecycleActivity<BillData> {
     private BillListData billListData;
 
     protected List<String> groupList = new ArrayList<>();
-    protected TreeMap<String, List<BillData>> map = new TreeMap<>();
+    protected TreeMap<String, List<BillDetailData>> map = new TreeMap<>();
 
     @BindView(R.id.tv_real_amount)
     protected TextView realAmountTv;
@@ -171,7 +170,7 @@ public class BillListActivity extends BasePtrRecycleActivity<BillData> {
     }
 
     @Override
-    protected JsonResponse<BaseRowData<BillData>> getData() throws Exception {
+    protected JsonResponse<BaseRowData<BillDetailData>> getData() throws Exception {
         return null;
     }
 
@@ -233,16 +232,16 @@ public class BillListActivity extends BasePtrRecycleActivity<BillData> {
     }
 
     @Override
-    protected void setData(List<BillData> dataList) {
+    protected void setData(List<BillDetailData> dataList) {
         if (mCurrentPos == Constants.DEFAULT_FIRST_PAGE_COUNT) {
             map.clear();
         }
-        for (BillData data : dataList) {
+        for (BillDetailData data : dataList) {
             String[] payTime = data.getPayTime().split("T");
             if (map.containsKey(payTime[0])) {
                 map.get(payTime[0]).add(data);
             } else {
-                List<BillData> balanceList = new ArrayList<>();
+                List<BillDetailData> balanceList = new ArrayList<>();
                 balanceList.add(data);
                 map.put(payTime[0], balanceList);
             }

@@ -1,5 +1,7 @@
 package com.yaya.merchant.data.account;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -8,7 +10,9 @@ import java.io.Serializable;
 
 public class Merchant implements Serializable {
 
+    @SerializedName("store_name")
     private String storeName;
+    @SerializedName("store_id")
     private int id;
     private boolean isSelected;
     private boolean isVoice;

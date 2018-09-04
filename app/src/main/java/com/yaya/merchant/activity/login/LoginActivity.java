@@ -1,10 +1,13 @@
 package com.yaya.merchant.activity.login;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 
+import com.tencent.android.tpush.XGIOperateCallback;
+import com.tencent.android.tpush.XGPushManager;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.LoginAction;
@@ -100,23 +103,37 @@ public class LoginActivity extends BaseActivity {
             return;
         }
         final int memberType = merchantRb.isChecked()? Constants.MEMBER_TYPE_MERCHANT:Constants.MEMBER_TYPE_AGENT;
-        LoginAction.login(userEditView.getText().toString().trim(),
-                passwordEditView.getText().toString().trim(), memberType,new GsonCallback<TokenData>(TokenData.class) {
+        getXinGeToken(memberType);
+    }
 
-                    @Override
-                    public void onSucceed(JsonResponse<TokenData> response) {
-                        SPUtil.putBoolean(SpKeys.IS_LOGIN, true);
-                        SPUtil.putString(SpKeys.TOKEN, response.getResultData().getToken());
-                        SPUtil.putInt(SpKeys.USER_TYPE, memberType);
-                        openActivity(MainActivity.class, true);
-                    }
+    private void getXinGeToken(final int memberType){
+        XGPushManager.registerPush(this, new XGIOperateCallback() {
+            @Override
+            public void onSuccess(Object data, int flag) {
+                LoginAction.login(userEditView.getText().toString().trim(),
+                        passwordEditView.getText().toString().trim(), data.toString(),
+                        memberType,new GsonCallback<TokenData>(TokenData.class) {
 
-                    @Override
-                    public void onFailed(JsonResponse<TokenData> response) {
-                        SingleBtnDialog dialog = new SingleBtnDialog(LoginActivity.this,R.layout.dialog_text_single_btn);
-                        dialog.getContentTv().setText(response.getMsg());
-                        dialog.show();
-                    }
-                });
+                            @Override
+                            public void onSucceed(JsonResponse<TokenData> response) {
+                                SPUtil.putBoolean(SpKeys.IS_LOGIN, true);
+                                SPUtil.putString(SpKeys.TOKEN, response.getResultData().getToken());
+                                SPUtil.putInt(SpKeys.USER_TYPE, memberType);
+                                openActivity(MainActivity.class, true);
+                            }
+
+                            @Override
+                            public void onFailed(JsonResponse<TokenData> response) {
+                                SingleBtnDialog dialog = new SingleBtnDialog(LoginActivity.this,R.layout.dialog_text_single_btn);
+                                dialog.getContentTv().setText(response.getMsg());
+                                dialog.show();
+                            }
+                        });
+            }
+            @Override
+            public void onFail(Object data, int errCode, String msg) {
+                Log.d("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
+            }
+        });
     }
 }

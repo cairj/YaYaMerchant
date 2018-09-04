@@ -1,17 +1,19 @@
 package com.yaya.merchant.application;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
+import com.tencent.android.tpush.XGPushConfig;
 import com.yaya.merchant.net.HeaderInterceptor;
 import com.yaya.merchant.net.LogInterceptor;
+import com.yaya.merchant.util.Constants;
 import com.yaya.merchant.util.sp.SPUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.util.concurrent.TimeUnit;
 
-import cn.jpush.android.api.JPushInterface;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 
@@ -26,11 +28,18 @@ public class MerchantApplication extends Application {
         super.onCreate();
         SPUtil.init(this);
         initOkHttp();
-        //注册极光
-        JPushInterface.setDebugMode(true);
-        JPushInterface.init(this);
+        /*腾讯信鸽推送*/
+        //开启debug日志数据
+        XGPushConfig.enableDebug(this, true);
+        XGPushConfig.enableOtherPush(getApplicationContext(), true);
+        XGPushConfig.setHuaweiDebug(true);
+        XGPushConfig.setMiPushAppId(getApplicationContext(), Constants.XG_PUSH_APP_ID);
+        XGPushConfig.setMiPushAppKey(getApplicationContext(), Constants.XG_PUSH_APP_KEY);
+        XGPushConfig.setMzPushAppId(this, Constants.XG_PUSH_APP_ID);
+        XGPushConfig.setMzPushAppKey(this, Constants.XG_PUSH_APP_KEY);
+
         //讯飞语音
-        SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID +"=5aae2858");
+        SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID + "=5aae2858");
     }
 
     private void initOkHttp() {

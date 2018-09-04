@@ -6,14 +6,13 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.google.gson.reflect.TypeToken;
-import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainDataAction;
 import com.yaya.merchant.base.fragment.BasePtrRecycleFragment;
 import com.yaya.merchant.data.ChoiceItem;
 import com.yaya.merchant.data.account.BillData;
+import com.yaya.merchant.data.account.BillDetailData;
 import com.yaya.merchant.data.account.Merchant;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.Constants;
@@ -21,7 +20,6 @@ import com.yaya.merchant.widgets.adapter.MerchantBillGroupAdapter;
 import com.yaya.merchant.widgets.adapter.SingleChoiceTextAdapter;
 import com.yaya.merchant.widgets.popupwindow.SingleChoiceWindow;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -42,7 +40,7 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
     protected String search = "";
 
     protected List<String> groupList = new ArrayList<>();
-    protected TreeMap<String, List<BillData>> map = new TreeMap<>();
+    protected TreeMap<String, List<BillDetailData>> map = new TreeMap<>();
 
     @BindView(R.id.balance_account_tv_change_status)
     protected TextView changeStatusTv;
@@ -78,12 +76,6 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
     }
 
     @Override
-    protected void initData() {
-        super.initData();
-        getAllMerchant();
-    }
-
-    @Override
     protected BaseQuickAdapter getAdapter() {
         MerchantBillGroupAdapter adapter = new MerchantBillGroupAdapter(groupList);
         adapter.setListener(getItemListener());
@@ -94,34 +86,14 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
         return null;
     }
 
-    private void getAllMerchant(){
-        Type type=new TypeToken<BaseRowData<Merchant>>(){}.getType();
-        MainDataAction.searchMerchant(search, new GsonCallback<BaseRowData<Merchant>>(type) {
-            @Override
-            public void onSucceed(JsonResponse<BaseRowData<Merchant>> response) {
-                storeId = "";
-                for (Merchant merchant : (response.getData().getData()).getRows()){
-                    storeId = (TextUtils.isEmpty(storeId) ? "" : storeId + ",") + merchant.getId();
-                }
-                refresh();
-            }
-        });
-    }
-
     @Override
     protected void setData(List<BillData> dataList) {
         if (mCurrentPos == Constants.DEFAULT_FIRST_PAGE_COUNT){
             map.clear();
         }
         for (BillData data : dataList) {
-            String[] payTime = data.getPayTime().split("T");
-            if (map.containsKey(payTime[0])) {
-                map.get(payTime[0]).add(data);
-            } else {
-                List<BillData> balanceList = new ArrayList<>();
-                balanceList.add(data);
-                map.put(payTime[0], balanceList);
-            }
+            String payTime = data.getDate();
+            map.put(payTime, data.getRows());
         }
         Iterator<String> iterator = map.descendingKeySet().iterator();
         groupList.clear();
@@ -130,6 +102,11 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
         }
         ((MerchantBillGroupAdapter)adapter).setBalanceHashMap(map);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected boolean isDataListEmpty() {
+        return false;
     }
 
     public String getSelectedMerchantId() {

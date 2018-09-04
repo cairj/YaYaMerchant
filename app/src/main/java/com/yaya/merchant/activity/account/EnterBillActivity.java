@@ -50,17 +50,6 @@ public class EnterBillActivity extends BaseTabLayoutActivity {
 
     @OnClick(R.id.tv_search)
     protected void toSearch() {
-        if (viewPager.getCurrentItem() == 0) {
-            startActivityForResult(SearchMerchantActivity
-                            .openSearchIntent(this, merchantBillFragment.getSelectedMerchantId()),
-                    TO_MERCHANT_REQUEST_CODE);
-        }
-
-        if (viewPager.getCurrentItem() == 1) {
-            startActivityForResult(SearchMerchantActivity
-                            .openSearchIntent(this, memberBillFragment.getSelectedMerchantId()),
-                    TO_MERCHANT_REQUEST_CODE);
-        }
 
     }
 

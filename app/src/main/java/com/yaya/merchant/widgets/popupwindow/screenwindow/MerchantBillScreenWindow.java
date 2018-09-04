@@ -1,22 +1,15 @@
 package com.yaya.merchant.widgets.popupwindow.screenwindow;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.yaya.merchant.R;
 import com.yaya.merchant.data.ChoiceItem;
-import com.yaya.merchant.data.account.BillData;
+import com.yaya.merchant.data.account.BillDetailData;
 import com.yaya.merchant.util.ToastUtil;
 import com.yaya.merchant.widgets.adapter.ScreenWindowAdapter;
 import com.yaya.merchant.widgets.adapter.SingleChoiceTextAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-import butterknife.BindView;
 
 /**
  * Created by admin on 2018/4/1.
@@ -32,8 +25,8 @@ public class MerchantBillScreenWindow extends BaseScreenPopupWindow {
     protected void initAdapter() {
         itemWidth = 75;
         super.initAdapter();
-        for (int i = 0; i < BillData.PAY_TYPE.length; i++) {
-            choiceItemList.add(new ChoiceItem(BillData.PAY_TYPE[i], BillData.PAY_TYPE_PARAMS[i]));
+        for (int i = 0; i < BillDetailData.PAY_TYPE.length; i++) {
+            choiceItemList.add(new ChoiceItem(BillDetailData.PAY_TYPE[i], BillDetailData.PAY_TYPE_PARAMS[i]));
         }
         choiceItemList.get(0).setSelect(true);
         mAdapter.notifyDataSetChanged();

@@ -8,12 +8,11 @@ import com.yaya.merchant.activity.account.GatheringDetailActivity;
 import com.yaya.merchant.activity.account.RefundDetailActivity;
 import com.yaya.merchant.data.ChoiceItem;
 import com.yaya.merchant.data.account.BillData;
+import com.yaya.merchant.data.account.BillDetailData;
 import com.yaya.merchant.net.Urls;
 import com.yaya.merchant.widgets.adapter.MerchantBillGroupAdapter;
 import com.yaya.merchant.widgets.adapter.SingleChoiceTextAdapter;
 import com.yaya.merchant.widgets.popupwindow.screenwindow.MerchantBillScreenWindow;
-
-import java.util.Collections;
 
 import butterknife.OnClick;
 
@@ -37,7 +36,7 @@ public class MerchantBillFragment extends BaseBillFragment {
 
     @Override
     protected JsonResponse<BaseRowData<BillData>> getData() throws Exception {
-        return MainDataAction.getAccountList(storeId, payState, payType, startTime, endTime,
+        return MainDataAction.getAccountList(search, payState, payType, startTime, endTime,
                 String.valueOf(mCurrentPos), String.valueOf(pageSize));
     }
 
@@ -45,11 +44,11 @@ public class MerchantBillFragment extends BaseBillFragment {
     protected MerchantBillGroupAdapter.OnItemClickListener getItemListener() {
         return new MerchantBillGroupAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(BillData billData) {
-                if (billData.getPayStatus().contains("退款")){
-                    RefundDetailActivity.open(getActivity(),String.valueOf(billData.getId()));
+            public void onItemClick(BillDetailData billDetailData) {
+                if (billDetailData.getPayStatus().contains("退款")){
+                    RefundDetailActivity.open(getActivity(),String.valueOf(billDetailData.getId()));
                 }else {
-                    GatheringDetailActivity.open(getActivity(),String.valueOf(billData.getId()), Urls.GET_HOUSTON_DETAIL);
+                    GatheringDetailActivity.open(getActivity(),String.valueOf(billDetailData.getId()), Urls.GET_HOUSTON_DETAIL);
                 }
             }
         };
@@ -58,10 +57,11 @@ public class MerchantBillFragment extends BaseBillFragment {
     @Override
     protected void initSingleChoiceWindow() {
         super.initSingleChoiceWindow();
-        for (int i = 0; i < BillData.PAY_STATE.length; i++) {
-            ChoiceItem item = new ChoiceItem(BillData.PAY_STATE[i], BillData.PAY_STATE_PARAMS[i]);
+        for (int i = 0; i < BillDetailData.ORDER_TYPE.length; i++) {
+            ChoiceItem item = new ChoiceItem(BillDetailData.ORDER_TYPE[i], BillDetailData.ORDER_TYPE_PARAMS[i]);
             singleChoiceItemList.add(item);
         }
+        singleChoiceItemList.get(0).setContent("全部类型");
         singleChoiceItemList.get(0).setSelect(true);
         singleChoiceAdapter.notifyDataSetChanged();
 
@@ -102,6 +102,6 @@ public class MerchantBillFragment extends BaseBillFragment {
 
     @Override
     public String getTitle() {
-        return "入账";
+        return "用户";
     }
 }

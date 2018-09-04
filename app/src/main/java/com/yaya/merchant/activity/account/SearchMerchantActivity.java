@@ -112,7 +112,7 @@ public class SearchMerchantActivity extends BaseActivity {
     protected void initData() {
         Type type = new TypeToken<BaseRowData<Merchant>>() {
         }.getType();
-        MainDataAction.searchMerchant(searchKey, new GsonCallback<BaseRowData<Merchant>>(type) {
+        MainDataAction.searchMerchant(new GsonCallback<BaseRowData<Merchant>>(type) {
             @Override
             public void onSucceed(JsonResponse<BaseRowData<Merchant>> response) {
                 mData.clear();

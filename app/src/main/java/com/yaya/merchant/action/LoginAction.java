@@ -35,7 +35,7 @@ import okio.BufferedSource;
 
 public class LoginAction {
 
-    public static void login(String username, String password,int memberType, Callback callback) {
+    public static void login(String username, String password,String xinGeToken,int memberType, Callback callback) {
         if (TextUtils.isEmpty(username)) {
             ToastUtil.toast("用户名不能为空");
             return;
@@ -44,9 +44,14 @@ public class LoginAction {
             ToastUtil.toast("密码不能为空");
             return;
         }
+        if (TextUtils.isEmpty(xinGeToken)) {
+            ToastUtil.toast("信鸽token不能为空");
+            return;
+        }
         OkHttpUtils.get().url(Urls.LOGIN)
                 .addParams("user_name", username)
                 .addParams("password", password)
+                .addParams("xinge_token", xinGeToken)
                 .addParams("user_type", String.valueOf(memberType))
                 .build().execute(callback);
     }
