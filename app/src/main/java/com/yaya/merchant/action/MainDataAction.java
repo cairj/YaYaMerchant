@@ -201,11 +201,19 @@ public class MainDataAction {
 
     // 获取文章通知列表
     public static JsonResponse<BaseRowData<Article>> getArticleList(String articleType, String page, String pageSize) throws IOException {
-        if (TextUtils.isEmpty(articleType) || TextUtils.isEmpty(page) || TextUtils.isEmpty(pageSize)) {
+        if (TextUtils.isEmpty(page) || TextUtils.isEmpty(pageSize)) {
             return null;
         }
-        Response response = OkHttpUtils.get().url(Urls.GET_ARTICLE_LIST)
-                .addParams("articleType", articleType)
+        String url = "";
+        switch (articleType){
+            case Article.TYPE_NOTIFY:
+                url = Urls.GET_ARTICLE_LIST;
+                break;
+            case Article.TYPE_INFORMATION:
+                url = Urls.GET_CONSULT_LIST;
+                break;
+        }
+        Response response = OkHttpUtils.get().url(url)
                 .addParams("page", page)
                 .addParams("pageSize", pageSize).build().execute();
         Gson gson = new Gson();

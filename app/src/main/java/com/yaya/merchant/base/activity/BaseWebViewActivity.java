@@ -224,7 +224,7 @@ public class BaseWebViewActivity extends BaseActivity {
         Map<String, String> headers = new HashMap<>();
 
         String versionName = BuildConfig.VERSION_NAME;
-        String userAgent = webView.getSettings().getUserAgentString()+" qiguanbang/"+versionName+"/versionCode:"+BuildConfig.VERSION_CODE;
+        String userAgent = webView.getSettings().getUserAgentString()+" yayagou/"+versionName+"/versionCode:"+BuildConfig.VERSION_CODE;
         webView.getSettings().setUserAgentString(userAgent);//添加user-agent
 
        /* headers.put(Constants.WEB_VIEW_REQUEST_HEADER_KEY_UA, webView.getSettings().getUserAgentString()+" qiguanbang/"+versionName);
@@ -239,7 +239,7 @@ public class BaseWebViewActivity extends BaseActivity {
         if (MemberHelper.isLogin()){
             headers.put(Constants.HTTP_REQUEST_HEADER_KEY_QTOKEN, SPUtil.getString(SPKeys.TOKEN));
         }*/
-        headers.put("Authorization", SPUtil.getString(SpKeys.TOKEN));
+        headers.put("token", SPUtil.getString(SpKeys.TOKEN));
         return headers;
     }
 
