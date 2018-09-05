@@ -4,6 +4,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -17,6 +18,7 @@ import com.yaya.merchant.activity.account.EnterBillActivity;
 import com.yaya.merchant.activity.account.MemberManagerActivity;
 import com.yaya.merchant.activity.article.ArticleListActivity;
 import com.yaya.merchant.activity.order.OrderListActivity;
+import com.yaya.merchant.activity.user.MerchantListActivity;
 import com.yaya.merchant.activity.user.VerificationActivity;
 import com.yaya.merchant.activity.withdraw.WithdrawMoneyActivity;
 import com.yaya.merchant.base.fragment.BaseFragment;
@@ -25,6 +27,8 @@ import com.yaya.merchant.data.main.HomeData;
 import com.yaya.merchant.data.order.OrderDetail;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.LoadingUtil;
+import com.yaya.merchant.util.ToastUtil;
+import com.yaya.merchant.util.UserHelper;
 import com.yaya.merchant.widgets.GifPtrHeader;
 import com.yaya.merchant.widgets.adapter.GoodsSaleRankAdapter;
 
@@ -71,6 +75,12 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.rv_goods_sale_rank)
     protected RecyclerView goodsSaleRankRv;
 
+    @BindView(R.id.tv_receivables)
+    protected TextView receivablesTv;
+    @BindView(R.id.ll_method_3)
+    protected LinearLayout methodLL3;
+
+
     private GoodsSaleRankAdapter saleRankAdapter;
     private ArrayList<Goods> goodList = new ArrayList<>();
 
@@ -85,6 +95,12 @@ public class HomeFragment extends BaseFragment {
         initPtrFrame();
 
         initGoodsSaleRank();
+
+        if (UserHelper.isAgent()){
+            receivablesTv.setCompoundDrawablesWithIntrinsicBounds(0,R.mipmap.home_ic_merchant,0,0);
+            receivablesTv.setText("商户");
+            methodLL3.setVisibility(View.GONE);
+        }
     }
 
     /** 设置ptr */
@@ -180,7 +196,7 @@ public class HomeFragment extends BaseFragment {
         });
     }
 
-    @OnClick({R.id.home_tv_amount,R.id.fl_total_member,R.id.fl_total_order_number,R.id.tv_cash,
+    @OnClick({R.id.home_tv_amount,R.id.fl_total_member,R.id.fl_total_order_number,R.id.tv_cash,R.id.tv_receive,R.id.tv_return_review,
             R.id.tv_receivables,R.id.tv_balance_account,R.id.iv_news,R.id.tv_scan_payment,R.id.tv_online_payment})
     protected void onClick(View view){
         switch (view.getId()){
@@ -197,14 +213,17 @@ public class HomeFragment extends BaseFragment {
                 openActivity(WithdrawMoneyActivity.class);
                 break;
             case R.id.tv_receivables:
-                new IntentIntegrator(getActivity())
-                        .setOrientationLocked(false)
-                        .setPrompt("将提货二维码放入框内即可自动扫描")
-                        .setCaptureActivity(VerificationActivity.class) // 设置自定义的activity是VerificationActivity
-                        .initiateScan(); // 初始化扫描
-                break;
-            case R.id.tv_balance_account:
-                openActivity(BalanceAccountActivity.class);
+                if (UserHelper.isMerchant()) {
+                    new IntentIntegrator(getActivity())
+                            .setOrientationLocked(false)
+                            .setPrompt("将提货二维码放入框内即可自动扫描")
+                            .setCaptureActivity(VerificationActivity.class) // 设置自定义的activity是VerificationActivity
+                            .initiateScan(); // 初始化扫描
+                }
+
+                if (UserHelper.isAgent()){
+                    openActivity(MerchantListActivity.class);
+                }
                 break;
             case R.id.iv_news:
                 openActivity(ArticleListActivity.class);
@@ -214,6 +233,11 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.tv_online_payment:
                 OrderListActivity.open(getActivity(), OrderDetail.ORDER_PAYMENT_TYPE_ONLINE);
+                break;
+            case R.id.tv_balance_account:
+            case R.id.tv_return_review:
+            case R.id.tv_receive:
+                ToastUtil.toast("敬请期待");
                 break;
         }
     }

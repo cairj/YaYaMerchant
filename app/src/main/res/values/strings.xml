@@ -21,6 +21,7 @@
     <string name="home">首页</string>
     <string name="activity">活动</string>
     <string name="order">订单</string>
+    <string name="goods">商品</string>
     <string name="user">我的</string>
     <string name="home_title">吖吖购商家版</string>
     <string name="today_amount">今日实收金额(元)</string>

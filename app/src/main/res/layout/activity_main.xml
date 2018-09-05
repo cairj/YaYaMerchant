@@ -28,8 +28,7 @@
             android:id="@+id/main_rl_tab_activity"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:visibility="gone">
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/main_tv_tab_activity"
@@ -40,7 +39,7 @@
                 android:gravity="center"
                 android:paddingBottom="6dp"
                 android:paddingTop="6dp"
-                android:text="@string/order"
+                android:text="@string/goods"
                 android:textColor="@color/main_bottom_tab_text"
                 android:textSize="11sp"
                 android:layout_centerInParent="true"/>

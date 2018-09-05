@@ -33,6 +33,12 @@ public class TimePickerWindow extends BaseScreenPopupWindow {
     protected TextView chooseTitleTv;
     @BindView(R.id.tv_time_title)
     protected TextView timeTitleTv;
+    @BindView(R.id.tv_phone_title)
+    protected TextView phoneTitleTv;
+    @BindView(R.id.ll_start_data)
+    protected LinearLayout startDataLL;
+    @BindView(R.id.ll_end_data)
+    protected LinearLayout endDataLL;
 
     public TimePickerWindow(Context context) {
         super(context);
@@ -56,19 +62,7 @@ public class TimePickerWindow extends BaseScreenPopupWindow {
         ((ScreenWindowAdapter)mAdapter).setListener(new SingleChoiceTextAdapter.OnItemClickListener() {
             @Override
             public void onClick(ChoiceItem item) {
-                if (item.getId().equals("1")){
-                    initCalendar();
-                    initPickerText();
-                }else if (item.getId().equals("2")){
-                    initCalendar();
-                    startCalendar.set(Calendar.DATE,endCalendar.get(Calendar.DATE)-7);
-                    initPickerText();
-                }
-                for (int i = 0;i<choiceItemList.size();i++){
-                    choiceItemList.get(i).setSelect(false);
-                }
-                item.setSelect(true);
-                mAdapter.notifyDataSetChanged();
+                onItemClick(item);
             }
         });
     }
@@ -86,6 +80,22 @@ public class TimePickerWindow extends BaseScreenPopupWindow {
         for (int i = 0;i<choiceItemList.size();i++){
             choiceItemList.get(i).setSelect(false);
         }
+    }
+
+    protected void onItemClick(ChoiceItem item){
+        if (item.getId().equals("1")){
+            initCalendar();
+            initPickerText();
+        }else if (item.getId().equals("2")){
+            initCalendar();
+            startCalendar.set(Calendar.DATE,endCalendar.get(Calendar.DATE)-7);
+            initPickerText();
+        }
+        for (int i = 0;i<choiceItemList.size();i++){
+            choiceItemList.get(i).setSelect(false);
+        }
+        item.setSelect(true);
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override

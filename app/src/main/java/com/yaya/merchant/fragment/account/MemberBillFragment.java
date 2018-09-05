@@ -80,8 +80,8 @@ public class MemberBillFragment extends BaseBillFragment {
                     ChoiceItem item = new ChoiceItem(merchant.getStoreName(), String.valueOf(merchant.getId()));
                     singleChoiceItemList.add(item);
                 }
+                singleChoiceItemList.add(0,new ChoiceItem("全部门店",""));
                 singleChoiceItemList.get(0).setSelect(true);
-                singleChoiceItemList.get(0).setContent("全部门店");
                 singleChoiceAdapter.notifyDataSetChanged();
 
                 singleChoiceAdapter.setListener(new SingleChoiceTextAdapter.OnItemClickListener() {

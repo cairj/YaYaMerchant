@@ -29,7 +29,7 @@ import okhttp3.Request;
 public class WithdrawMoneyActivity extends BaseActivity {
 
     private String amount = "";
-    private String bankAccountId;
+    private String bankAccountId = "";
 
     @BindView(R.id.tv_bank_card)
     protected TextView bankCardTv;
@@ -59,11 +59,14 @@ public class WithdrawMoneyActivity extends BaseActivity {
             @Override
             public void onSucceed(JsonResponse<BankCard> response) {
                 BankCard bankCard = response.getResultData();
-                bankCardTv.setText(bankCard.getBankAccount().getBankName());
                 totalMoneyTv.setText(String.format(getString(R.string.withdraw_money_count), String.valueOf(bankCard.getCanAccountProceeds())));
                 memberBalanceTv.setText("￥" + bankCard.getAccountBalance());
                 amount = String.valueOf(bankCard.getCanAccountProceeds());
-                bankAccountId = String.valueOf(bankCard.getBankAccount().getId());
+
+                if (bankCard.getBankAccount() != null) {
+                    bankCardTv.setText(bankCard.getBankAccount().getBankName());
+                    bankAccountId = String.valueOf(bankCard.getBankAccount().getId());
+                }
             }
         });
     }

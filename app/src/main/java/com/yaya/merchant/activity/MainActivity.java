@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.yaya.merchant.R;
 import com.yaya.merchant.base.activity.BaseActivity;
+import com.yaya.merchant.fragment.goods.GoodsFragment;
 import com.yaya.merchant.fragment.main.OrderFragment;
 import com.yaya.merchant.fragment.main.HomeFragment;
 import com.yaya.merchant.fragment.main.UserFragment;
@@ -24,7 +25,7 @@ public class MainActivity extends BaseActivity {
     public static final int TAB_USER = 2;
 
     protected HomeFragment homeFragment;
-    protected OrderFragment orderFragment;
+    protected GoodsFragment goodsFragment;
     protected UserFragment userFragment;
 
     @BindViews({R.id.main_tv_tab_home, R.id.main_tv_tab_activity, R.id.main_tv_tab_user})
@@ -56,10 +57,10 @@ public class MainActivity extends BaseActivity {
                 showFragment(homeFragment);
                 break;
             case TAB_ACTIVITY:
-                if (orderFragment == null) {
-                    orderFragment = new OrderFragment();
+                if (goodsFragment == null) {
+                    goodsFragment = new GoodsFragment();
                 }
-                showFragment(orderFragment);
+                showFragment(goodsFragment);
                 break;
             case TAB_USER:
                 if (userFragment == null) {

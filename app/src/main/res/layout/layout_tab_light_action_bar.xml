@@ -5,12 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="16dp">
 
-    <TextView
+    <ImageView
         android:id="@+id/tv_action_back"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/top_ic_back_black"
-        android:layout_marginLeft="10dp"/>
+        android:layout_height="match_parent"
+        android:src="@mipmap/top_ic_back_black"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"

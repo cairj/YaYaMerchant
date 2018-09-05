@@ -65,5 +65,6 @@ public class Urls {
     public static final String QUERY_GOODS_SALE_RANK = HOST + "Home/getGoodsRealSalesRank";
     public static final String QUERY_BANK_ACCOUNT_LIST = HOST + "Account/banklist";
     public static final String CHANGE_DEFAULT_BANK = HOST + "Account/bankDefault";
+    public static final String QUERY_GOODS_LIST = HOST + "Commodity/commodity";
 
 }

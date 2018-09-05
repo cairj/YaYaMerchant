@@ -1,6 +1,7 @@
 package com.yaya.merchant.receiver;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.tencent.android.tpush.XGPushBaseReceiver;
 import com.tencent.android.tpush.XGPushClickedResult;
@@ -8,6 +9,9 @@ import com.tencent.android.tpush.XGPushRegisterResult;
 import com.tencent.android.tpush.XGPushShowedResult;
 import com.tencent.android.tpush.XGPushTextMessage;
 import com.yaya.merchant.util.VoiceUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * 自定义接收器
@@ -45,11 +49,17 @@ public class MyReceiver extends XGPushBaseReceiver {
 
     @Override
     public void onNotifactionClickedResult(Context context, XGPushClickedResult xgPushClickedResult) {
-
     }
 
     @Override
     public void onNotifactionShowedResult(Context context, XGPushShowedResult xgPushShowedResult) {
-        VoiceUtils.getInstance().speak(context, xgPushShowedResult.getContent());
+        try {
+            JSONObject jsonObject = new JSONObject(xgPushShowedResult.getCustomContent());
+            if (jsonObject.has("message") && jsonObject.get("message") instanceof String) {
+                VoiceUtils.getInstance().speak(context, jsonObject.getString("message"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

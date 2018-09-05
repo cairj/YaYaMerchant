@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/pink_fa4b45">
+
+        <include layout="@layout/layout_tab_dark_action_bar" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:id="@+id/tv_change_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:drawableRight="@mipmap/ic_down"
+            android:text="@string/all_status"
+            android:textColor="@color/black_666666"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:drawableRight="@mipmap/ic_screen"
+            android:text="@string/screen"
+            android:textColor="@color/black_666666"
+            android:textSize="13sp" />
+
+        <View
+            style="@style/divider_vertical"
+            android:layout_height="12dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"
+            android:layout_toLeftOf="@id/balance_account_tv_screen"
+            android:background="@color/gray_f1f2f4" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/layout_base_ptr_recycle" />
+
+</LinearLayout>

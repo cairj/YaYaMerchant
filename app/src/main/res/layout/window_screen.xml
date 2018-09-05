@@ -53,6 +53,7 @@
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/ll_start_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -84,6 +85,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_end_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
@@ -123,6 +125,7 @@
                 android:visibility="gone">
 
                 <TextView
+                    android:id="@+id/tv_phone_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/member_phone"

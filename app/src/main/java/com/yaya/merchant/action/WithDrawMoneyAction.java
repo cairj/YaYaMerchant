@@ -44,6 +44,10 @@ public class WithDrawMoneyAction {
             ToastUtil.toast("提现金额不能为空");
             return;
         }
+        if (TextUtils.isEmpty(bankAccountId)){
+            ToastUtil.toast("请选择一个银行卡");
+            return;
+        }
         OkHttpUtils.get().url(Urls.WITH_DRAW_MONEY)
                 .addParams("cash",amount)
                 .addParams("bank_account_id",bankAccountId)
