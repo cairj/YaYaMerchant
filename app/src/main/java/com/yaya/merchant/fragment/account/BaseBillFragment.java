@@ -109,12 +109,8 @@ public abstract class BaseBillFragment extends BasePtrRecycleFragment<BillData> 
         return false;
     }
 
-    public String getSelectedMerchantId() {
-        return storeId;
-    }
-
-    public void setSelectedMerchantId(String storeId) {
-        this.storeId = storeId;
+    public void setSearch(String search) {
+        this.search = search;
         refresh();
     }
 

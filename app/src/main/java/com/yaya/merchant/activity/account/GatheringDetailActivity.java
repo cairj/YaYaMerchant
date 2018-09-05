@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -13,6 +14,10 @@ import com.yaya.merchant.action.MainDataAction;
 import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.data.account.GatheringData;
 import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.imageloader.GlideLoaderHelper;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.BindView;
 
@@ -23,7 +28,12 @@ import butterknife.BindView;
 public class GatheringDetailActivity extends BaseActivity {
 
     private String id;
-    private String url;
+    private String type;
+
+    @BindView(R.id.iv_avatar)
+    protected ImageView avatarIv;
+    @BindView(R.id.tv_name)
+    protected TextView nameTv;
 
     @BindView(R.id.tv_sum_price)
     protected TextView sumPriceTv;
@@ -45,11 +55,17 @@ public class GatheringDetailActivity extends BaseActivity {
     protected TextView merchantNameTv;
     @BindView(R.id.tv_order_number)
     protected TextView orderNumberTv;
+    @BindView(R.id.tv_merchant_real_price)
+    protected TextView merchantRealPriceTv;
+    @BindView(R.id.tv_merchant_number)
+    protected TextView merchantNumberTv;
+    @BindView(R.id.tv_order_remark)
+    protected TextView orderRemarkTv;
 
-    public static void open(Context context, String id,String url) {
+    public static void open(Context context, String id,String type) {
         Intent intent = new Intent(context, GatheringDetailActivity.class);
         intent.putExtra("id", id);
-        intent.putExtra("url", url);
+        intent.putExtra("type", type);
         context.startActivity(intent);
     }
 
@@ -63,28 +79,26 @@ public class GatheringDetailActivity extends BaseActivity {
         super.initData();
         setActionBarTitle("收款详情");
         id = getIntent().getStringExtra("id");
-        url = getIntent().getStringExtra("url");
-        MainDataAction.getGatheringDetail(id, url, new GsonCallback<GatheringData>(GatheringData.class) {
+        type = getIntent().getStringExtra("type");
+        MainDataAction.getGatheringDetail(id, type, new GsonCallback<GatheringData>(GatheringData.class) {
             @Override
             public void onSucceed(JsonResponse<GatheringData> response) {
-                GatheringData data = response.getData().getData();
-                if (TextUtils.isEmpty(data.getBalancePrice())){
-                    sumPriceTitleTv.setText("消费金额（元）");
-                    balanceRl.setVisibility(View.INVISIBLE);
-                }else {
-                    sumPriceTitleTv.setText("会员消费（元）");
-                    sumPriceTitleTv.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.me_ic_vip,0,0,0);
-                    balanceTv.setText("￥"+data.getBalancePrice());
-                    balanceRl.setVisibility(View.VISIBLE);
-                }
+                GatheringData data = response.getResultData();
+                GlideLoaderHelper.loadImg(data.getHeadImg(),avatarIv);
+                nameTv.setText(data.getName());
 
+                sumPriceTitleTv.setCompoundDrawablesWithIntrinsicBounds("1".equals(data.getPayType())?R.mipmap.ic_weixin:R.mipmap.ic_zhifubao,0,0,0);
                 sumPriceTv.setText(data.getOrderSumprice());
-                orderPriceTv.setText("￥"+data.getOrderPrice());
+                merchantRealPriceTv.setText("￥"+data.getOrderSumprice());
+                orderPriceTv.setText(data.getOrderPrice());
                 merchantNameTv.setText(data.getStoreName());
-                createTimeTv.setText(data.getCreationTime().replace("T"," "));
-                payTimeTv.setText(data.getPayTime().replace("T"," "));
+                SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                createTimeTv.setText(sp.format(new Date(Integer.valueOf(data.getCreationTime()))));
+                payTimeTv.setText(sp.format(new Date(Integer.valueOf(data.getPayTime()))));
                 payTypeTv.setText(data.getOrderType());
                 orderNumberTv.setText(data.getOrderSn());
+                merchantNumberTv.setText(data.getTradeNo());
+                orderRemarkTv.setText(data.getRemark());
             }
         });
     }

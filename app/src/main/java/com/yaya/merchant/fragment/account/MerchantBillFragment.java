@@ -45,11 +45,11 @@ public class MerchantBillFragment extends BaseBillFragment {
         return new MerchantBillGroupAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BillDetailData billDetailData) {
-                if (billDetailData.getPayStatus().contains("退款")){
+                /*if (billDetailData.getPayStatus().contains("退款")){
                     RefundDetailActivity.open(getActivity(),String.valueOf(billDetailData.getId()));
-                }else {
-                    GatheringDetailActivity.open(getActivity(),String.valueOf(billDetailData.getId()), Urls.GET_HOUSTON_DETAIL);
-                }
+                }else {*/
+                    GatheringDetailActivity.open(getActivity(),String.valueOf(billDetailData.getTypeAlisId()), String.valueOf(billDetailData.getOrderType()));
+                //}
             }
         };
     }

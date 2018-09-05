@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
     android:background="@mipmap/top_bg"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
@@ -25,11 +26,32 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="33dp">
+                    
+                    <ImageView
+                        android:id="@+id/iv_avatar"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp" />
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        tool:text="aaaa"
+                        android:textColor="@color/black_333333"/>
+                    
+                </LinearLayout>
+                
                 <TextView
                     android:id="@+id/tv_sum_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="39dp"
+                    android:layout_marginTop="16dp"
                     android:gravity="center"
                     android:textColor="@color/black_454555"
                     android:textSize="43sp"
@@ -42,7 +64,7 @@
                     android:layout_marginTop="16dp"
                     android:drawablePadding="5dp"
                     android:gravity="center"
-                    android:text=""
+                    android:text="已付款"
                     android:textColor="@color/black_59596e"
                     android:textSize="14sp" />
 
@@ -51,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_marginTop="36dp">
+                    android:layout_marginTop="30dp">
 
                     <TextView
                         android:id="@+id/tv_order_price_title"
@@ -83,7 +105,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="24dp"
-                    android:visibility="invisible">
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/tv_member_balance_title"
@@ -128,6 +150,34 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_merchant_real_price_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="实际收入"
+                        android:textColor="@color/black_59596e"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_merchant_real_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_toRightOf="@id/tv_merchant_real_price_title"
+                        android:textColor="@color/black_454555"
+                        android:textSize="14sp"
+                        android:gravity="right"
+                        android:layout_marginLeft="8dp"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="20dp">
 
                     <TextView
                         android:id="@+id/tv_merchant_name_title"
@@ -255,6 +305,60 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_toRightOf="@id/tv_order_number_title"
+                        android:textColor="@color/black_454555"
+                        android:textSize="14sp"
+                        android:gravity="right"
+                        android:layout_marginLeft="8dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/tv_merchant_number_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="商户单号"
+                        android:textColor="@color/black_59596e"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_merchant_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_toRightOf="@id/tv_merchant_number_title"
+                        android:textColor="@color/black_454555"
+                        android:textSize="14sp"
+                        android:gravity="right"
+                        android:layout_marginLeft="8dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/tv_order_remark_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="备注详情"
+                        android:textColor="@color/black_59596e"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_order_remark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_toRightOf="@id/tv_order_remark_title"
                         android:textColor="@color/black_454555"
                         android:textSize="14sp"
                         android:gravity="right"

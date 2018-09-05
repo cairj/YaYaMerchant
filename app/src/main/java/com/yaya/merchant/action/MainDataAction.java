@@ -223,9 +223,10 @@ public class MainDataAction {
     }
 
     //获取收款详情
-    public static void getGatheringDetail(String id, String url, Callback callback) {
-        OkHttpUtils.get().url(url)
-                .addParams("id", id)
+    public static void getGatheringDetail(String id, String type, Callback callback) {
+        OkHttpUtils.get().url(Urls.GET_HOUSTON_DETAIL)
+                .addParams("type_alis_id", id)
+                .addParams("type", type)
                 .build().execute(callback);
     }
 

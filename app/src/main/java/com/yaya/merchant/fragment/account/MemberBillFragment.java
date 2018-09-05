@@ -77,7 +77,6 @@ public class MemberBillFragment extends BaseBillFragment {
             @Override
             public void onSucceed(JsonResponse<Merchant> response) {
                 for (Merchant merchant : response.getDataList()){
-                    storeId = (TextUtils.isEmpty(storeId) ? "" : storeId + ",") + merchant.getId();
                     ChoiceItem item = new ChoiceItem(merchant.getStoreName(), String.valueOf(merchant.getId()));
                     singleChoiceItemList.add(item);
                 }

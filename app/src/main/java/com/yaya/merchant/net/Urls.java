@@ -55,7 +55,7 @@ public class Urls {
     public static final String DISALLOW_REFUND = HOST + "ShopOrder/RefundFail";
     public static final String GET_ARTICLE_LIST = HOST + "Home/getMessage";//通知
     public static final String GET_CONSULT_LIST = HOST + "Home/getConsult";//咨询
-    public static final String GET_HOUSTON_DETAIL = HOST + "api/bill/HoustonDetail";
+    public static final String GET_HOUSTON_DETAIL = HOST + "Account/getOrderPayInfo";
     public static final String GET_MEMBER_DETAIL = HOST + "api/bill/BillMemberDetail";
     public static final String GET_CONTRACT_INFORMATION = HOST + "Commission/commission";
     public static final String GET_MERCHANT_INFO = HOST + "Merchant/merchant";

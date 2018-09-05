@@ -17,6 +17,7 @@ import com.yaya.merchant.data.login.TokenData;
 import com.yaya.merchant.interfaces.OnEditTextChangeListener;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.Constants;
+import com.yaya.merchant.util.LoadingUtil;
 import com.yaya.merchant.util.StatusBarUtil;
 import com.yaya.merchant.util.ToastUtil;
 import com.yaya.merchant.util.sp.SPUtil;
@@ -107,6 +108,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void getXinGeToken(final int memberType){
+        LoadingUtil.showAsyncProgressDialog(this);
         XGPushManager.registerPush(this, new XGIOperateCallback() {
             @Override
             public void onSuccess(Object data, int flag) {
@@ -116,6 +118,7 @@ public class LoginActivity extends BaseActivity {
 
                             @Override
                             public void onSucceed(JsonResponse<TokenData> response) {
+                                LoadingUtil.hideProcessingIndicator();
                                 SPUtil.putBoolean(SpKeys.IS_LOGIN, true);
                                 SPUtil.putString(SpKeys.TOKEN, response.getResultData().getToken());
                                 SPUtil.putInt(SpKeys.USER_TYPE, memberType);
@@ -124,6 +127,7 @@ public class LoginActivity extends BaseActivity {
 
                             @Override
                             public void onFailed(JsonResponse<TokenData> response) {
+                                LoadingUtil.hideProcessingIndicator();
                                 SingleBtnDialog dialog = new SingleBtnDialog(LoginActivity.this,R.layout.dialog_text_single_btn);
                                 dialog.getContentTv().setText(response.getMsg());
                                 dialog.show();
@@ -132,6 +136,7 @@ public class LoginActivity extends BaseActivity {
             }
             @Override
             public void onFail(Object data, int errCode, String msg) {
+                LoadingUtil.hideProcessingIndicator();
                 Log.d("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
             }
         });

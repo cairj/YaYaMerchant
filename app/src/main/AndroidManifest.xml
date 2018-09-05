@@ -72,7 +72,9 @@
         <activity
             android:name=".activity.MainActivity"
             android:theme="@style/ImageTranslucentTheme" />
-        <activity android:name=".activity.account.EnterBillActivity" />
+        <activity android:name=".activity.account.EnterBillActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"/>
         <activity
             android:name=".activity.account.SearchMerchantActivity"
             android:configChanges="orientation|keyboardHidden"

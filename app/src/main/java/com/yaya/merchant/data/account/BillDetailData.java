@@ -54,6 +54,8 @@ public class BillDetailData implements Serializable {
     private String name;//名称
     @SerializedName("type")
     private String orderType;//订单类型
+    @SerializedName("type_alis_id")
+    private int typeAlisId;
 
     public String getHeadImgUrl() {
         return headImgUrl;
@@ -85,5 +87,9 @@ public class BillDetailData implements Serializable {
 
     public String getOrderType() {
         return orderType;
+    }
+
+    public int getTypeAlisId() {
+        return typeAlisId;
     }
 }
