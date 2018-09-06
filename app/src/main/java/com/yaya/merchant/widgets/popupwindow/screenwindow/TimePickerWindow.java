@@ -107,6 +107,7 @@ public class TimePickerWindow extends BaseScreenPopupWindow {
             choiceItemList.get(i).setSelect(false);
         }
         choiceItemList.get(0).setSelect(true);
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override

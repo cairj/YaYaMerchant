@@ -1,6 +1,9 @@
 package com.yaya.merchant.fragment.goods;
 
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -12,9 +15,12 @@ import com.yaya.merchant.action.GoodsAction;
 import com.yaya.merchant.base.fragment.BasePtrRecycleFragment;
 import com.yaya.merchant.data.ChoiceItem;
 import com.yaya.merchant.data.goods.Goods;
-import com.yaya.merchant.fragment.account.MemberBillFragment;
+import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.DeviceParamsUtil;
+import com.yaya.merchant.util.DpPxUtil;
 import com.yaya.merchant.widgets.adapter.GoodsAdapter;
 import com.yaya.merchant.widgets.adapter.SingleChoiceTextAdapter;
+import com.yaya.merchant.widgets.decoration.GridItemDecoration;
 import com.yaya.merchant.widgets.popupwindow.SingleChoiceWindow;
 import com.yaya.merchant.widgets.popupwindow.screenwindow.TimePickerWindow;
 
@@ -40,6 +46,12 @@ public class GoodsFragment extends BasePtrRecycleFragment<Goods> {
     @BindView(R.id.tv_screen)
     protected TextView screenTv;
 
+    @BindView(R.id.tv_title)
+    protected TextView titleTv;
+
+    @BindView(R.id.tv_status_bar)
+    protected View statusBarView;
+
     protected SingleChoiceWindow singleChoiceWindow;
     protected SingleChoiceTextAdapter singleChoiceAdapter;
     protected ArrayList<ChoiceItem> singleChoiceItemList = new ArrayList<>();
@@ -56,6 +68,12 @@ public class GoodsFragment extends BasePtrRecycleFragment<Goods> {
         super.initView();
         initSingleChoiceWindow();
         initTimePickerWindow();
+
+        titleTv.setText("商品");
+
+        ViewGroup.LayoutParams lp = statusBarView.getLayoutParams();
+        lp.height = DeviceParamsUtil.getStatusBarHeight(getActivity());
+        statusBarView.setLayoutParams(lp);
     }
 
     protected void initSingleChoiceWindow(){
@@ -122,6 +140,19 @@ public class GoodsFragment extends BasePtrRecycleFragment<Goods> {
                 startDataLL.setVisibility(View.GONE);
                 endDataLL.setVisibility(View.GONE);
                 timeTitleTv.setVisibility(View.GONE);
+                choiceItemListRv.setLayoutManager(new GridLayoutManager(getActivity(),2));
+                phoneTitleTv.setText("关键字搜索");
+            }
+
+            @Override
+            protected RecyclerView.ItemDecoration addItemDecoration() {
+                RecyclerView.ItemDecoration itemDecoration = new GridItemDecoration(DpPxUtil.dp2px(20), DpPxUtil.dp2px(14));
+                return itemDecoration;
+            }
+
+            @Override
+            protected void reset() {
+                super.reset();
             }
         };
         timePickerWindow.setHintTvVisible(true);
@@ -152,11 +183,29 @@ public class GoodsFragment extends BasePtrRecycleFragment<Goods> {
 
     @Override
     protected BaseQuickAdapter getAdapter() {
-        GoodsAdapter adapter = new GoodsAdapter(mDataList);
+        final GoodsAdapter adapter = new GoodsAdapter(mDataList);
         adapter.setOnItemClickListener(new GoodsAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Goods goods) {
+            public void onItemBtnClick(final Goods goods) {
+                GsonCallback<Goods> callback = new GsonCallback<Goods>(Goods.class) {
+                    @Override
+                    public void onSucceed(JsonResponse<Goods> response) {
+                        goods.setApplyState(response.getResultData().getApplyState());
+                        goods.setState(response.getResultData().getState());
+                        adapter.notifyDataSetChanged();
+                    }
+                };
+                if (Goods.STATUS_SOLD_OUT.equals(goods.getState()) && Goods.APPLY_STATE_NOT_APPLY.equals(goods.getApplyState())) {
+                    GoodsAction.changeGoodState(Goods.STATUS_SOLD_OUT,goods.getGoodsId(),callback);
+                }
 
+                if (Goods.STATUS_PUT_AWAY.equals(goods.getState())) {
+                    GoodsAction.changeGoodState(Goods.STATUS_PUT_AWAY,goods.getGoodsId(),callback);
+                }
+
+                if (Goods.STATUS_SOLD_OUT.equals(goods.getState()) && Goods.APPLY_STATE_APPLYING.equals(goods.getApplyState())) {
+                    GoodsAction.changeGoodState(Goods.STATUS_APPLYING,goods.getGoodsId(),callback);
+                }
             }
         });
         return adapter;

@@ -52,9 +52,28 @@ public class GoodsAction {
             builder.addParams("keyword", keyword);
         }
         Response response = builder.build().execute();
-        Type type = new TypeToken<JsonResponse<BaseRowData<Goods>>>(){}.getType();
         Gson gson = new Gson();
-        return gson.fromJson(response.body().toString(),type);
+        Type type = new TypeToken<JsonResponse<BaseRowData<Goods>>>() {
+        }.getType();
+        return gson.fromJson(response.body().string(), type);
+    }
+
+    public static void changeGoodState(String state,String goodsId,Callback callback){
+        String url = "";
+        switch (state){
+            case Goods.STATUS_PUT_AWAY:
+                url = Urls.CHANGE_GOODS_STATUS_SOLD_DOWN;
+                break;
+            case Goods.STATUS_SOLD_OUT:
+                url = Urls.CHANGE_GOODS_STATUS_PUT_AWAY;
+                break;
+            case Goods.STATUS_APPLYING:
+                url = Urls.CHANGE_GOODS_STATUS_APPLY_PASS;
+                break;
+        }
+        OkHttpUtils.get().url(url)
+                .addParams("goods_id",goodsId)
+                .build().execute(callback);
     }
 
 }

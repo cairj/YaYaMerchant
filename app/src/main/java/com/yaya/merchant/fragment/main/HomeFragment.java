@@ -80,6 +80,9 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.ll_method_3)
     protected LinearLayout methodLL3;
 
+    @BindView(R.id.home_tv_title)
+    protected TextView titleTv;
+
 
     private GoodsSaleRankAdapter saleRankAdapter;
     private ArrayList<Goods> goodList = new ArrayList<>();
@@ -100,6 +103,7 @@ public class HomeFragment extends BaseFragment {
             receivablesTv.setCompoundDrawablesWithIntrinsicBounds(0,R.mipmap.home_ic_merchant,0,0);
             receivablesTv.setText("商户");
             methodLL3.setVisibility(View.GONE);
+            titleTv.setText(getString(R.string.home_title_agent));
         }
     }
 
@@ -196,8 +200,9 @@ public class HomeFragment extends BaseFragment {
         });
     }
 
-    @OnClick({R.id.home_tv_amount,R.id.fl_total_member,R.id.fl_total_order_number,R.id.tv_cash,R.id.tv_receive,R.id.tv_return_review,
-            R.id.tv_receivables,R.id.tv_balance_account,R.id.iv_news,R.id.tv_scan_payment,R.id.tv_online_payment})
+    @OnClick({R.id.home_tv_amount, R.id.fl_total_member, R.id.fl_total_order_number, R.id.tv_cash, R.id.tv_receive, R.id.tv_return_review,
+            R.id.tv_receivables, R.id.tv_balance_account, R.id.iv_news, R.id.tv_scan_payment, R.id.tv_online_payment, R.id.tv_with_draw_money,
+            R.id.tv_report, R.id.tv_vip})
     protected void onClick(View view){
         switch (view.getId()){
             case R.id.home_tv_amount:
@@ -237,7 +242,10 @@ public class HomeFragment extends BaseFragment {
             case R.id.tv_balance_account:
             case R.id.tv_return_review:
             case R.id.tv_receive:
-                ToastUtil.toast("敬请期待");
+            case R.id.tv_with_draw_money:
+            case R.id.tv_report:
+            case R.id.tv_vip:
+                ToastUtil.toast("正在开发中");
                 break;
         }
     }

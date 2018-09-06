@@ -10,10 +10,11 @@ import java.io.Serializable;
 
 public class Goods implements Serializable {
 
-    public static final String[] STATUS = {"上架","下架"};
+    public static final String[] STATUS = {"上架","下架","审核中"};
     public static final String STATUS_PUT_AWAY = "1";
     public static final String STATUS_SOLD_OUT = "0";
-    public static final String[] STATUS_PARAMS = {STATUS_PUT_AWAY,STATUS_SOLD_OUT};
+    public static final String STATUS_APPLYING = "2";
+    public static final String[] STATUS_PARAMS = {STATUS_PUT_AWAY,STATUS_SOLD_OUT,STATUS_APPLYING};
 
     public static final String APPLY_STATE_APPLY_PASS = "2";
     public static final String APPLY_STATE_APPLYING = "1";
@@ -26,7 +27,7 @@ public class Goods implements Serializable {
     @SerializedName("real_sales")
     private String goodsRealSale;//实际销量
     @SerializedName("goods_spec_format")
-    private String[] goodsFormat;
+    private GoodsFormat[] goodsFormat;
     private String stock;
     private String state;
     private String price;
@@ -47,7 +48,7 @@ public class Goods implements Serializable {
         return goodsRealSale;
     }
 
-    public String[] getGoodsFormat() {
+    public GoodsFormat[] getGoodsFormat() {
         return goodsFormat;
     }
 
@@ -69,5 +70,33 @@ public class Goods implements Serializable {
 
     public String getApplyState() {
         return applyState;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setApplyState(String applyState) {
+        this.applyState = applyState;
+    }
+
+    public class GoodsFormat{
+
+        @SerializedName("value")
+        private GoodsFormatValue[] formatValue;
+
+        public class GoodsFormatValue{
+
+            @SerializedName("spec_value_name")
+            private String specValueName;
+
+            public String getSpecValueName() {
+                return specValueName;
+            }
+        }
+
+        public GoodsFormatValue[] getFormatValue() {
+            return formatValue;
+        }
     }
 }

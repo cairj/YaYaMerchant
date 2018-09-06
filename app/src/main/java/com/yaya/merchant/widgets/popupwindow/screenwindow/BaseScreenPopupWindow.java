@@ -35,7 +35,7 @@ import butterknife.OnClick;
 
 public class BaseScreenPopupWindow extends BasePopupWindow {
 
-    private RecyclerView choiceItemListRv;
+    protected RecyclerView choiceItemListRv;
     protected BaseQuickAdapter mAdapter;
 
     protected DatePickerDialog startDatePickerDialog;
