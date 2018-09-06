@@ -69,5 +69,6 @@ public class Urls {
     public static final String CHANGE_GOODS_STATUS_PUT_AWAY = HOST + "Goods/stata";
     public static final String CHANGE_GOODS_STATUS_SOLD_DOWN = HOST + "Goods/downs";
     public static final String CHANGE_GOODS_STATUS_APPLY_PASS = HOST + "Goods/statagent";
+    public static final String GET_GOODS_DETAIL = HOST + "Goods/goods";
 
 }

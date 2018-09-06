@@ -159,6 +159,8 @@
 
         <activity android:name=".activity.withdraw.ChangeDefaultBankCardActivity"/>
 
+        <activity android:name=".activity.good.GoodDetailActivity"/>
+
         <!---->
         <receiver android:name=".receiver.MyReceiver"
             android:exported="true" >

@@ -12,6 +12,7 @@ import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.GoodsAction;
+import com.yaya.merchant.activity.good.GoodDetailActivity;
 import com.yaya.merchant.base.fragment.BasePtrRecycleFragment;
 import com.yaya.merchant.data.ChoiceItem;
 import com.yaya.merchant.data.goods.Goods;
@@ -206,6 +207,11 @@ public class GoodsFragment extends BasePtrRecycleFragment<Goods> {
                 if (Goods.STATUS_SOLD_OUT.equals(goods.getState()) && Goods.APPLY_STATE_APPLYING.equals(goods.getApplyState())) {
                     GoodsAction.changeGoodState(Goods.STATUS_APPLYING,goods.getGoodsId(),callback);
                 }
+            }
+
+            @Override
+            public void onItemClick(Goods goods) {
+                GoodDetailActivity.open(getActivity(),goods.getGoodsId());
             }
         });
         return adapter;

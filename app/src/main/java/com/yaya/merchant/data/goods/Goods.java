@@ -31,10 +31,26 @@ public class Goods implements Serializable {
     private String stock;
     private String state;
     private String price;
-    @SerializedName("meitu")
+    @SerializedName(value = "meitu",alternate = {"picture"})
     private String picImg;
     @SerializedName("apply_state")
     private String applyState;
+    @SerializedName("category_name_1")
+    private String category1 = "";
+    @SerializedName("category_name_2")
+    private String category2 = "";
+    @SerializedName("category_name_3")
+    private String category3 = "";
+    @SerializedName("extend_category_id_1")
+    private String extentCategory1 = "";
+    @SerializedName("extend_category_id_2")
+    private String extentCategory2 = "";
+    @SerializedName("extend_category_id_3")
+    private String extentCategory3 = "";
+    @SerializedName("is_recommend")
+    private int isRecommend;
+    @SerializedName("max_buy")
+    private int maxBuy;
 
     public String getGoodsId() {
         return goodsId;
@@ -78,6 +94,38 @@ public class Goods implements Serializable {
 
     public void setApplyState(String applyState) {
         this.applyState = applyState;
+    }
+
+    public String getCategory1() {
+        return category1;
+    }
+
+    public String getCategory2() {
+        return category2;
+    }
+
+    public String getCategory3() {
+        return category3;
+    }
+
+    public String getExtentCategory1() {
+        return extentCategory1;
+    }
+
+    public String getExtentCategory2() {
+        return extentCategory2;
+    }
+
+    public String getExtentCategory3() {
+        return extentCategory3;
+    }
+
+    public int getIsRecommend() {
+        return isRecommend;
+    }
+
+    public int getMaxBuy() {
+        return maxBuy;
     }
 
     public class GoodsFormat{

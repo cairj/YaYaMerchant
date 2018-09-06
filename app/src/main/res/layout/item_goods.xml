@@ -7,7 +7,8 @@
     android:paddingBottom="10dp"
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:id="@+id/rl_parent">
 
     <ImageView
         android:id="@+id/iv_goods_pic"

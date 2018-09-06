@@ -76,4 +76,10 @@ public class GoodsAction {
                 .build().execute(callback);
     }
 
+    public static void getGoodsDetail(String goodsId,Callback callback){
+        OkHttpUtils.get().url(Urls.GET_GOODS_DETAIL)
+                .addParams("goods_id",goodsId)
+                .build().execute(callback);
+    }
+
 }

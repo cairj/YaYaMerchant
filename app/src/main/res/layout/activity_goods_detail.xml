@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_f2f2f2">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="此页面仅能编辑上下架，更多操作请用pc端操作"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:textColor="@color/gray_999999"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/white"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/iv_goods_pic"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+        <TextView
+            android:id="@+id/tv_goods_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_goods_pic"
+            android:layout_marginLeft="10dp"
+            android:textSize="@dimen/sp_14"
+            tool:text="100"
+            android:textColor="@color/pink_eb5650"/>
+
+        <TextView
+            android:id="@+id/tv_goods_stock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_goods_price"
+            android:layout_below="@id/tv_goods_price"
+            android:layout_marginTop="22dp"
+            android:textSize="@dimen/sp_14"
+            tool:text="100"
+            android:textColor="@color/black_333333"/>
+
+        <TextView
+            android:id="@+id/tv_goods_real_sale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_goods_stock"
+            android:layout_below="@id/tv_goods_stock"
+            android:layout_marginTop="10dp"
+            android:textSize="@dimen/sp_12"
+            tool:text="100"
+            android:textColor="@color/black_333333"/>
+
+        <TextView
+            android:id="@+id/tv_change_status"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_goods_btn"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:textSize="@dimen/sp_12"/>
+
+        <TextView
+            android:id="@+id/tv_goods_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:layout_below="@id/iv_goods_pic"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black_333333"
+            android:textSize="@dimen/sp_15"/>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tv_goods_name"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/ic_goods_detail_divider"/>
+
+        <TextView
+            android:id="@+id/tv_goods_freight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_goods_name"
+            android:layout_marginTop="25dp"
+            android:textColor="@color/black_333333"
+            android:textSize="@dimen/sp_14"/>
+
+        <TextView
+            android:id="@+id/tv_goods_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_goods_freight"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black_333333"
+            android:textSize="@dimen/sp_14"/>
+
+        <TextView
+            android:id="@+id/tv_goods_extend_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_goods_category"
+            android:layout_toRightOf="@id/tv_goods_category"
+            android:layout_marginLeft="30dp"
+            android:textColor="@color/black_333333"
+            android:textSize="@dimen/sp_14"/>
+
+        <TextView
+            android:id="@+id/tv_goods_max_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_goods_category"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black_333333"
+            android:textSize="@dimen/sp_14"/>
+
+        <TextView
+            android:id="@+id/tv_goods_recommend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_goods_max_buy"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black_333333"
+            android:textSize="@dimen/sp_14"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

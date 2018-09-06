@@ -20,14 +20,14 @@ import java.util.List;
 
 public class GoodsAdapter extends BaseQuickAdapter<Goods> {
     public GoodsAdapter(List<Goods> data) {
-        super(R.layout.item_goods,data);
+        super(R.layout.item_goods, data);
     }
 
     @Override
     protected void convert(BaseViewHolder baseViewHolder, final Goods goods) {
-        baseViewHolder.setText(R.id.tv_goods_name,goods.getGoodsName())
-                .setText(R.id.tv_goods_price,goods.getPrice())
-                .setText(R.id.tv_goods_stock,goods.getGoodsRealSale()+"/"+goods.getStock());
+        baseViewHolder.setText(R.id.tv_goods_name, goods.getGoodsName())
+                .setText(R.id.tv_goods_price, goods.getPrice())
+                .setText(R.id.tv_goods_stock, goods.getGoodsRealSale() + "/" + goods.getStock());
 
         GlideLoaderHelper.loadImg(goods.getPicImg(), (ImageView) baseViewHolder.getView(R.id.iv_goods_pic));
 
@@ -48,7 +48,7 @@ public class GoodsAdapter extends BaseQuickAdapter<Goods> {
             changeStatus.setText("上架");
             changeStatus.setEnabled(true);
             changeStatus.setSelected(false);
-            changeStatus.setTextColor(ContextCompat.getColor(mContext,R.color.white));
+            changeStatus.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         }
 
         if (Goods.STATUS_PUT_AWAY.equals(goods.getState())) {
@@ -56,13 +56,13 @@ public class GoodsAdapter extends BaseQuickAdapter<Goods> {
             changeStatus.setText("下架");
             changeStatus.setEnabled(true);
             changeStatus.setSelected(true);
-            changeStatus.setTextColor(ContextCompat.getColor(mContext,R.color.red_f94745));
+            changeStatus.setTextColor(ContextCompat.getColor(mContext, R.color.red_f94745));
         }
 
         if (Goods.STATUS_SOLD_OUT.equals(goods.getState()) && Goods.APPLY_STATE_APPLYING.equals(goods.getApplyState())) {
             status.setText("状态：审核中");
-            if (UserHelper.isAgent()){
-                status.setEnabled(true);
+            if (UserHelper.isAgent()) {
+                changeStatus.setEnabled(true);
                 changeStatus.setText("上架");
             }
             if (UserHelper.isMerchant()) {
@@ -70,14 +70,23 @@ public class GoodsAdapter extends BaseQuickAdapter<Goods> {
                 changeStatus.setText("审核中");
             }
             changeStatus.setSelected(false);
-            changeStatus.setTextColor(ContextCompat.getColor(mContext,R.color.white));
+            changeStatus.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         }
 
         changeStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onItemClickListener != null){
+                if (onItemClickListener != null) {
                     onItemClickListener.onItemBtnClick(goods);
+                }
+            }
+        });
+
+        baseViewHolder.getView(R.id.rl_parent).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(goods);
                 }
             }
         });
@@ -89,7 +98,9 @@ public class GoodsAdapter extends BaseQuickAdapter<Goods> {
         this.onItemClickListener = onItemClickListener;
     }
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onItemBtnClick(Goods goods);
+
+        void onItemClick(Goods goods);
     }
 }
