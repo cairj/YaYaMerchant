@@ -300,4 +300,11 @@ public class UserAction {
                 .build().execute(callback);
     }
 
+    //商户报表
+    public static void getMerchantReportForms(String url,String shopId,Callback callback){
+        OkHttpUtils.post().url(url)
+                .addParams("shop_id",shopId)
+                .build().execute(callback);
+    }
+
 }

@@ -70,5 +70,9 @@ public class Urls {
     public static final String CHANGE_GOODS_STATUS_SOLD_DOWN = HOST + "Goods/downs";
     public static final String CHANGE_GOODS_STATUS_APPLY_PASS = HOST + "Goods/statagent";
     public static final String GET_GOODS_DETAIL = HOST + "Goods/goods";
+    public static final String MERCHANT_REPORT_FORMS_MONEY = HOST + "Data/moneyCount";
+    public static final String MERCHANT_REPORT_FORMS_GOODS = HOST + "Data/goods";
+    public static final String MERCHANT_REPORT_FORMS_USER = HOST + "Data/users";
+    public static final String MERCHANT_REPORT_FORMS_ORDER = HOST + "Data/orders";
 
 }

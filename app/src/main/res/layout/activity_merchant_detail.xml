@@ -75,15 +75,23 @@
         android:layout_marginTop="9dp"
         android:background="@color/white">
 
-        <LinearLayout style="@style/merchant_data_ll"
-            android:layout_marginLeft="0dp">
+        <FrameLayout
+            android:id="@+id/fl_merchant_data_goods"
+            style="@style/merchant_data_ll">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_red_circle"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray_aaaaaa"
                 android:textSize="11sp"
-                android:text="商品"/>
+                android:text="商品"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"/>
 
             <TextView
                 android:id="@+id/tv_merchant_data_goods"
@@ -92,17 +100,27 @@
                 android:textColor="@color/black_565656"
                 android:textSize="11sp"
                 tool:text="500"
-                android:layout_marginTop="8dp"/>
-        </LinearLayout>
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center_horizontal|bottom"/>
+        </FrameLayout>
 
-        <LinearLayout style="@style/merchant_data_ll">
+        <FrameLayout
+            android:id="@+id/fl_merchant_data_order"
+            style="@style/merchant_data_ll">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_red_circle"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray_aaaaaa"
                 android:textSize="10sp"
-                android:text="订单"/>
+                android:text="订单"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"/>
 
             <TextView
                 android:id="@+id/tv_merchant_data_order"
@@ -111,17 +129,27 @@
                 android:textColor="@color/black_565656"
                 android:textSize="11sp"
                 tool:text="500"
-                android:layout_marginTop="8dp"/>
-        </LinearLayout>
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center_horizontal|bottom"/>
+        </FrameLayout>
 
-        <LinearLayout style="@style/merchant_data_ll">
+        <FrameLayout
+            android:id="@+id/fl_merchant_data_money"
+            style="@style/merchant_data_ll">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_red_circle"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray_aaaaaa"
                 android:textSize="11sp"
-                android:text="交易"/>
+                android:text="交易"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"/>
 
             <TextView
                 android:id="@+id/tv_merchant_data_money"
@@ -130,17 +158,27 @@
                 android:textColor="@color/black_565656"
                 android:textSize="10sp"
                 tool:text="500"
-                android:layout_marginTop="8dp"/>
-        </LinearLayout>
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center_horizontal|bottom"/>
+        </FrameLayout>
 
-        <LinearLayout style="@style/merchant_data_ll">
+        <FrameLayout
+            android:id="@+id/fl_merchant_data_user"
+            style="@style/merchant_data_ll">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_red_circle"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/gray_aaaaaa"
                 android:textSize="11sp"
-                android:text="用户"/>
+                android:text="用户"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"/>
 
             <TextView
                 android:id="@+id/tv_merchant_data_user"
@@ -149,8 +187,9 @@
                 android:textColor="@color/black_565656"
                 android:textSize="10sp"
                 tool:text="500"
-                android:layout_marginTop="8dp"/>
-        </LinearLayout>
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center_horizontal|bottom"/>
+        </FrameLayout>
 
     </LinearLayout>
 

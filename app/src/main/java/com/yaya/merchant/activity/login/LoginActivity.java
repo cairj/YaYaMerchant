@@ -1,5 +1,6 @@
 package com.yaya.merchant.activity.login;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -47,6 +48,8 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.login_rb_agent)
     protected RadioButton agentRb;
 
+    private String xinGeToken;
+
     @Override
     protected int getContentViewId() {
         return R.layout.activity_login;
@@ -57,6 +60,12 @@ public class LoginActivity extends BaseActivity {
         super.initView();
         StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
         initEditView();
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        getXinGeToken();
     }
 
     //初始化输入框
@@ -104,35 +113,15 @@ public class LoginActivity extends BaseActivity {
             return;
         }
         final int memberType = merchantRb.isChecked()? Constants.MEMBER_TYPE_MERCHANT:Constants.MEMBER_TYPE_AGENT;
-        getXinGeToken(memberType);
+        login(memberType);
     }
 
-    private void getXinGeToken(final int memberType){
+    private void getXinGeToken(){
         LoadingUtil.showAsyncProgressDialog(this);
         XGPushManager.registerPush(this, new XGIOperateCallback() {
             @Override
             public void onSuccess(Object data, int flag) {
-                LoginAction.login(userEditView.getText().toString().trim(),
-                        passwordEditView.getText().toString().trim(), data.toString(),
-                        memberType,new GsonCallback<TokenData>(TokenData.class) {
-
-                            @Override
-                            public void onSucceed(JsonResponse<TokenData> response) {
-                                LoadingUtil.hideProcessingIndicator();
-                                SPUtil.putBoolean(SpKeys.IS_LOGIN, true);
-                                SPUtil.putString(SpKeys.TOKEN, response.getResultData().getToken());
-                                SPUtil.putInt(SpKeys.USER_TYPE, memberType);
-                                openActivity(MainActivity.class, true);
-                            }
-
-                            @Override
-                            public void onFailed(JsonResponse<TokenData> response) {
-                                LoadingUtil.hideProcessingIndicator();
-                                SingleBtnDialog dialog = new SingleBtnDialog(LoginActivity.this,R.layout.dialog_text_single_btn);
-                                dialog.getContentTv().setText(response.getMsg());
-                                dialog.show();
-                            }
-                        });
+                xinGeToken = data.toString();
             }
             @Override
             public void onFail(Object data, int errCode, String msg) {
@@ -140,5 +129,33 @@ public class LoginActivity extends BaseActivity {
                 Log.d("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
             }
         });
+    }
+
+    private void login(final int memberType){
+        if (TextUtils.isEmpty(xinGeToken)){
+            ToastUtil.toast("请稍后。。。");
+            return;
+        }
+        LoginAction.login(userEditView.getText().toString().trim(),
+                passwordEditView.getText().toString().trim(), xinGeToken,
+                memberType,new GsonCallback<TokenData>(TokenData.class) {
+
+                    @Override
+                    public void onSucceed(JsonResponse<TokenData> response) {
+                        LoadingUtil.hideProcessingIndicator();
+                        SPUtil.putBoolean(SpKeys.IS_LOGIN, true);
+                        SPUtil.putString(SpKeys.TOKEN, response.getResultData().getToken());
+                        SPUtil.putInt(SpKeys.USER_TYPE, memberType);
+                        openActivity(MainActivity.class, true);
+                    }
+
+                    @Override
+                    public void onFailed(JsonResponse<TokenData> response) {
+                        LoadingUtil.hideProcessingIndicator();
+                        SingleBtnDialog dialog = new SingleBtnDialog(LoginActivity.this,R.layout.dialog_text_single_btn);
+                        dialog.getContentTv().setText(response.getMsg());
+                        dialog.show();
+                    }
+                });
     }
 }

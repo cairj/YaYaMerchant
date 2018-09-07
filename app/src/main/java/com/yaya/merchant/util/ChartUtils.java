@@ -3,12 +3,14 @@ package com.yaya.merchant.util;
 import android.graphics.Color;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import java.util.List;
 
@@ -51,7 +53,7 @@ public class ChartUtils {
         xAxis.setTextSize(12);
         xAxis.setGridColor(Color.parseColor("#30FFFFFF"));
         // 设置x轴数据偏移量
-        xAxis.setYOffset(-12);
+        xAxis.setYOffset(8);
 
         YAxis yAxis = chart.getAxisLeft();
         // 不显示y轴
@@ -63,7 +65,7 @@ public class ChartUtils {
         yAxis.setTextColor(Color.BLACK);
         yAxis.setTextSize(12);
         // 设置y轴数据偏移量
-        yAxis.setXOffset(30);
+        yAxis.setXOffset(15);
         yAxis.setYOffset(-3);
         yAxis.setAxisMinimum(0);
 
@@ -92,6 +94,7 @@ public class ChartUtils {
             lineDataSet.setValues(values);
             chart.getData().notifyDataChanged();
             chart.notifyDataSetChanged();
+            chart.invalidate();
         } else {
             lineDataSet = new LineDataSet(values, "");
             // 设置曲线颜色
@@ -100,7 +103,7 @@ public class ChartUtils {
             lineDataSet.setMode(LineDataSet.Mode.STEPPED);
             // 坐标点的小圆点
             lineDataSet.setDrawCircles(true);
-            lineDataSet.getCircleColor(Color.parseColor("#4B7FBD"));
+            lineDataSet.setCircleColor(Color.parseColor("#4B7FBD"));
             // 不显示坐标点的数据
             lineDataSet.setDrawValues(false);
             // 不显示定位线
@@ -110,6 +113,19 @@ public class ChartUtils {
             chart.setData(data);
             chart.invalidate();
         }
+    }
+
+    //设置想x坐标的值
+    public static void setXAxis(LineChart chart, final List<String> xValueList){
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                int i = (int) (value % xValueList.size());
+                return xValueList.get(i);
+            }
+        });
+        xAxis.setLabelCount(4,false);
     }
 
 }
