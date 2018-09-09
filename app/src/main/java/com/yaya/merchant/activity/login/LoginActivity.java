@@ -117,25 +117,27 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void getXinGeToken(){
-        LoadingUtil.showAsyncProgressDialog(this);
+        Log.e("TPush","start--->"+System.currentTimeMillis());
         XGPushManager.registerPush(this, new XGIOperateCallback() {
             @Override
             public void onSuccess(Object data, int flag) {
                 xinGeToken = data.toString();
+                Log.e("TPush","end--->"+System.currentTimeMillis());
             }
             @Override
             public void onFail(Object data, int errCode, String msg) {
-                LoadingUtil.hideProcessingIndicator();
                 Log.d("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
+                getXinGeToken();
             }
         });
     }
 
     private void login(final int memberType){
         if (TextUtils.isEmpty(xinGeToken)){
-            ToastUtil.toast("请稍后。。。");
+            ToastUtil.toast("正在注册信鸽推送，请稍后。。。");
             return;
         }
+        LoadingUtil.showAsyncProgressDialog(this);
         LoginAction.login(userEditView.getText().toString().trim(),
                 passwordEditView.getText().toString().trim(), xinGeToken,
                 memberType,new GsonCallback<TokenData>(TokenData.class) {
@@ -157,5 +159,14 @@ public class LoginActivity extends BaseActivity {
                         dialog.show();
                     }
                 });
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (!SPUtil.getBoolean(SpKeys.IS_LOGIN)){
+            XGPushManager.registerPush(this,"*");
+            XGPushManager.unregisterPush(this);
+        }
+        super.onDestroy();
     }
 }

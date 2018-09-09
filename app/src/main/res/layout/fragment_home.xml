@@ -402,7 +402,7 @@
                             <TextView
                                 style="@style/home_today_data_title"
                                 android:layout_marginTop="5dp"
-                                android:text="@string/total_member_number" />
+                                android:text="总销售额" />
 
                             <TextView
                                 android:id="@+id/tv_yesterday_order_amount"
@@ -465,7 +465,7 @@
                             <TextView
                                 style="@style/home_today_data_title"
                                 android:layout_marginTop="5dp"
-                                android:text="@string/total_member_number" />
+                                android:text="总销售额" />
 
                             <TextView
                                 android:id="@+id/tv_this_month_order_amount"
