@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/pink_f25b4e">
+
+        <include layout="@layout/layout_dark_action_bar" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:id="@+id/balance_account_tv_change_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:text="@string/all_status"
+            android:textSize="13sp"
+            android:textColor="@color/black_666666"
+            android:drawableRight="@mipmap/ic_down"/>
+
+        <TextView
+            android:id="@+id/balance_account_tv_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:text="@string/screen"
+            android:textSize="13sp"
+            android:textColor="@color/black_666666"
+            android:drawableRight="@mipmap/ic_screen"/>
+
+        <View
+            style="@style/divider_vertical"
+            android:layout_height="12dp"
+            android:background="@color/gray_f1f2f4"
+            android:layout_toLeftOf="@id/balance_account_tv_screen"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"/>
+
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        android:background="@mipmap/bg_bank_account_red"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            tool:text="充值余额"
+            android:includeFontPadding="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:text="充值余额"
+            android:includeFontPadding="false"
+            android:layout_marginTop="6dp"
+            android:alpha="0.45"/>
+
+    </LinearLayout>
+
+    <include layout="@layout/layout_base_ptr_recycle"/>
+
+
+</LinearLayout>
