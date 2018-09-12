@@ -73,6 +73,12 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
         context.startActivity(intent);
     }
 
+    public static void open(Context context, String orderStatus) {
+        Intent intent = new Intent(context, OrderListActivity.class);
+        intent.putExtra("orderStatus", orderStatus);
+        context.startActivity(intent);
+    }
+
     @Override
     protected int getContentViewId() {
         return R.layout.activity_order_list;
@@ -80,10 +86,20 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
 
     @Override
     protected void initView() {
-        isScan = getIntent().getIntExtra("isScan", 0);
+        isScan = getIntent().getIntExtra("isScan", -1);
+        orderStatus = getIntent().getStringExtra("orderStatus");
         super.initView();
         StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
-        setActionBarTitle("订单列表");
+        if (OrderDetail.TYPE_DELIVER_ORDER_LIST.equals(orderStatus)){
+            setActionBarTitle("发货");
+            choiceLL.setVisibility(View.GONE);
+        } else if (OrderDetail.TYPE_DELIVER_ORDER_LIST.equals(orderStatus)){
+            setActionBarTitle("退款");
+            choiceLL.setVisibility(View.GONE);
+        } else {
+            setActionBarTitle("订单列表");
+            choiceLL.setVisibility(View.VISIBLE);
+        }
         startTimePopupWindow = new DatePickerPopupWindow(this);
         startTimePopupWindow.setOnSubmitTvClickListener(new DatePickerPopupWindow.OnSubmitTvClickListener() {
             @Override
@@ -116,6 +132,7 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
     @Override
     protected BaseQuickAdapter getAdapter() {
         OrderListAdapter adapter = new OrderListAdapter(mDataList);
+        adapter.setType(orderStatus);
         adapter.setListener(new OrderListAdapter.OnClickListener() {
             @Override
             public void onParentClick(OrderDetail orderData) {
@@ -124,14 +141,14 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
 
             @Override
             public void onBtnClick(OrderDetail orderDetail) {
-                /*switch (type) {
+                switch (orderStatus) {
                     case OrderDetail.TYPE_DELIVER_ORDER_LIST:
                         DeliverOrderActivity.open(OrderListActivity.this, orderDetail);
                         break;
                     case OrderDetail.TYPE_REFUND_ORDER_LIST:
                         RefundOrderActivity.open(OrderListActivity.this, orderDetail);
                         break;
-                }*/
+                }
             }
         });
         return adapter;
@@ -139,7 +156,8 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
 
     @Override
     protected JsonResponse<BaseRowData<OrderDetail>> getData() throws Exception {
-        return OrderAction.getOrderList(startTime, endTime,String.valueOf(isScan),orderStatus,
+        String scan = isScan == -1 ? "" : String.valueOf(isScan);
+        return OrderAction.getOrderList(startTime, endTime,scan,orderStatus,
                 String.valueOf(mCurrentPos), String.valueOf(pageSize));
     }
 

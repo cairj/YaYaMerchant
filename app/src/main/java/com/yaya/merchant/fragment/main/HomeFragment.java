@@ -239,9 +239,13 @@ public class HomeFragment extends BaseFragment {
             case R.id.tv_online_payment:
                 OrderListActivity.open(getActivity(), OrderDetail.ORDER_PAYMENT_TYPE_ONLINE);
                 break;
-            case R.id.tv_balance_account:
-            case R.id.tv_return_review:
             case R.id.tv_receive:
+                OrderListActivity.open(getActivity(), OrderDetail.TYPE_DELIVER_ORDER_LIST);
+                break;
+            case R.id.tv_return_review:
+                OrderListActivity.open(getActivity(), OrderDetail.TYPE_REFUND_ORDER_LIST);
+                break;
+            case R.id.tv_balance_account:
             case R.id.tv_with_draw_money:
             case R.id.tv_report:
             case R.id.tv_vip:

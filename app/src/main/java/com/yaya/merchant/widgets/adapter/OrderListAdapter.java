@@ -24,7 +24,7 @@ import java.util.List;
 public class OrderListAdapter extends BaseQuickAdapter<OrderDetail> {
 
     private RecyclerView.ItemDecoration decoration;
-    private int type;
+    private String type;
 
     public OrderListAdapter(List<OrderDetail> data) {
         super(R.layout.item_order_list, data);
@@ -60,7 +60,7 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderDetail> {
         });
 
         TextView btn = baseViewHolder.getView(R.id.tv_btn);
-        /*switch (type) {
+        switch (type) {
             case OrderDetail.TYPE_DELIVER_ORDER_LIST:
                 btn.setText("发货");
                 btn.setVisibility(View.VISIBLE);
@@ -73,7 +73,7 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderDetail> {
             default:
                 btn.setVisibility(View.GONE);
                 break;
-        }*/
+        }
         btn.setVisibility(View.GONE);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +114,7 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderDetail> {
         return totalPrice;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 

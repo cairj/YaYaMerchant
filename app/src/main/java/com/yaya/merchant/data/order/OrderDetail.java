@@ -9,9 +9,9 @@ import java.util.List;
 
 public class OrderDetail implements Serializable {
 
-    public static final int TYPE_ORDER_LIST=1;
-    public static final int TYPE_DELIVER_ORDER_LIST=2;
-    public static final int TYPE_REFUND_ORDER_LIST=3;
+    public static final String TYPE_ORDER_LIST= "";
+    public static final String TYPE_DELIVER_ORDER_LIST="1";//待发货
+    public static final String TYPE_REFUND_ORDER_LIST="2";//已发货
 
     public static final int ORDER_PAYMENT_TYPE_SCAN = 1;//扫码
     public static final int ORDER_PAYMENT_TYPE_ONLINE = 0;//线上
