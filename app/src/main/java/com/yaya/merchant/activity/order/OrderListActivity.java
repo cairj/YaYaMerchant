@@ -42,7 +42,7 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
     private int isScan;
     private String startTime;
     private String endTime;
-    private String orderStatus;
+    private String orderStatus = "";
 
     private Calendar startCalendar;
     private Calendar endCalendar;
@@ -93,7 +93,7 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
         if (OrderDetail.TYPE_DELIVER_ORDER_LIST.equals(orderStatus)){
             setActionBarTitle("发货");
             choiceLL.setVisibility(View.GONE);
-        } else if (OrderDetail.TYPE_DELIVER_ORDER_LIST.equals(orderStatus)){
+        } else if (OrderDetail.TYPE_REFUND_ORDER_LIST.equals(orderStatus)){
             setActionBarTitle("退款");
             choiceLL.setVisibility(View.GONE);
         } else {

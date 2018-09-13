@@ -32,7 +32,7 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderDetail> {
 
     @Override
     protected void convert(BaseViewHolder baseViewHolder, final OrderDetail orderData) {
-        baseViewHolder.setText(R.id.tv_user_name, "平台用户：" + orderData.getMemberInfo())
+        baseViewHolder.setText(R.id.tv_user_name, orderData.getMemberInfo())
                 .setText(R.id.tv_date, orderData.getPayTime())
                 .setText(R.id.tv_pay_status, orderData.getPayStatus())
                 .setText(R.id.tv_total_money, "￥"+String.valueOf(totalPrice(orderData)));
@@ -74,7 +74,6 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderDetail> {
                 btn.setVisibility(View.GONE);
                 break;
         }
-        btn.setVisibility(View.GONE);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,6 +114,10 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderDetail> {
     }
 
     public void setType(String type) {
+        if (type == null){
+            this.type = "";
+            return;
+        }
         this.type = type;
     }
 
