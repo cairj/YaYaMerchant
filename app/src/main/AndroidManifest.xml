@@ -161,6 +161,8 @@
 
         <activity android:name=".activity.good.GoodDetailActivity"/>
 
+        <activity android:name=".activity.order.RefundOrderListActivity"/>
+
         <!---->
         <receiver android:name=".receiver.MyReceiver"
             android:exported="true" >

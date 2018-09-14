@@ -53,6 +53,25 @@ public class OrderAction {
         return gson.fromJson(response.body().string(), type);
     }
 
+    //获取订单列表
+    public static JsonResponse<BaseRowData<OrderDetail>> getRefundOrderList(String auditStatus,
+                                                                      String page, String pageSize) throws IOException {
+        if (TextUtils.isEmpty(page) || TextUtils.isEmpty(pageSize)) {
+            return null;
+        }
+        GetBuilder builder = OkHttpUtils.get().url(Urls.GET_REFUND_ORDER_LIST)
+                .addParams("page", page)
+                .addParams("pageSize", pageSize);
+        if (!TextUtils.isEmpty(auditStatus)) {
+            builder.addParams("audit_status", auditStatus);
+        }
+        Response response = builder.build().execute();
+        Gson gson = new Gson();
+        Type type = new TypeToken<JsonResponse<BaseRowData<OrderDetail>>>() {
+        }.getType();
+        return gson.fromJson(response.body().string(), type);
+    }
+
     //订单详情
     public static void getOrderDetail(String orderSn, Callback callback) {
         OkHttpUtils.get().url(Urls.GET_ORDER_DETAIL)

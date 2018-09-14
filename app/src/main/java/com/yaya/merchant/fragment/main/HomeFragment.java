@@ -18,6 +18,7 @@ import com.yaya.merchant.activity.account.EnterBillActivity;
 import com.yaya.merchant.activity.account.MemberManagerActivity;
 import com.yaya.merchant.activity.article.ArticleListActivity;
 import com.yaya.merchant.activity.order.OrderListActivity;
+import com.yaya.merchant.activity.order.RefundOrderListActivity;
 import com.yaya.merchant.activity.user.MerchantListActivity;
 import com.yaya.merchant.activity.user.VerificationActivity;
 import com.yaya.merchant.activity.withdraw.WithdrawMoneyActivity;
@@ -243,7 +244,7 @@ public class HomeFragment extends BaseFragment {
                 OrderListActivity.open(getActivity(), OrderDetail.TYPE_DELIVER_ORDER_LIST);
                 break;
             case R.id.tv_return_review:
-                OrderListActivity.open(getActivity(), OrderDetail.TYPE_REFUND_ORDER_LIST);
+                openActivity(RefundOrderListActivity.class);
                 break;
             case R.id.tv_balance_account:
             case R.id.tv_with_draw_money:

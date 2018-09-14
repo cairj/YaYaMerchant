@@ -107,6 +107,9 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderDetail> {
     //计算总价
     private double totalPrice(OrderDetail orderData) {
         double totalPrice = 0;
+        if (orderData.getOrderdetail() == null){
+            return Double.parseDouble(orderData.getTotalPrice());
+        }
         for (OrderDetailData detailData : orderData.getOrderdetail()) {
             totalPrice += detailData.getOrderPrice() * detailData.getOrderNum();
         }
