@@ -28,7 +28,7 @@ public class RechargeAction {
         if (TextUtils.isEmpty(page) || TextUtils.isEmpty(pageSize)) {
             return null;
         }
-        GetBuilder builder = OkHttpUtils.get().url(Urls.GET_ORDER_LIST)
+        GetBuilder builder = OkHttpUtils.get().url(Urls.QUERY_RECHARGE_LIST)
                 .addParams("page", page)
                 .addParams("pageSize", pageSize);
         if (!TextUtils.isEmpty(startTime)) {

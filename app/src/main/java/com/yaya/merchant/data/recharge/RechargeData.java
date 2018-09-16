@@ -17,9 +17,11 @@ public class RechargeData extends BaseRowData<RechargeData.RechargeRows> {
         return balance;
     }
 
-    public class RechargeRows implements Serializable{
+    public static class RechargeRows implements Serializable{
         public static final int SIGN_TYPE_RECHARGE = 1;//充值
         public static final int SIGN_TYPE_CONSUME = 0;//消费
+        public static final String[] SIGN_TYPE_VALUE = {"全部类型","充值","消费"};
+        public static final String[] SIGN_TYPE_VALUE_PARAMS = {"","1","0"};
 
         /*private String id;//378,
         private String uid;// 12346,

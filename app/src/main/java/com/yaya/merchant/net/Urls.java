@@ -74,5 +74,6 @@ public class Urls {
     public static final String MERCHANT_REPORT_FORMS_GOODS = HOST + "Data/goods";
     public static final String MERCHANT_REPORT_FORMS_USER = HOST + "Data/users";
     public static final String MERCHANT_REPORT_FORMS_ORDER = HOST + "Data/orders";
+    public static final String QUERY_RECHARGE_LIST = HOST + "Balance/recharge";
 
 }

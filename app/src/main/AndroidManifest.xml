@@ -161,6 +161,8 @@
 
         <activity android:name=".activity.good.GoodDetailActivity"/>
 
+        <activity android:name=".activity.recharge.RechargeActivity"/>
+
         <activity android:name=".activity.order.RefundOrderListActivity"/>
 
         <!---->

@@ -18,7 +18,7 @@
         android:layout_height="40dp">
 
         <TextView
-            android:id="@+id/balance_account_tv_change_status"
+            android:id="@+id/tv_change_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -29,7 +29,7 @@
             android:drawableRight="@mipmap/ic_down"/>
 
         <TextView
-            android:id="@+id/balance_account_tv_screen"
+            android:id="@+id/tv_screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

@@ -19,6 +19,7 @@ import com.yaya.merchant.activity.account.MemberManagerActivity;
 import com.yaya.merchant.activity.article.ArticleListActivity;
 import com.yaya.merchant.activity.order.OrderListActivity;
 import com.yaya.merchant.activity.order.RefundOrderListActivity;
+import com.yaya.merchant.activity.recharge.RechargeActivity;
 import com.yaya.merchant.activity.user.MerchantListActivity;
 import com.yaya.merchant.activity.user.VerificationActivity;
 import com.yaya.merchant.activity.withdraw.WithdrawMoneyActivity;
@@ -246,8 +247,10 @@ public class HomeFragment extends BaseFragment {
             case R.id.tv_return_review:
                 openActivity(RefundOrderListActivity.class);
                 break;
-            case R.id.tv_balance_account:
             case R.id.tv_with_draw_money:
+                openActivity(RechargeActivity.class);
+                break;
+            case R.id.tv_balance_account:
             case R.id.tv_report:
             case R.id.tv_vip:
                 ToastUtil.toast("正在开发中");
