@@ -136,7 +136,7 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
         adapter.setListener(new OrderListAdapter.OnClickListener() {
             @Override
             public void onParentClick(OrderDetail orderData) {
-                OrderDetailActivity.open(OrderListActivity.this,orderData.getOrderSn());
+                OrderDetailActivity.open(OrderListActivity.this,orderData,orderStatus);
             }
 
             @Override

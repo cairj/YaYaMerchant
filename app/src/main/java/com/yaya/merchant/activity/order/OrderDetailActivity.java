@@ -39,10 +39,13 @@ import butterknife.OnClick;
 public class OrderDetailActivity extends BaseActivity {
 
     private String orderSn;
+    private String type;
+    private String orderId;
 
-    public static void open(Context context, String orderSn) {
+    public static void open(Context context, OrderDetail order, String type) {
         Intent intent = new Intent(context, OrderDetailActivity.class);
-        intent.putExtra("orderSn", orderSn);
+        intent.putExtra("order", order);
+        intent.putExtra("type", type);
         context.startActivity(intent);
     }
 
@@ -89,8 +92,11 @@ public class OrderDetailActivity extends BaseActivity {
         super.initView();
         setActionBarTitle("订单详情");
         StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
-        orderSn = getIntent().getStringExtra("orderSn");
-        /*switch (type) {
+        OrderDetail order = (OrderDetail) getIntent().getSerializableExtra("order");
+        orderSn = order.getOrderSn();
+        orderId = order.getId();
+        type = getIntent().getStringExtra("type");
+        switch (type) {
             case OrderDetail.TYPE_ORDER_LIST:
                 bottomLL.setVisibility(View.GONE);
                 break;
@@ -102,8 +108,7 @@ public class OrderDetailActivity extends BaseActivity {
                 bottomLL.setVisibility(View.VISIBLE);
                 submitTv.setText("审核");
                 break;
-        }*/
-        bottomLL.setVisibility(View.GONE);
+        }
 
         orderDetailRv.setLayoutManager(new LinearLayoutManager(this));
         orderDetailRv.addItemDecoration(new HorizontalDividerItemDecoration.Builder(this)
@@ -117,18 +122,11 @@ public class OrderDetailActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
-        /*switch (type) {
-            case OrderDetail.TYPE_DELIVER_ORDER_LIST:
-                url = Urls.GET_DELIVER_ORDER_DETAIL;
-                break;
-            case OrderDetail.TYPE_REFUND_ORDER_LIST:
-                url = Urls.GET_REFUND_ORDER_DETAIL;
-                break;
-        }*/
         OrderAction.getOrderDetail(orderSn, new GsonCallback<OrderDetail>(OrderDetail.class) {
             @Override
             public void onSucceed(JsonResponse<OrderDetail> response) {
                 orderDetail = response.getResultData();
+                orderDetail.setId(orderId);
                 statusTv.setText(orderDetail.getOrderStatus());
                 buyerInfoTv.setText(orderDetail.getUserName() + "  " + orderDetail.getUserPhone() + "\n" + orderDetail.getUserAddress());
                 dateTv.setText(orderDetail.getPayTime());
@@ -149,14 +147,14 @@ public class OrderDetailActivity extends BaseActivity {
 
     @OnClick(R.id.tv_submit)
     protected void OnClick() {
-        /*switch (type) {
+        switch (type) {
             case OrderDetail.TYPE_DELIVER_ORDER_LIST:
                 DeliverOrderActivity.open(this, orderDetail);
                 break;
             case OrderDetail.TYPE_REFUND_ORDER_LIST:
                 RefundOrderActivity.open(this, orderDetail);
                 break;
-        }*/
+        }
     }
 
     @Subscriber(tag= EventBusTags.DELIVER_ORDER_SUCCESS)

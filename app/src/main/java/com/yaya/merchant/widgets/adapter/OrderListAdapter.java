@@ -66,8 +66,20 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderDetail> {
                 btn.setVisibility(View.VISIBLE);
                 break;
             case OrderDetail.TYPE_REFUND_ORDER_LIST:
-                btn.setText("审核");
-                baseViewHolder.getView(R.id.tv_pay_status).setVisibility(View.GONE);
+                switch (orderData.getAuditStatus()){
+                    case OrderDetail.REFUND_ORDER_STATUS_APPLYING:
+                        btn.setText("审核");
+                        break;
+                    case OrderDetail.REFUND_ORDER_STATUS_SUCCESS:
+                        btn.setText("审核通过");
+                        break;
+                    case OrderDetail.REFUND_ORDER_STATUS_WAITING:
+                        btn.setText("财务审核中");
+                        break;
+                    case OrderDetail.REFUND_ORDER_STATUS_FAIL:
+                        btn.setText("退款申请不通过");
+                        break;
+                }
                 btn.setVisibility(View.VISIBLE);
                 break;
             default:

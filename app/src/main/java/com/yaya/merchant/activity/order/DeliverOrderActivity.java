@@ -94,7 +94,7 @@ public class DeliverOrderActivity extends BaseActivity {
         OrderAction.getExpressCompanyList(new GsonCallback<ExpressCompany>(ExpressCompany.class) {
             @Override
             public void onSucceed(JsonResponse<ExpressCompany> response) {
-                companyChoiceItemList.addAll(response.getData().getDatas());
+                companyChoiceItemList.addAll(response.getDataList());
                 companyChoiceAdapter.notifyDataSetChanged();
             }
         });
@@ -112,7 +112,7 @@ public class DeliverOrderActivity extends BaseActivity {
                         new GsonCallback<String>(String.class) {
                             @Override
                             public void onSucceed(JsonResponse<String> response) {
-                                ToastUtil.toast(response.getData().getData());
+                                ToastUtil.toast("发货成功");
                                 EventBus.getDefault().post("", EventBusTags.DELIVER_ORDER_SUCCESS);
                                 finish();
                             }

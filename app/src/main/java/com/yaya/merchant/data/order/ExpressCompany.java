@@ -1,5 +1,7 @@
 package com.yaya.merchant.data.order;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -8,7 +10,9 @@ import java.io.Serializable;
 
 public class ExpressCompany implements Serializable {
 
+    @SerializedName("company_name")
     private String expressName;
+    @SerializedName("express_no")
     private String expressNo;
     private boolean isSelect;
 

@@ -49,8 +49,8 @@ public class Urls {
     public static final String GET_ORDER_DETAIL = HOST + "Order/OrderDetail";
     public static final String GET_DELIVER_ORDER_DETAIL = HOST + "api/ShopOrder/DeliverGoodsDetail";
     public static final String GET_REFUND_ORDER_DETAIL = HOST + "api/ShopOrder/RefundApplyDetail";
-    public static final String GET_EXPRESS_COMPANY_LIST = HOST + "api/ShopOrder/GetExpressName";
-    public static final String DELIVER_GOODS = HOST + "ShopOrder/DeliverGoodsSet";
+    public static final String GET_EXPRESS_COMPANY_LIST = HOST + "Order/getExpressCompanyList";
+    public static final String DELIVER_GOODS = HOST + "Order/orderDelivery";
     public static final String ALLOW_REFUND = HOST + "ShopOrder/RefundSuccess";
     public static final String DISALLOW_REFUND = HOST + "ShopOrder/RefundFail";
     public static final String GET_ARTICLE_LIST = HOST + "Home/getMessage";//通知

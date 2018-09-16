@@ -10,7 +10,10 @@ import com.yaya.merchant.R;
 import com.yaya.merchant.action.OrderAction;
 import com.yaya.merchant.base.activity.BasePtrRecycleActivity;
 import com.yaya.merchant.data.order.OrderDetail;
+import com.yaya.merchant.data.order.OrderDetailData;
 import com.yaya.merchant.widgets.adapter.OrderListAdapter;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -60,7 +63,7 @@ public class RefundOrderListActivity extends BasePtrRecycleActivity<OrderDetail>
         adapter.setListener(new OrderListAdapter.OnClickListener() {
             @Override
             public void onParentClick(OrderDetail orderData) {
-                OrderDetailActivity.open(RefundOrderListActivity.this, orderData.getOrderSn());
+                OrderDetailActivity.open(RefundOrderListActivity.this, orderData,OrderDetail.TYPE_REFUND_ORDER_LIST);
             }
 
             @Override
@@ -74,6 +77,20 @@ public class RefundOrderListActivity extends BasePtrRecycleActivity<OrderDetail>
     @Override
     protected JsonResponse<BaseRowData<OrderDetail>> getData() throws Exception {
         return OrderAction.getRefundOrderList(auditStatus,String.valueOf(mCurrentPos),String.valueOf(pageSize));
+    }
+
+    @Override
+    protected void setData(List<OrderDetail> data) {
+        for (OrderDetail order : data){
+            OrderDetailData detailData = new OrderDetailData();
+            detailData.setImg(order.getGoodsPic());
+            detailData.setId(order.getGoodsId());
+            detailData.setProductName(order.getGoodsName());
+            detailData.setOrderNum(order.getGoodsCount());
+            detailData.setOrderPrice(order.getGoodsPrice());
+            order.getOrderdetail().add(detailData);
+        }
+        super.setData(data);
     }
 
     @OnClick({R.id.tv_today, R.id.tv_yesterday, R.id.tv_this_month})

@@ -3,6 +3,7 @@ package com.yaya.merchant.data.order;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,10 +22,13 @@ public class OrderDetail implements Serializable {
     public static final String REFUND_ORDER_STATUS_APPLYING = "1";
     public static final String REFUND_ORDER_STATUS_WAITING = "4";
     public static final String REFUND_ORDER_STATUS_SUCCESS = "5";
+    public static final String REFUND_ORDER_STATUS_FAIL = "-3";
 
     private String id;//"68", //发货设置的参数
+    private String orderId;//"68", //发货设置的参数
     private String memberId;// "1", //发货设置的参数
     private String orderSn;// "2018031916095000032118",
+    @SerializedName(value = "payStatus",alternate = {"status_name"})
     private String payStatus;// "已付款",
     private String orderStatus;//"待发货"，
     private String payTime;// null, //支付时间
@@ -38,12 +42,34 @@ public class OrderDetail implements Serializable {
     private float deliverPrice;// 0,//运费
     @SerializedName(value = "totalPrice",alternate = {"pay_money"})
     private String totalPrice;// 1700,//实付款
+    @SerializedName("refund_reason")
     private String refundReason;// 退货原因
-    private String memberInfo;// 退货原因
-    private List<OrderDetailData> orderdetail;//
+    private String memberInfo;
+    private List<OrderDetailData> orderdetail = new ArrayList<>();//
+    @SerializedName("audit_status")
+    private String auditStatus;
+
+    @SerializedName("goods_id")
+    private String goodsId;
+    @SerializedName("goods_name")
+    private String goodsName;
+    @SerializedName("img")
+    private String goodsPic;
+    @SerializedName("num")
+    private int goodsCount;
+    @SerializedName("price")
+    private double goodsPrice;
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getOrderId() {
+        return orderId;
     }
 
     public String getMemberId() {
@@ -112,5 +138,29 @@ public class OrderDetail implements Serializable {
 
     public List<OrderDetailData> getOrderdetail() {
         return orderdetail;
+    }
+
+    public String getAuditStatus() {
+        return auditStatus;
+    }
+
+    public String getGoodsId() {
+        return goodsId;
+    }
+
+    public String getGoodsName() {
+        return goodsName;
+    }
+
+    public String getGoodsPic() {
+        return goodsPic;
+    }
+
+    public int getGoodsCount() {
+        return goodsCount;
+    }
+
+    public double getGoodsPrice() {
+        return goodsPrice;
     }
 }

@@ -86,26 +86,33 @@ public class OrderAction {
     }
 
     //发货
-    public static void deliverGoods(ExpressCompany expressCompany, OrderDetail orderDetail, String expressId, Callback callback) {
-        if (TextUtils.isEmpty(orderDetail.getId()) || TextUtils.isEmpty(orderDetail.getMemberId())
-                || TextUtils.isEmpty(orderDetail.getOrderSn())) {
+    public static void deliverGoods(ExpressCompany expressCompany, OrderDetail orderDetail,
+                                    String expressId, Callback callback) {
+        if (TextUtils.isEmpty(orderDetail.getId())) {
             ToastUtil.toast("此订单不能发货");
             return;
         }
         GetBuilder builder = OkHttpUtils.get().url(Urls.DELIVER_GOODS)
-                .addParams("id", orderDetail.getId())
-                .addParams("memberId", orderDetail.getMemberId())
-                .addParams("orderSn", orderDetail.getOrderSn());
+                .addParams("order_id", orderDetail.getId())
+                .addParams("shipping_type", "1");
+        String goodIdArray = "";
+        for (int i = 0; i < orderDetail.getOrderdetail().size(); i++) {
+            goodIdArray += orderDetail.getOrderdetail().get(i).getId();
+            if (i != orderDetail.getOrderdetail().size() - 1) {
+                goodIdArray += ",";
+            }
+        }
+        builder.addParams("order_goods_id_array", goodIdArray);
         if (expressCompany != null) {
             if (!TextUtils.isEmpty(expressCompany.getExpressName())) {
-                builder.addParams("expressName", expressCompany.getExpressName());
+                builder.addParams("express_name", expressCompany.getExpressName());
             }
-            if (TextUtils.isEmpty(expressCompany.getExpressNo())) {
-                builder.addParams("expressNo", expressCompany.getExpressNo());
+            if (!TextUtils.isEmpty(expressCompany.getExpressNo())) {
+                builder.addParams("express_company_id", expressCompany.getExpressNo());
             }
         }
         if (!TextUtils.isEmpty(expressId)) {
-            builder.addParams("expressId", expressId);
+            builder.addParams("express_no", expressId);
         }
         builder.build().execute(callback);
     }
