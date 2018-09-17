@@ -12,6 +12,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 
+        flavorDimensions "versionCode"
+
         ndk {
             //选择要添加的对应cpu类型的.so库。
             abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
@@ -42,6 +44,18 @@ android {
     android.applicationVariants.all { variant ->
         variant.outputs.all {
             outputFileName = "吖吖购商家版_${variant.name}_${variant.versionName}.apk"
+        }
+    }
+
+    productFlavors {
+        official_test {
+            manifestPlaceholders = [HOST: "https://mall.91yayagou.com.cn/index.php/app/"
+            ]
+        }
+
+        official {
+            manifestPlaceholders = [HOST: "https://mall.91yayagou.com/index.php/app/"
+            ]
         }
     }
 }

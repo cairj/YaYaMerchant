@@ -79,6 +79,14 @@ public class OrderAction {
                 .build().execute(callback);
     }
 
+    //退款订单详情
+    public static void getRefundOrderDetail(String orderId, String orderGoodsId, Callback callback) {
+        OkHttpUtils.get().url(Urls.GET_REFUND_ORDER_DETAIL)
+                .addParams("id", orderId)
+                .addParams("order_goods_id", orderGoodsId)
+                .build().execute(callback);
+    }
+
     //获取快递公司列表
     public static void getExpressCompanyList(Callback callback) {
         OkHttpUtils.get().url(Urls.GET_EXPRESS_COMPANY_LIST)
@@ -131,6 +139,13 @@ public class OrderAction {
             builder.addParams("RefundFailReason", refundFailReason);
         }
         builder.build().execute(callback);
+    }
+
+    public static void disposeRefund(String url,String orderId,String orderGoodsId,Callback callback){
+        OkHttpUtils.get().url(url)
+                .addParams("order_id",orderId)
+                .addParams("order_goods_id",orderGoodsId)
+                .build().execute(callback);
     }
 
 }

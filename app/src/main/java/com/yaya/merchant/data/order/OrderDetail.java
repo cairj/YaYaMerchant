@@ -33,11 +33,15 @@ public class OrderDetail implements Serializable {
     private String orderStatus;//"待发货"，
     private String payTime;// null, //支付时间
     private String type;// "用户自提",//配送方式
+    @SerializedName(value = "userPhone",alternate = {"receiver_mobile"})
     private String userPhone;// "13959830580",
+    @SerializedName(value = "userName",alternate = {"receiver_name"})
     private String userName;// "孙悟空",
+    @SerializedName(value = "userAddress",alternate = {"receiver_address"})
     private String userAddress;// "花果山水帘洞",
     private String creationTime;//"2018-03-19T16:09:53",//下单时间
     private String paySource;// "sign_ic_wechat",//支付方式
+    @SerializedName(value = "orderPrice" , alternate = {"refund_money"})
     private float orderPrice;//1700,//商品总额
     private float deliverPrice;// 0,//运费
     @SerializedName(value = "totalPrice",alternate = {"pay_money"})
@@ -59,6 +63,8 @@ public class OrderDetail implements Serializable {
     private int goodsCount;
     @SerializedName("price")
     private double goodsPrice;
+    @SerializedName("shop_name")
+    private String shopName;
 
     public String getId() {
         return id;
@@ -144,6 +150,10 @@ public class OrderDetail implements Serializable {
         return auditStatus;
     }
 
+    public void setAuditStatus(String auditStatus) {
+        this.auditStatus = auditStatus;
+    }
+
     public String getGoodsId() {
         return goodsId;
     }
@@ -162,5 +172,9 @@ public class OrderDetail implements Serializable {
 
     public double getGoodsPrice() {
         return goodsPrice;
+    }
+
+    public String getShopName() {
+        return shopName;
     }
 }

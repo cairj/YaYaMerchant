@@ -51,7 +51,7 @@ public class OrderDetailActivity extends BaseActivity {
 
     private List<OrderDetailData> list = new ArrayList<>();
     private OrderDetailAdapter detailAdapter;
-    private OrderDetail orderDetail;
+    protected OrderDetail orderDetail;
 
     @BindView(R.id.tv_status)
     protected TextView statusTv;
@@ -91,7 +91,7 @@ public class OrderDetailActivity extends BaseActivity {
     protected void initView() {
         super.initView();
         setActionBarTitle("订单详情");
-        StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
+        setStatusBarColor();
         OrderDetail order = (OrderDetail) getIntent().getSerializableExtra("order");
         orderSn = order.getOrderSn();
         orderId = order.getId();
@@ -119,6 +119,10 @@ public class OrderDetailActivity extends BaseActivity {
         orderDetailRv.setAdapter(detailAdapter);
     }
 
+    protected void setStatusBarColor(){
+        StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
+    }
+
     @Override
     protected void initData() {
         super.initData();
@@ -127,22 +131,26 @@ public class OrderDetailActivity extends BaseActivity {
             public void onSucceed(JsonResponse<OrderDetail> response) {
                 orderDetail = response.getResultData();
                 orderDetail.setId(orderId);
-                statusTv.setText(orderDetail.getOrderStatus());
-                buyerInfoTv.setText(orderDetail.getUserName() + "  " + orderDetail.getUserPhone() + "\n" + orderDetail.getUserAddress());
-                dateTv.setText(orderDetail.getPayTime());
-                goodsPriceTv.setText("￥" + orderDetail.getOrderPrice());
-                deliverPriceTv.setText("￥" + orderDetail.getDeliverPrice());
-                float totalPrice = orderDetail.getOrderPrice()+orderDetail.getDeliverPrice();
-                totalPriceTv.setText("￥" + totalPrice);
-                orderNumberTv.setText("订单编号：" + orderDetail.getOrderSn());
-                orderTimeTv.setText("下单时间：" + orderDetail.getCreationTime());
-                payTypeTv.setText("支付方式：" + orderDetail.getPaySource());
-                deliveryTypeTv.setText("配送方式：" + orderDetail.getType());
-                userNameTv.setText(orderDetail.getMemberInfo());
-                list.addAll(orderDetail.getOrderdetail());
-                detailAdapter.notifyDataSetChanged();
+                fillOrderDetailData(orderDetail);
             }
         });
+    }
+
+    protected void fillOrderDetailData(OrderDetail orderDetail){
+        statusTv.setText(orderDetail.getOrderStatus());
+        buyerInfoTv.setText(orderDetail.getUserName() + "  " + orderDetail.getUserPhone() + "\n" + orderDetail.getUserAddress());
+        dateTv.setText(orderDetail.getPayTime());
+        goodsPriceTv.setText("￥" + orderDetail.getOrderPrice());
+        deliverPriceTv.setText("￥" + orderDetail.getDeliverPrice());
+        float totalPrice = orderDetail.getOrderPrice()+orderDetail.getDeliverPrice();
+        totalPriceTv.setText("￥" + totalPrice);
+        orderNumberTv.setText("订单编号：" + orderDetail.getOrderSn());
+        orderTimeTv.setText("下单时间：" + orderDetail.getCreationTime());
+        payTypeTv.setText("支付方式：" + orderDetail.getPaySource());
+        deliveryTypeTv.setText("配送方式：" + orderDetail.getType());
+        userNameTv.setText(orderDetail.getMemberInfo());
+        list.addAll(orderDetail.getOrderdetail());
+        detailAdapter.notifyDataSetChanged();
     }
 
     @OnClick(R.id.tv_submit)

@@ -17,33 +17,34 @@
         android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:paddingBottom="10dp"
         android:paddingLeft="13dp"
         android:paddingRight="13dp"
-        android:paddingTop="10dp"
-        android:layout_alignParentBottom="true">
+        android:paddingTop="10dp">
 
         <TextView
             android:id="@+id/tv_cancel"
             style="@style/tv_submit_btn"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:background="@drawable/bg_gray_7f7f7f_rounded"/>
+            android:background="@drawable/bg_gray_7f7f7f_rounded"
+            android:text="不通过" />
 
         <TextView
             android:id="@+id/tv_submit"
             style="@style/tv_submit_btn"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="4dp"/>
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
     <com.yaya.merchant.widgets.ObservableScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/action_bar"
-        android:layout_above="@id/ll_bottom">
+        android:layout_above="@id/ll_bottom"
+        android:layout_below="@id/action_bar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,11 +55,11 @@
                 android:id="@+id/tv_status"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@color/red_ff6257"
+                android:background="@color/pink_fa4b45"
                 android:gravity="center_vertical"
                 android:paddingLeft="12dp"
                 android:textColor="@color/white"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tv_buyer_info"
@@ -218,6 +219,106 @@
                     android:layout_marginTop="9dp"
                     android:textColor="@color/gray_999999"
                     android:textSize="@dimen/sp_12" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_999999"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginLeft="@dimen/dp_14"
+                    android:layout_marginTop="9dp"
+                    android:text="客户意见"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/divider_height_1dp"
+                    android:background="@color/gray_f2f2f2"
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:id="@+id/tv_service_opinion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_999999"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginLeft="@dimen/dp_14"
+                    android:layout_marginTop="9dp"
+                    android:text="客户意见"/>
+
+                <TextView
+                    android:id="@+id/tv_service_remark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_999999"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginLeft="@dimen/dp_14"
+                    android:layout_marginTop="9dp"
+                    android:text="备注"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_treasure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_999999"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginLeft="@dimen/dp_14"
+                    android:layout_marginTop="9dp"
+                    android:text="财务审核"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/divider_height_1dp"
+                    android:background="@color/gray_f2f2f2"
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:id="@+id/tv_treasure_opinion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_999999"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginLeft="@dimen/dp_14"
+                    android:layout_marginTop="9dp"
+                    android:text="财务意见"/>
+
+                <TextView
+                    android:id="@+id/tv_treasure_remark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_999999"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginLeft="@dimen/dp_14"
+                    android:layout_marginTop="9dp"
+                    android:text=""/>
+
+                <TextView
+                    android:id="@+id/tv_treasure_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_999999"
+                    android:textSize="@dimen/sp_12"
+                    android:layout_marginLeft="@dimen/dp_14"
+                    android:layout_marginTop="9dp"
+                    android:text=""/>
 
             </LinearLayout>
 

@@ -164,6 +164,7 @@
         <activity android:name=".activity.recharge.RechargeActivity"/>
 
         <activity android:name=".activity.order.RefundOrderListActivity"/>
+        <activity android:name=".activity.order.RefundOrderDetailActivity"/>
 
         <!---->
         <receiver android:name=".receiver.MyReceiver"

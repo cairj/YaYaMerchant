@@ -48,7 +48,7 @@ public class Urls {
     public static final String GET_REFUND_ORDER_LIST = HOST + "Order/getCustomerServiceList";
     public static final String GET_ORDER_DETAIL = HOST + "Order/OrderDetail";
     public static final String GET_DELIVER_ORDER_DETAIL = HOST + "api/ShopOrder/DeliverGoodsDetail";
-    public static final String GET_REFUND_ORDER_DETAIL = HOST + "api/ShopOrder/RefundApplyDetail";
+    public static final String GET_REFUND_ORDER_DETAIL = HOST + "Order/orderCustomerDetail";
     public static final String GET_EXPRESS_COMPANY_LIST = HOST + "Order/getExpressCompanyList";
     public static final String DELIVER_GOODS = HOST + "Order/orderDelivery";
     public static final String ALLOW_REFUND = HOST + "ShopOrder/RefundSuccess";
@@ -75,5 +75,7 @@ public class Urls {
     public static final String MERCHANT_REPORT_FORMS_USER = HOST + "Data/users";
     public static final String MERCHANT_REPORT_FORMS_ORDER = HOST + "Data/orders";
     public static final String QUERY_RECHARGE_LIST = HOST + "Balance/recharge";
+    public static final String AGREE_ORDER_REFUND = HOST + "Order/orderGoodsRefundAgree";
+    public static final String DISAGREE_ORDER_REFUND = HOST + "Order/orderCustomerRefuseOnce";
 
 }

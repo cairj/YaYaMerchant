@@ -8,9 +8,11 @@ import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.OrderAction;
+import com.yaya.merchant.activity.account.RefundDetailActivity;
 import com.yaya.merchant.base.activity.BasePtrRecycleActivity;
 import com.yaya.merchant.data.order.OrderDetail;
 import com.yaya.merchant.data.order.OrderDetailData;
+import com.yaya.merchant.util.StatusBarUtil;
 import com.yaya.merchant.widgets.adapter.OrderListAdapter;
 
 import java.util.List;
@@ -43,6 +45,8 @@ public class RefundOrderListActivity extends BasePtrRecycleActivity<OrderDetail>
     @Override
     protected void initView() {
         super.initView();
+        StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
+        setActionBarTitle("退货");
         customTv.setVisibility(View.GONE);
         todayTv.setText("客户申请");
         yesterdayTv.setText("财务审核");
@@ -63,12 +67,12 @@ public class RefundOrderListActivity extends BasePtrRecycleActivity<OrderDetail>
         adapter.setListener(new OrderListAdapter.OnClickListener() {
             @Override
             public void onParentClick(OrderDetail orderData) {
-                OrderDetailActivity.open(RefundOrderListActivity.this, orderData,OrderDetail.TYPE_REFUND_ORDER_LIST);
+                RefundOrderDetailActivity.open(RefundOrderListActivity.this, orderData, "");
             }
 
             @Override
             public void onBtnClick(OrderDetail orderDetail) {
-                RefundOrderActivity.open(RefundOrderListActivity.this, orderDetail);
+                RefundOrderDetailActivity.open(RefundOrderListActivity.this, orderDetail, "");
             }
         });
         return adapter;
