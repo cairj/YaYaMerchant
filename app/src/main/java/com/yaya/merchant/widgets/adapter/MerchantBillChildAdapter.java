@@ -41,12 +41,24 @@ public class MerchantBillChildAdapter extends BaseQuickAdapter<BillDetailData> {
                 refundTv.setVisibility(View.GONE);
             }
         }
+        ImageView statusIconIv = baseViewHolder.getView(R.id.iv_weixin);
         if (!TextUtils.isEmpty(billDetailData.getPayType())) {
-            for (int i = 0; i < BillDetailData.PAY_TYPE_PARAMS.length; i++) {
-                if (BillDetailData.PAY_TYPE_PARAMS[i].equals(billDetailData.getPayType())) {
-                    baseViewHolder.setText(R.id.tv_pay_status, BillDetailData.PAY_TYPE[i]);
-                }
+            statusIconIv.setVisibility(View.VISIBLE);
+            switch (billDetailData.getPayType()) {
+                case BillDetailData.PAY_TYPE_WECHAT:
+                    baseViewHolder.setText(R.id.tv_pay_status, "微信");
+                    statusIconIv.setImageResource(R.mipmap.ic_weixin);
+                    break;
+                case BillDetailData.PAY_TYPE_ALIPAY:
+                    baseViewHolder.setText(R.id.tv_pay_status, "支付宝");
+                    statusIconIv.setImageResource(R.mipmap.ic_zhifubao);
+                    break;
+                default:
+                    statusIconIv.setVisibility(View.GONE);
+                    break;
             }
+        } else {
+            statusIconIv.setVisibility(View.GONE);
         }
 
         ImageView orderTypeIv = baseViewHolder.getView(R.id.item_iv_order_type);

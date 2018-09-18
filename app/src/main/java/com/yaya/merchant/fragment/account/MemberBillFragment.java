@@ -7,6 +7,7 @@ import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainDataAction;
 import com.yaya.merchant.activity.account.GatheringDetailActivity;
+import com.yaya.merchant.activity.account.MerchantDetailActivity;
 import com.yaya.merchant.data.ChoiceItem;
 import com.yaya.merchant.data.account.BillData;
 import com.yaya.merchant.data.account.BillDetailData;
@@ -39,7 +40,7 @@ public class MemberBillFragment extends BaseBillFragment {
         return new MerchantBillGroupAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BillDetailData billDetailData) {
-                GatheringDetailActivity.open(getActivity(), String.valueOf(billDetailData.getId()), Urls.GET_MEMBER_DETAIL);
+                MerchantDetailActivity.open(getActivity(),billDetailData.getName(),String.valueOf(billDetailData.getId()));
             }
         };
     }
@@ -93,7 +94,7 @@ public class MemberBillFragment extends BaseBillFragment {
                         item.setSelect(true);
                         singleChoiceAdapter.notifyDataSetChanged();
                         changeStatusTv.setText(item.getContent());
-                        orderType = item.getId();
+                        storeId = item.getId();
                         refresh();
                         singleChoiceWindow.dismiss();
                     }

@@ -224,7 +224,7 @@ public class UserAction {
             return;
         }
         OkHttpUtils.get().url(Urls.VERIFICATION_INDEX)
-                .addParams("order_id", verificationSn)
+                .addParams("qr_code", verificationSn)
                 .build().execute(callback);
     }
 

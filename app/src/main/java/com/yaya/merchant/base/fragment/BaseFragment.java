@@ -7,9 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.yaya.merchant.R;
 
 import org.simple.eventbus.EventBus;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**

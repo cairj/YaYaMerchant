@@ -32,7 +32,7 @@ public class ChartUtils {
         // 没有数据的时候，显示“暂无数据”
         chart.setNoDataText("暂无数据");
         // 表格颜色
-        chart.setDrawGridBackground(true);
+        chart.setDrawGridBackground(false);
         chart.getPaint(LineChart.PAINT_GRID_BACKGROUND).setColor(Color.parseColor("#B9B9B9"));
         // 不可以缩放
         chart.setScaleEnabled(false);
@@ -53,7 +53,8 @@ public class ChartUtils {
         xAxis.setTextSize(12);
         xAxis.setGridColor(Color.parseColor("#30FFFFFF"));
         // 设置x轴数据偏移量
-        xAxis.setYOffset(8);
+        xAxis.setYOffset(12);
+        xAxis.setXOffset(6);
 
         YAxis yAxis = chart.getAxisLeft();
         // 不显示y轴
@@ -99,15 +100,17 @@ public class ChartUtils {
             lineDataSet = new LineDataSet(values, "");
             // 设置曲线颜色
             lineDataSet.setColor(Color.parseColor("#729CBC"));
-            // 设置平滑曲线
-            lineDataSet.setMode(LineDataSet.Mode.STEPPED);
+            lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+            /*// 设置平滑曲线
+            lineDataSet.setMode(LineDataSet.Mode.STEPPED);*/
             // 坐标点的小圆点
             lineDataSet.setDrawCircles(true);
             lineDataSet.setCircleColor(Color.parseColor("#4B7FBD"));
+            lineDataSet.setCircleColorHole(Color.parseColor("#4B7FBD"));
             // 不显示坐标点的数据
             lineDataSet.setDrawValues(false);
             // 不显示定位线
-            lineDataSet.setHighlightEnabled(false);
+            lineDataSet.setHighlightEnabled(true);
 
             LineData data = new LineData(lineDataSet);
             chart.setData(data);

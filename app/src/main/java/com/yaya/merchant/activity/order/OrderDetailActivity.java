@@ -149,6 +149,7 @@ public class OrderDetailActivity extends BaseActivity {
         payTypeTv.setText("支付方式：" + orderDetail.getPaySource());
         deliveryTypeTv.setText("配送方式：" + orderDetail.getType());
         userNameTv.setText(orderDetail.getMemberInfo());
+        list.clear();
         list.addAll(orderDetail.getOrderdetail());
         detailAdapter.notifyDataSetChanged();
     }

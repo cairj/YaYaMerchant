@@ -77,5 +77,8 @@ public class Urls {
     public static final String QUERY_RECHARGE_LIST = HOST + "Balance/recharge";
     public static final String AGREE_ORDER_REFUND = HOST + "Order/orderGoodsRefundAgree";
     public static final String DISAGREE_ORDER_REFUND = HOST + "Order/orderCustomerRefuseOnce";
+    public static final String MERCHANT_INFORMATION = HOST + "Information/information";
+    public static final String ORDER_REPORT_DATA = HOST + "Order/orderNumCurve";
+    public static final String SALE_REPORT_DATA = HOST + "Order/orderMoneyCurve";
 
 }

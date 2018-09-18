@@ -13,6 +13,7 @@ import com.yaya.merchant.R;
 import com.yaya.merchant.action.GoodsAction;
 import com.yaya.merchant.action.MainAction;
 import com.yaya.merchant.activity.MainActivity;
+import com.yaya.merchant.activity.ReportActivity;
 import com.yaya.merchant.activity.account.BalanceAccountActivity;
 import com.yaya.merchant.activity.account.EnterBillActivity;
 import com.yaya.merchant.activity.account.MemberManagerActivity;
@@ -250,8 +251,10 @@ public class HomeFragment extends BaseFragment {
             case R.id.tv_with_draw_money:
                 openActivity(RechargeActivity.class);
                 break;
-            case R.id.tv_balance_account:
             case R.id.tv_report:
+                openActivity(ReportActivity.class);
+                break;
+            case R.id.tv_balance_account:
             case R.id.tv_vip:
                 ToastUtil.toast("正在开发中");
                 break;

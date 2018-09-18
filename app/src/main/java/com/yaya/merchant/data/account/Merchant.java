@@ -17,6 +17,13 @@ public class Merchant implements Serializable {
     private boolean isSelected;
     private boolean isVoice;
 
+    @SerializedName("contacts_name")
+    private String contactsName;
+    @SerializedName("company_phone")
+    private String phone;
+    @SerializedName("user_name")
+    private String userName;
+
     public String getStoreName() {
         return storeName;
     }
@@ -35,5 +42,17 @@ public class Merchant implements Serializable {
 
     public boolean isVoice() {
         return isVoice;
+    }
+
+    public String getContactsName() {
+        return contactsName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }

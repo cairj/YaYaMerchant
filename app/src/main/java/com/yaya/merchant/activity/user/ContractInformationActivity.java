@@ -58,11 +58,11 @@ public class ContractInformationActivity extends BaseActivity {
             public void onSucceed(JsonResponse<ContractInformation> response) {
                 ContractInformation information = response.getResultData();
                 if (UserHelper.isMerchant()) {
-                    offlineRateTv.setText(information.getShopOfflineCommissionRate());
-                    platformRateTv.setText(information.getShopPlatformCommissionRate());
+                    offlineRateTv.setText(information.getShopOfflineCommissionRate()+"%");
+                    platformRateTv.setText(information.getShopPlatformCommissionRate()+"%");
                 }
                 if(UserHelper.isAgent()){
-                    commissionRateTv.setText(information.getShopPlatformCommissionRate());
+                    commissionRateTv.setText(information.getShopPlatformCommissionRate()+"%");
                 }
             }
         });

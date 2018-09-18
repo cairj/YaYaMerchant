@@ -41,16 +41,18 @@ public class BillDetailData implements Serializable {
     public static final String[] ORDER_TYPE_PARAMS = {ORDER_TYPE_ALL, ORDER_TYPE_ONLINE_PARAM, ORDER_TYPE_CASH_PARAM, ORDER_TYPE_OFFLINE_PARAM};
 
 
-    @SerializedName("user_headimg")
+    @SerializedName(value =  "user_headimg",alternate = {"logo"})
     private String headImgUrl;//头像
-    @SerializedName("pay_type")
+    @SerializedName(value = "pay_type")
     private String payType;//支付方式
-    @SerializedName("pay_money")
+    @SerializedName(value = "pay_money",alternate = {"value"})
     private float orderSumprice;//实付;
     private String payStatus;//是否付款
+    @SerializedName(value = "payTime", alternate = {"pay_time_format"})
     private String payTime;//付款时间
+    @SerializedName(value = "id", alternate = {"store_id"})
     private int id;//用作收款详情的参数
-    @SerializedName("nick_name")
+    @SerializedName(value = "nick_name", alternate = {"store_name"})
     private String name;//名称
     @SerializedName("type")
     private String orderType;//订单类型
@@ -86,7 +88,11 @@ public class BillDetailData implements Serializable {
     }
 
     public String getOrderType() {
-        return orderType;
+        if (orderType != null) {
+            return orderType;
+        } else {
+            return "";
+        }
     }
 
     public int getTypeAlisId() {

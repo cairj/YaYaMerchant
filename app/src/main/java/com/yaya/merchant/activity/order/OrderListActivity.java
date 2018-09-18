@@ -44,6 +44,10 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
     private String endTime;
     private String orderStatus = "";
 
+    public static final int CALENDAR_TODAY = 1;
+    public static final int CALENDAR_YESTERDAY = 2;
+    public static final int CALENDAR_THIS_MONTH = 3;
+
     private Calendar startCalendar;
     private Calendar endCalendar;
 
@@ -98,6 +102,7 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
             choiceLL.setVisibility(View.GONE);
         } else {
             setActionBarTitle("订单列表");
+            setCalendar(CALENDAR_TODAY);
             choiceLL.setVisibility(View.VISIBLE);
         }
         startTimePopupWindow = new DatePickerPopupWindow(this);
@@ -198,16 +203,31 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
     @OnClick({R.id.tv_today, R.id.tv_yesterday, R.id.tv_this_month})
     protected void onClick(View view) {
         chooseDateLL.setVisibility(View.GONE);
-        startCalendar = Calendar.getInstance();
-        endCalendar = Calendar.getInstance();
         switch (view.getId()) {
             case R.id.tv_today:
+               setCalendar(CALENDAR_TODAY);
+                break;
+            case R.id.tv_yesterday:
+                setCalendar(CALENDAR_YESTERDAY);
+                break;
+            case R.id.tv_this_month:
+                setCalendar(CALENDAR_THIS_MONTH);
+                break;
+        }
+        refresh();
+    }
+
+    private void setCalendar(int selectedDay){
+        startCalendar = Calendar.getInstance();
+        endCalendar = Calendar.getInstance();
+        switch (selectedDay) {
+            case CALENDAR_TODAY:
                 todayTv.setSelected(true);
                 yesterdayTv.setSelected(false);
                 thisMonthTv.setSelected(false);
                 customTv.setSelected(false);
                 break;
-            case R.id.tv_yesterday:
+            case CALENDAR_YESTERDAY:
                 todayTv.setSelected(false);
                 yesterdayTv.setSelected(true);
                 thisMonthTv.setSelected(false);
@@ -215,7 +235,7 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
                 startCalendar.set(Calendar.DAY_OF_MONTH, startCalendar.get(Calendar.DAY_OF_MONTH) - 1);
                 endCalendar.set(Calendar.DAY_OF_MONTH, endCalendar.get(Calendar.DAY_OF_MONTH) - 1);
                 break;
-            case R.id.tv_this_month:
+            case CALENDAR_THIS_MONTH:
                 todayTv.setSelected(false);
                 yesterdayTv.setSelected(false);
                 thisMonthTv.setSelected(true);
@@ -233,7 +253,6 @@ public class OrderListActivity extends BasePtrRecycleActivity<OrderDetail> {
         SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         startTime = sp.format(startCalendar.getTime());
         endTime = sp.format(endCalendar.getTime());
-        refresh();
     }
 
     @Subscriber(tag= EventBusTags.DELIVER_ORDER_SUCCESS)

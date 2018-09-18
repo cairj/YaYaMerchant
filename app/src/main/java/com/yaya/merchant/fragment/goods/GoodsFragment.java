@@ -4,6 +4,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -49,6 +50,8 @@ public class GoodsFragment extends BasePtrRecycleFragment<Goods> {
 
     @BindView(R.id.tv_title)
     protected TextView titleTv;
+    @BindView(R.id.tv_action_back)
+    protected ImageView backIv;
 
     @BindView(R.id.tv_status_bar)
     protected View statusBarView;
@@ -71,6 +74,7 @@ public class GoodsFragment extends BasePtrRecycleFragment<Goods> {
         initTimePickerWindow();
 
         titleTv.setText("商品");
+        backIv.setVisibility(View.GONE);
 
         ViewGroup.LayoutParams lp = statusBarView.getLayoutParams();
         lp.height = DeviceParamsUtil.getStatusBarHeight(getActivity());

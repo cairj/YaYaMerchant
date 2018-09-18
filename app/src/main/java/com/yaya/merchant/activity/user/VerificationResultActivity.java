@@ -50,6 +50,8 @@ public class VerificationResultActivity extends BaseActivity {
 
     @BindView(R.id.tv_submit_verfication)
     protected TextView submitTv;
+    @BindView(R.id.tv_status)
+    protected TextView statusTv;
 
     @BindView(R.id.rv_order_list)
     protected RecyclerView ordersRv;
@@ -96,8 +98,10 @@ public class VerificationResultActivity extends BaseActivity {
 
         if (verificationInfo.getStatus() == 1) {
             submitTv.setVisibility(View.VISIBLE);
+            statusTv.setText("还未核销");
         } else {
             submitTv.setVisibility(View.GONE);
+            statusTv.setText("此码已核销完成");
         }
     }
 
@@ -106,8 +110,8 @@ public class VerificationResultActivity extends BaseActivity {
         UserAction.verification(verificationInfo.getOrder_id(), new GsonCallback<String>(String.class) {
             @Override
             public void onSucceed(JsonResponse<String> response) {
-                ToastUtil.toast("核销成功");
-                finish();
+                submitTv.setVisibility(View.GONE);
+                statusTv.setText("此码已核销完成");
             }
         });
     }

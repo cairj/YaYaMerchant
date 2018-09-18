@@ -26,7 +26,9 @@
             android:gravity="center_vertical"
             android:paddingLeft="9dp"
             android:textColor="@color/gray_999999"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"/>
 
     </LinearLayout>
 

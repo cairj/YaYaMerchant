@@ -23,7 +23,7 @@ import butterknife.OnClick;
  * Created by admin on 2018/9/6.
  */
 
-public class GoodDetailActivity extends BaseActivity{
+public class GoodDetailActivity extends BaseActivity {
 
     private String goodsId;
 
@@ -52,15 +52,21 @@ public class GoodDetailActivity extends BaseActivity{
     @BindView(R.id.tv_goods_recommend)
     protected TextView goodsRecommendTv;
 
-    public static void open(Context context,String goodsId){
-        Intent intent = new Intent(context,GoodDetailActivity.class);
-        intent.putExtra("goodsId",goodsId);
+    public static void open(Context context, String goodsId) {
+        Intent intent = new Intent(context, GoodDetailActivity.class);
+        intent.putExtra("goodsId", goodsId);
         context.startActivity(intent);
     }
 
     @Override
     protected int getContentViewId() {
         return R.layout.activity_goods_detail;
+    }
+
+    @Override
+    protected void initView() {
+        super.initView();
+        setActionBarTitle("商品详情");
     }
 
     @Override
@@ -71,10 +77,10 @@ public class GoodDetailActivity extends BaseActivity{
             @Override
             public void onSucceed(JsonResponse<Goods> response) {
                 goods = response.getResultData();
-                GlideLoaderHelper.loadImg(goods.getPicImg(),goodsPicIv);
-                goodsPriceTv.setText("￥"+goods.getPrice());
-                goodsStockTv.setText("库存："+goods.getStock());
-                goodsRealSaleTv.setText("销售："+goods.getGoodsRealSale());
+                GlideLoaderHelper.loadImg(goods.getPicImg(), goodsPicIv);
+                goodsPriceTv.setText("￥" + goods.getPrice());
+                goodsStockTv.setText("库存：" + goods.getStock());
+                goodsRealSaleTv.setText("销售：" + goods.getGoodsRealSale());
                 goodsFreightTv.setText("运费：");
                 goodsMaxBuyTv.setText("每人限购：" + ((goods.getMaxBuy() == 0) ? "不限" : goods.getMaxBuy()));
                 goodsRecommendTv.setText("首页推荐：" + ((goods.getIsRecommend() == 0) ? "不推荐" : "推荐"));
@@ -101,23 +107,23 @@ public class GoodDetailActivity extends BaseActivity{
         });
     }
 
-    private void fillGoodsStatus(Goods goods){
+    private void fillGoodsStatus(Goods goods) {
         if (Goods.STATUS_SOLD_OUT.equals(goods.getState()) && !Goods.APPLY_STATE_APPLYING.equals(goods.getApplyState())) {
             changeStatusTv.setText("上架");
             changeStatusTv.setEnabled(true);
             changeStatusTv.setSelected(false);
-            changeStatusTv.setTextColor(ContextCompat.getColor(this,R.color.white));
+            changeStatusTv.setTextColor(ContextCompat.getColor(this, R.color.white));
         }
 
         if (Goods.STATUS_PUT_AWAY.equals(goods.getState())) {
             changeStatusTv.setText("下架");
             changeStatusTv.setEnabled(true);
             changeStatusTv.setSelected(true);
-            changeStatusTv.setTextColor(ContextCompat.getColor(this,R.color.red_f94745));
+            changeStatusTv.setTextColor(ContextCompat.getColor(this, R.color.red_f94745));
         }
 
         if (Goods.STATUS_SOLD_OUT.equals(goods.getState()) && Goods.APPLY_STATE_APPLYING.equals(goods.getApplyState())) {
-            if (UserHelper.isAgent()){
+            if (UserHelper.isAgent()) {
                 changeStatusTv.setEnabled(true);
                 changeStatusTv.setText("上架");
             }
@@ -126,12 +132,12 @@ public class GoodDetailActivity extends BaseActivity{
                 changeStatusTv.setText("审核中");
             }
             changeStatusTv.setSelected(false);
-            changeStatusTv.setTextColor(ContextCompat.getColor(this,R.color.white));
+            changeStatusTv.setTextColor(ContextCompat.getColor(this, R.color.white));
         }
     }
 
     @OnClick(R.id.tv_change_status)
-    protected void changeStatus(){
+    protected void changeStatus() {
         GsonCallback<Goods> callback = new GsonCallback<Goods>(Goods.class) {
             @Override
             public void onSucceed(JsonResponse<Goods> response) {
@@ -141,15 +147,15 @@ public class GoodDetailActivity extends BaseActivity{
             }
         };
         if (Goods.STATUS_SOLD_OUT.equals(goods.getState()) && Goods.APPLY_STATE_NOT_APPLY.equals(goods.getApplyState())) {
-            GoodsAction.changeGoodState(Goods.STATUS_SOLD_OUT,goodsId,callback);
+            GoodsAction.changeGoodState(Goods.STATUS_SOLD_OUT, goodsId, callback);
         }
 
         if (Goods.STATUS_PUT_AWAY.equals(goods.getState())) {
-            GoodsAction.changeGoodState(Goods.STATUS_PUT_AWAY,goodsId,callback);
+            GoodsAction.changeGoodState(Goods.STATUS_PUT_AWAY, goodsId, callback);
         }
 
         if (Goods.STATUS_SOLD_OUT.equals(goods.getState()) && Goods.APPLY_STATE_APPLYING.equals(goods.getApplyState())) {
-            GoodsAction.changeGoodState(Goods.STATUS_APPLYING,goodsId,callback);
+            GoodsAction.changeGoodState(Goods.STATUS_APPLYING, goodsId, callback);
         }
     }
 }

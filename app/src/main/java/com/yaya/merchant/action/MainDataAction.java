@@ -18,6 +18,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.builder.GetBuilder;
 import com.zhy.http.okhttp.callback.Callback;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -88,6 +89,11 @@ public class MainDataAction {
         builder.build().execute(callback);
     }
 
+    public static void getMerchantInfo(String storeId , Callback callback){
+        OkHttpUtils.get().url(Urls.MERCHANT_INFORMATION)
+                .addParams("store_id",storeId)
+                .build().execute(callback);
+    }
 
     //获取入账信息
     public static JsonResponse<BaseRowData<BillData>> getMemberBillList(String storeId, String orderType,
@@ -125,7 +131,11 @@ public class MainDataAction {
             Iterator<String> keys = jsonObject.keys();
             while (keys.hasNext()) {
                 String key = keys.next();
-                BillData billData = gson.fromJson(jsonObject.getString(key), BillData.class);
+                BillData billData = new BillData();
+                JSONArray jsonArray = jsonObject.getJSONArray(key);
+                for (int i =0;i<jsonArray.length();i++){
+                    billData.getRows().add(new Gson().fromJson(jsonArray.getString(i),BillDetailData.class));
+                }
                 billData.setDate(key);
                 dataList.add(billData);
             }

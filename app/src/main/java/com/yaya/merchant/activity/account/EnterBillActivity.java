@@ -69,7 +69,6 @@ public class EnterBillActivity extends BaseTabLayoutActivity {
                         memberBillFragment.setSearch(search);
                     }
                     externalView.setVisibility(View.GONE);
-                    searchEd.setText("");
                     return true;
                 }
                 return false;
