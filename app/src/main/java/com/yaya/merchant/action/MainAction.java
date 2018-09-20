@@ -30,4 +30,9 @@ public class MainAction {
                 .build().execute(callback);
     }
 
+    public static void getOrderCount(Callback callback){
+        OkHttpUtils.get().url(Urls.GET_ORDER_COUNT)
+                .build().execute(callback);
+    }
+
 }

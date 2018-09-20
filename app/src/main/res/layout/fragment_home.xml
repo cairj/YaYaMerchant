@@ -179,17 +179,47 @@
                             android:drawableTop="@mipmap/home_ic_receivables"
                             android:text="@string/receivables" />
 
-                        <TextView
-                            android:id="@+id/tv_scan_payment"
-                            style="@style/home_btn_tv"
-                            android:drawableTop="@mipmap/home_ic_scan_payment"
-                            android:text="@string/scan_payment" />
+                        <RelativeLayout style="@style/home_btn_tv">
 
-                        <TextView
-                            android:id="@+id/tv_online_payment"
-                            style="@style/home_btn_tv"
-                            android:drawableTop="@mipmap/home_ic_online_payment"
-                            android:text="@string/online_payment" />
+                            <TextView
+                                android:id="@+id/tv_scan_payment"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:drawableTop="@mipmap/home_ic_scan_payment"
+                                android:textColor="@color/black_454555"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:text="@string/scan_payment" />
+
+                            <TextView
+                                android:id="@+id/tv_scan_payment_count"
+                                style="@style/order_num_tv"
+                                android:layout_alignRight="@id/tv_scan_payment"
+                                android:layout_alignTop="@id/tv_scan_payment"
+                                android:text="1"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout style="@style/home_btn_tv">
+
+                            <TextView
+                                android:id="@+id/tv_online_payment"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:textColor="@color/black_454555"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:drawableTop="@mipmap/home_ic_online_payment"
+                                android:text="@string/online_payment" />
+
+                            <TextView
+                                android:id="@+id/tv_online_payment_count"
+                                style="@style/order_num_tv"
+                                android:layout_alignRight="@id/tv_online_payment"
+                                android:layout_alignTop="@id/tv_online_payment"
+                                android:text="1" />
+                        </RelativeLayout>
 
                         <TextView
                             android:id="@+id/tv_with_draw_money"

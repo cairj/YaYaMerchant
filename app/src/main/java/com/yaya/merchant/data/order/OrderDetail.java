@@ -24,6 +24,9 @@ public class OrderDetail implements Serializable {
     public static final String REFUND_ORDER_STATUS_SUCCESS = "5";
     public static final String REFUND_ORDER_STATUS_FAIL = "-3";
 
+    public static final int CHECK_STATUS_NOT_CHECK = 1;
+    public static final int CHECK_STATUS_CHECKED = 0;
+
     private String id;//"68", //发货设置的参数
     private String orderId;//"68", //发货设置的参数
     private String memberId;// "1", //发货设置的参数
@@ -52,6 +55,9 @@ public class OrderDetail implements Serializable {
     private List<OrderDetailData> orderdetail = new ArrayList<>();//
     @SerializedName("audit_status")
     private String auditStatus;
+
+    @SerializedName("reading_state")
+    private int checkStatus;
 
     @SerializedName("goods_id")
     private String goodsId;
@@ -176,5 +182,9 @@ public class OrderDetail implements Serializable {
 
     public String getShopName() {
         return shopName;
+    }
+
+    public int getCheckStatus() {
+        return checkStatus;
     }
 }

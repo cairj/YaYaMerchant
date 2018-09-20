@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -82,6 +83,9 @@ public class OrderDetailActivity extends BaseActivity {
     @BindView(R.id.tv_submit)
     protected TextView submitTv;
 
+    @BindView(R.id.iv_call)
+    protected ImageView callIv;
+
     @Override
     protected int getContentViewId() {
         return R.layout.activity_order_detail;
@@ -96,6 +100,9 @@ public class OrderDetailActivity extends BaseActivity {
         orderSn = order.getOrderSn();
         orderId = order.getId();
         type = getIntent().getStringExtra("type");
+        if (type == null){
+            type = "";
+        }
         switch (type) {
             case OrderDetail.TYPE_ORDER_LIST:
                 bottomLL.setVisibility(View.GONE);

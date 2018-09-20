@@ -35,6 +35,12 @@ public class HomeData implements Serializable{
     @SerializedName("month_order_total")
     private String monthOrderTotal;// 107, // 昨天订单总笔数
 
+    @SerializedName("online_new_total")
+    private int onlineNewTotal;
+
+    @SerializedName("is_scan_new_total")
+    private int scanNewTotal;
+
     public String getCollectionAmount() {
         return collectionAmount;
     }
@@ -81,5 +87,13 @@ public class HomeData implements Serializable{
 
     public String getMonthOrderTotal() {
         return monthOrderTotal;
+    }
+
+    public int getOnlineNewTotal() {
+        return onlineNewTotal;
+    }
+
+    public int getScanNewTotal() {
+        return scanNewTotal;
     }
 }

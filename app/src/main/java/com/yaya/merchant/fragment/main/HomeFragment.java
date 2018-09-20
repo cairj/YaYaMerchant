@@ -86,6 +86,11 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.home_tv_title)
     protected TextView titleTv;
 
+    @BindView(R.id.tv_scan_payment_count)
+    protected TextView scanPaymentCountTv;
+    @BindView(R.id.tv_online_payment_count)
+    protected TextView onlinePaymentCountTv;
+
 
     private GoodsSaleRankAdapter saleRankAdapter;
     private ArrayList<Goods> goodList = new ArrayList<>();
@@ -187,6 +192,19 @@ public class HomeFragment extends BaseFragment {
 
                 if (getActivity() instanceof MainActivity && !TextUtils.isEmpty(response.getResultData().getOrderCount())){
                     ((MainActivity)getActivity()).setOrderCount(response.getResultData().getOrderCount());
+                }
+                if (response.getResultData().getOnlineNewTotal() == 0){
+                    onlinePaymentCountTv.setVisibility(View.GONE);
+                }else {
+                    onlinePaymentCountTv.setVisibility(View.VISIBLE);
+                    onlinePaymentCountTv.setText(String.valueOf(response.getResultData().getOnlineNewTotal()));
+                }
+
+                if (response.getResultData().getScanNewTotal() == 0){
+                    scanPaymentCountTv.setVisibility(View.GONE);
+                }else {
+                    scanPaymentCountTv.setVisibility(View.VISIBLE);
+                    scanPaymentCountTv.setText(String.valueOf(response.getResultData().getScanNewTotal()));
                 }
             }
         });

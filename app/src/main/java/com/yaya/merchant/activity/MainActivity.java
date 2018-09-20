@@ -3,12 +3,16 @@ package com.yaya.merchant.activity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
+import com.yaya.merchant.action.MainAction;
 import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.fragment.goods.GoodsFragment;
 import com.yaya.merchant.fragment.main.OrderFragment;
 import com.yaya.merchant.fragment.main.HomeFragment;
 import com.yaya.merchant.fragment.main.UserFragment;
+import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.util.BadgeUtil;
 
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -94,6 +98,21 @@ public class MainActivity extends BaseActivity {
         }else {
             orderCountTv.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getNewOrderCount();
+    }
+
+    private void getNewOrderCount(){
+        MainAction.getOrderCount(new GsonCallback<String>(String.class) {
+            @Override
+            public void onSucceed(JsonResponse<String> response) {
+                BadgeUtil.setBadgeCount(MainActivity.this,Integer.parseInt(response.getResultData()),R.color.red_ff6257);
+            }
+        });
     }
 
 }

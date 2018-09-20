@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -59,13 +60,19 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderDetail> {
             }
         });
 
+        ImageView checkStatusIv = baseViewHolder.getView(R.id.iv_check_status);
+        TextView dateTv = baseViewHolder.getView(R.id.tv_date);
         TextView btn = baseViewHolder.getView(R.id.tv_btn);
         switch (type) {
             case OrderDetail.TYPE_DELIVER_ORDER_LIST:
                 btn.setText("发货");
                 btn.setVisibility(View.VISIBLE);
+                checkStatusIv.setVisibility(View.GONE);
+                dateTv.setVisibility(View.VISIBLE);
                 break;
             case OrderDetail.TYPE_REFUND_ORDER_LIST:
+                checkStatusIv.setVisibility(View.GONE);
+                dateTv.setVisibility(View.VISIBLE);
                 switch (orderData.getAuditStatus()){
                     case OrderDetail.REFUND_ORDER_STATUS_APPLYING:
                         btn.setText("审核");
@@ -84,12 +91,15 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderDetail> {
                 break;
             default:
                 btn.setVisibility(View.GONE);
+                checkStatusIv.setVisibility(View.VISIBLE);
+                dateTv.setVisibility(View.GONE);
+                checkStatusIv.setImageResource(orderData.getCheckStatus() == OrderDetail.CHECK_STATUS_CHECKED ? R.mipmap.ic_order_checked : R.mipmap.ic_order_not_check);
                 break;
         }
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listener!=null){
+                if (listener != null){
                     listener.onBtnClick(orderData);
                 }
             }

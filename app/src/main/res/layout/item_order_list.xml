@@ -31,6 +31,12 @@
             android:text="xxxxxx"
             android:layout_gravity="right"/>
 
+        <ImageView
+            android:id="@+id/iv_check_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"/>
+
     </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
