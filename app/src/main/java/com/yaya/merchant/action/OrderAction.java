@@ -148,4 +148,10 @@ public class OrderAction {
                 .build().execute(callback);
     }
 
+    public static void getOrderNotice(String noticeToken,Callback callback){
+        OkHttpUtils.get().url(Urls.GET_ORDER_NOTICE)
+                .addParams("notice_token",noticeToken)
+                .build().execute(callback);
+    }
+
 }

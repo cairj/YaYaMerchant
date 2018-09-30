@@ -1,5 +1,7 @@
 package com.yaya.merchant.activity;
 
+import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,7 +14,9 @@ import com.yaya.merchant.fragment.main.OrderFragment;
 import com.yaya.merchant.fragment.main.HomeFragment;
 import com.yaya.merchant.fragment.main.UserFragment;
 import com.yaya.merchant.net.callback.GsonCallback;
+import com.yaya.merchant.service.GetOrderService;
 import com.yaya.merchant.util.BadgeUtil;
+import com.yaya.merchant.util.SystemUtil;
 
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -46,6 +50,12 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initData() {
         selectedTab(TAB_HOME);
+        if (!SystemUtil.isServiceRunning(this, GetOrderService.class.getName())){
+            Log.e("main","1111");
+            Intent i = new Intent(this,GetOrderService.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startService(i);
+        }
     }
 
     protected void selectedTab(int position) {

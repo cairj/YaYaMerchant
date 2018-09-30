@@ -145,13 +145,12 @@ public abstract class BaseCallback<K extends Serializable> extends Callback<Json
     protected void parseResult(JSONObject jsonObject) throws JSONException {
         if (jsonResponse.getCode() == Constants.RESPONSE_SUCCESS && jsonObject.has(JSON_KEY_DATA)) {
             if (!(jsonObject.get(JSON_KEY_DATA) instanceof JSONArray)) {
-                if (jsonObject.get(JSON_KEY_DATA) instanceof String) {
-                    jsonResponse.setData((K) jsonObject.getString(JSON_KEY_DATA));
-                } else if (jsonObject.get(JSON_KEY_DATA) instanceof Integer) {
-                    jsonResponse.setData((K) jsonObject.getString(JSON_KEY_DATA));
-                } else {
+                if (jsonObject.get(JSON_KEY_DATA) instanceof JSONObject) {
                     JSONObject resultObject = jsonObject.getJSONObject(JSON_KEY_DATA);
                     jsonResponse.setData(parseItem(resultObject));
+                }else {
+                    String result = jsonObject.getString(JSON_KEY_DATA);
+                    jsonResponse.setData((K) result);
                 }
             }
         }

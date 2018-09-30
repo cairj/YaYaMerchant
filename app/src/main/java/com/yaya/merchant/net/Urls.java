@@ -1,8 +1,11 @@
 package com.yaya.merchant.net;
 
+import com.yaya.merchant.application.MerchantApplication;
+import com.yaya.merchant.util.ManifestReader;
+
 public class Urls {
 
-    private static final String HOST = "https://mall.91yayagou.com.cn/index.php/app/";
+    private static final String HOST = ManifestReader.getMetaDataInApplication(MerchantApplication.getApplication(), "HOST");
 
     public static final String LOGIN = HOST + "Login/login";
     public static final String SEND_MESSAGE = HOST + "Login/getVerificationCode";
@@ -81,5 +84,6 @@ public class Urls {
     public static final String ORDER_REPORT_DATA = HOST + "Order/orderNumCurve";
     public static final String SALE_REPORT_DATA = HOST + "Order/orderMoneyCurve";
     public static final String GET_ORDER_COUNT = HOST + "Home/getNewOrderCount";
+    public static final String GET_ORDER_NOTICE = HOST + "Order/getNotice";
 
 }
