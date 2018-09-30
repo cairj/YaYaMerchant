@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import com.toroke.okhttp.BaseData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.net.Urls;
+import com.yaya.merchant.util.LoadingUtil;
 import com.yaya.merchant.util.ToastUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
@@ -38,14 +39,17 @@ public class LoginAction {
     public static void login(String username, String password,String xinGeToken,int memberType, Callback callback) {
         if (TextUtils.isEmpty(username)) {
             ToastUtil.toast("用户名不能为空");
+            LoadingUtil.hideProcessingIndicator();
             return;
         }
         if (TextUtils.isEmpty(password)) {
             ToastUtil.toast("密码不能为空");
+            LoadingUtil.hideProcessingIndicator();
             return;
         }
         if (TextUtils.isEmpty(xinGeToken)) {
             ToastUtil.toast("信鸽token不能为空");
+            LoadingUtil.hideProcessingIndicator();
             return;
         }
         OkHttpUtils.get().url(Urls.LOGIN)

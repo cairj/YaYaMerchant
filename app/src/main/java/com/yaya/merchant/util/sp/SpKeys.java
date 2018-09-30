@@ -9,5 +9,6 @@ public class SpKeys {
     public static final String IS_LOGIN = "isLogin";
     public static final String TOKEN = "token";
     public static final String USER_TYPE = "userType";
+    public static final String UDID = "udid";
 
 }

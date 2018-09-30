@@ -7,8 +7,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 
-import com.tencent.android.tpush.XGIOperateCallback;
-import com.tencent.android.tpush.XGPushManager;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.LoginAction;
@@ -18,6 +16,7 @@ import com.yaya.merchant.data.login.TokenData;
 import com.yaya.merchant.interfaces.OnEditTextChangeListener;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.Constants;
+import com.yaya.merchant.util.DeviceParamsUtil;
 import com.yaya.merchant.util.LoadingUtil;
 import com.yaya.merchant.util.StatusBarUtil;
 import com.yaya.merchant.util.ToastUtil;
@@ -48,7 +47,7 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.login_rb_agent)
     protected RadioButton agentRb;
 
-    private String xinGeToken;
+    private int memberType;
 
     @Override
     protected int getContentViewId() {
@@ -60,12 +59,6 @@ public class LoginActivity extends BaseActivity {
         super.initView();
         StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
         initEditView();
-    }
-
-    @Override
-    protected void initData() {
-        super.initData();
-        getXinGeToken();
     }
 
     //初始化输入框
@@ -112,34 +105,18 @@ public class LoginActivity extends BaseActivity {
             ToastUtil.toast("请选择是商户或代理" );
             return;
         }
-        final int memberType = merchantRb.isChecked()? Constants.MEMBER_TYPE_MERCHANT:Constants.MEMBER_TYPE_AGENT;
-        login(memberType);
-    }
-
-    private void getXinGeToken(){
-        Log.e("TPush","start--->"+System.currentTimeMillis());
-        XGPushManager.registerPush(this, new XGIOperateCallback() {
-            @Override
-            public void onSuccess(Object data, int flag) {
-                xinGeToken = data.toString();
-                Log.e("TPush","end--->"+System.currentTimeMillis());
-            }
-            @Override
-            public void onFail(Object data, int errCode, String msg) {
-                Log.d("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
-                getXinGeToken();
-            }
-        });
-    }
-
-    private void login(final int memberType){
-        if (TextUtils.isEmpty(xinGeToken)){
-            ToastUtil.toast("正在注册信鸽推送，请稍后。。。");
-            return;
+        memberType = merchantRb.isChecked()? Constants.MEMBER_TYPE_MERCHANT:Constants.MEMBER_TYPE_AGENT;
+        String udid = DeviceParamsUtil.getUdid(this);
+        if (!TextUtils.isEmpty(udid)) {
+            login(udid);
         }
+    }
+
+    private void login(String udid){
+        Log.e("login","udid --> "+ udid);
         LoadingUtil.showAsyncProgressDialog(this);
         LoginAction.login(userEditView.getText().toString().trim(),
-                passwordEditView.getText().toString().trim(), xinGeToken,
+                passwordEditView.getText().toString().trim(), udid,
                 memberType,new GsonCallback<TokenData>(TokenData.class) {
 
                     @Override
@@ -159,14 +136,5 @@ public class LoginActivity extends BaseActivity {
                         dialog.show();
                     }
                 });
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (!SPUtil.getBoolean(SpKeys.IS_LOGIN)){
-            XGPushManager.registerPush(this,"*");
-            XGPushManager.unregisterPush(this);
-        }
-        super.onDestroy();
     }
 }

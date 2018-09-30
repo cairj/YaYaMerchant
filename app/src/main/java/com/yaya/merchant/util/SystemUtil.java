@@ -1,5 +1,6 @@
 package com.yaya.merchant.util;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -7,6 +8,7 @@ import android.net.NetworkInfo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class SystemUtil {
 
@@ -48,6 +50,20 @@ public class SystemUtil {
         ConnectivityManager conn = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = conn.getActiveNetworkInfo();
         return (info != null && info.isConnected());
+    }
+
+    public static boolean isServiceRunning(Context context, String serviceName) {
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningServiceInfo> serviceInfoList = manager.getRunningServices(200);
+        if (serviceInfoList.size() <= 0) {
+            return false;
+        }
+        for (ActivityManager.RunningServiceInfo info : serviceInfoList) {
+            if (info.service.getClassName().equals(serviceName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
