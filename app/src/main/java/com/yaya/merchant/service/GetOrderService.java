@@ -11,8 +11,12 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
+import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
+import com.iflytek.cloud.SpeechSynthesizer;
+import com.iflytek.cloud.SpeechUtility;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.OrderAction;
@@ -54,6 +58,7 @@ public class GetOrderService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.e("GetOrderService","onCreate");
         mNM = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         try {
             mStartForeground = GetOrderService.class.getMethod("startForeground", mStartForegroundSignature);
@@ -90,6 +95,8 @@ public class GetOrderService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
+        Log.e("GetOrderService","isStart");
+        VoiceUtils.getInstance().speak(GetOrderService.this,"成功");
         isStart = true;
         handler.sendEmptyMessage(GET_ORDER_COUNT);
         return START_STICKY;
@@ -104,6 +111,7 @@ public class GetOrderService extends Service {
             }
             switch (msg.what){
                 case GET_ORDER_COUNT:
+                    Log.e("GetOrderService","getOrderNotice");
                     OrderAction.getOrderNotice(DeviceParamsUtil.getUdid(GetOrderService.this), new GsonCallback<OrderNoticeDetail>(OrderNoticeDetail.class) {
                         @Override
                         public void onSucceed(JsonResponse<OrderNoticeDetail> response) {
@@ -129,6 +137,7 @@ public class GetOrderService extends Service {
             public void onCompleted(SpeechError speechError) {
                 if (count >= 0 && count < list.size()-1){
                     speakContent(list,count+1);
+                    Log.e("GetOrderService","speakContent");
                 }
                 if (count == list.size()-1){//最后一条
                     handler.sendEmptyMessageDelayed(GET_ORDER_COUNT,5000);

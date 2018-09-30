@@ -59,6 +59,7 @@ public class LoginActivity extends BaseActivity {
         super.initView();
         StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
         initEditView();
+        merchantRb.setChecked(true);
     }
 
     //初始化输入框

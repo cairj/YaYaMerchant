@@ -1,6 +1,8 @@
 package com.yaya.merchant.application;
 
+import android.app.ActivityManager;
 import android.app.Application;
+import android.content.Context;
 
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
@@ -9,6 +11,7 @@ import com.yaya.merchant.net.LogInterceptor;
 import com.yaya.merchant.util.sp.SPUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -28,9 +31,14 @@ public class MerchantApplication extends Application {
         mInstance = this;
         SPUtil.init(this);
         initOkHttp();
-
-        //讯飞语音
-        SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID + "=5aae2858");
+        String processName = getProcessName(this, android.os.Process.myPid());
+        if(processName != null){
+            boolean defaultProcess = processName.equals("com.yaya.merchant");
+            if (defaultProcess) {
+                //讯飞语音
+                SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID + "=5aae2858");
+            }
+        }
     }
 
     private void initOkHttp() {
@@ -46,6 +54,20 @@ public class MerchantApplication extends Application {
 
     public static MerchantApplication getApplication(){
         return mInstance;
+    }
+
+    public static String getProcessName(Context cxt, int pid) {
+        ActivityManager am = (ActivityManager) cxt.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> runningApps = am.getRunningAppProcesses();
+        if (runningApps == null) {
+            return null;
+        }
+        for (ActivityManager.RunningAppProcessInfo procInfo : runningApps) {
+            if (procInfo.pid == pid) {
+                return procInfo.processName;
+            }
+        }
+        return null;
     }
 
 }

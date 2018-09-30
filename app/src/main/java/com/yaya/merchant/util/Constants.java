@@ -13,5 +13,5 @@ public class Constants {
 
     public static final int RESPONSE_SUCCESS = 1;//联网获取数据成功
 
-    public static final int PHONE_STATE_REQUEST_PERMISSION = 100001;
+    public static final String SPEAK_CONTENT = "SPEAK_CONTENT";
 }
