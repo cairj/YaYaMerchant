@@ -8,6 +8,8 @@ import com.tencent.android.tpush.XGPushClickedResult;
 import com.tencent.android.tpush.XGPushRegisterResult;
 import com.tencent.android.tpush.XGPushShowedResult;
 import com.tencent.android.tpush.XGPushTextMessage;
+import com.yaya.merchant.R;
+import com.yaya.merchant.util.BadgeUtil;
 import com.yaya.merchant.util.VoiceUtils;
 
 import org.json.JSONException;
@@ -57,6 +59,9 @@ public class MyReceiver extends XGPushBaseReceiver {
             JSONObject jsonObject = new JSONObject(xgPushShowedResult.getCustomContent());
             if (jsonObject.has("message") && jsonObject.get("message") instanceof String) {
                 VoiceUtils.getInstance().speak(context, jsonObject.getString("message"));
+            }
+            if (jsonObject.has("badge") && jsonObject.get("badge") instanceof Integer) {
+                BadgeUtil.setBadgeCount(context,jsonObject.getInt("badge"), R.color.red_ff6257);
             }
         } catch (JSONException e) {
             e.printStackTrace();

@@ -61,6 +61,7 @@ public class RefundOrderDetailActivity extends OrderDetailActivity {
         setActionBarTitle("订单详情");
         orderDetail = (OrderDetail) getIntent().getSerializableExtra("order");
         statusTv.setVisibility(View.VISIBLE);
+        callIv.setVisibility(View.GONE);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.yaya.merchant.activity.order;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -106,14 +107,17 @@ public class OrderDetailActivity extends BaseActivity {
         switch (type) {
             case OrderDetail.TYPE_ORDER_LIST:
                 bottomLL.setVisibility(View.GONE);
+                callIv.setVisibility(View.VISIBLE);
                 break;
             case OrderDetail.TYPE_DELIVER_ORDER_LIST:
                 bottomLL.setVisibility(View.VISIBLE);
+                callIv.setVisibility(View.GONE);
                 submitTv.setText("去发货");
                 break;
             case OrderDetail.TYPE_REFUND_ORDER_LIST:
                 bottomLL.setVisibility(View.VISIBLE);
                 submitTv.setText("审核");
+                callIv.setVisibility(View.GONE);
                 break;
         }
 
@@ -145,7 +149,7 @@ public class OrderDetailActivity extends BaseActivity {
 
     protected void fillOrderDetailData(OrderDetail orderDetail){
         statusTv.setText(orderDetail.getOrderStatus());
-        buyerInfoTv.setText(orderDetail.getUserName() + "  " + orderDetail.getUserPhone() + "\n" + orderDetail.getUserAddress());
+        buyerInfoTv.setText(orderDetail.getUserName() /*+ "  " + orderDetail.getUserPhone()*/ + "\n" + orderDetail.getUserAddress());
         dateTv.setText(orderDetail.getPayTime());
         goodsPriceTv.setText("￥" + orderDetail.getOrderPrice());
         deliverPriceTv.setText("￥" + orderDetail.getDeliverPrice());
@@ -161,16 +165,27 @@ public class OrderDetailActivity extends BaseActivity {
         detailAdapter.notifyDataSetChanged();
     }
 
-    @OnClick(R.id.tv_submit)
-    protected void OnClick() {
-        switch (type) {
-            case OrderDetail.TYPE_DELIVER_ORDER_LIST:
-                DeliverOrderActivity.open(this, orderDetail);
+    @OnClick({R.id.tv_submit,R.id.iv_call})
+    protected void onClick(View view) {
+        switch (view.getId()){
+            case R.id.tv_submit:
+                switch (type) {
+                    case OrderDetail.TYPE_DELIVER_ORDER_LIST:
+                        DeliverOrderActivity.open(this, orderDetail);
+                        break;
+                    case OrderDetail.TYPE_REFUND_ORDER_LIST:
+                        RefundOrderActivity.open(this, orderDetail);
+                        break;
+                }
                 break;
-            case OrderDetail.TYPE_REFUND_ORDER_LIST:
-                RefundOrderActivity.open(this, orderDetail);
+            case R.id.iv_call:
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                Uri data = Uri.parse("tel:" + orderDetail.getUserPhone());
+                intent.setData(data);
+                startActivity(intent);
                 break;
         }
+
     }
 
     @Subscriber(tag= EventBusTags.DELIVER_ORDER_SUCCESS)
