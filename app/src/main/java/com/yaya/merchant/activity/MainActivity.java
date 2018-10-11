@@ -50,12 +50,12 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initData() {
         selectedTab(TAB_HOME);
-        if (!SystemUtil.isServiceRunning(this, GetOrderService.class.getName())){
+        /*if (!SystemUtil.isServiceRunning(this, GetOrderService.class.getName())){
             Log.e("main","1111");
             Intent i = new Intent(this,GetOrderService.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startService(i);
-        }
+        }*/
     }
 
     protected void selectedTab(int position) {

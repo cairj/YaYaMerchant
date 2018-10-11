@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
 import com.yaya.merchant.R;
+import com.yaya.merchant.util.DeviceParamsUtil;
 
 /**
  * 下拉弹窗基准类
@@ -91,8 +92,10 @@ public abstract class BasePopupWindow extends PopupWindow {
     public void showDropDown(View view, int x, int y) {
         if (!this.isShowing()) {
             // 以下拉方式显示popupwindow
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < 24) {
                 this.showAsDropDown(view, x, y);
+            } else {
+                this.showAtLocation(view, Gravity.NO_GRAVITY, x, view.getHeight() + DeviceParamsUtil.getStatusBarHeight(view.getContext())+y);
             }
         } else {
             this.dismiss();

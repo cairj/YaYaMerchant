@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
@@ -24,6 +25,7 @@ public class DeviceParamsUtil {
     private static int mScreenWidth;
     private static int mScreenHeight;
     private static String udid;
+    private static int statusBarHeight;
 
     //获取屏幕宽度
     public static int getScreenWidth(Context context) {
@@ -45,14 +47,19 @@ public class DeviceParamsUtil {
 
     /* 获取状态栏高度 */
     public static int getStatusBarHeight(Context context) {
-        int height = 0;
-        //获取status_bar_height资源的ID
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            //根据资源ID获取响应的尺寸值
-            height = context.getResources().getDimensionPixelSize(resourceId);
+        if (statusBarHeight != 0) {
+            return statusBarHeight;
         }
-        return height;
+        try {
+            Resources resource = context.getResources();
+            int resourceId = resource.getIdentifier("status_bar_height", "dimen", "Android");
+            if (resourceId != 0) {
+                statusBarHeight = resource.getDimensionPixelSize(resourceId);
+                return statusBarHeight;
+            }
+        } catch (Exception e) {
+        }
+        return 0;
     }
 
     @SuppressLint("MissingPermission")
@@ -88,5 +95,4 @@ public class DeviceParamsUtil {
 
         return udid;
     }
-
 }

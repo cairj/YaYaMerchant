@@ -6,8 +6,10 @@ import android.content.Context;
 
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
+import com.tencent.android.tpush.XGPushConfig;
 import com.yaya.merchant.net.HeaderInterceptor;
 import com.yaya.merchant.net.LogInterceptor;
+import com.yaya.merchant.util.Constants;
 import com.yaya.merchant.util.sp.SPUtil;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -31,6 +33,16 @@ public class MerchantApplication extends Application {
         mInstance = this;
         SPUtil.init(this);
         initOkHttp();
+        /*腾讯信鸽推送*/
+        //开启debug日志数据
+        XGPushConfig.enableDebug(this, true);
+        XGPushConfig.enableOtherPush(getApplicationContext(), true);
+        XGPushConfig.setHuaweiDebug(true);
+        XGPushConfig.setMiPushAppId(getApplicationContext(), Constants.XG_PUSH_APP_ID);
+        XGPushConfig.setMiPushAppKey(getApplicationContext(), Constants.XG_PUSH_APP_KEY);
+        XGPushConfig.setMzPushAppId(this, Constants.XG_PUSH_APP_ID);
+        XGPushConfig.setMzPushAppKey(this, Constants.XG_PUSH_APP_KEY);
+
         String processName = getProcessName(this, android.os.Process.myPid());
         if(processName != null){
             boolean defaultProcess = processName.equals("com.yaya.merchant");

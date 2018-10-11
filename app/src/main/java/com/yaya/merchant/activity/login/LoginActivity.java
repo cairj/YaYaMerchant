@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 
+import com.tencent.android.tpush.XGIOperateCallback;
+import com.tencent.android.tpush.XGPushManager;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.LoginAction;
@@ -48,6 +50,7 @@ public class LoginActivity extends BaseActivity {
     protected RadioButton agentRb;
 
     private int memberType;
+    private String xinGeToken;
 
     @Override
     protected int getContentViewId() {
@@ -60,6 +63,12 @@ public class LoginActivity extends BaseActivity {
         StatusBarUtil.setWindowStatusBarColor(this, R.color.white);
         initEditView();
         merchantRb.setChecked(true);
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        getXinGeToken();
     }
 
     //初始化输入框
@@ -107,17 +116,30 @@ public class LoginActivity extends BaseActivity {
             return;
         }
         memberType = merchantRb.isChecked()? Constants.MEMBER_TYPE_MERCHANT:Constants.MEMBER_TYPE_AGENT;
-        String udid = DeviceParamsUtil.getUdid(this);
+        /*String udid = DeviceParamsUtil.getUdid(this);
         if (!TextUtils.isEmpty(udid)) {
             login(udid);
-        }
+        }*/
+        loginRequest();
     }
 
-    private void login(String udid){
-        Log.e("login","udid --> "+ udid);
+    private void getXinGeToken(){
+        XGPushManager.registerPush(this, new XGIOperateCallback() {
+            @Override
+            public void onSuccess(Object data, int flag) {
+                xinGeToken = data.toString();
+            }
+            @Override
+            public void onFail(Object data, int errCode, String msg) {
+                getXinGeToken();
+            }
+        });
+    }
+
+    private void loginRequest(){
         LoadingUtil.showAsyncProgressDialog(this);
         LoginAction.login(userEditView.getText().toString().trim(),
-                passwordEditView.getText().toString().trim(), udid,
+                passwordEditView.getText().toString().trim(), xinGeToken,
                 memberType,new GsonCallback<TokenData>(TokenData.class) {
 
                     @Override
@@ -137,5 +159,14 @@ public class LoginActivity extends BaseActivity {
                         dialog.show();
                     }
                 });
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (!SPUtil.getBoolean(SpKeys.IS_LOGIN)){
+            XGPushManager.registerPush(this,"*");
+            XGPushManager.unregisterPush(this);
+        }
+        super.onDestroy();
     }
 }

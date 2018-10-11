@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/pink_fa4b45">
+
+        <include layout="@layout/layout_dark_action_bar"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/fragment_member_manager" />
+
+        <LinearLayout
+            android:id="@+id/ll_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/search_ed_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginBottom="9dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toLeftOf="@id/search_tv_cancel"
+                    android:background="@drawable/bg_white_rounded_bfbfbf"
+                    android:drawableLeft="@mipmap/top_ic_search"
+                    android:drawablePadding="5dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/search_merchant_member"
+                    android:paddingLeft="9dp"
+                    android:textColor="@color/gray_999999"
+                    android:textSize="14sp"
+                    android:imeOptions="actionSearch"
+                    android:lines="1"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/external_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.6"
+                android:background="@color/black" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

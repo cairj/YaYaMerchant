@@ -3,8 +3,8 @@ package com.yaya.merchant.util;
 import android.content.Context;
 import android.content.Intent;
 
+import com.tencent.android.tpush.XGPushManager;
 import com.yaya.merchant.activity.login.LoginActivity;
-import com.yaya.merchant.service.GetOrderService;
 import com.yaya.merchant.util.sp.SPUtil;
 import com.yaya.merchant.util.sp.SpKeys;
 
@@ -21,7 +21,8 @@ public class UserHelper {
         AppManager.getAppManager().finishAllActivity();
         context.startActivity(new Intent(context,LoginActivity.class));
 
-        context.stopService(new Intent(context, GetOrderService.class));
+        XGPushManager.registerPush(context,"*");
+        XGPushManager.unregisterPush(context);
     }
 
     public static boolean isMerchant(){

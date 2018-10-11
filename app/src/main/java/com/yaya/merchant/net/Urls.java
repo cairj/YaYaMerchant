@@ -85,5 +85,7 @@ public class Urls {
     public static final String SALE_REPORT_DATA = HOST + "Order/orderMoneyCurve";
     public static final String GET_ORDER_COUNT = HOST + "Home/getNewOrderCount";
     public static final String GET_ORDER_NOTICE = HOST + "Order/getNotice";
+    public static final String GET_MEMBERSHIP_LIST = HOST + "Member/getList";
+    public static final String GET_MEMBERSHIP_LEVEL = HOST + "Member/getLevelList";
 
 }
