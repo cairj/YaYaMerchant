@@ -10,6 +10,7 @@ import com.tencent.android.tpush.XGPushShowedResult;
 import com.tencent.android.tpush.XGPushTextMessage;
 import com.yaya.merchant.R;
 import com.yaya.merchant.util.BadgeUtil;
+import com.yaya.merchant.util.ToastUtil;
 import com.yaya.merchant.util.VoiceUtils;
 
 import org.json.JSONException;
@@ -58,6 +59,7 @@ public class MyReceiver extends XGPushBaseReceiver {
         try {
             JSONObject jsonObject = new JSONObject(xgPushShowedResult.getCustomContent());
             if (jsonObject.has("message") && jsonObject.get("message") instanceof String) {
+                ToastUtil.toast("推送:"+jsonObject.getString("message"));
                 VoiceUtils.getInstance().speak(context, jsonObject.getString("message"));
             }
             if (jsonObject.has("badge") && jsonObject.get("badge") instanceof Integer) {

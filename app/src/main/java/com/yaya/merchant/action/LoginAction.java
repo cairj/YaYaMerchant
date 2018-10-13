@@ -48,7 +48,6 @@ public class LoginAction {
             return;
         }
         if (TextUtils.isEmpty(xinGeToken)) {
-            ToastUtil.toast("信鸽token不能为空");
             LoadingUtil.hideProcessingIndicator();
             return;
         }

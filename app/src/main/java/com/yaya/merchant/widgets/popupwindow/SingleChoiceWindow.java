@@ -47,7 +47,6 @@ public class SingleChoiceWindow extends BasePopupWindow {
         RecyclerView.ItemDecoration decoration = new HorizontalDividerItemDecoration.Builder(context)
                 .color(ContextCompat.getColor(context, R.color.gray_F6F7F9))
                 .sizeResId(R.dimen.divider_height)
-                .marginResId(R.dimen.margin_edge)
                 .build();
         return decoration;
     }

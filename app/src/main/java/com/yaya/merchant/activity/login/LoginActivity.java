@@ -137,6 +137,10 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void loginRequest(){
+        if (TextUtils.isEmpty(xinGeToken)){
+            ToastUtil.toast("正在注册信鸽推送，请稍后再试...");
+            return;
+        }
         LoadingUtil.showAsyncProgressDialog(this);
         LoginAction.login(userEditView.getText().toString().trim(),
                 passwordEditView.getText().toString().trim(), xinGeToken,

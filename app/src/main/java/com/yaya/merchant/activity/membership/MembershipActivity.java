@@ -15,12 +15,10 @@ import com.toroke.okhttp.BaseRowData;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.MembershipAction;
-import com.yaya.merchant.action.UserAction;
-import com.yaya.merchant.base.activity.BaseActivity;
 import com.yaya.merchant.base.activity.BasePtrRecycleActivity;
 import com.yaya.merchant.data.ChoiceItem;
 import com.yaya.merchant.data.membership.MemberShipData;
-import com.yaya.merchant.data.user.MerchantClassic;
+import com.yaya.merchant.data.membership.MembershipLevelData;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.Constants;
 import com.yaya.merchant.util.DpPxUtil;
@@ -166,12 +164,12 @@ public class MembershipActivity extends BasePtrRecycleActivity<MemberShipData> {
     }
 
     private void getMerchantClassify(){
-        UserAction.getMerchantClassify(new GsonCallback<MerchantClassic>(MerchantClassic.class) {
+        MembershipAction.getMembershipLevel(new GsonCallback<MembershipLevelData>(MembershipLevelData.class) {
             @Override
-            public void onSucceed(JsonResponse<MerchantClassic> response) {
+            public void onSucceed(JsonResponse<MembershipLevelData> response) {
                 for (int i = 0; i < response.getDataList().size(); i++) {
-                    MerchantClassic classic = response.getDataList().get(i);
-                    ChoiceItem item = new ChoiceItem(classic.getGroupName(), classic.getShopGroupId());
+                    MembershipLevelData classic = response.getDataList().get(i);
+                    ChoiceItem item = new ChoiceItem(classic.getLevelName(), classic.getLevelId());
                     singleChoiceItemList.add(item);
                 }
                 singleChoiceItemList.add(0,new ChoiceItem("全部分类", ""));

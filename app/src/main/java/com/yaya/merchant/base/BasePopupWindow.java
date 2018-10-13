@@ -95,7 +95,13 @@ public abstract class BasePopupWindow extends PopupWindow {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < 24) {
                 this.showAsDropDown(view, x, y);
             } else {
-                this.showAtLocation(view, Gravity.NO_GRAVITY, x, view.getHeight() + DeviceParamsUtil.getStatusBarHeight(view.getContext())+y);
+                int[] location = new int[2];
+                view.getLocationOnScreen(location);
+                int viewY = location[1] ;
+                view.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                int viewHeight = view.getMeasuredHeight();
+                setHeight(DeviceParamsUtil.getScreenHeight(context) - (viewY + viewHeight));
+                this.showAtLocation(view, Gravity.NO_GRAVITY, x, viewY + viewHeight + DeviceParamsUtil.getStatusBarHeight(view.getContext())+y);
             }
         } else {
             this.dismiss();
