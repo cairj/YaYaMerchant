@@ -20,6 +20,7 @@ public class LoadingUtil {
             public void run() {
                 if (loadingProgressDialog == null || loadingProgressDialog.getContext() != context) {
                     loadingProgressDialog = new LoadingProgressDialog(context);
+                    loadingProgressDialog.setCancelable(false);
                 }
 
                 loadingProgressDialog.setLoadingText(loading);

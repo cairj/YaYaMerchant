@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.tencent.android.tpush.XGIOperateCallback;
+import com.tencent.android.tpush.XGPushManager;
 import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.R;
 import com.yaya.merchant.action.MainAction;
@@ -50,6 +52,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initData() {
         selectedTab(TAB_HOME);
+        registerPush();
         /*if (!SystemUtil.isServiceRunning(this, GetOrderService.class.getName())){
             Log.e("main","1111");
             Intent i = new Intent(this,GetOrderService.class);
@@ -121,6 +124,19 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onSucceed(JsonResponse<String> response) {
                 BadgeUtil.setBadgeCount(MainActivity.this,Integer.parseInt(response.getResultData()),R.color.red_ff6257);
+            }
+        });
+    }
+
+    private void registerPush(){
+        XGPushManager.registerPush(this, new XGIOperateCallback() {
+            @Override
+            public void onSuccess(Object o, int i) {
+            }
+
+            @Override
+            public void onFail(Object o, int i, String s) {
+                registerPush();
             }
         });
     }

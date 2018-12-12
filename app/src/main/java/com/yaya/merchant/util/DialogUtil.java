@@ -57,7 +57,7 @@ public class DialogUtil {
                     @Override
                     public void rightClick() {
                         Intent intent = new Intent(Intent.ACTION_DIAL);
-                        intent.setData(Uri.parse("tel:" + response.getData().getData()));
+                        intent.setData(Uri.parse("tel:" + response.getResultData().getPhone()));
                         context.startActivity(intent);
                     }
                 });

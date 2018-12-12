@@ -10,6 +10,8 @@ import com.toroke.okhttp.JsonResponse;
 import com.yaya.merchant.net.Urls;
 import com.yaya.merchant.util.LoadingUtil;
 import com.yaya.merchant.util.ToastUtil;
+import com.yaya.merchant.util.sp.SPUtil;
+import com.yaya.merchant.util.sp.SpKeys;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 import com.zhy.http.okhttp.request.RequestCall;
@@ -157,6 +159,13 @@ public class LoginAction {
             e.printStackTrace();
             return "";
         }*/
+    }
+
+    public static void logout(Callback callback){
+        OkHttpUtils.get().url(Urls.LOGOUT)
+                .addParams("token", SPUtil.getString(SpKeys.TOKEN))
+                .addParams("xinge_token", SPUtil.getString(SpKeys.XG_TOKEN))
+                .build().execute(callback);
     }
 
 }

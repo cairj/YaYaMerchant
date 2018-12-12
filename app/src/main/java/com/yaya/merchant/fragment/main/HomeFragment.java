@@ -234,7 +234,7 @@ public class HomeFragment extends BaseFragment {
                 openActivity(EnterBillActivity.class);
                 break;
             case R.id.fl_total_member:
-                openActivity(MemberManagerActivity.class);
+                openActivity(MembershipActivity  .class);
                 break;
             case R.id.tv_cash:
                 openActivity(WithdrawMoneyActivity.class);

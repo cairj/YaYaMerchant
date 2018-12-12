@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical"
-        android:padding="15dp">
+        android:padding="15dp"
+        android:gravity="center_horizontal">
 
         <com.yaya.merchant.widgets.ProgressWheel
             android:id="@+id/progress_wheel"

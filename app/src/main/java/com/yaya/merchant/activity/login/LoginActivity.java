@@ -19,6 +19,7 @@ import com.yaya.merchant.interfaces.OnEditTextChangeListener;
 import com.yaya.merchant.net.callback.GsonCallback;
 import com.yaya.merchant.util.Constants;
 import com.yaya.merchant.util.DeviceParamsUtil;
+import com.yaya.merchant.util.DpPxUtil;
 import com.yaya.merchant.util.LoadingUtil;
 import com.yaya.merchant.util.StatusBarUtil;
 import com.yaya.merchant.util.ToastUtil;
@@ -68,7 +69,10 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
-        getXinGeToken();
+        xinGeToken = SPUtil.getString(SpKeys.XG_TOKEN);
+        if (TextUtils.isEmpty(xinGeToken)){
+            getXinGeToken();
+        }
     }
 
     //初始化输入框
@@ -124,21 +128,51 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void getXinGeToken(){
+        LoadingUtil.showAsyncProgressDialog(this,"app正在初始化请耐心等候...");
         XGPushManager.registerPush(this, new XGIOperateCallback() {
             @Override
             public void onSuccess(Object data, int flag) {
                 xinGeToken = data.toString();
+                SPUtil.putString(SpKeys.XG_TOKEN,xinGeToken);
+                XGPushManager.unregisterPush(LoginActivity.this, new XGIOperateCallback() {
+                    @Override
+                    public void onSuccess(Object o, int i) {
+                        LoadingUtil.hideProcessingIndicator();
+                    }
+
+                    @Override
+                    public void onFail(Object o, int i, String s) {
+                    }
+                });
             }
             @Override
             public void onFail(Object data, int errCode, String msg) {
-                getXinGeToken();
+                LoadingUtil.hideProcessingIndicator();
+                registerPushFailDialog();
             }
         });
     }
 
+    private void registerPushFailDialog(){
+        SingleBtnDialog dialog = new SingleBtnDialog(LoginActivity.this,R.layout.dialog_single_button);
+        dialog.setWidth(DeviceParamsUtil.getScreenWidth(this) - 2 * DpPxUtil.dp2px(100));
+        dialog.getPictureIv().setVisibility(View.GONE);
+        dialog.getTitleTv().setText("网络延迟");
+        dialog.getContentTv().setText("网络延迟，请重试");
+        dialog.getSubmitBtnTv().setText("重试");
+        dialog.setCancelable(false);
+        dialog.setListener(new SingleBtnDialog.OnClickListener() {
+            @Override
+            public void submit() {
+
+            }
+        });
+        dialog.show();
+    }
+
     private void loginRequest(){
         if (TextUtils.isEmpty(xinGeToken)){
-            ToastUtil.toast("正在注册信鸽推送，请稍后再试...");
+            ToastUtil.toast("通信连接中，请稍后...");
             return;
         }
         LoadingUtil.showAsyncProgressDialog(this);
@@ -163,14 +197,5 @@ public class LoginActivity extends BaseActivity {
                         dialog.show();
                     }
                 });
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (!SPUtil.getBoolean(SpKeys.IS_LOGIN)){
-            XGPushManager.registerPush(this,"*");
-            XGPushManager.unregisterPush(this);
-        }
-        super.onDestroy();
     }
 }
